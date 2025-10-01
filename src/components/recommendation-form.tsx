@@ -1,6 +1,7 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { useEffect } from 'react';
 import { getFrameRecommendations } from '@/app/(app)/recommendations/actions';
 import { Button } from '@/components/ui/button';
@@ -41,7 +42,7 @@ function SubmitButton() {
 }
 
 export function RecommendationForm() {
-  const [state, formAction] = useFormState(getFrameRecommendations, initialState);
+  const [state, formAction] = useActionState(getFrameRecommendations, initialState);
   const { toast } = useToast();
 
   useEffect(() => {
