@@ -81,6 +81,127 @@
       ]
     }
   ],
+  "progressiveLenses": [
+    {
+      "id": "id_mystyle_3",
+      "name": "iD MyStyle®3",
+      "designFeatures": [
+        "NEW! AdaptEase™ Technology",
+        "NEW! 3D Binocular Vision™ technology",
+        "Integrated Dual Surface™ (iD) Technology",
+        "Binocular Harmonization Technology™",
+        "Minimum Fitting Height: 14mm with 6 Corridor Lengths",
+        "Position of wear or defaults",
+        "Five convenience options available"
+      ],
+      "patientBenefits": [
+        "Tailored experience via questionnaire",
+        "Overcomes typical non-adapt complaints",
+        "No compromise in vision"
+      ]
+    },
+    {
+      "id": "id_lifestyle_4",
+      "name": "iD LifeStyle®4",
+      "designFeatures": [
+        "3D Binocular Vision™ technology",
+        "Integrated Dual Surface™ (iD) Technology",
+        "Binocular Harmonization Technology™",
+        "6 corridor lengths",
+        "Position of wear or defaults",
+        "Three lifestyle-based design options"
+      ],
+      "patientBenefits": [
+        "Faster adaptation via binocular technologies",
+        "Customized visual experience",
+        "Improved visual comfort",
+        "Available in polarized"
+      ]
+    },
+    {
+      "id": "id_lifestyle_3",
+      "name": "iD LifeStyle®3",
+      "designFeatures": [
+        "Integrated Dual Surface™ (iD) Technology",
+        "Binocular Harmonization Technology™",
+        "Minimum Fitting Height: 14mm, 4 Corridor Lengths",
+        "Position of wear or defaults",
+        "Three lifestyle-based design options"
+      ],
+      "patientBenefits": [
+        "Ease of adaptation",
+        "Customized visual experience",
+        "Improved visual comfort",
+        "Available in polarized"
+      ]
+    },
+    {
+      "id": "id_workstyle_3",
+      "name": "iD WorkStyle® 3",
+      "designFeatures": [
+        "NEW! AdaptEase™ Technology",
+        "NEW! 3D Binocular Vision™ technology",
+        "Integrated Dual Surface™ (iD) Technology",
+        "Binocular Harmonization Technology™",
+        "Minimum Fitting Height: 18mm with 7 Corridor Lengths",
+        "Position of wear or defaults",
+        "Three working distance-specific options"
+      ],
+      "patientBenefits": [
+        "Relief from Digital Eye Strain (DES)",
+        "Increased productivity",
+        "Custom solution for visual needs"
+      ]
+    },
+    {
+      "id": "array_2",
+      "name": "Array®2 & Array®2 Wrap",
+      "designFeatures": [
+        "BKS Technology®",
+        "Binocular Harmonization Technology™",
+        "Minimum fitting height: 14mm",
+        "4 Corridor Lengths – Variable or fixed (11mm, 13mm, 15mm, 17mm)",
+        "Position of wear or defaults"
+      ],
+      "patientBenefits": [
+        "Best value for needs",
+        "Unsurpassed comfort",
+        "Less adaptation issues",
+        "Compatible with any material",
+        "Stylish sun frame options"
+      ]
+    },
+    {
+      "id": "summit_cd_bks",
+      "name": "Summit® cd BKS™ & Summit® ecp BKS™",
+      "designFeatures": [
+        "BKS Technology®",
+        "Minimum fitting height: 15mm",
+        "Short corridor available"
+      ],
+      "patientBenefits": [
+        "Optimized lens prescription",
+        "Smoother transition between zones",
+        "Wide, stable, natural vision",
+        "More add-on feature choices"
+      ]
+    },
+    {
+      "id": "amplitude_bks",
+      "name": "Amplitude® BKS™ & Amplitude® Mini BKS™",
+      "designFeatures": [
+        "BKS Technology®",
+        "Minimum fitting height: 14mm",
+        "Short corridor available"
+      ],
+      "patientBenefits": [
+        "Optimized lens prescription",
+        "Smoother transition between zones",
+        "Wide, stable, natural vision",
+        "Budget-friendly high-quality design"
+      ]
+    }
+  ],
   "keyTechnologies": [
     {
       "id": "freeform",
@@ -106,6 +227,21 @@
       "id": "focus_max",
       "name": "Focus Max Optimization",
       "description": "Enhances close-up vision for young presbyopes."
+    },
+    {
+      "id": "3d_binocular_vision",
+      "name": "3D Binocular Vision™ Technology",
+      "description": "Enhances binocularity for near peripheral vision."
+    },
+    {
+      "id": "adaptease",
+      "name": "AdaptEase™ Technology",
+      "description": "Facilitates faster adaptation to progressive lenses."
+    },
+    {
+      "id": "bks",
+      "name": "BKS Technology®",
+      "description": "Optimizes lens design for smoother transitions and wider fields of view."
     }
   ]
 }
