@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -25,19 +26,34 @@ export default function CatalogPage() {
     antiReflectiveCoatings,
     photochromicLenses,
     computerWorkLenses,
-    keyTechnologies,
-  } = lensData;
+    sunSolutions,
+  } = lensData as any;
 
   const renderLensCard = (lens: any) => (
     <Card key={lens.id} className="flex flex-col">
       <CardHeader>
         <CardTitle>{lens.name}</CardTitle>
+        {lens.description && (
+          <CardDescription>{lens.description}</CardDescription>
+        )}
         {lens.targetUsers && (
-          <CardDescription>{lens.targetUsers}</CardDescription>
+          <CardDescription className="italic pt-2">{lens.targetUsers}</CardDescription>
         )}
       </CardHeader>
       <CardContent className="flex-1">
         <Accordion type="single" collapsible className="w-full">
+          {lens.keyFeatures && (
+            <AccordionItem value="key-features">
+              <AccordionTrigger>Key Features</AccordionTrigger>
+              <AccordionContent>
+                 <ul className="list-disc space-y-2 pl-4">
+                  {lens.keyFeatures.map((feature: any, index: number) => (
+                    <li key={index}>{feature}</li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          )}
           {lens.designFeatures && (
             <AccordionItem value="design">
               <AccordionTrigger>Design Features</AccordionTrigger>
@@ -62,18 +78,6 @@ export default function CatalogPage() {
               </AccordionContent>
             </AccordionItem>
           )}
-          {lens.keyFeatures && (
-            <AccordionItem value="key-features">
-              <AccordionTrigger>Key Features</AccordionTrigger>
-              <AccordionContent>
-                 <ul className="list-disc space-y-2 pl-4">
-                  {lens.keyFeatures.map((feature: any, index: number) => (
-                    <li key={index}>{feature}</li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          )}
           {lens.overview && (
              <AccordionItem value="overview">
               <AccordionTrigger>Overview</AccordionTrigger>
@@ -82,36 +86,49 @@ export default function CatalogPage() {
               </AccordionContent>
             </AccordionItem>
           )}
-          {lens.protectionFeatures && (
-             <AccordionItem value="protection">
-              <AccordionTrigger>Protection Features</AccordionTrigger>
+           {lens.options && (
+            <AccordionItem value="options">
+              <AccordionTrigger>Options</AccordionTrigger>
               <AccordionContent>
-                <ul className="space-y-4">
-                  {lens.protectionFeatures.map((feature: any, index: number) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle className="mt-1 h-5 w-5 shrink-0 text-primary" />
-                      <div>
-                        <p className="font-semibold">{feature.name}</p>
-                        <p className="text-muted-foreground">{feature.description}</p>
-                      </div>
-                    </li>
-                  ))}
+                {Array.isArray(lens.options) ? (
+                  <ul className="list-disc space-y-2 pl-4">
+                    {lens.options.map((option: any, index: number) => (
+                      <li key={index}>
+                        {option.name ? (
+                          <>
+                            <strong>{option.name}:</strong> {option.description}
+                          </>
+                        ) : (
+                          option
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                ) : <p>{lens.options}</p>}
+              </AccordionContent>
+            </AccordionItem>
+          )}
+          {lens.availableColors && (
+            <AccordionItem value="colors">
+              <AccordionTrigger>Available Colors</AccordionTrigger>
+              <AccordionContent>
+                <p>{lens.availableColors}</p>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+          {lens.technicalSpecifications && (
+            <AccordionItem value="specs">
+              <AccordionTrigger>Technical Specifications</AccordionTrigger>
+              <AccordionContent>
+                <ul className="space-y-1">
+                  <li><strong>Min. Fitting Height:</strong> {lens.technicalSpecifications.minFittingHeight}</li>
+                  <li><strong>Corridor Lengths:</strong> {lens.technicalSpecifications.corridorLengths}</li>
+                  {lens.technicalSpecifications.positionOfWear && <li>Position of Wear considered</li>}
                 </ul>
               </AccordionContent>
             </AccordionItem>
           )}
         </Accordion>
-      </CardContent>
-    </Card>
-  );
-
-  const renderTechnologyCard = (tech: any) => (
-    <Card key={tech.id}>
-      <CardHeader>
-        <CardTitle className="text-lg">{tech.name}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="text-muted-foreground">{tech.description}</p>
       </CardContent>
     </Card>
   );
@@ -123,27 +140,32 @@ export default function CatalogPage() {
           Lens & Technology Catalog
         </h1>
         <p className="mt-2 text-muted-foreground">
-          Explore our comprehensive range of HOYA lenses and technologies.
+          Explore our comprehensive range of HOYA lenses and treatments.
         </p>
       </header>
 
-      <Tabs defaultValue="single-vision">
+      <Tabs defaultValue="progressive" className="w-full">
         <TabsList className="grid w-full grid-cols-2 h-auto sm:grid-cols-3 lg:grid-cols-6 mb-6">
-          <TabsTrigger value="single-vision">Single Vision</TabsTrigger>
           <TabsTrigger value="progressive">Progressive</TabsTrigger>
+          <TabsTrigger value="single-vision">Single Vision</TabsTrigger>
+          <TabsTrigger value="computer-work">Computer & Work</TabsTrigger>
           <TabsTrigger value="anti-reflective">Anti-Reflective</TabsTrigger>
           <TabsTrigger value="photochromic">Photochromic</TabsTrigger>
-          <TabsTrigger value="computer-work">Computer & Work</TabsTrigger>
-          <TabsTrigger value="technologies">Key Technologies</TabsTrigger>
+          <TabsTrigger value="sun-solutions">Sun Solutions</TabsTrigger>
         </TabsList>
+        <TabsContent value="progressive">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {progressiveLenses.map(renderLensCard)}
+          </div>
+        </TabsContent>
         <TabsContent value="single-vision">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {singleVisionLenses.map(renderLensCard)}
           </div>
         </TabsContent>
-        <TabsContent value="progressive">
+        <TabsContent value="computer-work">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {progressiveLenses.map(renderLensCard)}
+            {computerWorkLenses.map(renderLensCard)}
           </div>
         </TabsContent>
         <TabsContent value="anti-reflective">
@@ -156,14 +178,9 @@ export default function CatalogPage() {
             {photochromicLenses.map(renderLensCard)}
           </div>
         </TabsContent>
-        <TabsContent value="computer-work">
+        <TabsContent value="sun-solutions">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {computerWorkLenses.map(renderLensCard)}
-          </div>
-        </TabsContent>
-        <TabsContent value="technologies">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {keyTechnologies.map(renderTechnologyCard)}
+            {sunSolutions.map(renderLensCard)}
           </div>
         </TabsContent>
       </Tabs>

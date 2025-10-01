@@ -2,51 +2,21 @@
 {
   "singleVisionLenses": [
     {
-      "id": "visupro",
-      "name": "VisuPro™",
-      "targetUsers": "Emerging presbyopes (ages 36-44) experiencing near-vision problems.",
-      "designFeatures": [
-        "Focus Max Optimization",
-        "Binocular Harmonization Technology™",
-        "Position of wear or defaults",
-        "Two lifestyle-based design options: VisuPro All Day (for regular wearers with three distance types) and VisuPro Flex (for sporadic wearers with four distance types)."
-      ],
-      "patientBenefits": [
-        "Quicker adaptation compared to progressive lenses.",
-        "Higher satisfaction for early presbyopic symptoms.",
-        "Cost-effective transition to progressive lenses.",
-        "Better adaptation to future progressive lenses."
-      ]
-    },
-    {
       "id": "mysv",
       "name": "MySV®",
-      "targetUsers": "Patients needing personalized single vision lenses beyond 'one-size-fits-all'.",
+      "targetUsers": "Patients with astigmatic prescriptions struggling with peripheral distortions, those limited in frame selection due to lens thickness, or anyone wanting 360° visual comfort.",
       "designFeatures": [
-        "Backside free form technology compensating prescriptions in all meridians (360˚ Visual Comfort™).",
-        "Optimized base curve for larger frame selection."
+        "BKS Technology®",
+        "Oblique angle compensation",
+        "Position of wear measurements",
+        "Wearer's frame choice optimization"
       ],
       "patientBenefits": [
-        "Prescription compensation at all angles.",
-        "Wider peripheral views than standard single vision lenses.",
-        "Individualized based on position of wear measurements.",
-        "Enhanced visual acuity for all prescription powers."
-      ]
-    },
-    {
-      "id": "sync_iii",
-      "name": "Sync III™",
-      "targetUsers": "Single vision patients experiencing Digital Eye Strain (DES).",
-      "designFeatures": [
-        "Distance power for everyday use with a 'boost zone' in the lower portion.",
-        "Three boost zone designs: Sync III 5 (+0.57D boost), Sync III 9 (+0.95D boost), Sync III 13 (+1.32D boost).",
-        "Minimum fitting height: 14mm."
-      ],
-      "patientBenefits": [
-        "Reduced eye strain during near tasks (e.g., digital screens, reading).",
-        "Comfort on digital devices unmatched by standard single vision lenses.",
-        "Available in clear, photochromic, and polarized options.",
-        "Minimal copay difference compared to standard single vision lenses."
+        "360° Visual Comfort™",
+        "Wider peripheral views than standard single vision lenses",
+        "Larger cutouts for larger frames",
+        "Optimized for individual prescription",
+        "Natural, comfortable vision"
       ]
     },
     {
@@ -54,453 +24,255 @@
       "name": "iD Single Vision®",
       "targetUsers": "Patients with high prescriptions needing thinner lenses and increased viewing area.",
       "designFeatures": [
-        "Bi-aspheric design using Integrated Dual Surface™ free form technology.",
-        "Expanded peripheral viewing, especially for higher prescriptions.",
-        "Edge-to-edge clarity with reduced distortion.",
-        "Requires OC and monocular PD measurements."
+        "Bi-aspheric design using HOYA's free form technology.",
+        "Aspheric curves on both front and backside of the lens.",
+        "Optimized visual acuity."
       ],
       "patientBenefits": [
+        "Expanded peripheral viewing, especially in higher prescriptions.",
+        "Thinnest lenses available.",
         "Optimized visual acuity and crisper image perception.",
-        "Relaxed vision thanks to precise focusing.",
+        "More relaxed vision thanks to precise and effortless focusing.",
         "More accurate correction."
       ]
     },
     {
-      "id": "single_vision_iq",
-      "name": "Single Vision iQ™",
-      "targetUsers": "Patients seeking PAL-level technology in single vision lenses.",
+      "id": "sync_iii",
+      "name": "Sync III®",
+      "targetUsers": "Patients with a digital lifestyle experiencing digital eye strain.",
       "designFeatures": [
-        "Spherical front surface with custom back surfacing.",
-        "Backside design technology for enhanced optics.",
-        "Requires OC and monocular PD measurements."
+        "Power boost design with options: Sync III 5 (+0.57D), Sync III 9 (+0.95D), Sync III 13 (+1.32D), and NEW Sync III 20 (+1.89D).",
+        "Free form backside surfacing.",
+        "Considers Position of wear and frame measurements."
       ],
       "patientBenefits": [
-        "Enhanced visual acuity for all prescription powers.",
-        "Reduced distortion in peripheral areas.",
-        "Wider, clearer visual field in all directions."
+        "Reduces eye strain during prolonged digital device use.",
+        "Supports and relaxes eye muscles.",
+        "Works with any standard prescription."
       ]
     }
   ],
   "progressiveLenses": [
     {
       "id": "id_mystyle_3",
-      "name": "iD MyStyle®3",
-      "designFeatures": [
-        "NEW! AdaptEase™ Technology",
-        "NEW! 3D Binocular Vision™ technology",
-        "Integrated Dual Surface™ (iD) Technology",
-        "Binocular Harmonization Technology™",
-        "Minimum Fitting Height: 14mm with 6 Corridor Lengths",
-        "Position of wear or defaults",
-        "Five convenience options available"
+      "name": "iD MyStyle® 3",
+      "description": "HOYA's most advanced and personalized lens design, incorporating all of HOYA's latest patented technologies.",
+      "keyFeatures": [
+        "Integrated Dual Surface™ Design",
+        "Binocular Eye Model",
+        "Binocular Harmonization Technology™ (BHT)",
+        "AdaptEase™ Technology",
+        "NEW 3D Binocular Vision™ Technology",
+        "Nearly 400 design variations based on patient lifestyle and previous glasses",
+        "Five convenience options: Tyro, Expert, Detail, Modern, Adventure"
       ],
       "patientBenefits": [
-        "Tailored experience via questionnaire",
-        "Overcomes typical non-adapt complaints",
-        "No compromise in vision"
-      ]
+        "Seamlessly visual comfort for any activity in all environments",
+        "Faster adaptation and clearer vision by reducing peripheral astigmatic distortion",
+        "Reduced peripheral prismatic imbalance for elevated comfort",
+        "Tailor-made lenses for the most discerning PAL wearers"
+      ],
+      "technicalSpecifications": {
+        "minFittingHeight": "14mm",
+        "corridorLengths": "11, 12, 13, 14, 15, 16mm",
+        "positionOfWear": true
+      }
     },
     {
       "id": "id_lifestyle_4",
-      "name": "iD LifeStyle®4",
-      "designFeatures": [
+      "name": "iD LifeStyle® 4",
+      "description": "Enhanced version of HOYA's bestselling LifeStyle lens design with added 3D Binocular Vision™ technology.",
+      "keyFeatures": [
         "3D Binocular Vision™ technology",
-        "Integrated Dual Surface™ (iD) Technology",
+        "Integrated Dual Surface™ Design",
+        "Binocular Eye Model",
         "Binocular Harmonization Technology™",
-        "6 corridor lengths",
-        "Position of wear or defaults",
-        "Three lifestyle-based design options"
+        "Three design options: Indoor, Urban, Outdoor"
       ],
       "patientBenefits": [
-        "Faster adaptation via binocular technologies",
-        "Customized visual experience",
-        "Improved visual comfort",
-        "Available in polarized"
-      ]
-    },
-    {
-      "id": "id_lifestyle_3",
-      "name": "iD LifeStyle®3",
-      "designFeatures": [
-        "Integrated Dual Surface™ (iD) Technology",
-        "Binocular Harmonization Technology™",
-        "Minimum Fitting Height: 14mm, 4 Corridor Lengths",
-        "Position of wear or defaults",
-        "Three lifestyle-based design options"
+        "3x less peripheral deformation for faster adaptation",
+        "Reduced occurrence of unwanted prismatic effects in near-range peripheral vision",
+        "More comfortable, stable vision",
+        "Easier adaptation with fewer distortion areas"
       ],
-      "patientBenefits": [
-        "Ease of adaptation",
-        "Customized visual experience",
-        "Improved visual comfort",
-        "Available in polarized"
-      ]
-    },
-    {
-      "id": "id_workstyle_3",
-      "name": "iD WorkStyle® 3",
-      "designFeatures": [
-        "NEW! AdaptEase™ Technology",
-        "NEW! 3D Binocular Vision™ technology",
-        "Integrated Dual Surface™ (iD) Technology",
-        "Binocular Harmonization Technology™",
-        "Minimum Fitting Height: 18mm with 7 Corridor Lengths",
-        "Position of wear or defaults",
-        "Three working distance-specific options"
-      ],
-      "patientBenefits": [
-        "Relief from Digital Eye Strain (DES)",
-        "Increased productivity",
-        "Custom solution for visual needs"
-      ]
+      "technicalSpecifications": {
+        "minFittingHeight": "20mm/14mm",
+        "corridorLengths": "11, 12, 13, 14, 15, 16mm",
+        "positionOfWear": true
+      }
     },
     {
       "id": "array_2",
-      "name": "Array®2 & Array®2 Wrap",
-      "designFeatures": [
-        "BKS Technology®",
-        "Binocular Harmonization Technology™",
-        "Minimum fitting height: 14mm",
-        "4 Corridor Lengths – Variable or fixed (11mm, 13mm, 15mm, 17mm)",
-        "Position of wear or defaults"
+      "name": "Array® 2",
+      "description": "Applies HOYA free form backside surfacing technology to any semi-finished lens in any material.",
+      "keyFeatures": [
+        "Binocular Harmony Technology",
+        "Variable corridor length (VL) auto-corridor selection",
+        "Consistent performance across clear and sun options",
+        "Simple ordering process"
       ],
       "patientBenefits": [
-        "Best value for needs",
-        "Unsurpassed comfort",
-        "Less adaptation issues",
-        "Compatible with any material",
-        "Stylish sun frame options"
-      ]
-    },
-    {
-      "id": "summit_cd_bks",
-      "name": "Summit® cd BKS™ & Summit® ecp BKS™",
-      "designFeatures": [
-        "BKS Technology®",
-        "Minimum fitting height: 15mm",
-        "Short corridor available"
+        "Vision stability",
+        "Precision focus",
+        "Ease of dispensing",
+        "Effortless adaptation",
+        "Higher customer satisfaction",
+        "Consistent experience when wearing clear indoor glasses or outdoor sun protection"
       ],
-      "patientBenefits": [
-        "Optimized lens prescription",
-        "Smoother transition between zones",
-        "Wide, stable, natural vision",
-        "More add-on feature choices"
-      ]
+      "technicalSpecifications": {
+        "minFittingHeight": "21mm/19mm/17mm/14mm",
+        "corridorLengths": "11, 13, 15, 17, VL",
+        "positionOfWear": true
+      }
     },
     {
       "id": "amplitude_bks",
-      "name": "Amplitude® BKS™ & Amplitude® Mini BKS™",
-      "designFeatures": [
+      "name": "Amplitude® BKS/Mini",
+      "description": "Economical lenses designed to suit any budget with comfortable design for most lifestyle needs.",
+      "keyFeatures": [
         "BKS Technology®",
-        "Minimum fitting height: 14mm",
-        "Short corridor available"
+        "Free form technology",
+        "Wide fields of view"
       ],
       "patientBenefits": [
-        "Optimized lens prescription",
-        "Smoother transition between zones",
-        "Wide, stable, natural vision",
-        "Budget-friendly high-quality design"
-      ]
+        "Comfortable design",
+        "Wide fields of view",
+        "Budget-friendly option"
+      ],
+      "technicalSpecifications": {
+        "minFittingHeight": "18mm/14mm",
+        "corridorLengths": "11, 15mm"
+      }
     }
   ],
   "antiReflectiveCoatings": [
     {
       "id": "meiryo_ex4",
       "name": "Super HiVision® Meiryo® EX4™",
-      "overview": "HOYA's most advanced premium spectacle lens coating, designed to provide next-level clarity and durability. It ensures long-lasting protection against scratches, smudges, and daily wear, maintaining crystal-clear vision throughout the lifespan of your prescription.",
-      "corePerformanceMetrics": [
-        {
-          "feature": "Reflectance",
-          "performance": "56% lower reflectance",
-          "comparison": "vs. competitor's best coating"
-        },
-        {
-          "feature": "Scratch Resistance",
-          "performance": "Up to 2.5x better",
-          "comparison": "vs. other coatings on the market"
-        },
-        {
-          "feature": "Easy-Clean Longevity",
-          "performance": "Maintains 'easy clean' features up to 5x longer",
-          "comparison": "than other available lens coatings"
-        }
-      ],
-      "protectionFeatures": [
-        {
-          "name": "Anti-Reflective",
-          "description": "Reduces reflections for exceptional visual clarity and an elegant look."
-        },
-        {
-          "name": "Dirt Repellent",
-          "description": "Easy-to-clean properties allow grease and dirt to be wiped off effortlessly, even after long-term use and repeated cleaning."
-        },
-        {
-          "name": "Anti-Static",
-          "description": "Prevents dust from adhering to the lens surface, ensuring clear vision in all circumstances."
-        },
-        {
-          "name": "Extremely Scratch Resistant",
-          "description": "Surface lens protection extends the lifetime of your lenses."
-        },
-        {
-          "name": "Water Repellent",
-          "description": "Ensures water droplets have minimal grip on the lens surface, providing optimal vision in rain or condensation."
-        },
-        {
-          "name": "100% UV Protection",
-          "description": "Provides 100% UV protection on the front with extra protection on the back for optimal defense against ultraviolet rays."
-        },
-        {
-          "name": "Enhanced Contrast",
-          "description": "Delivers enhanced contrast and glare reduction during both day and night."
-        }
-      ],
-      "patientBenefits": [
-        "Lasting Clarity: Maintains visual clarity for the entire lifespan of your prescription.",
-        "Durability: Withstands daily cleaning and environmental challenges without compromising performance.",
-        "Glare-Free Vision: Enhanced anti-reflective properties reduce glare, making eyes appear clear to others and in photos.",
-        "Low Maintenance: Superior resistance to smudges, dirt, and water reduces cleaning frequency and effort."
-      ],
-      "technicalNotes": [
-        "Meiryo® EX4™ demonstrated over 45% higher LongLife Index vs. major competitor’s best coating.",
-        "56% lower reflectance than major competitor's best coating, resulting in exceptional clarity.",
-        "Passed 2.5kg SWSC test when most competitive lenses did not pass 1kg.",
-        "Maintains hydrophobic performance more than 10x that of major competitors.",
-        "UV Protection claim based on internal assessment according to ISO 8980-3:2022, applicable to HOYA branded plastic lenses except 1.50 standard lenses."
-      ],
-      "reflexColor": "Blue"
-    },
-    {
-      "id": "ex3_plus",
-      "name": "Super HiVision® EX3+™",
+      "description": "Premium AR treatment that provides everything patients expect and goes above and beyond any other coating on the market.",
       "keyFeatures": [
-        "Dual-side UV protection.",
-        "Superior scratch resistance.",
-        "Long-term cleanability.",
-        "Proprietary Substrate Matching Process for durability and temperature resistance.",
-        "Available in Finished Single Vision (FSV)."
+        "Extreme durability (up to 2.5x better scratch resistance)",
+        "Easy to clean (stays easy to clean 10x longer)",
+        "Superior clarity (56% lower reflectance)",
+        "Proprietary Substrate Matching Process"
       ],
       "patientBenefits": [
-        "Superior scratch resistance.",
-        "UV protection and enhanced UV backside protection.",
-        "Smudge resistance, glare reduction, and reduced eye fatigue.",
-        "Increased visual clarity with minimal reflections."
-      ],
-      "reflexColor": "Green"
-    },
-    {
-      "id": "ex3",
-      "name": "Super HiVision® EX3™",
-      "keyFeatures": [
-        "Increased visual clarity.",
-        "Superior scratch resistance.",
-        "Long-term cleanability.",
-        "Proprietary Substrate Matching Process for durability and temperature resistance."
-      ],
-      "patientBenefits": [
-        "Superior scratch resistance.",
-        "Smudge resistance, glare reduction, and reduced eye fatigue.",
-        "Increased visual clarity with minimal reflections.",
-        "Easy to clean."
-      ],
-      "reflexColor": "Green"
+        "Superior clarity that lasts longer",
+        "Best-in-class surface durability",
+        "Reduced reflections",
+        "Easy to clean features that last much longer"
+      ]
     },
     {
       "id": "recharge",
       "name": "Recharge®",
+      "description": "Treatment that reduces blue light exposure through a combination of absorption and reflection.",
       "keyFeatures": [
-        "Filters blue light (380nm–460nm) by absorption and reflection.",
-        "Blue reflex color indicates blue light reflection.",
-        "Same scratch resistance, visual clarity, and cleanability as EX3+.",
-        "Substrate Matching Technology."
+        "Reduces blue light exposure from back-lit screens of digital devices",
+        "Keeps eyes comfortable and refreshed"
       ],
       "patientBenefits": [
-        "Protects against harmful indoor blue light from LED screens.",
-        "Reduces blue light reaching the eyes.",
-        "Greater comfort during prolonged screen time.",
-        "Includes scratch and smudge resistance benefits of EX3+."
+        "May help alleviate eye strain, fatigue, headaches, loss of focus and blurred vision (DES)",
+        "Re-energizes focus"
+      ]
+    },
+    {
+      "id": "clear_blue_filter",
+      "name": "Clear Blue Filter®",
+      "description": "Material that provides everyday protection from damaging light rays.",
+      "keyFeatures": [
+        "Blocks UVA/UVB rays",
+        "Filters the most damaging, highest-energy blue light",
+        "Safety built into the lens, not the coating"
+      ],
+      "patientBenefits": [
+        "Provides comfort from sunlight, screen time, and everyday activities",
+        "Helps safeguard eyes from conditions linked to UV high-energy blue light",
+        "Thin, lightweight, impact-resistant, and affordable"
       ]
     }
   ],
   "photochromicLenses": [
     {
-      "id": "sensity_2",
-      "name": "Sensity® 2",
+      "id": "sensity_family",
+      "name": "Sensity® Family",
+      "description": "Light-adaptive lenses featuring consistent performance in different climates and light conditions.",
       "keyFeatures": [
-        "Consistent performance in different climates and light conditions with Stabilight Technology.",
-        "Outstanding contrast and glare reduction with deep, natural colors.",
-        "Reduced glare when activated.",
-        "100% UV protection.",
-        "Blue light protection indoors and outdoors."
+        "Stabilight Technology™",
+        "Outstanding contrast and glare reduction",
+        "Reduced glare when activated",
+        "100% protection against UV rays",
+        "Blue light protection indoors and outdoors"
       ],
-      "patientBenefits": [
-        "Best balance of fadeback speed and darkness.",
-        "Darkens to a dark category 3 sun tint.",
-        "Extremely clear indoors."
-      ]
-    },
-    {
-      "id": "sensity_dark",
-      "name": "Sensity® Dark",
-      "keyFeatures": [
-        "Consistent performance with Stabilight Technology.",
-        "Outstanding contrast and glare reduction.",
-        "Reduced glare when activated.",
-        "100% UV protection.",
-        "Blue light protection indoors and outdoors."
+      "options": [
+        {
+          "name": "Sensity® 2",
+          "description": "Best balance of fadeback speed and darkness, darkens to category 3"
+        },
+        {
+          "name": "Sensity® Fast",
+          "description": "Fastest fadeback, darkens to category 2"
+        },
+        {
+          "name": "Sensity® Dark",
+          "description": "Darkest lenses outdoors, darkens behind car windshields"
+        },
+        {
+          "name": "Sensity® Shine",
+          "description": "Combines comfort, convenience, and fashion with mirror coating"
+        }
       ],
-      "patientBenefits": [
-        "Best for light-sensitive patients.",
-        "Darkest Sensity lenses outdoors.",
-        "Darkens behind most car windshields.",
-        "Slight tint indoors for light-sensitive individuals."
-      ]
-    },
-    {
-      "id": "sensity_shine",
-      "name": "Sensity® Shine",
-      "keyFeatures": [
-        "Consistent performance with Stabilight Technology.",
-        "Outstanding contrast and glare reduction.",
-        "Reduced glare when activated.",
-        "100% UV protection.",
-        "Blue light protection indoors and outdoors."
-      ],
-      "patientBenefits": [
-        "Fashionable mirror lens effect.",
-        "Fades back quickly to an attractive mirror shine indoors.",
-        "Darkens behind most car windshields."
-      ]
-    },
-    {
-      "id": "sensity_fast",
-      "name": "Sensity® Fast",
-      "keyFeatures": [
-        "Consistent performance in various climates and light conditions.",
-        "Outstanding contrast and glare reduction.",
-        "Reduced glare when activated.",
-        "100% UV protection.",
-        "Blue light protection indoors and outdoors."
-      ],
-      "patientBenefits": [
-        "Fastest fadeback to clear time.",
-        "Darkens to a lighter category 2 sun tint.",
-        "Extremely clear indoors."
-      ]
+      "availableColors": "Emerald Green, Oceanic Blue, Bronze Brown, Silver Gray"
     }
   ],
   "computerWorkLenses": [
     {
       "id": "id_workstyle_3",
       "name": "iD WorkStyle® 3",
-      "targetUsers": "Presbyopic patients experiencing Digital Eye Strain (DES) from prolonged digital device use and poor workstation ergonomics.",
-      "designFeatures": [
-        "NEW! AdaptEase™ Technology",
-        "NEW! 3D Binocular Vision™ technology",
-        "Integrated Dual Surface™ (iD) Technology",
-        "Binocular Harmonization Technology™",
-        "Minimum Fitting Height: 18mm with 7 Corridor Lengths",
-        "Position of wear or defaults",
-        "Three working distance-specific options available"
+      "description": "Occupational/computer-specific lenses designed to maximize comfort in the intermediate zone where typical workday functions are performed.",
+      "keyFeatures": [
+        "Same technologies as iD MyStyle 3",
+        "Three working distance-specific designs: Space (focus beyond computer screen), Screen (ideal for dual monitors), and Zoom (widest near area)."
       ],
       "patientBenefits": [
-        "Relief from DES symptoms and increased productivity.",
-        "Custom solution for any visual need, creating better visual comfort.",
-        "No compromises with all of HOYA’s patented premium technologies in one design."
-      ]
-    },
-    {
-      "id": "sync_iii",
-      "name": "Sync III™",
-      "targetUsers": "Single vision patients experiencing Digital Eye Strain (DES) symptoms.",
-      "designFeatures": [
-        "Distance power for everyday use with a ‘boost zone’ in the lower portion.",
-        "Three boost zone designs: Sync III 5 (+0.57D ‘boost zone’), Sync III 9 (+0.95D ‘boost zone’), Sync III 13 (+1.32D ‘boost zone’)",
-        "Minimum fitting height: 14mm"
+        "Relief from DES symptoms",
+        "Increased productivity",
+        "Custom solution for any visual need",
+        "No compromises with all of HOYA's patented premium technologies"
       ],
-      "patientBenefits": [
-        "Reduced eye strain during prolonged near tasks (e.g., digital screens, reading).",
-        "Comfort on digital devices unmatched by standard single vision lenses.",
-        "Available in clear, photochromic, and polarized options.",
-        "Minimal copay difference compared to standard single vision lenses."
-      ]
-    },
-    {
-      "id": "tact_bks",
-      "name": "Tact® BKS",
-      "targetUsers": "Presbyopic patients needing relief from Digital Eye Strain (DES) and improved workstation ergonomics.",
-      "designFeatures": [
-        "Two working distance solutions: Tact 40 (40% of the Add at fitting point) and Tact 60 (60% of the Add at fitting point).",
-        "Extended focus lens design for near and intermediate viewing zones.",
-        "Optimized periphery for exceptionally wide viewing zones."
-      ],
-      "patientBenefits": [
-        "Relief from DES symptoms and ergonomic issues.",
-        "Increased productivity.",
-        "No need to switch glasses when moving around the work area (with Tact 40).",
-        "Less cost compared to iD Space™, iD Screen™, or iD Zoom™ for private pay patients."
-      ]
+      "technicalSpecifications": {
+        "minFittingHeight": "18mm",
+        "corridorLengths": "7 options available"
+      }
     }
   ],
-  "keyTechnologies": [
+  "sunSolutions": [
     {
-      "id": "freeform",
-      "name": "FreeForm Technologies",
-      "description": "Point-by-point calculation for pixel-perfect precision."
+      "id": "polarized_hev",
+      "name": "Polarized HEV™",
+      "description": "The ultimate sun protection offering at least 1.6 times higher High Energy Visible light protection versus standard polarized lenses.",
+      "keyFeatures": [
+        "Up to 97% reduction in blinding glare",
+        "3 unique colors that do not distort color perception",
+        "100% UVA and UVB protection",
+        "Utilizes patented manufacturing technology"
+      ],
+      "availableColors": "Polarized HEV Gray, Polarized HEV Brown, Polarized HEV Green"
     },
     {
-      "id": "bht",
-      "name": "Binocular Harmonization Technology™",
-      "description": "Balances lens performance for both eyes."
-    },
-    {
-      "id": "ids",
-      "name": "Integrated Dual Surface™ (iD) Technology",
-      "description": "Provides edge-to-edge clarity in thin lenses."
-    },
-    {
-      "id": "360_comfort",
-      "name": "360˚ Visual Comfort™",
-      "description": "Compensation in all meridians for wider peripheral views."
-    },
-    {
-      "id": "focus_max",
-      "name": "Focus Max Optimization",
-      "description": "Enhances close-up vision for young presbyopes."
-    },
-    {
-      "id": "3d_binocular_vision",
-      "name": "3D Binocular Vision™ Technology",
-      "description": "Enhances binocularity for near peripheral vision."
-    },
-    {
-      "id": "adaptease",
-      "name": "AdaptEase™ Technology",
-      "description": "Facilitates faster adaptation to progressive lenses."
-    },
-    {
-      "id": "bks",
-      "name": "BKS Technology®",
-      "description": "Optimizes lens design for smoother transitions and wider fields of view."
-    },
-    {
-      "id": "substrate_matching",
-      "name": "Proprietary Substrate Matching Process",
-      "description": "Ensures layers work harmoniously for elasticity, temperature resistance, durability, and longevity."
-    },
-    {
-      "id": "blue_light_filtering",
-      "name": "Blue Light Filtering",
-      "description": "Targets blue light in the 380nm–460nm range to reduce digital eye strain and improve comfort."
-    },
-    {
-      "id": "uv_protection",
-      "name": "Enhanced UV Protection",
-      "description": "Dual-side UV protection blocks harmful rays from both front and back surfaces."
-    },
-    {
-      "id": "stabilight",
-      "name": "Stabilight Technology",
-      "description": "Ensures consistent photochromic performance in different climates and light conditions."
+      "id": "hoya_mirror_collection",
+      "name": "HOYA Mirror Collection",
+      "description": "New mirror collection with 19 options available on a brown or gray polarized base lens.",
+      "keyFeatures": [
+        "Offers optimal sun protection by reflecting light away from lens surface",
+        "Reduces discomfort and eye strain caused by glare",
+        "Features fashionable mirror finish",
+        "Backside AR for increased clarity"
+      ],
+      "options": [
+        "Solid Mirrors: Golden Ember, Violet, Red, Blue, Arctic Blue, Copper, Gold, Silver, Caribbean Blue, Daybreak Luster, Ruby, Rose Gold, Pacific Blue, Tranquility Essence, Green, Light Blue",
+        "Flash Mirrors: Flash Blue, Flash Silver, Flash Gold"
+      ]
     }
   ]
 }
