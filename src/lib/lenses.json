@@ -202,6 +202,76 @@
       ]
     }
   ],
+  "antiReflectiveCoatings": [
+    {
+      "id": "meiryo_ex4",
+      "name": "Super HiVision® Meiryo® EX4™",
+      "keyFeatures": [
+        "Extreme durability with up to 2.5x better scratch resistance than major competitors' best coatings.",
+        "Easy to clean, staying clean 10x longer than competitors' best coatings.",
+        "Superior clarity with 56% lower reflectance than major competitors' best coatings.",
+        "Proprietary Substrate Matching Process ensures layers work harmoniously for elasticity and temperature resistance."
+      ],
+      "patientBenefits": [
+        "Increased visual clarity with minimal reflections.",
+        "Superior scratch resistance.",
+        "Long-lasting cleanability and clarity.",
+        "UV protection and enhanced UV backside protection."
+      ],
+      "reflexColor": "Blue"
+    },
+    {
+      "id": "ex3_plus",
+      "name": "Super HiVision® EX3+™",
+      "keyFeatures": [
+        "Dual-side UV protection.",
+        "Superior scratch resistance.",
+        "Long-term cleanability.",
+        "Proprietary Substrate Matching Process for durability and temperature resistance.",
+        "Available in Finished Single Vision (FSV)."
+      ],
+      "patientBenefits": [
+        "Superior scratch resistance.",
+        "UV protection and enhanced UV backside protection.",
+        "Smudge resistance, glare reduction, and reduced eye fatigue.",
+        "Increased visual clarity with minimal reflections."
+      ],
+      "reflexColor": "Green"
+    },
+    {
+      "id": "ex3",
+      "name": "Super HiVision® EX3™",
+      "keyFeatures": [
+        "Increased visual clarity.",
+        "Superior scratch resistance.",
+        "Long-term cleanability.",
+        "Proprietary Substrate Matching Process for durability and temperature resistance."
+      ],
+      "patientBenefits": [
+        "Superior scratch resistance.",
+        "Smudge resistance, glare reduction, and reduced eye fatigue.",
+        "Increased visual clarity with minimal reflections.",
+        "Easy to clean."
+      ],
+      "reflexColor": "Green"
+    },
+    {
+      "id": "recharge",
+      "name": "Recharge®",
+      "keyFeatures": [
+        "Filters blue light (380nm–460nm) by absorption and reflection.",
+        "Blue reflex color indicates blue light reflection.",
+        "Same scratch resistance, visual clarity, and cleanability as EX3+.",
+        "Substrate Matching Technology."
+      ],
+      "patientBenefits": [
+        "Protects against harmful indoor blue light from LED screens.",
+        "Reduces blue light reaching the eyes.",
+        "Greater comfort during prolonged screen time.",
+        "Includes scratch and smudge resistance benefits of EX3+."
+      ]
+    }
+  ],
   "keyTechnologies": [
     {
       "id": "freeform",
@@ -242,6 +312,23 @@
       "id": "bks",
       "name": "BKS Technology®",
       "description": "Optimizes lens design for smoother transitions and wider fields of view."
+    },
+    {
+      "id": "substrate_matching",
+      "name": "Proprietary Substrate Matching Process",
+      "description": "Ensures layers work harmoniously for elasticity, temperature resistance, durability, and longevity."
+    },
+    {
+      "id": "blue_light_filtering",
+      "name": "Blue Light Filtering",
+      "description": "Targets blue light in the 380nm–460nm range to reduce digital eye strain and improve comfort."
+    },
+    {
+      "id": "uv_protection",
+      "name": "Enhanced UV Protection",
+      "description": "Dual-side UV protection blocks harmful rays from both front and back surfaces."
     }
   ]
 }
+
+    
