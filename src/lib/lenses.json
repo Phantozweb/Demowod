@@ -339,6 +339,59 @@
       ]
     }
   ],
+  "computerWorkLenses": [
+    {
+      "id": "id_workstyle_3",
+      "name": "iD WorkStyle® 3",
+      "targetUsers": "Presbyopic patients experiencing Digital Eye Strain (DES) from prolonged digital device use and poor workstation ergonomics.",
+      "designFeatures": [
+        "NEW! AdaptEase™ Technology",
+        "NEW! 3D Binocular Vision™ technology",
+        "Integrated Dual Surface™ (iD) Technology",
+        "Binocular Harmonization Technology™",
+        "Minimum Fitting Height: 18mm with 7 Corridor Lengths",
+        "Position of wear or defaults",
+        "Three working distance-specific options available"
+      ],
+      "patientBenefits": [
+        "Relief from DES symptoms and increased productivity.",
+        "Custom solution for any visual need, creating better visual comfort.",
+        "No compromises with all of HOYA’s patented premium technologies in one design."
+      ]
+    },
+    {
+      "id": "sync_iii",
+      "name": "Sync III™",
+      "targetUsers": "Single vision patients experiencing Digital Eye Strain (DES) symptoms.",
+      "designFeatures": [
+        "Distance power for everyday use with a ‘boost zone’ in the lower portion.",
+        "Three boost zone designs: Sync III 5 (+0.57D ‘boost zone’), Sync III 9 (+0.95D ‘boost zone’), Sync III 13 (+1.32D ‘boost zone’)",
+        "Minimum fitting height: 14mm"
+      ],
+      "patientBenefits": [
+        "Reduced eye strain during prolonged near tasks (e.g., digital screens, reading).",
+        "Comfort on digital devices unmatched by standard single vision lenses.",
+        "Available in clear, photochromic, and polarized options.",
+        "Minimal copay difference compared to standard single vision lenses."
+      ]
+    },
+    {
+      "id": "tact_bks",
+      "name": "Tact® BKS",
+      "targetUsers": "Presbyopic patients needing relief from Digital Eye Strain (DES) and improved workstation ergonomics.",
+      "designFeatures": [
+        "Two working distance solutions: Tact 40 (40% of the Add at fitting point) and Tact 60 (60% of the Add at fitting point).",
+        "Extended focus lens design for near and intermediate viewing zones.",
+        "Optimized periphery for exceptionally wide viewing zones."
+      ],
+      "patientBenefits": [
+        "Relief from DES symptoms and ergonomic issues.",
+        "Increased productivity.",
+        "No need to switch glasses when moving around the work area (with Tact 40).",
+        "Less cost compared to iD Space™, iD Screen™, or iD Zoom™ for private pay patients."
+      ]
+    }
+  ],
   "keyTechnologies": [
     {
       "id": "freeform",
