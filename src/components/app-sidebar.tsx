@@ -10,6 +10,7 @@ import {
   Heart,
   Camera,
   Home,
+  ClipboardUser,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -32,6 +33,7 @@ const menuItems = [
   { href: '/recommendations', label: 'AI Recommendations', icon: Bot },
   { href: '/prescription', label: 'My Prescription', icon: FileText },
   { href: '/favorites', label: 'Favorites', icon: Heart },
+  { href: '/patient-analysis', label: 'Patient Analysis', icon: ClipboardUser },
 ];
 
 export default function AppSidebar() {

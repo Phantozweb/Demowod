@@ -31,7 +31,7 @@ const prescriptionSchema = z.object({
   odAxis: z.string().optional(),
   osSph: z.string().optional(),
   osCyl: z.string().optional(),
-  osAxis: zstring().optional(),
+  osAxis: z.string().optional(),
   pd: z.string().min(1, "Pupillary Distance is required"),
 });
 
