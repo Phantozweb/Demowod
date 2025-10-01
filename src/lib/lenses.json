@@ -272,6 +272,73 @@
       ]
     }
   ],
+  "photochromicLenses": [
+    {
+      "id": "sensity_2",
+      "name": "Sensity® 2",
+      "keyFeatures": [
+        "Consistent performance in different climates and light conditions with Stabilight Technology.",
+        "Outstanding contrast and glare reduction with deep, natural colors.",
+        "Reduced glare when activated.",
+        "100% UV protection.",
+        "Blue light protection indoors and outdoors."
+      ],
+      "patientBenefits": [
+        "Best balance of fadeback speed and darkness.",
+        "Darkens to a dark category 3 sun tint.",
+        "Extremely clear indoors."
+      ]
+    },
+    {
+      "id": "sensity_dark",
+      "name": "Sensity® Dark",
+      "keyFeatures": [
+        "Consistent performance with Stabilight Technology.",
+        "Outstanding contrast and glare reduction.",
+        "Reduced glare when activated.",
+        "100% UV protection.",
+        "Blue light protection indoors and outdoors."
+      ],
+      "patientBenefits": [
+        "Best for light-sensitive patients.",
+        "Darkest Sensity lenses outdoors.",
+        "Darkens behind most car windshields.",
+        "Slight tint indoors for light-sensitive individuals."
+      ]
+    },
+    {
+      "id": "sensity_shine",
+      "name": "Sensity® Shine",
+      "keyFeatures": [
+        "Consistent performance with Stabilight Technology.",
+        "Outstanding contrast and glare reduction.",
+        "Reduced glare when activated.",
+        "100% UV protection.",
+        "Blue light protection indoors and outdoors."
+      ],
+      "patientBenefits": [
+        "Fashionable mirror lens effect.",
+        "Fades back quickly to an attractive mirror shine indoors.",
+        "Darkens behind most car windshields."
+      ]
+    },
+    {
+      "id": "sensity_fast",
+      "name": "Sensity® Fast",
+      "keyFeatures": [
+        "Consistent performance in various climates and light conditions.",
+        "Outstanding contrast and glare reduction.",
+        "Reduced glare when activated.",
+        "100% UV protection.",
+        "Blue light protection indoors and outdoors."
+      ],
+      "patientBenefits": [
+        "Fastest fadeback to clear time.",
+        "Darkens to a lighter category 2 sun tint.",
+        "Extremely clear indoors."
+      ]
+    }
+  ],
   "keyTechnologies": [
     {
       "id": "freeform",
@@ -327,8 +394,11 @@
       "id": "uv_protection",
       "name": "Enhanced UV Protection",
       "description": "Dual-side UV protection blocks harmful rays from both front and back surfaces."
+    },
+    {
+      "id": "stabilight",
+      "name": "Stabilight Technology",
+      "description": "Ensures consistent photochromic performance in different climates and light conditions."
     }
   ]
 }
-
-    
