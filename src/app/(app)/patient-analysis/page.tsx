@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { User, Eye, UploadCloud, PersonStanding, FlaskConical, ArrowRight, Home } from 'lucide-react';
+import { User, Eye, UploadCloud, PersonStanding, FlaskConical, ArrowRight, Home, Bot, FileText, Heart, Book } from 'lucide-react';
 import Link from 'next/link';
 
 export default function PatientAnalysisPage() {
@@ -114,6 +114,21 @@ export default function PatientAnalysisPage() {
                     >
                         <UploadCloud />
                         <span>Image Upload</span>
+                    </Button>
+
+                    <hr className="my-4 border-border" />
+
+                    <Button asChild variant='ghost' className="w-full justify-start gap-3 px-4 py-6 text-base">
+                        <Link href="/catalog"><Book /><span>Product Catalog</span></Link>
+                    </Button>
+                    <Button asChild variant='ghost' className="w-full justify-start gap-3 px-4 py-6 text-base">
+                        <Link href="/recommendations"><Bot /><span>AI Recommendations</span></Link>
+                    </Button>
+                    <Button asChild variant='ghost' className="w-full justify-start gap-3 px-4 py-6 text-base">
+                        <Link href="/prescription"><FileText /><span>My Prescription</span></Link>
+                    </Button>
+                     <Button asChild variant='ghost' className="w-full justify-start gap-3 px-4 py-6 text-base">
+                        <Link href="/favorites"><Heart /><span>Favorites</span></Link>
                     </Button>
                     </nav>
                 </div>
