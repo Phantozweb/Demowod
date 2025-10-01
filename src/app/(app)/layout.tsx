@@ -1,5 +1,10 @@
+import { AppSidebar } from "@/components/app-sidebar";
+
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main className="min-h-svh w-full bg-background text-foreground">{children}</main>
+    <div className="flex min-h-svh w-full bg-background text-foreground">
+      <AppSidebar />
+      <main className="flex-1">{children}</main>
+    </div>
   );
 }
