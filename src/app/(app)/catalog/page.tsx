@@ -1,80 +1,172 @@
 'use client';
 
-import Image from 'next/image';
-import { frames } from '@/lib/frames';
-import { useFavorites } from '@/hooks/use-favorites';
-import { FrameCard } from '@/components/frame-card';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
+import lensData from '@/lib/lenses.json';
+import { CheckCircle } from 'lucide-react';
 
 export default function CatalogPage() {
-  const { isFavorite, toggleFavorite, isInitialized } = useFavorites();
-  const [heroFrame, ...otherFrames] = frames;
-  const heroImage = PlaceHolderImages.find((img) => img.id === heroFrame.imageId);
+  const {
+    singleVisionLenses,
+    progressiveLenses,
+    antiReflectiveCoatings,
+    photochromicLenses,
+    computerWorkLenses,
+    keyTechnologies,
+  } = lensData;
+
+  const renderLensCard = (lens: any) => (
+    <Card key={lens.id} className="flex flex-col">
+      <CardHeader>
+        <CardTitle>{lens.name}</CardTitle>
+        {lens.targetUsers && (
+          <CardDescription>{lens.targetUsers}</CardDescription>
+        )}
+      </CardHeader>
+      <CardContent className="flex-1">
+        <Accordion type="single" collapsible className="w-full">
+          {lens.designFeatures && (
+            <AccordionItem value="design">
+              <AccordionTrigger>Design Features</AccordionTrigger>
+              <AccordionContent>
+                <ul className="list-disc space-y-2 pl-4">
+                  {lens.designFeatures.map((feature: any, index: number) => (
+                    <li key={index}>{feature}</li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+          {lens.patientBenefits && (
+            <AccordionItem value="benefits">
+              <AccordionTrigger>Patient Benefits</AccordionTrigger>
+              <AccordionContent>
+                <ul className="list-disc space-y-2 pl-4">
+                  {lens.patientBenefits.map((benefit: any, index: number) => (
+                    <li key={index}>{benefit}</li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+          {lens.keyFeatures && (
+            <AccordionItem value="key-features">
+              <AccordionTrigger>Key Features</AccordionTrigger>
+              <AccordionContent>
+                 <ul className="list-disc space-y-2 pl-4">
+                  {lens.keyFeatures.map((feature: any, index: number) => (
+                    <li key={index}>{feature}</li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+          {lens.overview && (
+             <AccordionItem value="overview">
+              <AccordionTrigger>Overview</AccordionTrigger>
+              <AccordionContent>
+                <p>{lens.overview}</p>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+          {lens.protectionFeatures && (
+             <AccordionItem value="protection">
+              <AccordionTrigger>Protection Features</AccordionTrigger>
+              <AccordionContent>
+                <ul className="space-y-4">
+                  {lens.protectionFeatures.map((feature: any, index: number) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle className="mt-1 h-5 w-5 shrink-0 text-primary" />
+                      <div>
+                        <p className="font-semibold">{feature.name}</p>
+                        <p className="text-muted-foreground">{feature.description}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          )}
+        </Accordion>
+      </CardContent>
+    </Card>
+  );
+
+  const renderTechnologyCard = (tech: any) => (
+    <Card key={tech.id}>
+      <CardHeader>
+        <CardTitle className="text-lg">{tech.name}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-muted-foreground">{tech.description}</p>
+      </CardContent>
+    </Card>
+  );
 
   return (
-    <div className="grid h-svh grid-cols-1 lg:grid-cols-2">
-      <div className="relative flex flex-col justify-end p-8 text-white bg-secondary">
-        {heroImage && (
-           <Image
-              src={heroImage.imageUrl}
-              alt={heroFrame.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              data-ai-hint={heroImage.imageHint}
-              priority
-            />
-        )}
-        <div className="relative z-10 bg-gradient-to-t from-black/80 via-black/50 to-transparent -mx-8 -mb-8 px-8 pb-8 pt-20">
-          <h1 className="text-4xl md:text-5xl font-headline font-bold drop-shadow-md">
-            {heroFrame.name}
-          </h1>
-          <p className="text-xl text-white/90 mt-2 drop-shadow-sm">{heroFrame.brand}</p>
-          <p className="mt-4 max-w-lg text-white/80">
-            Discover our curated collection of high-quality frames, designed to fit your unique style and personality.
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-col">
-        <header className="p-4 md:p-8 border-b">
-          <h2 className="text-2xl font-headline font-bold">Our Collection</h2>
-          <p className="text-muted-foreground mt-1">Browse all {frames.length} available styles.</p>
-        </header>
-        <ScrollArea className="flex-1">
-          <div className="p-4 md:p-8">
-            {isInitialized ? (
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3">
-                {otherFrames.map((frame) => (
-                  <FrameCard
-                    key={frame.id}
-                    frame={frame}
-                    isFavorite={isFavorite}
-                    toggleFavorite={toggleFavorite}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl rounded-lg border bg-card text-card-foreground shadow-sm">
-                      <div className="relative aspect-[16/10] w-full bg-muted animate-pulse"></div>
-                      <div className="flex-1 p-4">
-                          <div className="mb-1 text-lg font-headline h-6 w-3/4 bg-muted animate-pulse rounded"></div>
-                          <div className="h-4 w-1/2 bg-muted animate-pulse rounded mt-2"></div>
-                          <div className="h-4 w-1/3 bg-muted animate-pulse rounded mt-2"></div>
-                      </div>
-                      <div className="flex items-center justify-between p-4 pt-0">
-                        <div className="h-7 w-16 bg-muted animate-pulse rounded"></div>
-                        <div className="h-10 w-10 bg-muted animate-pulse rounded-full"></div>
-                      </div>
-                  </div>
-                ))}
-              </div>
-            )}
+    <div className="p-4 md:p-8">
+      <header className="mb-8">
+        <h1 className="text-3xl md:text-4xl font-headline font-bold">
+          Lens & Technology Catalog
+        </h1>
+        <p className="mt-2 text-muted-foreground">
+          Explore our comprehensive range of HOYA lenses and technologies.
+        </p>
+      </header>
+
+      <Tabs defaultValue="single-vision">
+        <TabsList className="grid w-full grid-cols-2 h-auto sm:grid-cols-3 lg:grid-cols-6 mb-6">
+          <TabsTrigger value="single-vision">Single Vision</TabsTrigger>
+          <TabsTrigger value="progressive">Progressive</TabsTrigger>
+          <TabsTrigger value="anti-reflective">Anti-Reflective</TabsTrigger>
+          <TabsTrigger value="photochromic">Photochromic</TabsTrigger>
+          <TabsTrigger value="computer-work">Computer & Work</TabsTrigger>
+          <TabsTrigger value="technologies">Key Technologies</TabsTrigger>
+        </TabsList>
+        <TabsContent value="single-vision">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {singleVisionLenses.map(renderLensCard)}
           </div>
-        </ScrollArea>
-      </div>
+        </TabsContent>
+        <TabsContent value="progressive">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {progressiveLenses.map(renderLensCard)}
+          </div>
+        </TabsContent>
+        <TabsContent value="anti-reflective">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {antiReflectiveCoatings.map(renderLensCard)}
+          </div>
+        </TabsContent>
+        <TabsContent value="photochromic">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {photochromicLenses.map(renderLensCard)}
+          </div>
+        </TabsContent>
+        <TabsContent value="computer-work">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {computerWorkLenses.map(renderLensCard)}
+          </div>
+        </TabsContent>
+        <TabsContent value="technologies">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {keyTechnologies.map(renderTechnologyCard)}
+          </div>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
