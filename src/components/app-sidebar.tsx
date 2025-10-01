@@ -1,3 +1,4 @@
+
 'use client';
 
 import { cn } from '@/lib/utils';
@@ -9,6 +10,8 @@ import {
   Home,
   Book,
   Clipboard,
+  FilePlus,
+  History
 } from 'lucide-react';
 import {
   Sidebar,
@@ -18,13 +21,15 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarTrigger,
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
 } from '@/components/ui/sidebar';
 
 const menuItems = [
   { href: '/catalog', label: 'Product Catalog', icon: Book },
   { href: '/prescription', label: 'My Prescription', icon: FileText },
   { href: '/favorites', label: 'Favorites', icon: Heart },
-  { href: '/patient-analysis', label: 'Patient Analysis', icon: Clipboard },
 ];
 
 export function AppSidebar() {
@@ -79,7 +84,7 @@ export function AppSidebar() {
             <SidebarMenuItem key={item.label}>
               <SidebarMenuButton
                 asChild
-                isActive={pathname === item.href}
+                isActive={pathname.startsWith(item.href)}
                 tooltip={item.label}
               >
                 <Link href={item.href}>
@@ -89,6 +94,40 @@ export function AppSidebar() {
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
+          <SidebarMenuItem>
+             <Collapsible>
+                <CollapsibleTrigger asChild>
+                    <SidebarMenuButton
+                        className="w-full"
+                        isActive={pathname.startsWith('/patient-analysis')}
+                        tooltip="Patient Analysis"
+                    >
+                        <Clipboard />
+                        <span>Patient Analysis</span>
+                    </SidebarMenuButton>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="pl-4">
+                    <SidebarMenu>
+                        <SidebarMenuItem>
+                            <SidebarMenuButton asChild isActive={pathname === '/patient-analysis/new'} tooltip="New Patient">
+                                <Link href="/patient-analysis/new">
+                                    <FilePlus />
+                                    <span>New Patient</span>
+                                </Link>
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+                         <SidebarMenuItem>
+                            <SidebarMenuButton asChild isActive={pathname === '/patient-analysis/cases'} tooltip="View Cases">
+                                <Link href="/patient-analysis/cases">
+                                    <History />
+                                    <span>View Cases</span>
+                                </Link>
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+                    </SidebarMenu>
+                </CollapsibleContent>
+            </Collapsible>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarContent>
     </Sidebar>
