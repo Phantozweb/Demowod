@@ -30,8 +30,8 @@ import {
 
 const menuItems = [
   { href: '/catalog', label: 'Product Catalog', icon: Book },
-  { href: '/prescription', label: 'My Prescription', icon: FileText },
-  { href: '/favorites', label: 'Favorites', icon: Heart },
+  { href: '/patient-analysis/new', label: 'New Patient', icon: FilePlus },
+  { href: '/patient-analysis/cases', label: 'View Cases', icon: History },
 ];
 
 export function AppSidebar() {
@@ -96,40 +96,6 @@ export function AppSidebar() {
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
-          <SidebarMenuItem>
-             <Collapsible>
-                <CollapsibleTrigger asChild>
-                    <SidebarMenuButton
-                        className="w-full"
-                        isActive={pathname.startsWith('/patient-analysis')}
-                        tooltip="Patient Analysis"
-                    >
-                        <Clipboard />
-                        <span>Patient Analysis</span>
-                    </SidebarMenuButton>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="pl-4">
-                    <SidebarMenu>
-                        <SidebarMenuItem>
-                            <SidebarMenuButton asChild isActive={pathname === '/patient-analysis/new'} tooltip="New Patient">
-                                <Link href="/patient-analysis/new">
-                                    <FilePlus />
-                                    <span>New Patient</span>
-                                </Link>
-                            </SidebarMenuButton>
-                        </SidebarMenuItem>
-                         <SidebarMenuItem>
-                            <SidebarMenuButton asChild isActive={pathname === '/patient-analysis/cases'} tooltip="View Cases">
-                                <Link href="/patient-analysis/cases">
-                                    <History />
-                                    <span>View Cases</span>
-                                </Link>
-                            </SidebarMenuButton>
-                        </SidebarMenuItem>
-                    </SidebarMenu>
-                </CollapsibleContent>
-            </Collapsible>
-          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarContent>
     </Sidebar>
