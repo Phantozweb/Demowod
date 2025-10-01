@@ -1,3 +1,70 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "A stylish display of eyeglasses on a wooden table.",
+      "imageUrl": "https://images.unsplash.com/photo-1602573991396-fb69ee6d7a0d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxleWV3ZWFyJTIwZmxhdGxheXxlbnwwfHx8fDE3NTkzMTg4MzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "eyewear flatlay"
+    },
+    {
+      "id": "frame-1",
+      "description": "Classic black rectangular frames.",
+      "imageUrl": "https://images.unsplash.com/photo-1656579893582-e35ef13b1a98?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxibGFjayUyMGdsYXNzZXN8ZW58MHx8fHwxNzU5MzE4ODMwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "black glasses"
+    },
+    {
+      "id": "frame-2",
+      "description": "Modern thin metal round frames.",
+      "imageUrl": "https://images.unsplash.com/photo-1556540241-5e1be298dd70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cm91bmQlMjBnbGFzc2VzfGVufDB8fHx8MTc1OTIyNzY3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "round glasses"
+    },
+    {
+      "id": "frame-3",
+      "description": "Vintage-style tortoiseshell cat-eye frames.",
+      "imageUrl": "https://images.unsplash.com/photo-1648688135643-2716ec8f4b24?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjYXRleWUlMjBnbGFzc2VzfGVufDB8fHx8MTc1OTI1ODczMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cateye glasses"
+    },
+    {
+      "id": "frame-4",
+      "description": "Bold, thick-rimmed square frames.",
+      "imageUrl": "https://images.unsplash.com/photo-1564867739458-f42235fab442?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzcXVhcmUlMjBnbGFzc2VzfGVufDB8fHx8MTc1OTI1ODczMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "square glasses"
+    },
+    {
+      "id": "frame-5",
+      "description": "Minimalist silver wire-frame glasses.",
+      "imageUrl": "https://images.unsplash.com/photo-1600786902959-43b848fc0473?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx3aXJlZnJhbWUlMjBnbGFzc2VzfGVufDB8fHx8MTc1OTMxODgzMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wireframe glasses"
+    },
+    {
+      "id": "frame-6",
+      "description": "Chic oversized sunglasses.",
+      "imageUrl": "https://images.unsplash.com/photo-1759090987807-e1b197d1a183?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxvdmVyc2l6ZWQlMjBzdW5nbGFzc2VzfGVufDB8fHx8MTc1OTMxODgzMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "oversized sunglasses"
+    },
+    {
+      "id": "try-on-1",
+      "description": "Image of black rectangular frames.",
+      "imageUrl": "https://images.unsplash.com/photo-1596074156693-08512782647d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxnbGFzc2VzJTIwdHJhbnNwYXJlbnR8ZW58MHx8fHwxNzU5MzE4ODMwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "glasses transparent"
+    },
+    {
+      "id": "try-on-2",
+      "description": "Image of round metal frames.",
+      "imageUrl": "https://images.unsplash.com/photo-1726626258851-7363d963b345?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxyb3VuZCUyMGdsYXNzZXMlMjB0cmFuc3BhcmVudHxlbnwwfHx8fDE3NTkzMTg4MzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "round glasses transparent"
+    },
+    {
+      "id": "try-on-3",
+      "description": "Image of cat-eye frames.",
+      "imageUrl": "https://images.unsplash.com/photo-1717381272373-4295520d33ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjYXRleWUlMjBnbGFzc2VzJTIwdHJhbnNwYXJlbnR8ZW58MHx8fHwxNzU5MzE4ODMwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cateye glasses transparent"
+    },
+    {
+      "id": "user-placeholder",
+      "description": "A placeholder for user-uploaded photo.",
+      "imageUrl": "https://images.unsplash.com/photo-1618835962148-cf177563c6c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwb3J0cmFpdCUyMGZhY2V8ZW58MHx8fHwxNzU5MzE4ODMwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "portrait face"
+    }
+  ]
 }
