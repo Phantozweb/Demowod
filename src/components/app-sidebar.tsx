@@ -52,25 +52,6 @@ export default function AppSidebar() {
         {isMobile && <SidebarTrigger />}
       </SidebarHeader>
       <SidebarContent className="p-2">
-        <SidebarMenu>
-          {menuItems.map((item) => (
-            <SidebarMenuItem key={item.href}>
-              <SidebarMenuButton
-                asChild
-                isActive={pathname === item.href}
-                tooltip={{ children: item.label }}
-              >
-                <Link href={item.href}>
-                  <item.icon />
-                  <span>{item.label}</span>
-                   {item.href === '/favorites' && favoritesCount > 0 && (
-                    <Badge variant="secondary" className="ml-auto group-data-[collapsible=icon]:hidden">{favoritesCount}</Badge>
-                   )}
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="hidden justify-center p-4 md:flex">
          <SidebarTrigger />
