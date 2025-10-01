@@ -7,8 +7,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { User, Eye, UploadCloud, FlaskConical, ArrowRight } from 'lucide-react';
+import { User, Eye, UploadCloud, FlaskConical, ArrowRight, Briefcase, Smile, Heart } from 'lucide-react';
 import Link from 'next/link';
+import { Textarea } from '@/components/ui/textarea';
 
 export default function NewPatientPage() {
   
@@ -52,8 +53,8 @@ export default function NewPatientPage() {
                         <User className="text-primary" />
                         <h3 className="text-lg font-semibold text-muted-foreground">Face Shape Analysis</h3>
                     </div>
-                    <p className="text-3xl font-bold text-primary">Oval</p>
-                    <p className="text-sm text-muted-foreground mt-2">Based on uploaded image.</p>
+                    <p className="text-3xl font-bold text-primary">N/A</p>
+                    <p className="text-sm text-muted-foreground mt-2">Analysis pending.</p>
                     </CardContent>
                 </Card>
                 <Card className="flex flex-col justify-between">
@@ -112,6 +113,32 @@ export default function NewPatientPage() {
                                 <div className="md:col-span-2">
                                 <Label htmlFor="contact-info" className="mb-2 block">Contact Information</Label>
                                 <Input id="contact-info" name="contact-info" placeholder="Phone or Email" type="text" />
+                                </div>
+                                <div>
+                                    <Label htmlFor="occupation" className="mb-2 block">Occupation</Label>
+                                    <Input id="occupation" name="occupation" placeholder="e.g., Software Engineer" type="text" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 className="text-2xl font-semibold text-primary mb-8 border-b pb-4">Lifestyle and Visual Needs</h3>
+                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                                <div>
+                                    <Label htmlFor="lifestyle" className="mb-2 block">Hobbies & Daily Activities</Label>
+                                    <Textarea id="lifestyle" name="lifestyle" placeholder="e.g., Reading, driving at night, spends >4 hours on computer" />
+                                </div>
+                                <div>
+                                    <Label htmlFor="visual-needs" className="mb-2 block">Specific Visual Needs or Challenges</Label>
+                                    <Textarea id="visual-needs" name="visual-needs" placeholder="e.g., Difficulty with glare, wants thinner lenses" />
+                                </div>
+                                <div className="md:col-span-2">
+                                    <Label htmlFor="style-preferences" className="mb-2 block">Frame Style Preferences</Label>
+                                    <Textarea id="style-preferences" name="style-preferences" placeholder="e.g., modern, classic, retro, minimalist" />
+                                </div>
+                                <div className="md:col-span-2">
+                                    <Label htmlFor="past-purchases" className="mb-2 block">Past Frame Purchases</Label>
+                                    <Textarea id="past-purchases" name="past-purchases" placeholder="Describe previous glasses the patient liked or disliked" />
                                 </div>
                             </div>
                         </div>
@@ -172,3 +199,5 @@ export default function NewPatientPage() {
     </div>
   );
 }
+
+    
