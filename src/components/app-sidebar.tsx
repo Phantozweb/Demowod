@@ -21,10 +21,12 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarTrigger,
+} from '@/components/ui/sidebar';
+import {
   Collapsible,
   CollapsibleTrigger,
   CollapsibleContent,
-} from '@/components/ui/sidebar';
+} from '@/components/ui/collapsible';
 
 const menuItems = [
   { href: '/catalog', label: 'Product Catalog', icon: Book },
