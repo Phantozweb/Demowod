@@ -56,9 +56,3 @@ export const frames: Frame[] = [
     imageId: 'frame-6',
   },
 ];
-
-export const tryOnFrames = [
-  { id: 't1', name: 'Rectangular', imageId: 'try-on-1' },
-  { id: 't2', name: 'Round', imageId: 'try-on-2' },
-  { id: 't3', name: 'Cat-Eye', imageId: 'try-on-3' },
-];

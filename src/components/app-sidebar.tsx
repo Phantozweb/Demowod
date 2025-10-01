@@ -8,7 +8,6 @@ import {
   Glasses,
   Grid,
   Heart,
-  Camera,
   Home,
   ClipboardList,
 } from 'lucide-react';
@@ -29,7 +28,6 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const menuItems = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/catalog', label: 'Product Catalog', icon: Grid },
-  { href: '/try-on', label: 'Virtual Try-On', icon: Camera },
   { href: '/recommendations', label: 'AI Recommendations', icon: Bot },
   { href: '/prescription', label: 'My Prescription', icon: FileText },
   { href: '/favorites', label: 'Favorites', icon: Heart },
