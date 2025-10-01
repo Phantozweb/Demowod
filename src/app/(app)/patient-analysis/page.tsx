@@ -89,7 +89,6 @@ export default function PatientAnalysisPage() {
                 <div className="sticky top-28">
                     <div className="text-center md:text-left mb-8">
                     <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white">Patient Info &amp; Analysis</h1>
-                    <p className="mt-3 text-lg text-muted-foreground">Navigate through the patient's data and image uploads.</p>
                     </div>
                     <nav className="space-y-2">
                     <Button
