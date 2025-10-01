@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
-const FAVORITES_KEY = 'optiview-favorites';
+const FAVORITES_KEY = 'visionary-favorites';
 
 export const useFavorites = () => {
   const [favorites, setFavorites] = useState<string[]>([]);

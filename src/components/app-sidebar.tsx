@@ -48,7 +48,7 @@ export default function AppSidebar() {
         >
           <Glasses className="size-8 text-primary" />
           <span className="font-headline text-2xl font-bold group-data-[collapsible=icon]:hidden">
-            OptiView
+            Visionary
           </span>
         </Link>
         {isMobile && <SidebarTrigger />}

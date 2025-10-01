@@ -126,14 +126,13 @@ export default function Home() {
                   fillRule="evenodd"
                 ></path>
               </svg>
-              <h3 className="text-xl font-bold text-white">Focus-IN</h3>
+              <h3 className="text-xl font-bold text-white">Visionary</h3>
             </div>
             <p className="max-w-2xl mx-auto text-base text-muted-foreground">
-              It's a Product From Focus-IN and It's a feature of Focus Clinic
-              which is an upcoming app for making everything easier and advanced.
+              The future of optical assistance. AI-powered recommendations for the perfect vision and style.
             </p>
             <div className="mt-8 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-              <p>© 2024 Focus-IN. All rights reserved.</p>
+              <p>© 2024 Visionary. All rights reserved.</p>
             </div>
           </div>
         </div>
