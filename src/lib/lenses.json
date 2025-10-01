@@ -206,17 +206,66 @@
     {
       "id": "meiryo_ex4",
       "name": "Super HiVision® Meiryo® EX4™",
-      "keyFeatures": [
-        "Extreme durability with up to 2.5x better scratch resistance than major competitors' best coatings.",
-        "Easy to clean, staying clean 10x longer than competitors' best coatings.",
-        "Superior clarity with 56% lower reflectance than major competitors' best coatings.",
-        "Proprietary Substrate Matching Process ensures layers work harmoniously for elasticity and temperature resistance."
+      "overview": "HOYA's most advanced premium spectacle lens coating, designed to provide next-level clarity and durability. It ensures long-lasting protection against scratches, smudges, and daily wear, maintaining crystal-clear vision throughout the lifespan of your prescription.",
+      "corePerformanceMetrics": [
+        {
+          "feature": "Reflectance",
+          "performance": "56% lower reflectance",
+          "comparison": "vs. competitor's best coating"
+        },
+        {
+          "feature": "Scratch Resistance",
+          "performance": "Up to 2.5x better",
+          "comparison": "vs. other coatings on the market"
+        },
+        {
+          "feature": "Easy-Clean Longevity",
+          "performance": "Maintains 'easy clean' features up to 5x longer",
+          "comparison": "than other available lens coatings"
+        }
+      ],
+      "protectionFeatures": [
+        {
+          "name": "Anti-Reflective",
+          "description": "Reduces reflections for exceptional visual clarity and an elegant look."
+        },
+        {
+          "name": "Dirt Repellent",
+          "description": "Easy-to-clean properties allow grease and dirt to be wiped off effortlessly, even after long-term use and repeated cleaning."
+        },
+        {
+          "name": "Anti-Static",
+          "description": "Prevents dust from adhering to the lens surface, ensuring clear vision in all circumstances."
+        },
+        {
+          "name": "Extremely Scratch Resistant",
+          "description": "Surface lens protection extends the lifetime of your lenses."
+        },
+        {
+          "name": "Water Repellent",
+          "description": "Ensures water droplets have minimal grip on the lens surface, providing optimal vision in rain or condensation."
+        },
+        {
+          "name": "100% UV Protection",
+          "description": "Provides 100% UV protection on the front with extra protection on the back for optimal defense against ultraviolet rays."
+        },
+        {
+          "name": "Enhanced Contrast",
+          "description": "Delivers enhanced contrast and glare reduction during both day and night."
+        }
       ],
       "patientBenefits": [
-        "Increased visual clarity with minimal reflections.",
-        "Superior scratch resistance.",
-        "Long-lasting cleanability and clarity.",
-        "UV protection and enhanced UV backside protection."
+        "Lasting Clarity: Maintains visual clarity for the entire lifespan of your prescription.",
+        "Durability: Withstands daily cleaning and environmental challenges without compromising performance.",
+        "Glare-Free Vision: Enhanced anti-reflective properties reduce glare, making eyes appear clear to others and in photos.",
+        "Low Maintenance: Superior resistance to smudges, dirt, and water reduces cleaning frequency and effort."
+      ],
+      "technicalNotes": [
+        "Meiryo® EX4™ demonstrated over 45% higher LongLife Index vs. major competitor’s best coating.",
+        "56% lower reflectance than major competitor's best coating, resulting in exceptional clarity.",
+        "Passed 2.5kg SWSC test when most competitive lenses did not pass 1kg.",
+        "Maintains hydrophobic performance more than 10x that of major competitors.",
+        "UV Protection claim based on internal assessment according to ISO 8980-3:2022, applicable to HOYA branded plastic lenses except 1.50 standard lenses."
       ],
       "reflexColor": "Blue"
     },
