@@ -7,11 +7,95 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { User, Eye, UploadCloud, FlaskConical, ArrowRight, Briefcase, Smile, Heart } from 'lucide-react';
-import Link from 'next/link';
+import { User, Eye, UploadCloud, FlaskConical, ArrowRight } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { useCases, type PatientCase } from '@/hooks/use-cases';
+import { useRouter } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
+
+const patientCaseSchema = z.object({
+  patientName: z.string().min(1, 'Patient name is required'),
+  age: z.coerce.number().optional(),
+  gender: z.string().optional(),
+  contactInfo: z.string().optional(),
+  occupation: z.string().optional(),
+  lifestyle: z.string().optional(),
+  visualNeeds: z.string().optional(),
+  stylePreferences: z.string().optional(),
+  pastPurchases: z.string().optional(),
+  distSphOd: z.string().optional(),
+  distSphOs: z.string().optional(),
+  distCyl: z.string().optional(),
+  distAxis: z.string().optional(),
+  nearAddOd: z.string().optional(),
+  nearAddOs: z.string().optional(),
+  pdDist: z.string().optional(),
+  pdNear: z.string().optional(),
+  image: z.any().optional(),
+});
+
+type PatientCaseFormValues = z.infer<typeof patientCaseSchema>;
 
 export default function NewPatientPage() {
+    const router = useRouter();
+    const { addCase } = useCases();
+    const { toast } = useToast();
+
+    const form = useForm<PatientCaseFormValues>({
+        resolver: zodResolver(patientCaseSchema),
+        defaultValues: {
+            patientName: '',
+            age: undefined,
+            gender: '',
+            contactInfo: '',
+            occupation: '',
+            lifestyle: '',
+            visualNeeds: '',
+            stylePreferences: '',
+            pastPurchases: '',
+            distSphOd: '',
+            distSphOs: '',
+            distCyl: '',
+            distAxis: '',
+            nearAddOd: '',
+            nearAddOs: '',
+            pdDist: '',
+            pdNear: '',
+        },
+    });
+
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result as string);
+                form.setValue('image', reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    function onSubmit(data: PatientCaseFormValues) {
+        const newCase: Omit<PatientCase, 'id'> = {
+            ...data,
+            date: new Date().toISOString(),
+            status: 'Pending',
+            faceShape: '', // To be determined by AI
+        };
+        const caseId = addCase(newCase);
+        toast({
+            title: 'Case Saved',
+            description: `Patient case for ${data.patientName} has been created.`,
+          });
+        router.push('/patient-analysis/cases');
+    }
   
   return (
     <div>
@@ -82,63 +166,89 @@ export default function NewPatientPage() {
             </div>
 
             <Card className="p-8">
-                <form>
+                <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)}>
                     <div className="space-y-12">
                         <div>
                             <h3 className="text-2xl font-semibold text-primary mb-8 border-b pb-4">Patient Information</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                                <div>
-                                <Label htmlFor="patient-name" className="mb-2 block">Full Name</Label>
-                                <Input id="patient-name" name="patient-name" placeholder="John Doe" type="text" />
-                                </div>
+                                <FormField control={form.control} name="patientName" render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Full Name</FormLabel>
+                                        <FormControl><Input placeholder="John Doe" {...field} /></FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}/>
                                 <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <Label htmlFor="age" className="mb-2 block">Age</Label>
-                                    <Input id="age" name="age" placeholder="e.g., 42" type="number" />
-                                </div>
-                                <div>
-                                    <Label htmlFor="gender" className="mb-2 block">Gender</Label>
-                                    <Select name="gender">
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="male">Male</SelectItem>
-                                        <SelectItem value="female">Female</SelectItem>
-                                        <SelectItem value="other">Other</SelectItem>
-                                    </SelectContent>
-                                    </Select>
-                                </div>
+                                    <FormField control={form.control} name="age" render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Age</FormLabel>
+                                            <FormControl><Input type="number" placeholder="e.g., 42" {...field} /></FormControl>
+                                        </FormItem>
+                                    )}/>
+                                    <FormField control={form.control} name="gender" render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Gender</FormLabel>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <FormControl>
+                                                    <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
+                                                </FormControl>
+                                                <SelectContent>
+                                                    <SelectItem value="male">Male</SelectItem>
+                                                    <SelectItem value="female">Female</SelectItem>
+                                                    <SelectItem value="other">Other</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </FormItem>
+                                    )}/>
                                 </div>
                                 <div className="md:col-span-2">
-                                <Label htmlFor="contact-info" className="mb-2 block">Contact Information</Label>
-                                <Input id="contact-info" name="contact-info" placeholder="Phone or Email" type="text" />
+                                <FormField control={form.control} name="contactInfo" render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Contact Information</FormLabel>
+                                        <FormControl><Input placeholder="Phone or Email" {...field} /></FormControl>
+                                    </FormItem>
+                                )}/>
                                 </div>
-                                <div>
-                                    <Label htmlFor="occupation" className="mb-2 block">Occupation</Label>
-                                    <Input id="occupation" name="occupation" placeholder="e.g., Software Engineer" type="text" />
-                                </div>
+                                <FormField control={form.control} name="occupation" render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Occupation</FormLabel>
+                                        <FormControl><Input placeholder="e.g., Software Engineer" {...field} /></FormControl>
+                                    </FormItem>
+                                )}/>
                             </div>
                         </div>
 
                         <div>
                             <h3 className="text-2xl font-semibold text-primary mb-8 border-b pb-4">Lifestyle and Visual Needs</h3>
                              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                                <div>
-                                    <Label htmlFor="lifestyle" className="mb-2 block">Hobbies & Daily Activities</Label>
-                                    <Textarea id="lifestyle" name="lifestyle" placeholder="e.g., Reading, driving at night, spends >4 hours on computer" />
-                                </div>
-                                <div>
-                                    <Label htmlFor="visual-needs" className="mb-2 block">Specific Visual Needs or Challenges</Label>
-                                    <Textarea id="visual-needs" name="visual-needs" placeholder="e.g., Difficulty with glare, wants thinner lenses" />
+                                <FormField control={form.control} name="lifestyle" render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Hobbies & Daily Activities</FormLabel>
+                                        <FormControl><Textarea placeholder="e.g., Reading, driving at night, spends >4 hours on computer" {...field} /></FormControl>
+                                    </FormItem>
+                                )}/>
+                                <FormField control={form.control} name="visualNeeds" render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Specific Visual Needs or Challenges</FormLabel>
+                                        <FormControl><Textarea placeholder="e.g., Difficulty with glare, wants thinner lenses" {...field} /></FormControl>
+                                    </FormItem>
+                                )}/>
+                                <div className="md:col-span-2">
+                                <FormField control={form.control} name="stylePreferences" render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Frame Style Preferences</FormLabel>
+                                        <FormControl><Textarea placeholder="e.g., modern, classic, retro, minimalist" {...field} /></FormControl>
+                                    </FormItem>
+                                )}/>
                                 </div>
                                 <div className="md:col-span-2">
-                                    <Label htmlFor="style-preferences" className="mb-2 block">Frame Style Preferences</Label>
-                                    <Textarea id="style-preferences" name="style-preferences" placeholder="e.g., modern, classic, retro, minimalist" />
-                                </div>
-                                <div className="md:col-span-2">
-                                    <Label htmlFor="past-purchases" className="mb-2 block">Past Frame Purchases</Label>
-                                    <Textarea id="past-purchases" name="past-purchases" placeholder="Describe previous glasses the patient liked or disliked" />
+                                <FormField control={form.control} name="pastPurchases" render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Past Frame Purchases</FormLabel>
+                                        <FormControl><Textarea placeholder="Describe previous glasses the patient liked or disliked" {...field} /></FormControl>
+                                    </FormItem>
+                                )}/>
                                 </div>
                             </div>
                         </div>
@@ -149,55 +259,75 @@ export default function NewPatientPage() {
                                 <div>
                                 <h4 className="text-lg font-medium text-white mb-4">Distance Vision</h4>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-end">
-                                    <div><Label htmlFor="dist-sph-od" className="mb-2 block">SPH (OD)</Label><Input id="dist-sph-od" name="dist-sph-od" placeholder="-1.25" type="text" /></div>
-                                    <div><Label htmlFor="dist-sph-os" className="mb-2 block">SPH (OS)</Label><Input id="dist-sph-os" name="dist-sph-os" placeholder="-1.50" type="text" /></div>
-                                    <div><Label htmlFor="dist-cyl" className="mb-2 block">CYL</Label><Input id="dist-cyl" name="dist-cyl" placeholder="-0.50" type="text" /></div>
-                                    <div><Label htmlFor="dist-axis" className="mb-2 block">Axis</Label><Input id="dist-axis" name="dist-axis" placeholder="180" type="text" /></div>
+                                    <FormField control={form.control} name="distSphOd" render={({ field }) => (<FormItem><FormLabel>SPH (OD)</FormLabel><FormControl><Input placeholder="-1.25" {...field} /></FormControl></FormItem>)} />
+                                    <FormField control={form.control} name="distSphOs" render={({ field }) => (<FormItem><FormLabel>SPH (OS)</FormLabel><FormControl><Input placeholder="-1.50" {...field} /></FormControl></FormItem>)} />
+                                    <FormField control={form.control} name="distCyl" render={({ field }) => (<FormItem><FormLabel>CYL</FormLabel><FormControl><Input placeholder="-0.50" {...field} /></FormControl></FormItem>)} />
+                                    <FormField control={form.control} name="distAxis" render={({ field }) => (<FormItem><FormLabel>Axis</FormLabel><FormControl><Input placeholder="180" {...field} /></FormControl></FormItem>)} />
                                 </div>
                                 </div>
                                 <div>
                                 <h4 className="text-lg font-medium text-white mb-4">Near Vision (ADD)</h4>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-end">
-                                    <div><Label htmlFor="near-add-od" className="mb-2 block">ADD (OD)</Label><Input id="near-add-od" name="near-add-od" placeholder="+2.00" type="text" /></div>
-                                    <div><Label htmlFor="near-add-os" className="mb-2 block">ADD (OS)</Label><Input id="near-add-os" name="near-add-os" placeholder="+2.00" type="text" /></div>
+                                    <FormField control={form.control} name="nearAddOd" render={({ field }) => (<FormItem><FormLabel>ADD (OD)</FormLabel><FormControl><Input placeholder="+2.00" {...field} /></FormControl></FormItem>)} />
+                                    <FormField control={form.control} name="nearAddOs" render={({ field }) => (<FormItem><FormLabel>ADD (OS)</FormLabel><FormControl><Input placeholder="+2.00" {...field} /></FormControl></FormItem>)} />
                                 </div>
                                 </div>
                                 <div>
                                 <h4 className="text-lg font-medium text-white mb-4">Pupillary Distance (PD)</h4>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-end">
-                                    <div><Label htmlFor="pd-dist" className="mb-2 block">Distance PD</Label><Input id="pd-dist" name="pd-dist" placeholder="63" type="text" /></div>
-                                    <div><Label htmlFor="pd-near" className="mb-2 block">Near PD</Label><Input id="pd-near" name="pd-near" placeholder="60" type="text" /></div>
+                                    <FormField control={form.control} name="pdDist" render={({ field }) => (<FormItem><FormLabel>Distance PD</FormLabel><FormControl><Input placeholder="63" {...field} /></FormControl></FormItem>)} />
+                                    <FormField control={form.control} name="pdNear" render={({ field }) => (<FormItem><FormLabel>Near PD</FormLabel><FormControl><Input placeholder="60" {...field} /></FormControl></FormItem>)} />
                                 </div>
                                 </div>
                             </div>
                         </div>
 
                         <div>
-                            <h3 className="text-2xl font-semibold text-primary mb-8 border-b pb-4">Image Upload</h3>
+                            <h3 className="text-2xl font-semibold text-primary mb-8 border-b pb-4">Image Upload (Optional)</h3>
                             <div className="flex justify-center items-center w-full mt-8">
-                                <Label htmlFor="image-upload" className="flex flex-col justify-center items-center w-full h-80 bg-background rounded-lg border-2 border-dashed border-input hover:border-primary transition-all duration-300 cursor-pointer">
-                                <div className="flex flex-col justify-center items-center pt-5 pb-6">
-                                    <UploadCloud className="w-16 h-16 text-muted-foreground mb-4" />
-                                    <p className="mb-2 text-lg text-muted-foreground"><span className="font-semibold text-primary">Click to upload</span> or drag and drop</p>
-                                    <p className="text-sm text-muted-foreground">PNG, JPG, or JPEG (MAX. 5MB)</p>
-                                </div>
-                                <Input id="image-upload" type="file" className="hidden" />
-                                </Label>
+                                <FormField
+                                    control={form.control}
+                                    name="image"
+                                    render={({ field }) => (
+                                    <FormItem className="w-full">
+                                        <FormLabel htmlFor="image-upload" className={`flex flex-col justify-center items-center w-full h-80 bg-background rounded-lg border-2 border-dashed border-input hover:border-primary transition-all duration-300 cursor-pointer ${imagePreview ? 'border-primary' : ''}`}>
+                                        {imagePreview ? (
+                                            <img src={imagePreview} alt="Patient preview" className="w-full h-full object-contain rounded-lg" />
+                                        ) : (
+                                            <div className="flex flex-col justify-center items-center pt-5 pb-6">
+                                                <UploadCloud className="w-16 h-16 text-muted-foreground mb-4" />
+                                                <p className="mb-2 text-lg text-muted-foreground"><span className="font-semibold text-primary">Click to upload</span> or drag and drop</p>
+                                                <p className="text-sm text-muted-foreground">PNG, JPG, or JPEG (MAX. 5MB)</p>
+                                            </div>
+                                        )}
+                                        </FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                id="image-upload"
+                                                type="file"
+                                                className="hidden"
+                                                accept="image/png, image/jpeg, image/jpg"
+                                                onChange={handleImageChange}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                    )}
+                                />
                             </div>
                         </div>
                     </div>
 
                     <div className="pt-10 mt-8 border-t">
-                        <Button className="w-full" size="lg" type="submit">
-                        <span>Analyze and Recommend</span>
+                        <Button className="w-full" size="lg" type="submit" disabled={form.formState.isSubmitting}>
+                        <span>{form.formState.isSubmitting ? "Saving Case..." : "Save Case & Continue"}</span>
                         <ArrowRight />
                         </Button>
                     </div>
                 </form>
+                </Form>
             </Card>
         </div>
     </div>
   );
 }
-
-    

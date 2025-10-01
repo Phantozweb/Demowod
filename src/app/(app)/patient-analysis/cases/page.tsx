@@ -19,32 +19,23 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Eye, Trash2 } from 'lucide-react';
-
-const savedCases = [
-  {
-    id: 'CASE-001',
-    patientName: 'John Doe',
-    date: '2024-07-29',
-    faceShape: 'Oval',
-    status: 'Completed',
-  },
-  {
-    id: 'CASE-002',
-    patientName: 'Jane Smith',
-    date: '2024-07-28',
-    faceShape: 'Round',
-    status: 'Pending',
-  },
-  {
-    id: 'CASE-003',
-    patientName: 'Peter Jones',
-    date: '2024-07-27',
-    faceShape: 'Square',
-    status: 'Completed',
-  },
-];
+import { useCases } from '@/hooks/use-cases';
+import Link from 'next/link';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@/components/ui/alert-dialog"
 
 export default function ViewCasesPage() {
+  const { cases, isInitialized, removeCase } = useCases();
+
   return (
     <div className="p-4 md:p-8">
       <header className="mb-8">
@@ -70,37 +61,88 @@ export default function ViewCasesPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {savedCases.map((caseItem) => (
+              {isInitialized && cases.map((caseItem) => (
                 <TableRow key={caseItem.id}>
                   <TableCell className="font-medium">{caseItem.id}</TableCell>
                   <TableCell>{caseItem.patientName}</TableCell>
-                  <TableCell>{caseItem.date}</TableCell>
-                  <TableCell>{caseItem.faceShape}</TableCell>
+                  <TableCell>{new Date(caseItem.date).toLocaleDateString()}</TableCell>
+                  <TableCell>{caseItem.faceShape || 'N/A'}</TableCell>
                   <TableCell>
                     <Badge variant={caseItem.status === 'Completed' ? 'default' : 'secondary'}>
                       {caseItem.status}
                     </Badge>
                   </TableCell>
                   <TableCell className="text-right">
-                    <Button variant="ghost" size="icon" aria-label="View case">
-                      <Eye className="h-4 w-4" />
+                    <Button variant="ghost" size="icon" asChild aria-label="View case">
+                        <Link href={`/patient-analysis/cases/${caseItem.id}`}>
+                            <Eye className="h-4 w-4" />
+                        </Link>
                     </Button>
-                    <Button variant="ghost" size="icon" className="text-destructive" aria-label="Delete case">
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button variant="ghost" size="icon" className="text-destructive" aria-label="Delete case">
+                            <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This action cannot be undone. This will permanently delete this patient case.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction onClick={() => removeCase(caseItem.id)}>Delete</AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </CardContent>
-      </Card>
-       {savedCases.length === 0 && (
-          <div className="text-center py-20">
+         {isInitialized && cases.length === 0 && (
+          <div className="text-center py-20 border-t">
               <h2 className="text-xl font-semibold">No saved cases found.</h2>
               <p className="mt-2 text-muted-foreground">Start a new patient analysis to see it here.</p>
+               <Button asChild className="mt-6" variant="default">
+                  <Link href="/patient-analysis/new">Create New Analysis</Link>
+              </Button>
           </div>
         )}
+         {!isInitialized && (
+             <Table>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead>Case ID</TableHead>
+                        <TableHead>Patient Name</TableHead>
+                        <TableHead>Date</TableHead>
+                        <TableHead>Face Shape</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                {Array.from({ length: 3 }).map((_, i) => (
+                    <TableRow key={i}>
+                        <TableCell><div className="h-4 w-20 bg-muted animate-pulse rounded"></div></TableCell>
+                        <TableCell><div className="h-4 w-24 bg-muted animate-pulse rounded"></div></TableCell>
+                        <TableCell><div className="h-4 w-20 bg-muted animate-pulse rounded"></div></TableCell>
+                        <TableCell><div className="h-4 w-16 bg-muted animate-pulse rounded"></div></TableCell>
+                        <TableCell><div className="h-6 w-24 bg-muted animate-pulse rounded-full"></div></TableCell>
+                        <TableCell className="text-right flex justify-end gap-2">
+                           <div className="h-8 w-8 bg-muted animate-pulse rounded-full"></div>
+                           <div className="h-8 w-8 bg-muted animate-pulse rounded-full"></div>
+                        </TableCell>
+                    </TableRow>
+                ))}
+                </TableBody>
+            </Table>
+         )}
+      </Card>
+
     </div>
   );
 }
