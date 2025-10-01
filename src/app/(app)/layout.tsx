@@ -5,7 +5,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="min-h-svh w-full bg-background">{children}</main>
+      <main className="min-h-svh w-full bg-background text-foreground">{children}</main>
     </SidebarProvider>
   );
 }

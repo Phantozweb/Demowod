@@ -9,6 +9,7 @@ import {
   Grid,
   Heart,
   Camera,
+  Home,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -25,6 +26,7 @@ import { Badge } from './ui/badge';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const menuItems = [
+  { href: '/', label: 'Home', icon: Home },
   { href: '/catalog', label: 'Product Catalog', icon: Grid },
   { href: '/try-on', label: 'Virtual Try-On', icon: Camera },
   { href: '/recommendations', label: 'AI Recommendations', icon: Bot },
