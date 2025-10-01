@@ -1,0 +1,111 @@
+
+{
+  "singleVisionLenses": [
+    {
+      "id": "visupro",
+      "name": "VisuPro™",
+      "targetUsers": "Emerging presbyopes (ages 36-44) experiencing near-vision problems.",
+      "designFeatures": [
+        "Focus Max Optimization",
+        "Binocular Harmonization Technology™",
+        "Position of wear or defaults",
+        "Two lifestyle-based design options: VisuPro All Day (for regular wearers with three distance types) and VisuPro Flex (for sporadic wearers with four distance types)."
+      ],
+      "patientBenefits": [
+        "Quicker adaptation compared to progressive lenses.",
+        "Higher satisfaction for early presbyopic symptoms.",
+        "Cost-effective transition to progressive lenses.",
+        "Better adaptation to future progressive lenses."
+      ]
+    },
+    {
+      "id": "mysv",
+      "name": "MySV®",
+      "targetUsers": "Patients needing personalized single vision lenses beyond 'one-size-fits-all'.",
+      "designFeatures": [
+        "Backside free form technology compensating prescriptions in all meridians (360˚ Visual Comfort™).",
+        "Optimized base curve for larger frame selection."
+      ],
+      "patientBenefits": [
+        "Prescription compensation at all angles.",
+        "Wider peripheral views than standard single vision lenses.",
+        "Individualized based on position of wear measurements.",
+        "Enhanced visual acuity for all prescription powers."
+      ]
+    },
+    {
+      "id": "sync_iii",
+      "name": "Sync III™",
+      "targetUsers": "Single vision patients experiencing Digital Eye Strain (DES).",
+      "designFeatures": [
+        "Distance power for everyday use with a 'boost zone' in the lower portion.",
+        "Three boost zone designs: Sync III 5 (+0.57D boost), Sync III 9 (+0.95D boost), Sync III 13 (+1.32D boost).",
+        "Minimum fitting height: 14mm."
+      ],
+      "patientBenefits": [
+        "Reduced eye strain during near tasks (e.g., digital screens, reading).",
+        "Comfort on digital devices unmatched by standard single vision lenses.",
+        "Available in clear, photochromic, and polarized options.",
+        "Minimal copay difference compared to standard single vision lenses."
+      ]
+    },
+    {
+      "id": "id_single_vision",
+      "name": "iD Single Vision®",
+      "targetUsers": "Patients with high prescriptions needing thinner lenses and increased viewing area.",
+      "designFeatures": [
+        "Bi-aspheric design using Integrated Dual Surface™ free form technology.",
+        "Expanded peripheral viewing, especially for higher prescriptions.",
+        "Edge-to-edge clarity with reduced distortion.",
+        "Requires OC and monocular PD measurements."
+      ],
+      "patientBenefits": [
+        "Optimized visual acuity and crisper image perception.",
+        "Relaxed vision thanks to precise focusing.",
+        "More accurate correction."
+      ]
+    },
+    {
+      "id": "single_vision_iq",
+      "name": "Single Vision iQ™",
+      "targetUsers": "Patients seeking PAL-level technology in single vision lenses.",
+      "designFeatures": [
+        "Spherical front surface with custom back surfacing.",
+        "Backside design technology for enhanced optics.",
+        "Requires OC and monocular PD measurements."
+      ],
+      "patientBenefits": [
+        "Enhanced visual acuity for all prescription powers.",
+        "Reduced distortion in peripheral areas.",
+        "Wider, clearer visual field in all directions."
+      ]
+    }
+  ],
+  "keyTechnologies": [
+    {
+      "id": "freeform",
+      "name": "FreeForm Technologies",
+      "description": "Point-by-point calculation for pixel-perfect precision."
+    },
+    {
+      "id": "bht",
+      "name": "Binocular Harmonization Technology™",
+      "description": "Balances lens performance for both eyes."
+    },
+    {
+      "id": "ids",
+      "name": "Integrated Dual Surface™ (iD) Technology",
+      "description": "Provides edge-to-edge clarity in thin lenses."
+    },
+    {
+      "id": "360_comfort",
+      "name": "360˚ Visual Comfort™",
+      "description": "Compensation in all meridians for wider peripheral views."
+    },
+    {
+      "id": "focus_max",
+      "name": "Focus Max Optimization",
+      "description": "Enhances close-up vision for young presbyopes."
+    }
+  ]
+}
