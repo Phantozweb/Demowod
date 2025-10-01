@@ -90,46 +90,50 @@ export default function PatientAnalysisPage() {
                     <div className="text-center md:text-left mb-8">
                     <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white">Patient Info &amp; Analysis</h1>
                     </div>
-                    <nav className="space-y-2">
-                    <Button
-                        variant={activeTab === 'info' ? 'default' : 'ghost'}
-                        onClick={() => setActiveTab('info')}
-                        className="w-full justify-start gap-3 px-4 py-6 text-base"
-                    >
-                        <PersonStanding />
-                        <span>Patient Information</span>
-                    </Button>
-                    <Button
-                        variant={activeTab === 'specs' ? 'default' : 'ghost'}
-                        onClick={() => setActiveTab('specs')}
-                        className="w-full justify-start gap-3 px-4 py-6 text-base"
-                    >
-                        <Eye />
-                        <span>Spectacle Parameters</span>
-                    </Button>
-                    <Button
-                        variant={activeTab === 'upload' ? 'default' : 'ghost'}
-                        onClick={() => setActiveTab('upload')}
-                        className="w-full justify-start gap-3 px-4 py-6 text-base"
-                    >
-                        <UploadCloud />
-                        <span>Image Upload</span>
-                    </Button>
+                    <nav className="space-y-4">
+                        <div className='space-y-2'>
+                            <Button
+                                variant={activeTab === 'info' ? 'default' : 'ghost'}
+                                onClick={() => setActiveTab('info')}
+                                className="w-full justify-start gap-3 px-4 py-6 text-base"
+                            >
+                                <PersonStanding />
+                                <span>Patient Information</span>
+                            </Button>
+                            <Button
+                                variant={activeTab === 'specs' ? 'default' : 'ghost'}
+                                onClick={() => setActiveTab('specs')}
+                                className="w-full justify-start gap-3 px-4 py-6 text-base"
+                            >
+                                <Eye />
+                                <span>Spectacle Parameters</span>
+                            </Button>
+                            <Button
+                                variant={activeTab === 'upload' ? 'default' : 'ghost'}
+                                onClick={() => setActiveTab('upload')}
+                                className="w-full justify-start gap-3 px-4 py-6 text-base"
+                            >
+                                <UploadCloud />
+                                <span>Image Upload</span>
+                            </Button>
+                        </div>
 
-                    <hr className="my-4 border-border" />
+                        <hr className="my-4 border-border" />
 
-                    <Button asChild variant='ghost' className="w-full justify-start gap-3 px-4 py-6 text-base">
-                        <Link href="/catalog"><Book /><span>Product Catalog</span></Link>
-                    </Button>
-                    <Button asChild variant='ghost' className="w-full justify-start gap-3 px-4 py-6 text-base">
-                        <Link href="/recommendations"><Bot /><span>AI Recommendations</span></Link>
-                    </Button>
-                    <Button asChild variant='ghost' className="w-full justify-start gap-3 px-4 py-6 text-base">
-                        <Link href="/prescription"><FileText /><span>My Prescription</span></Link>
-                    </Button>
-                     <Button asChild variant='ghost' className="w-full justify-start gap-3 px-4 py-6 text-base">
-                        <Link href="/favorites"><Heart /><span>Favorites</span></Link>
-                    </Button>
+                        <div className='space-y-2'>
+                            <Button asChild variant='ghost' className="w-full justify-start gap-3 px-4 py-6 text-base">
+                                <Link href="/catalog"><Book /><span>Product Catalog</span></Link>
+                            </Button>
+                            <Button asChild variant='ghost' className="w-full justify-start gap-3 px-4 py-6 text-base">
+                                <Link href="/recommendations"><Bot /><span>AI Recommendations</span></Link>
+                            </Button>
+                            <Button asChild variant='ghost' className="w-full justify-start gap-3 px-4 py-6 text-base">
+                                <Link href="/prescription"><FileText /><span>My Prescription</span></Link>
+                            </Button>
+                            <Button asChild variant='ghost' className="w-full justify-start gap-3 px-4 py-6 text-base">
+                                <Link href="/favorites"><Heart /><span>Favorites</span></Link>
+                            </Button>
+                        </div>
                     </nav>
                 </div>
                 </div>
