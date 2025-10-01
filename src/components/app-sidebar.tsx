@@ -4,12 +4,10 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  Bot,
   FileText,
   Heart,
   Home,
   Book,
-  PanelLeft,
   Clipboard,
 } from 'lucide-react';
 import {
@@ -24,7 +22,6 @@ import {
 
 const menuItems = [
   { href: '/catalog', label: 'Product Catalog', icon: Book },
-  { href: '/recommendations', label: 'AI Recommendations', icon: Bot },
   { href: '/prescription', label: 'My Prescription', icon: FileText },
   { href: '/favorites', label: 'Favorites', icon: Heart },
   { href: '/patient-analysis', label: 'Patient Analysis', icon: Clipboard },
