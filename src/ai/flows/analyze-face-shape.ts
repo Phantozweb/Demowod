@@ -37,12 +37,12 @@ export async function analyzeFaceShape(
 const prompt = ai.definePrompt({
   name: 'analyzeFaceShapePrompt',
   input: { schema: AnalyzeFaceShapeInputSchema },
-  output: { schema: AnalyzeFaceShapeOutputSchema },
   prompt: `You are Focus.Ai, an expert in facial analysis. Analyze the provided image to determine the user's face shape and skin tone.
 
 Analyze the user's face in the image and identify the primary shape (e.g., Oval, Round, Square, Heart, Diamond, etc.) and their skin tone.
 
-Return ONLY a valid JSON object with the keys "faceShape" and "skinTone". Do not include any other text, explanation, or markdown.
+Return ONLY a valid JSON object formatted like this: {"faceShape": "...", "skinTone": "..."}.
+Do not include any other text, explanation, or markdown formatting like \`\`\`json.
 
 Image to analyze:
 {{media url=photoDataUri}}`,
@@ -55,12 +55,18 @@ const analyzeFaceShapeFlow = ai.defineFlow(
     outputSchema: AnalyzeFaceShapeOutputSchema,
   },
   async (input) => {
-    const { output } = await prompt(input);
+    const response = await prompt(input);
+    const textOutput = response.text;
     
-    if (!output) {
+    if (!textOutput) {
       throw new Error('Analysis failed to return a result.');
     }
 
-    return output;
+    try {
+      return JSON.parse(textOutput);
+    } catch (e) {
+        console.error("Failed to parse JSON from AI response:", textOutput);
+        throw new Error("The AI returned an invalid response format.");
+    }
   }
 );
