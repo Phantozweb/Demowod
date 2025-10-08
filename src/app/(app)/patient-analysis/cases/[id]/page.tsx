@@ -192,7 +192,7 @@ export default function CaseDetailPage() {
         handleStartAnalysis();
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [caseItem, isFetchingFrames, allFrames, isLoading]);
+  }, [caseItem, isFetchingFrames, allFrames]);
 
 
   const flatFrames = allFrames.flatMap(frame => 
