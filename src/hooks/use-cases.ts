@@ -61,10 +61,17 @@ export const useCases = () => {
 
   const addCase = useCallback((newCaseData: Omit<PatientCase, 'id'>) => {
     const caseWithId: PatientCase = { ...newCaseData, id: `CASE-${uuidv4().slice(0,4).toUpperCase()}` };
-    const updatedCases = [...cases, caseWithId];
-    saveCases(updatedCases);
+    setCases(prevCases => {
+        const updatedCases = [...prevCases, caseWithId];
+        try {
+            window.localStorage.setItem(CASES_KEY, JSON.stringify(updatedCases));
+        } catch (error) {
+            console.error('Failed to save cases to localStorage', error);
+        }
+        return updatedCases;
+    });
     return caseWithId.id;
-  }, [cases]);
+  }, []);
 
   const updateCase = useCallback((caseId: string, updatedData: Partial<PatientCase>) => {
     const updatedCases = cases.map(c => c.id === caseId ? { ...c, ...updatedData } : c);

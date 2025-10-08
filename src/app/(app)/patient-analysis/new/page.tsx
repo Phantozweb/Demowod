@@ -79,15 +79,13 @@ export default function NewPatientPage() {
         if (file) {
             const reader = new FileReader();
             reader.onloadend = async () => {
-                const originalDataUrl = reader.result as string;
-                // Don't show original, show loading state immediately
-                setImagePreview(null); 
+                const dataUrl = reader.result as string;
+                setImagePreview(dataUrl); // Show original image immediately
                 setIsAnalyzing(true);
                 
                 try {
-                    const result = await analyzeFaceShape({ photoDataUri: originalDataUrl });
-                    setImagePreview(result.analyzedPhotoDataUri);
-                    form.setValue('image', result.analyzedPhotoDataUri);
+                    const result = await analyzeFaceShape({ photoDataUri: dataUrl });
+                    form.setValue('image', dataUrl); // We keep the original image
                     form.setValue('faceShape', result.faceShape);
                     toast({
                         title: 'Analysis Complete',
@@ -98,11 +96,10 @@ export default function NewPatientPage() {
                     toast({
                         variant: 'destructive',
                         title: 'Face Analysis Failed',
-                        description: 'Could not generate face analysis. Using original image.',
+                        description: 'Could not analyze the image. Please try another one.',
                     });
-                    // Fallback to original image on error
-                    setImagePreview(originalDataUrl); 
-                    form.setValue('image', originalDataUrl);
+                    setImagePreview(null); 
+                    form.setValue('image', undefined);
                 } finally {
                     setIsAnalyzing(false);
                 }
@@ -321,7 +318,7 @@ export default function NewPatientPage() {
                                     name="image"
                                     render={({ field }) => (
                                     <FormItem className="w-full">
-                                        <FormLabel htmlFor="image-upload" className={`relative flex flex-col justify-center items-center w-full h-80 bg-background rounded-lg border-2 border-dashed border-input hover:border-primary transition-all duration-300 cursor-pointer ${imagePreview || isAnalyzing ? 'border-primary' : ''}`}>
+                                        <FormLabel htmlFor="image-upload" className={`relative flex flex-col justify-center items-center w-full h-80 bg-background rounded-lg border-2 border-dashed border-input hover:border-primary transition-all duration-300 cursor-pointer ${imagePreview ? 'border-primary' : ''}`}>
                                         {isAnalyzing && (
                                             <div className="absolute inset-0 flex flex-col justify-center items-center bg-background/80 z-10">
                                                 <Loader className="w-16 h-16 animate-spin text-primary" />

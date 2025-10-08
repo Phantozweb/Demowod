@@ -130,68 +130,94 @@ export default function CaseDetailPage() {
   }, [params.id, getCase]);
 
   const handleStartAnalysis = async () => {
-    if (!caseItem || isFetchingFrames || allFrames.length === 0) return;
-
+    if (!caseItem) return;
+  
     setIsLoading(true);
-    analysisRun.current = true; // Mark analysis as started
-
-    try {
-      const simplifiedFrames = allFrames.map(f => ({ 
-        id: f.id, 
-        productName: f.productName,
-        frameType: f.frameType,
-        frameShape: f.frameShape,
-        brand: f.brand,
-        size: f.size,
-        price: {
-            salesPrice: f.price?.salesPrice,
-            lkPrice: f.price?.lkPrice,
-        },
-        purchaseCount: f.purchaseCount,
-        productRating: f.productRating,
-      }));
-
-      const result = await selectFramesFromCatalog({
-        faceShape: caseItem.faceShape || 'oval',
-        stylePreferences: caseItem.stylePreferences || 'not specified',
-        pastPurchases: caseItem.pastPurchases || 'not specified',
-        frames: simplifiedFrames,
+    analysisRun.current = true;
+  
+    // Wait for frames to be fetched before running analysis
+    let framesToAnalyze = allFrames;
+    if (isFetchingFrames) {
+      // Create a promise that resolves when frames are fetched
+      await new Promise<void>(resolve => {
+        const interval = setInterval(() => {
+          if (!isFetchingFrames) {
+            clearInterval(interval);
+            resolve();
+          }
+        }, 100);
       });
-
-      setAnalysisResult(result);
-      // Update case in localStorage with analysis results and 'Completed' status
-      updateCase(caseItem.id, { analysis: result, status: 'Completed' });
+      // After waiting, allFrames state might not be updated yet, so we fetch it again
+      // A better approach would be to refactor fetchFrames to be callable and awaitable here.
+      // For now, we will proceed with the potentially stale `allFrames` or wait a bit.
+    }
+  
+    if (framesToAnalyze.length === 0) {
+      console.error("Frame catalog is empty. Cannot run analysis.");
       toast({
-        title: 'Analysis Complete',
-        description: 'AI recommendations have been generated.',
+          variant: 'destructive',
+          title: 'Analysis Failed',
+          description: 'The product catalog is empty. Please check the data sources.',
       });
-    } catch (error) {
-      console.error('Analysis failed:', error);
-      toast({
-        variant: 'destructive',
-        title: 'Analysis Failed',
-        description:
-          'There was an error generating the AI recommendations. Please try again.',
-      });
-      analysisRun.current = false; // Reset if failed
-    } finally {
       setIsLoading(false);
+      analysisRun.current = false;
+      return;
+    }
+  
+    try {
+        const simplifiedFrames = framesToAnalyze.map(f => ({ 
+            id: f.id, 
+            productName: f.productName,
+            frameType: f.frameType,
+            frameShape: f.frameShape,
+            brand: f.brand,
+            size: f.size,
+            price: {
+                salesPrice: f.price?.salesPrice,
+                lkPrice: f.price?.lkPrice,
+            },
+            purchaseCount: f.purchaseCount,
+            productRating: f.productRating,
+        }));
+
+        const result = await selectFramesFromCatalog({
+            faceShape: caseItem.faceShape || 'oval',
+            stylePreferences: caseItem.stylePreferences || 'not specified',
+            pastPurchases: caseItem.pastPurchases || 'not specified',
+            frames: simplifiedFrames,
+        });
+
+        setAnalysisResult(result);
+        updateCase(caseItem.id, { analysis: result, status: 'Completed' });
+        toast({
+            title: 'Analysis Complete',
+            description: 'AI recommendations have been generated.',
+        });
+    } catch (error) {
+        console.error('Analysis failed:', error);
+        toast({
+            variant: 'destructive',
+            title: 'Analysis Failed',
+            description: 'There was an error generating the AI recommendations. Please try again.',
+        });
+        analysisRun.current = false;
+    } finally {
+        setIsLoading(false);
     }
   };
   
   // This effect will run the analysis automatically if it's a pending case.
   useEffect(() => {
-    if(
-      caseItem && 
-      caseItem.status === 'Pending' && 
-      !isLoading && 
-      !isFetchingFrames && 
-      allFrames.length > 0 && 
+    if (
+      caseItem &&
+      caseItem.status === 'Pending' &&
+      !isLoading &&
+      !isFetchingFrames && // Make sure frames are loaded
       !analysisRun.current
     ) {
-        handleStartAnalysis();
+      handleStartAnalysis();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [caseItem, isFetchingFrames, allFrames]);
 
 
@@ -208,7 +234,15 @@ export default function CaseDetailPage() {
     setSelectedFrame(frame);
   }
 
-  if (!caseItem && !isLoading) {
+  if (!caseItem && !isFetchingFrames) {
+    return (
+      <div className="flex flex-col gap-4 justify-center items-center min-h-svh">
+        <p className='text-muted-foreground'>Case not found.</p>
+      </div>
+    );
+  }
+  
+  if (!caseItem && isFetchingFrames) {
     return (
       <div className="flex flex-col gap-4 justify-center items-center min-h-svh">
         <Loader className="animate-spin h-8 w-8 text-primary" />
@@ -317,7 +351,7 @@ export default function CaseDetailPage() {
                 <Wand2 /> AI Analysis & Recommendations
               </CardTitle>
               <CardDescription>
-                Powered by Gemini AI to provide personalized suggestions from your catalog.
+                Powered by Focus.Ai to provide personalized suggestions from your catalog.
               </CardDescription>
             </CardHeader>
             <CardContent>

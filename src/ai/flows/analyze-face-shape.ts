@@ -47,39 +47,34 @@ const analyzeFaceShapeFlow = ai.defineFlow(
   async ({ photoDataUri }) => {
     console.log('Generating image and analyzing face...');
     const { output } = await ai.generate({
-      model: 'googleai/gemini-2.5-flash-image-preview',
-      prompt: [
-        { media: { url: photoDataUri } },
-        {
-          text: `You are a sophisticated facial analysis AI. Your task is to analyze the face in the provided image and return two things:
-1. A new image with specific, futuristic analysis markings overlaid.
-2. A JSON object with your analysis of the face shape and skin tone.
-
-Image Generation Instructions:
-- Generate a new image that is identical to the original but with the following glowing cyan overlays:
-  - Draw thin, precise lines around the eyes, lips, and eyebrows.
-  - Draw a dashed line that accurately traces the overall shape of the face (jawline and hairline).
-- The style should be clean, high-tech, and professional. Do not alter the person or background.
+      model: 'googleai/gemini-pro-vision',
+      prompt: `You are a sophisticated facial analysis AI working for a brand called Focus.Ai. Your task is to analyze the face in the provided image and return a JSON object with your analysis of the face shape and skin tone. You MUST NOT generate an image.
 
 JSON Output Instructions:
 - Identify the primary face shape (e.g., "Oval", "Round", "Square", "Heart", "Diamond", "Oblong").
 - Identify the skin tone (e.g., "Fair", "Light", "Medium", "Tan", "Dark").
 
-The final output must be the generated image AND the structured JSON data.`,
-        },
-      ],
-      config: {
-        responseModalities: ['TEXT', 'IMAGE'],
-      },
+The final output must only be the structured JSON data.
+The user has provided this image:
+{{media url=photoDataUri}}`,
       output: {
-        schema: AnalyzeFaceShapeOutputSchema,
+        schema: z.object({
+            faceShape: z.string().describe('The detected shape of the face (e.g., Oval, Round, Square).'),
+            skinTone: z.string().describe('The detected skin tone of the person in the image.'),
+        })
       }
     });
 
-    if (!output || !output.analyzedPhotoDataUri) {
-      throw new Error('Image generation failed to return a data URI.');
+    if (!output) {
+      throw new Error('Analysis failed to return a result.');
     }
 
-    return output;
+    // Since the model isn't generating an image anymore, we return the original image
+    // as the `analyzedPhotoDataUri` and merge the analysis results.
+    return {
+      analyzedPhotoDataUri: photoDataUri,
+      faceShape: output.faceShape,
+      skinTone: output.skinTone,
+    };
   }
 );
