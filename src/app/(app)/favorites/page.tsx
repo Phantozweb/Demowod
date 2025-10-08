@@ -16,16 +16,18 @@ export default function FavoritesPage() {
   useEffect(() => {
     const fetchFrames = async () => {
       try {
-        const [fullRimRes, halfRimRes, rimlessRes] = await Promise.all([
+        const [fullRimRes, halfRimRes, rimlessRes, squareRes] = await Promise.all([
           fetch('/fullrim-frames.json'),
           fetch('/halfrim-frames.json'),
           fetch('/rimless-frames.json'),
+          fetch('/square-frames.json'),
         ]);
         const fullRimData = (await fullRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'full rim' }));
         const halfRimData = (await halfRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'half rim' }));
         const rimlessData = (await rimlessRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'rimless' }));
+        const squareData = (await squareRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'square' }));
         
-        setAllFrames([...fullRimData, ...halfRimData, ...rimlessData]);
+        setAllFrames([...fullRimData, ...halfRimData, ...rimlessData, ...squareData]);
       } catch (error) {
         console.error('Failed to fetch frames data:', error);
       } finally {
@@ -98,7 +100,3 @@ export default function FavoritesPage() {
           A collection of your most-loved frames.
         </p>
       </header>
-      {renderContent()}
-    </div>
-  );
-}

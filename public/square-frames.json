@@ -1,0 +1,655 @@
+[
+  {
+    "id": 137974,
+    "sku": "eye:lenskart-air-la-e13033-c1-eyeglasses",
+    "productName": "Lenskart Air",
+    "productModelName": "LA E13069",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-air-la-e13033-c1-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "7816",
+    "purchaseCount": 248802,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-full-rim-square-lenskart-air-fusion-la-e13069-c1-eyeglasses_lenskart-air-la-e13033-c1-eyeglasses_eyeglasses_g_7876_2a_28july23.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-full-rim-square-lenskart-air-fusion-la-e13069-c1-eyeglasses_lenskart-air-la-e13033-c1-eyeglasses_eyeglasses_g_7875_1b_28july23.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 137974,
+        "color": "#000000",
+        "productURL": "/lenskart-air-la-e13033-c1-eyeglasses.html"
+      },
+      {
+        "id": 137975,
+        "color": "#0000ff",
+        "productURL": "/lenskart-air-la-e13033-c2-eyeglasses.html"
+      },
+      {
+        "id": 221726,
+        "color": "#000000",
+        "productURL": "/lenskart-air-la-e13069/n-c1-eyeglasses-dup.html"
+      },
+      {
+        "id": 211293,
+        "color": "#000000",
+        "productURL": "/lenskart-air-la-e13069/w-c1-eyeglasses.html"
+      },
+      {
+        "id": 210172,
+        "color": "#8D918D",
+        "productURL": "/lenskart-air-la-e13069-c6-eyeglasses.html"
+      },
+      {
+        "id": 211292,
+        "color": "#000000",
+        "productURL": "/lenskart-air-la-e13069/n-c1-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 211193,
+    "sku": "eye:john-jacobs-jj-e16116-c2-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E16116",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e16116-c2-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "1550",
+    "purchaseCount": 74496,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/john-jacobs-jj-e16116-c2-eyeglasses_g_8778_19_10_2023.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/john-jacobs-jj-e16116-c2-eyeglasses_g_8777_19_10_2023.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 211193,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e16116-c2-eyeglasses.html"
+      },
+      {
+        "id": 211192,
+        "color": "#ed7e07",
+        "productURL": "/john-jacobs-jj-e-16116-c1-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 142515,
+    "sku": "eye:john-jacobs-jj-e13343-c2-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E13343",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e13343-c2-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "1486",
+    "purchaseCount": 109718,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/o/john-jacobs-jj-e13343-c2-eyeglasses_john-jacobs-jj-e13343-c2-eyeglasses_g_5787.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/o/john-jacobs-jj-e13343-c2-eyeglasses_g_5786.jpg"
+    },
+    "colorOptions": []
+  },
+  {
+    "id": 151705,
+    "sku": "eye:lenskart-air-la-e14573-c3-eyeglasses",
+    "productName": "Lenskart Air",
+    "productModelName": "LA E14573",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-air-la-e14573-c3-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "4475",
+    "purchaseCount": 129669,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#808080",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-gray-full-rim-rectangle-lenskart-air-signia-la-e14573-c3-eyeglasses_g_2478_09-july.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-gray-full-rim-rectangle-lenskart-air-signia-la-e14573-c3-eyeglasses_g_2477_09-july.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 151705,
+        "color": "#808080",
+        "productURL": "/lenskart-air-la-e14573-c3-eyeglasses.html"
+      },
+      {
+        "id": 151703,
+        "color": "#808080",
+        "productURL": "/lenskart-air-la-e14573-c1-eyeglasses.html"
+      },
+      {
+        "id": 151704,
+        "color": "#0000ff",
+        "productURL": "/lenskart-air-la-e14573-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 217660,
+    "sku": "eye:lenskart-air-la-e17022-c2-eyeglasses",
+    "productName": "Lenskart Air",
+    "productModelName": "LA E17022",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-air-la-e17022-c2-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "997",
+    "purchaseCount": 27388,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/silver-transparent-full-rim-square-lenskart-air-fusion-la-e17022-c2-eyeglasses__dsc4890_28_05_2024_28_05_2024.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/silver-transparent-full-rim-square-lenskart-air-fusion-la-e17022-c2-eyeglasses__dsc4889_28_05_2024_28_05_2024.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 217660,
+        "color": "",
+        "productURL": "/lenskart-air-la-e17022-c2-eyeglasses.html"
+      },
+      {
+        "id": 217659,
+        "color": "#0000ff",
+        "productURL": "/lenskart-air-la-e17022-c1-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 206272,
+    "sku": "eye:vincent-chase-vc-e15349-c3-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E15349",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e15349-c3-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "1505",
+    "purchaseCount": 53507,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#c0c0c0",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e15349-c3-eyeglasses_csvfile-1682510005458-g_1843.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e15349-c3-eyeglasses_csvfile-1682509990345-g_1842.jpg"
+    },
+    "colorOptions": []
+  },
+  {
+    "id": 215742,
+    "sku": "eye:john-jacobs-jj-e16683-c2-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E16683",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e16683-c2-eyeglasses.html",
+    "productRating": 4.9,
+    "totalNoOfRatings": "371",
+    "purchaseCount": 23009,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 4900,
+      "salesPrice": 4300
+    },
+    "discount": {
+      "label": "(12% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/john-jacobs-jj-e16683-c2-eyeglasses_img_7195_07_03_2024.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/john-jacobs-jj-e16683-c2-eyeglasses_img_7193_07_03_2024.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 215742,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e16683-c2-eyeglasses.html"
+      },
+      {
+        "id": 215741,
+        "color": "#ed7e07",
+        "productURL": "/john-jacobs-jj-e16683-c1-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 201103,
+    "sku": "eye:vincent-chase-vc-e14938-c1-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E14938",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e14938-c1-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "4412",
+    "purchaseCount": 91409,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffd700",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/gold-black-full-rim-square-vincent-chase-sleek-steel-vc-e14938-c1-eyeglasses_g_0365_09_july_2022.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/gold-black-full-rim-square-vincent-chase-sleek-steel-vc-e14938-c1-eyeglasses_g_0364_09_july_2022.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 201103,
+        "color": "#ffd700",
+        "productURL": "/vincent-chase-vc-e14938-c1-eyeglasses.html"
+      },
+      {
+        "id": 201105,
+        "color": "#0000ff",
+        "productURL": "/vincent-chase-vc-e14938-c3-eyeglasses.html"
+      },
+      {
+        "id": 201104,
+        "color": "#c0c0c0",
+        "productURL": "/vincent-chase-vc-e14938-c2-eyeglasses.html"
+      },
+      {
+        "id": 236910,
+        "color": "#000000",
+        "productURL": "/vincent-chase-vc-e14938-silver-eyeglasses.html"
+      },
+      {
+        "id": 236909,
+        "color": "#000000",
+        "productURL": "/vincent-chase-vc-e14938-black-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 137971,
+    "sku": "eye:lenskart-air-la-e13032-c1-eyeglasses",
+    "productName": "Lenskart Air",
+    "productModelName": "LA E13068",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-air-la-e13032-c1-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "4020",
+    "purchaseCount": 149101,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-gunmetal-black-full-rim-wayfarer-lenskart-air-fusion-la-e13068---c1-eyeglasses_lenskart-air-la-e13032-c1-eyeglasses_g_2000_05_july23.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-gunmetal-black-full-rim-wayfarer-lenskart-air-fusion-la-e13068---c1-eyeglasses_lenskart-air-la-e13032-c1-eyeglasses_g_1999_05_july23.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 137971,
+        "color": "#000000",
+        "productURL": "/lenskart-air-la-e13032-c1-eyeglasses.html"
+      },
+      {
+        "id": 201333,
+        "color": "#c0c0c0",
+        "productURL": "/lenskart-air-la-e13068-c6-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 206049,
+    "sku": "eye:lenskart-air-la-e15308-c3-eyeglasses",
+    "productName": "Lenskart Air",
+    "productModelName": "LA E15308",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-air-la-e15308-c3-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "2822",
+    "purchaseCount": 86550,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#f1f1f1",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/transparent-silver-full-rim-rectangle-lenskart-air-signia-la-e15308-c3-eyeglasses_g_2421_02_11_23.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/transparent-silver-full-rim-rectangle-lenskart-air-signia-la-e15308-c3-eyeglasses_g_2420_02_11_23.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 206049,
+        "color": "#f1f1f1",
+        "productURL": "/lenskart-air-la-e15308-c3-eyeglasses.html"
+      },
+      {
+        "id": 206047,
+        "color": "#4682B4",
+        "productURL": "/lenskart-air-la-e15308-c1-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 150581,
+    "sku": "eye:lenskart-air-la-e14362-c1-eyeglasses",
+    "productName": "Lenskart Air",
+    "productModelName": "LA E14362",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-air-la-e14362-c1-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "3557",
+    "purchaseCount": 154482,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#808080",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/Lenskart-Air-LA-E14362-C1-Eyeglasses_J_1894.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/Lenskart-Air-LA-E14362-C1-Eyeglasses_J_1893.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 150581,
+        "color": "#808080",
+        "productURL": "/lenskart-air-la-e14362-c1-eyeglasses.html"
+      },
+      {
+        "id": 211296,
+        "color": "#c0c0c0",
+        "productURL": "/lenskart-air-la-e14362/n-c1-eyeglasses.html"
+      },
+      {
+        "id": 221926,
+        "color": "#c0c0c0",
+        "productURL": "/lenskart-air-la-e14362-m-c8-eyeglasses.html"
+      },
+      {
+        "id": 150583,
+        "color": "#000000",
+        "productURL": "/lenskart-air-la-e14362-c3-eyeglasses.html"
+      },
+      {
+        "id": 221928,
+        "color": "#000000",
+        "productURL": "/lenskart-air-la-e14362-m-c10-eyeglasses.html"
+      },
+      {
+        "id": 221981,
+        "color": "#000000",
+        "productURL": "/lenskart-air-la-e14362-n-c11-eyeglasses.html"
+      },
+      {
+        "id": 235548,
+        "color": "#000000",
+        "productURL": "/lenskart-air-la-e14362-black-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 134224,
+    "sku": "eye:john-jacobs-jj-e10232-c4-full-rim-rectangle-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E10232",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e10232-c4-full-rim-rectangle-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "1248",
+    "purchaseCount": 54654,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/o/john-jacobs-jj-e10232-c4-full-rim-rectangle-eyeglasses_g_7259.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/o/john-jacobs-jj-e10232-c4-full-rim-rectangle-eyeglasses_g_7258.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 134224,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e10232-c4-full-rim-rectangle-eyeglasses.html"
+      },
+      {
+        "id": 144598,
+        "color": "#808080",
+        "productURL": "/john-jacobs-jj-e10232-c6-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 216622,
+    "sku": "eye:lenskart-air-la-e15319-c5-eyeglasses",
+    "productName": "Lenskart Air",
+    "productModelName": "LA E15319",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-air-la-e15319-c5-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "771",
+    "purchaseCount": 31940,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 2900,
+      "salesPrice": 2400
+    },
+    "discount": {
+      "label": "(17% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-black-full-rim-square-lenskart-air-switch-la-e15319-c5-clip-on-eyeglasses_csvfile-1710314353404-img_9183.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-black-full-rim-square-lenskart-air-switch-la-e15319-c5-clip-on-eyeglasses_csvfile-1710314353404-img_9183.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 216622,
+        "color": "#000000",
+        "productURL": "/lenskart-air-la-e15319-c5-eyeglasses.html"
+      },
+      {
+        "id": 206127,
+        "color": "#a52a2a",
+        "productURL": "/lenskart-air-la-e15319-c2-eyeglasses.html"
+      },
+      {
+        "id": 206126,
+        "color": "#808080",
+        "productURL": "/lenskart-air-la-e15319-c1-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 218001,
+    "sku": "eye:john-jacobs-jj-e14414-c5-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E14414",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e14414-c5-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "752",
+    "purchaseCount": 38975,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/black-blue-full-rim-square-john-jacobs-tr-flex-jj-e14414-c5-eyeglasses__dsc5648.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/black-blue-full-rim-square-john-jacobs-tr-flex-jj-e14414-c5-eyeglasses__dsc5647.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 218001,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e14414-c5-eyeglasses.html"
+      },
+      {
+        "id": 217992,
+        "color": "#ffc0cb",
+        "productURL": "/john-jacobs-jj-e14414-c4-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 201388,
+    "sku": "eye:john-jacobs-jj-e11540-c6-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E11540",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e11540-c6-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "2042",
+    "purchaseCount": 74930,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 4900,
+      "salesPrice": 4300
+    },
+    "discount": {
+      "label": "(12% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#b87332",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/gunmetal--black-full-rim-rectangle-john-jacobs-supreme-steel-jj-e11540-c6-eyeglasses_g_7770_25_04_2023.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/gunmetal--black-full-rim-rectangle-john-jacobs-supreme-steel-jj-e11540-c6-eyeglasses_g_7769_25_04_2023.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 201388,
+        "color": "#b87332",
+        "productURL": "/john-jacobs-jj-e11540-c6-eyeglasses.html"
+      },
+      {
+        "id": 206785,
+        "color": "#16181D",
+        "productURL": "/john-jacobs-jj-e11540xs-c4-eyeglasses.html"
+      },
+      {
+        "id": 206784,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e11540xl-c3-eyeglasses.html"
+      },
+      {
+        "id": 201390,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e11540xs-c3-eyeglasses.html"
+      },
+      {
+        "id": 201389,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e11540-c7-eyeglasses.html"
+      },
+      {
+        "id": 221660,
+        "color": "#16181D",
+        "productURL": "/john-jacobs-jj-e11540xs-c4-eyeglasses-dup.html"
+      }
+    ]
+  }
+]
