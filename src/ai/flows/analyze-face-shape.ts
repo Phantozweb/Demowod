@@ -41,7 +41,6 @@ const analyzeFaceShapeFlow = ai.defineFlow(
     outputSchema: AnalyzeFaceShapeOutputSchema,
   },
   async ({ photoDataUri }) => {
-    console.log('Analyzing face shape and skin tone...');
     const { output } = await ai.generate({
       prompt: `Analyze the provided image to determine the face shape and skin tone.
 Return ONLY a valid JSON object with the keys "faceShape" and "skinTone".
@@ -50,7 +49,7 @@ Do not include any other text, explanation, or markdown.
 The user has provided this image:
 {{media url=photoDataUri}}`,
       output: {
-        schema: AnalyzeFaceShapeOutputSchema
+        schema: AnalyzeFaceShapeOutputSchema,
       },
       config: {
         temperature: 1.5,
