@@ -62,10 +62,12 @@ export const useCases = () => {
 
   const addCase = useCallback((newCaseData: Omit<PatientCase, 'id'>) => {
     const caseWithId: PatientCase = { ...newCaseData, id: `CASE-${uuidv4().slice(0,4).toUpperCase()}` };
-    const caseToStore = { ...caseWithId };
+    
+    // Create a version of the case for storage that omits the large image data
+    const { image, ...caseToStore } = caseWithId;
     
     setCases(prevCases => {
-        const updatedCases = [...prevCases, caseToStore];
+        const updatedCases = [...prevCases, caseToStore as PatientCase];
         try {
             window.localStorage.setItem(CASES_KEY, JSON.stringify(updatedCases));
         } catch (error) {
@@ -73,7 +75,7 @@ export const useCases = () => {
         }
         return updatedCases;
     });
-    return caseWithId.id;
+    return caseWithId; // Return the full case object including image for immediate use
   }, []);
 
   const updateCase = useCallback((caseId: string, updatedData: Partial<PatientCase>) => {
@@ -99,3 +101,5 @@ export const useCases = () => {
 
   return { cases, addCase, updateCase, removeCase, getCase, isInitialized };
 };
+
+    

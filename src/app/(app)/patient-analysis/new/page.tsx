@@ -1,13 +1,13 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { User, Eye, UploadCloud, FlaskConical, ArrowRight, TestTube2, Loader, FileText, ScanFace } from 'lucide-react';
+import { User, Eye, UploadCloud, FlaskConical, ArrowRight, TestTube2, Loader, FileText, ScanFace, Camera, VideoOff } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,6 +18,8 @@ import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { analyzeFaceShape } from '@/ai/flows/analyze-face-shape';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 
 const patientCaseSchema = z.object({
   patientName: z.string().min(1, 'Patient name is required'),
@@ -76,39 +78,99 @@ export default function NewPatientPage() {
 
     const [imagePreview, setImagePreview] = useState<string | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
+    const [mode, setMode] = useState<'upload' | 'camera'>('upload');
+    const [hasCameraPermission, setHasCameraPermission] = useState<boolean | null>(null);
+    const [isCameraLoading, setIsCameraLoading] = useState(true);
+
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+
+    useEffect(() => {
+        if (mode === 'camera') {
+            const getCameraPermission = async () => {
+                setIsCameraLoading(true);
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                    setHasCameraPermission(true);
+                    if (videoRef.current) {
+                        videoRef.current.srcObject = stream;
+                    }
+                } catch (error) {
+                    console.error('Error accessing camera:', error);
+                    setHasCameraPermission(false);
+                    toast({
+                        variant: 'destructive',
+                        title: 'Camera Access Denied',
+                        description: 'Please enable camera permissions in your browser settings.',
+                    });
+                } finally {
+                    setIsCameraLoading(false);
+                }
+            };
+            getCameraPermission();
+        } else {
+            // Stop camera stream when switching away
+            if (videoRef.current && videoRef.current.srcObject) {
+                const stream = videoRef.current.srcObject as MediaStream;
+                stream.getTracks().forEach(track => track.stop());
+                videoRef.current.srcObject = null;
+            }
+        }
+    }, [mode, toast]);
+
+    const runAnalysis = async (dataUrl: string) => {
+        setIsAnalyzing(true);
+        try {
+            const result = await analyzeFaceShape({ photoDataUri: dataUrl });
+            form.setValue('faceShape', result.faceShape);
+            form.setValue('skinTone', result.skinTone);
+            toast({
+                title: 'Analysis Complete',
+                description: `Detected Face Shape: ${result.faceShape}, Skin Tone: ${result.skinTone}`,
+            });
+        } catch (error) {
+            console.error('Face shape analysis failed:', error);
+            toast({
+                variant: 'destructive',
+                title: 'Analysis Failed',
+                description: 'Could not determine face shape from the image.',
+            });
+        } finally {
+            setIsAnalyzing(false);
+        }
+    };
 
     const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
             const reader = new FileReader();
-            reader.onloadend = async () => {
+            reader.onloadend = () => {
                 const dataUrl = reader.result as string;
                 setImagePreview(dataUrl);
                 form.setValue('image', dataUrl);
-                
-                setIsAnalyzing(true);
-                try {
-                    const result = await analyzeFaceShape({ photoDataUri: dataUrl });
-                    form.setValue('faceShape', result.faceShape);
-                    form.setValue('skinTone', result.skinTone);
-                    toast({
-                        title: 'Analysis Complete',
-                        description: `Detected Face Shape: ${result.faceShape}, Skin Tone: ${result.skinTone}`,
-                    });
-                } catch (error) {
-                    console.error('Face shape analysis failed:', error);
-                    toast({
-                        variant: 'destructive',
-                        title: 'Analysis Failed',
-                        description: 'Could not determine face shape from the image.',
-                    });
-                } finally {
-                    setIsAnalyzing(false);
-                }
+                runAnalysis(dataUrl);
             };
             reader.readAsDataURL(file);
         }
     };
+
+    const handleCapture = () => {
+        if (videoRef.current && canvasRef.current) {
+            const video = videoRef.current;
+            const canvas = canvasRef.current;
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const context = canvas.getContext('2d');
+            if (context) {
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                const dataUrl = canvas.toDataURL('image/jpeg');
+                setImagePreview(dataUrl);
+                form.setValue('image', dataUrl);
+                runAnalysis(dataUrl);
+            }
+        }
+    };
+
 
     const fillWithDemoData = () => {
         const randomFromArray = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
@@ -153,26 +215,12 @@ export default function NewPatientPage() {
     }
 
     function onSubmit(data: PatientCaseFormValues) {
-        const { image, ...caseData } = data;
-        const newCase: Omit<PatientCase, 'id'> = {
-            ...caseData,
-            date: new Date().toISOString(),
-            status: 'Pending',
-        };
-        const caseId = addCase(newCase);
-        
+        const newCase = addCase(data);
         toast({
             title: 'Case Saved',
             description: `Patient case for ${data.patientName} has been created.`,
         });
-
-        let url = `/patient-analysis/cases/${caseId}`;
-        if (image) {
-            // Pass image data as a query parameter
-            const encodedImage = encodeURIComponent(image);
-            url += `?image=${encodedImage}`;
-        }
-        router.push(url);
+        router.push(`/patient-analysis/cases`);
     }
   
   return (
@@ -330,55 +378,105 @@ export default function NewPatientPage() {
                         </div>
 
                         <div>
-                            <h3 className="text-2xl font-semibold text-primary mb-8 border-b pb-4">Image Upload for AI Analysis</h3>
-                            <div className="flex justify-center items-center w-full mt-8">
-                                <FormField
-                                    control={form.control}
-                                    name="image"
-                                    render={({ field }) => (
-                                    <FormItem className="w-full">
-                                        <FormLabel htmlFor="image-upload" className={`relative flex flex-col justify-center items-center w-full h-80 bg-background rounded-lg border-2 border-dashed border-input hover:border-primary transition-all duration-300 cursor-pointer overflow-hidden ${imagePreview ? 'border-primary' : ''}`}>
-                                        {imagePreview ? (
-                                            <>
-                                                <img src={imagePreview} alt="Patient preview" className="w-full h-full object-contain rounded-lg" />
-                                                <AnimatePresence>
-                                                {isAnalyzing && (
-                                                    <motion.div 
-                                                        className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center gap-4"
-                                                        initial={{ opacity: 0 }}
-                                                        animate={{ opacity: 1 }}
-                                                        exit={{ opacity: 0 }}
-                                                    >
-                                                        <div className='scanline'/>
-                                                        <ScanFace className="w-16 h-16 text-primary" />
-                                                        <p className="text-white font-medium">Analyzing face shape & skin tone...</p>
-                                                    </motion.div>
+                            <h3 className="text-2xl font-semibold text-primary mb-8 border-b pb-4">Image for AI Analysis</h3>
+                            <Tabs value={mode} onValueChange={(value) => setMode(value as 'upload' | 'camera')} className="w-full">
+                                <TabsList className="grid w-full grid-cols-2">
+                                    <TabsTrigger value="upload"><UploadCloud className="mr-2 h-4 w-4" /> Upload Photo</TabsTrigger>
+                                    <TabsTrigger value="camera"><Camera className="mr-2 h-4 w-4" /> Use Camera</TabsTrigger>
+                                </TabsList>
+                                <TabsContent value="upload">
+                                    <div className="flex justify-center items-center w-full mt-4">
+                                        <FormField
+                                            control={form.control}
+                                            name="image"
+                                            render={({ field }) => (
+                                            <FormItem className="w-full">
+                                                <FormLabel htmlFor="image-upload" className={`relative flex flex-col justify-center items-center w-full h-80 bg-background rounded-lg border-2 border-dashed border-input hover:border-primary transition-all duration-300 cursor-pointer overflow-hidden ${imagePreview ? 'border-primary' : ''}`}>
+                                                {imagePreview ? (
+                                                    <>
+                                                        <img src={imagePreview} alt="Patient preview" className="w-full h-full object-contain rounded-lg" />
+                                                        <AnimatePresence>
+                                                        {isAnalyzing && (
+                                                            <motion.div 
+                                                                className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center gap-4"
+                                                                initial={{ opacity: 0 }}
+                                                                animate={{ opacity: 1 }}
+                                                                exit={{ opacity: 0 }}
+                                                            >
+                                                                <div className='scanline'/>
+                                                                <ScanFace className="w-16 h-16 text-primary" />
+                                                                <p className="text-white font-medium">Analyzing face shape & skin tone...</p>
+                                                            </motion.div>
+                                                        )}
+                                                        </AnimatePresence>
+                                                    </>
+                                                ) : (
+                                                    <div className="flex flex-col justify-center items-center pt-5 pb-6">
+                                                        <UploadCloud className="w-16 h-16 text-muted-foreground mb-4" />
+                                                        <p className="mb-2 text-lg text-muted-foreground"><span className="font-semibold text-primary">Click to upload</span> or drag and drop</p>
+                                                        <p className="text-sm text-muted-foreground">PNG, JPG, or JPEG (MAX. 5MB)</p>
+                                                    </div>
                                                 )}
-                                                </AnimatePresence>
-                                            </>
+                                                </FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        id="image-upload"
+                                                        type="file"
+                                                        className="hidden"
+                                                        accept="image/png, image/jpeg, image/jpg"
+                                                        onChange={handleImageChange}
+                                                        disabled={isAnalyzing}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                            )}
+                                        />
+                                    </div>
+                                </TabsContent>
+                                <TabsContent value="camera">
+                                    <div className="w-full mt-4 p-4 border rounded-lg">
+                                        {isCameraLoading ? (
+                                            <div className="h-80 flex items-center justify-center">
+                                                <Loader className="h-8 w-8 animate-spin text-primary"/>
+                                            </div>
+                                        ) : hasCameraPermission === false ? (
+                                             <Alert variant="destructive" className="h-80 flex flex-col justify-center items-center text-center">
+                                                <VideoOff className="h-8 w-8 mb-2" />
+                                                <AlertTitle>Camera Access Denied</AlertTitle>
+                                                <AlertDescription>
+                                                    Please enable camera permissions in your browser settings to use this feature.
+                                                </AlertDescription>
+                                            </Alert>
                                         ) : (
-                                            <div className="flex flex-col justify-center items-center pt-5 pb-6">
-                                                <UploadCloud className="w-16 h-16 text-muted-foreground mb-4" />
-                                                <p className="mb-2 text-lg text-muted-foreground"><span className="font-semibold text-primary">Click to upload</span> or drag and drop</p>
-                                                <p className="text-sm text-muted-foreground">PNG, JPG, or JPEG (MAX. 5MB)</p>
+                                            <div className="space-y-4">
+                                                 <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-black">
+                                                    <video ref={videoRef} className="w-full h-full object-contain" autoPlay muted playsInline />
+                                                    <canvas ref={canvasRef} className="hidden" />
+                                                     <AnimatePresence>
+                                                        {isAnalyzing && (
+                                                            <motion.div 
+                                                                className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center gap-4"
+                                                                initial={{ opacity: 0 }}
+                                                                animate={{ opacity: 1 }}
+                                                                exit={{ opacity: 0 }}
+                                                            >
+                                                                <div className='scanline'/>
+                                                                <ScanFace className="w-16 h-16 text-primary" />
+                                                                <p className="text-white font-medium">Analyzing...</p>
+                                                            </motion.div>
+                                                        )}
+                                                    </AnimatePresence>
+                                                 </div>
+                                                <Button onClick={handleCapture} className="w-full" disabled={isAnalyzing}>
+                                                    <Camera className="mr-2 h-4 w-4"/>
+                                                    Capture Photo
+                                                </Button>
                                             </div>
                                         )}
-                                        </FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                id="image-upload"
-                                                type="file"
-                                                className="hidden"
-                                                accept="image/png, image/jpeg, image/jpg"
-                                                onChange={handleImageChange}
-                                                disabled={isAnalyzing}
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                    )}
-                                />
-                            </div>
+                                    </div>
+                                </TabsContent>
+                            </Tabs>
                         </div>
                     </div>
 
@@ -392,7 +490,7 @@ export default function NewPatientPage() {
                         ) : form.formState.isSubmitting ? (
                             "Saving Case..."
                         ) : (
-                            "Save Case & Go To Analysis"
+                            "Save Case & View All Cases"
                         )}
                         <ArrowRight />
                         </Button>
@@ -403,3 +501,6 @@ export default function NewPatientPage() {
         </div>
     </div>
   );
+}
+
+    
