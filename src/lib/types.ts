@@ -1,10 +1,19 @@
+
 export type Frame = {
   id: number;
   productName: string;
   brand: string;
-  price: number;
+  price: number; // This will be deprecated
+  price_details?: {
+    basePrice: number;
+    lkPrice: number;
+    salesPrice: number;
+    currency: string;
+    symbol: string;
+    discount: string;
+  };
   size: string;
-  productImage: string;
+  productImage: string | { url: string; frontURL: string; hoverURL: string };
   productRating: number;
   purchaseCount: number;
   productModelName: string;

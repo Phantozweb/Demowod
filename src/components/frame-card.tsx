@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -22,14 +23,16 @@ interface FrameCardProps {
 
 export function FrameCard({ frame, isFavorite, toggleFavorite }: FrameCardProps) {
   const favorite = isFavorite(frame.id);
+  const imageUrl = typeof frame.productImage === 'string' ? frame.productImage : frame.productImage.url;
+  const price = frame.price_details ? `${frame.price_details.symbol}${frame.price_details.lkPrice}` : `$${frame.price.toFixed(2)}`;
 
   return (
     <Card className="flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl">
       <CardHeader className="p-0">
         <div className="relative aspect-[16/10] w-full">
-          {frame.productImage ? (
+          {imageUrl ? (
             <Image
-              src={frame.productImage}
+              src={imageUrl}
               alt={frame.productName}
               fill
               className="object-cover"
@@ -50,7 +53,7 @@ export function FrameCard({ frame, isFavorite, toggleFavorite }: FrameCardProps)
         </p>
       </CardContent>
       <CardFooter className="flex items-center justify-between p-4 pt-0">
-        <p className="text-lg font-semibold text-primary">${frame.price.toFixed(2)}</p>
+        <p className="text-lg font-semibold text-primary">{price}</p>
         <Button
           variant="ghost"
           size="icon"

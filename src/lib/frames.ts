@@ -1,3 +1,4 @@
+
 import type { Frame } from './types';
 
 export const frames: Frame[] = [
@@ -14,7 +15,15 @@ export const frames: Frame[] = [
       "price": 1900,
       "brand": "Lenskart Hustlr",
       "frameType": "Full Rim",
-      "frameShape": "Square"
+      "frameShape": "Square",
+      "price_details": {
+        "basePrice": 1900,
+        "lkPrice": 1900,
+        "salesPrice": 1400,
+        "currency": "INR",
+        "symbol": "₹",
+        "discount": "(26% OFF)"
+      }
     },
     {
       "id": 137971,
@@ -29,7 +38,15 @@ export const frames: Frame[] = [
       "price": 1900,
       "brand": "Lenskart Air",
       "frameType": "Full Rim",
-      "frameShape": "Wayfarer"
+      "frameShape": "Wayfarer",
+       "price_details": {
+        "basePrice": 1900,
+        "lkPrice": 1900,
+        "salesPrice": 1400,
+        "currency": "INR",
+        "symbol": "₹",
+        "discount": "(26% OFF)"
+      }
     },
     {
       "id": 217650,
@@ -44,7 +61,15 @@ export const frames: Frame[] = [
       "price": 1900,
       "brand": "Lenskart Air",
       "frameType": "Full Rim",
-      "frameShape": "Square"
+      "frameShape": "Square",
+       "price_details": {
+        "basePrice": 1900,
+        "lkPrice": 1900,
+        "salesPrice": 1400,
+        "currency": "INR",
+        "symbol": "₹",
+        "discount": "(26% OFF)"
+      }
     },
     {
       "id": 136174,
@@ -59,6 +84,14 @@ export const frames: Frame[] = [
       "price": 3900,
       "brand": "John Jacobs",
       "frameType": "Full Rim",
-      "frameShape": "Square"
+      "frameShape": "Square",
+       "price_details": {
+        "basePrice": 3900,
+        "lkPrice": 3900,
+        "salesPrice": 3300,
+        "currency": "INR",
+        "symbol": "₹",
+        "discount": "(15% OFF)"
+      }
     }
   ];
