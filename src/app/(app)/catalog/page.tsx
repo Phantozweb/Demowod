@@ -20,6 +20,10 @@ import lensData from '@/lib/lenses.json';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search } from 'lucide-react';
+import { frames } from '@/lib/frames';
+import { FrameCard } from '@/components/frame-card';
+import { useFavorites } from '@/hooks/use-favorites';
+
 
 export default function CatalogPage() {
   const {
@@ -34,6 +38,7 @@ export default function CatalogPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [frameType, setFrameType] = useState('all');
   const [frameShape, setFrameShape] = useState('all');
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   const filterLenses = (lenses: any[]) => {
     return lenses.filter((lens) => {
@@ -161,14 +166,33 @@ export default function CatalogPage() {
     )
   }
 
+  const renderFrames = () => {
+    const filteredFrames = frames.filter(frame => {
+        const nameMatch = frame.name.toLowerCase().includes(searchTerm.toLowerCase()) || frame.brand.toLowerCase().includes(searchTerm.toLowerCase());
+        return nameMatch;
+    });
+
+    if (filteredFrames.length === 0) {
+      return <div className="text-center py-20 text-muted-foreground">No frames found matching your criteria.</div>
+    }
+
+    return (
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+            {filteredFrames.map(frame => (
+                <FrameCard key={frame.id} frame={frame} isFavorite={isFavorite} toggleFavorite={toggleFavorite} />
+            ))}
+        </div>
+    )
+  }
+
   return (
     <div className="p-4 md:p-8">
       <header className="mb-8">
         <h1 className="text-3xl md:text-4xl font-headline font-bold">
-          Lens & Technology Catalog
+          Product Catalog
         </h1>
         <p className="mt-2 text-muted-foreground">
-          Explore our comprehensive range of HOYA lenses and treatments.
+          Explore our comprehensive range of frames, lenses and treatments.
         </p>
       </header>
 
@@ -177,7 +201,7 @@ export default function CatalogPage() {
             <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input 
-                    placeholder="Search by lens name..."
+                    placeholder="Search by product name..."
                     className="pl-10"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -211,8 +235,9 @@ export default function CatalogPage() {
         </div>
       </div>
 
-      <Tabs defaultValue="progressive" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 h-auto sm:grid-cols-3 lg:grid-cols-6 mb-6">
+      <Tabs defaultValue="frames" className="w-full">
+        <TabsList className="grid w-full grid-cols-2 h-auto sm:grid-cols-3 lg:grid-cols-7 mb-6">
+          <TabsTrigger value="frames">Frames</TabsTrigger>
           <TabsTrigger value="progressive">Progressive</TabsTrigger>
           <TabsTrigger value="single-vision">Single Vision</TabsTrigger>
           <TabsTrigger value="computer-work">Computer & Work</TabsTrigger>
@@ -220,7 +245,10 @@ export default function CatalogPage() {
           <TabsTrigger value="photochromic">Photochromic</TabsTrigger>
           <TabsTrigger value="sun-solutions">Sun Solutions</TabsTrigger>
         </TabsList>
-
+        
+        <TabsContent value="frames">
+          {renderFrames()}
+        </TabsContent>
         <TabsContent value="progressive">
           {renderContent(progressiveLenses)}
         </TabsContent>

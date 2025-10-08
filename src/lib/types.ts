@@ -7,3 +7,4 @@ export type Frame = {
   size: string;
   imageId: string;
 };
+
