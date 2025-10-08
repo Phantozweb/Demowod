@@ -168,11 +168,11 @@ export default function CatalogPage() {
   }
 
   const renderFrames = () => {
-    const filteredFrames = frames.flatMap(frame => frame.variations.map(variation => ({...frame, ...variation}))).filter(frame => {
+    const filteredFrames = frames.flatMap(frame => (frame.variations || []).map(variation => ({...frame, ...variation}))).filter(frame => {
         const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
         const frameData = frames.find(f => f.productModelName === frame.productModelName);
-        const typeMatch = frameType === 'all' || (frameData && frameData.frameType.toLowerCase() === frameType);
-        const shapeMatch = frameShape === 'all' || (frameData && frameData.frameShape.toLowerCase() === frameShape);
+        const typeMatch = frameType === 'all' || (frameData && frameData.frameType && frameData.frameType.toLowerCase() === frameType);
+        const shapeMatch = frameShape === 'all' || (frameData && frameData.frameShape && frameData.frameShape.toLowerCase() === frameShape);
         return nameMatch && typeMatch && shapeMatch;
     });
 
@@ -274,5 +274,4 @@ export default function CatalogPage() {
       </Tabs>
     </div>
   );
-
-    
+}
