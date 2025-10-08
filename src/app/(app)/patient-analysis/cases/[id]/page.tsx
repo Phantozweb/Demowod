@@ -220,11 +220,12 @@ export default function CaseDetailPage() {
       caseItem.status === 'Pending' &&
       !isLoading &&
       !isFetchingFrames &&
-      !analysisRun.current
+      !analysisRun.current &&
+      allFrames.length > 0
     ) {
       handleStartAnalysis();
     }
-  }, [caseItem, isFetchingFrames, allFrames]);
+  }, [caseItem, isFetchingFrames, allFrames, isLoading]);
 
 
   const flatFrames = allFrames.flatMap(frame => 

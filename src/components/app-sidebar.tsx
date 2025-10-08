@@ -42,7 +42,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar className="border-r" collapsible="icon">
-      <SidebarHeader>
+      <SidebarHeader className="group-data-[mobile=true]:hidden">
         <div className="flex items-center justify-between p-2">
           <Link href="/" className="flex items-center gap-2">
             <FileText className="h-8 w-8 shrink-0 text-primary" />

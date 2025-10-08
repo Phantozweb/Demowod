@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { UploadCloud, TestTube2, Loader, FileText, ScanFace, ArrowRight } from 'lucide-react';
+import { UploadCloud, TestTube2, Loader, FileText, ScanFace, ArrowRight, Menu } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -19,6 +19,7 @@ import { useToast } from '@/hooks/use-toast';
 import { analyzeFaceShape } from '@/ai/flows/analyze-face-shape';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import { useSidebar } from '@/components/ui/sidebar';
 
 const patientCaseSchema = z.object({
   patientName: z.string().min(1, 'Patient name is required'),
@@ -50,6 +51,7 @@ export default function NewPatientPage() {
     const { addCase } = useCases();
     const { toast } = useToast();
     const [isApiKeyMissing, setIsApiKeyMissing] = useState(false);
+    const { toggleSidebar } = useSidebar();
 
     const form = useForm<PatientCaseFormValues>({
         resolver: zodResolver(patientCaseSchema),
@@ -82,9 +84,14 @@ export default function NewPatientPage() {
     useEffect(() => {
         // Check for API key on the client-side
         const checkApiKey = async () => {
-          const response = await fetch('/api/check-key');
-          const data = await response.json();
-          setIsApiKeyMissing(!data.hasApiKey);
+          try {
+            const response = await fetch('/api/check-key');
+            const data = await response.json();
+            setIsApiKeyMissing(!data.hasApiKey);
+          } catch(e) {
+            console.error("Could not check for API key", e)
+            setIsApiKeyMissing(true);
+          }
         };
         checkApiKey();
     }, []);
@@ -103,12 +110,16 @@ export default function NewPatientPage() {
         setIsAnalyzing(true);
         try {
             const result = await analyzeFaceShape({ photoDataUri: dataUrl });
-            form.setValue('faceShape', result.faceShape);
-            form.setValue('skinTone', result.skinTone);
-            toast({
-                title: 'Analysis Complete',
-                description: `Detected Face Shape: ${result.faceShape}, Skin Tone: ${result.skinTone}`,
-            });
+            if (result && result.faceShape) {
+                form.setValue('faceShape', result.faceShape);
+                form.setValue('skinTone', result.skinTone);
+                toast({
+                    title: 'Analysis Complete',
+                    description: `Detected Face Shape: ${result.faceShape}, Skin Tone: ${result.skinTone}`,
+                });
+            } else {
+                throw new Error("AI response was empty or invalid.");
+            }
         } catch (error) {
             console.error('Face shape analysis failed:', error);
             toast({
@@ -178,7 +189,9 @@ export default function NewPatientPage() {
 
     function onSubmit(data: PatientCaseFormValues) {
       const caseDataForStorage = { ...data };
-      delete caseDataForStorage.image; // Ensure image data is not saved to localStorage
+      // Ensure image data is not saved to localStorage
+      const imageData = imagePreview;
+      delete caseDataForStorage.image; 
 
       const fullCase = addCase({
         ...caseDataForStorage,
@@ -190,7 +203,7 @@ export default function NewPatientPage() {
           description: `Patient case for ${fullCase.patientName} has been created.`,
       });
 
-      const query = imagePreview ? `?image=${encodeURIComponent(imagePreview)}` : '';
+      const query = imageData ? `?image=${encodeURIComponent(imageData)}` : '';
       router.push(`/patient-analysis/cases/${fullCase.id}${query}`);
   }
   
@@ -199,8 +212,17 @@ export default function NewPatientPage() {
         <header className="sticky top-0 z-20 border-b border-border/50 bg-background/80 backdrop-blur-sm">
             <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center gap-4">
-                <FileText className="h-8 w-8 text-primary" />
-                <h1 className="text-xl font-bold text-white">Focus CaseX</h1>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="md:hidden"
+                    onClick={toggleSidebar}
+                  >
+                    <Menu />
+                    <span className="sr-only">Toggle Sidebar</span>
+                  </Button>
+                  <FileText className="h-8 w-8 text-primary hidden sm:block" />
+                  <h1 className="text-xl font-bold text-white">Focus CaseX</h1>
                 </div>
             </div>
         </header>
@@ -369,5 +391,3 @@ export default function NewPatientPage() {
     </div>
   );
 }
-
-    
