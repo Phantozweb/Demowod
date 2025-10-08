@@ -1,0 +1,62 @@
+[
+    {
+        "productName": "John Jacobs",
+        "productModelName": "JJ E70077",
+        "classification": "eyeframe",
+        "frameType": "half rim",
+        "frameShape": "cat eye",
+        "variations": [
+            {
+                "id": 225390,
+                "color": "#b76e79",
+                "productURL": "/john-jacobs-jj-e70077-c1-eyeglasses.html",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 4900,
+                    "lkPrice": 4300,
+                    "symbol": "₹"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/rose-gold-half-rim-cat-eye-john-jacobs-supreme-steel-jj-e70077-c1-eyeglasses__dsc7255_18_10_2024.jpg"
+                }
+            },
+            {
+                "id": 225391,
+                "color": "#c0c0c0",
+                "productURL": "/john-jacobs-jj-e70077-c2-eyeglasses.html",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 4900,
+                    "lkPrice": 4300,
+                    "symbol": "₹"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/silver-half-rim-cat-eye-john-jacobs-supreme-steel-jj-e70077-c2-eyeglasses__dsc7187_18_10_2024.jpg"
+                }
+            }
+        ]
+    },
+    {
+        "productName": "Vincent Chase",
+        "productModelName": "VC E17576",
+        "classification": "eyeframe",
+        "frameType": "half rim",
+        "frameShape": "cat eye",
+        "variations": [
+            {
+                "id": 223332,
+                "color": "#ffd700",
+                "productURL": "/vincent-chase-vc-e17576-c1-eyeglasses.html",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1400,
+                    "symbol": "₹"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/gold-half-rim-cat-eye-vincent-chase-lenskart-half-rim-vc-e17576-eyeglasses_dsc6673_30_12_2024.jpg"
+                }
+            }
+        ]
+    }
+]

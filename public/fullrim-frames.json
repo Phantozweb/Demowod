@@ -1,0 +1,76 @@
+[
+    {
+        "productName": "Lenskart Hustlr",
+        "productModelName": "LA E15417-W",
+        "classification": "eyeframe",
+        "frameType": "full rim",
+        "frameShape": "square",
+        "variations": [
+            {
+                "id": 216521,
+                "color": "#0000ff",
+                "productURL": "/lenskart-hustlr-la-e15415-c1-eyeglasses.html",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "₹"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e15417-w-c1-eyeglasses_csvfile-1701688526805-img_7894.jpg"
+                }
+            },
+            {
+                "id": 233091,
+                "color": "#ee7600",
+                "productURL": "/lenskart-hustlr-la-e15417-xw-amber-eyeglasses.html",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "₹"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/orange-full-rim-square-lenskart-hustlr-la-e15417-xw-eyeglasses__dsc3403_20_05_2025.jpg"
+                }
+            }
+        ]
+    },
+    {
+        "productName": "Lenskart Air",
+        "productModelName": "LA E13068",
+        "classification": "eyeframe",
+        "frameType": "full rim",
+        "frameShape": "wayfarer",
+        "variations": [
+            {
+                "id": 137971,
+                "color": "#000000",
+                "productURL": "/lenskart-air-la-e13032-c1-eyeglasses.html",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "₹"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-gunmetal-black-full-rim-wayfarer-lenskart-air-fusion-la-e13068---c1-eyeglasses_lenskart-air-la-e13032-c1-eyeglasses_g_2000_05_july23.jpg"
+                }
+            },
+            {
+                "id": 201333,
+                "color": "#c0c0c0",
+                "productURL": "/lenskart-air-la-e13068-c6-eyeglasses.html",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "₹"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e13068-c6-eyeglasses_g_4836_03_03_2023.jpg"
+                }
+            }
+        ]
+    }
+]
