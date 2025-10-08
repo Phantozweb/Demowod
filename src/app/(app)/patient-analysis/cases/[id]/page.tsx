@@ -19,6 +19,7 @@ import {
   Wand2,
   Loader,
   Info,
+  Heart,
 } from 'lucide-react';
 import Image from 'next/image';
 import {
@@ -31,6 +32,8 @@ import { Frame, FrameVariation } from '@/lib/types';
 import { useFavorites } from '@/hooks/use-favorites';
 import { FrameCard } from '@/components/frame-card';
 import { ProductPreviewCard } from '@/components/product-preview-card';
+import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
 
 function FormattedReasoning({ text }: { text: string }) {
   const parts = text.split(/\*\*(.*?)\*\*/g);
@@ -395,30 +398,66 @@ export default function CaseDetailPage() {
               )}
 
               {!isLoading && analysisResult && recommendedFrames && recommendedFrames.length > 0 && (
-                 <div className="space-y-8">
-                    {recommendedFrames.map((frame) => (
-                        <div key={frame.id} className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start bg-background/50 p-4 rounded-lg border">
-                           <div className="md:col-span-1">
-                                <FrameCard frame={frame} isFavorite={isFavorite} toggleFavorite={toggleFavorite} onPreview={handlePreview} />
-                           </div>
-                           <div className="md:col-span-2">
-                                <h3 className="font-semibold text-lg flex items-center gap-2 mb-2">
-                                    <Info className="text-primary h-5 w-5" /> AI Reasoning
-                                </h3>
-                                <p className="text-muted-foreground text-sm bg-card p-3 rounded-md border">
-                                    <FormattedReasoning text={frame.reasoning} />
-                                </p>
-                                <div className="mt-4 flex items-center justify-between">
-                                  <p className="text-lg font-semibold text-primary">{`${frame.price?.symbol || ''}${frame.price?.lkPrice ?? frame.price?.salesPrice}`}</p>
-                                  <Button variant="secondary" onClick={() => handlePreview(frame)}>
+                 <div className="space-y-6">
+                 {recommendedFrames.map((frame) => {
+                   const favorite = isFavorite(frame.id);
+                   const price = frame.price ? `${frame.price.symbol}${frame.price.lkPrice ?? frame.price.salesPrice}` : 'N/A';
+                   
+                   return (
+                     <div key={frame.id} className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start bg-background/50 p-4 rounded-lg border">
+                       <div className="md:col-span-1 relative aspect-[16/10] w-full rounded-md overflow-hidden">
+                           {frame.productImage?.url && (
+                             <Image 
+                               src={frame.productImage.url}
+                               alt={frame.productName}
+                               fill
+                               className="object-cover"
+                             />
+                           )}
+                       </div>
+                       <div className="md:col-span-2 flex flex-col h-full">
+                         <div className='flex-1'>
+                            <div className='flex justify-between items-start'>
+                              <h3 className="font-semibold text-lg leading-tight text-white mb-1">{frame.productName}</h3>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                aria-label="Toggle Favorite"
+                                onClick={() => toggleFavorite(frame.id)}
+                              >
+                                <Heart
+                                  className={cn(
+                                    'transition-colors h-5 w-5',
+                                    favorite
+                                      ? 'fill-accent text-accent'
+                                      : 'text-muted-foreground hover:text-accent'
+                                  )}
+                                />
+                              </Button>
+                            </div>
+                            
+                            <div className="flex items-center justify-between mb-3">
+                                <p className="text-xl font-bold text-primary">{price}</p>
+                                <Button variant="secondary" size="sm" onClick={() => handlePreview(frame)}>
                                     <Eye className="mr-2 h-4 w-4" />
-                                    View Details
-                                  </Button>
-                                </div>
-                           </div>
-                        </div>
-                    ))}
-                 </div>
+                                    View
+                                </Button>
+                            </div>
+
+                            <Separator className='my-3' />
+                           
+                            <h4 className="font-semibold text-base flex items-center gap-2 mb-2">
+                                <Info className="text-primary h-5 w-5" /> AI Reasoning
+                            </h4>
+                            <p className="text-muted-foreground text-sm">
+                                <FormattedReasoning text={frame.reasoning} />
+                            </p>
+                         </div>
+                       </div>
+                     </div>
+                   );
+                 })}
+               </div>
               )}
                
                {!isLoading && analysisResult && (
