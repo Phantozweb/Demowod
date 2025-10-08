@@ -57,7 +57,7 @@ export default function Home() {
                 Harnessing the power of AI to redefine eye care.
               </p>
             </div>
-            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               <div className="flex flex-col items-center text-center p-8 rounded-xl bg-background shadow-sm hover:shadow-lg transition-shadow duration-300">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <User className="text-3xl" />
@@ -94,24 +94,29 @@ export default function Home() {
                   lifestyle, and visual needs.
                 </p>
               </div>
-              <div className="flex flex-col items-center text-center p-8 rounded-xl bg-background shadow-sm hover:shadow-lg transition-shadow duration-300">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <FileText className="text-3xl" />
-                </div>
-                <h3 className="mt-6 text-xl font-semibold text-white">
-                  Open Focus CaseX
-                </h3>
-                <p className="mt-2 text-base text-muted-foreground">
-                  Explore the deployed application and experience the full suite of features firsthand.
-                </p>
-                <Button asChild variant="link" className="mt-4">
-                  <a href="https://focuscasex.netlify.app" target="_blank" rel="noopener noreferrer">
-                    Visit Site <ArrowRight className="ml-2" />
-                  </a>
-                </Button>
-              </div>
             </div>
           </div>
+        </div>
+        <div className="bg-background py-16 sm:py-24">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="relative overflow-hidden rounded-2xl bg-primary/10 px-6 py-16 shadow-glow sm:px-12 md:py-20 lg:px-16">
+                    <div className="relative">
+                        <div className="text-center">
+                        <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                            Experience Focus CaseX Live
+                        </h2>
+                        <p className="mt-4 text-lg text-muted-foreground">
+                            Explore the deployed application and experience the full suite of features firsthand.
+                        </p>
+                        <Button asChild size="lg" className="mt-8">
+                            <a href="https://focuscasex.netlify.app" target="_blank" rel="noopener noreferrer">
+                                Visit Site <ArrowRight className="ml-2" />
+                            </a>
+                        </Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
       </main>
       <footer className="bg-secondary border-t border-border">
