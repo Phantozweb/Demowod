@@ -36,14 +36,20 @@ export default function CatalogPage() {
           fetch('/rectangle-frames.json'),
           fetch('/round-frames.json'),
         ]);
-        const fullRimData = (await fullRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'full rim' }));
-        const halfRimData = (await halfRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'half rim' }));
-        const rimlessData = (await rimlessRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'rimless' }));
-        const squareData = (await squareRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'square' }));
-        const rectangleData = (await rectangleRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'rectangle' }));
-        const roundData = (await roundRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'round' }));
+
+        const fullRimData: Frame[] = (await fullRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'full rim' }));
+        const halfRimData: Frame[] = (await halfRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'half rim' }));
+        const rimlessData: Frame[] = (await rimlessRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'rimless' }));
+        const squareData: Frame[] = (await squareRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'square' }));
+        const rectangleData: Frame[] = (await rectangleRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'rectangle' }));
+        const roundData: Frame[] = (await roundRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'round' }));
+
+        const allFrames = [...fullRimData, ...halfRimData, ...rimlessData, ...squareData, ...rectangleData, ...roundData];
         
-        setFrames([...fullRimData, ...halfRimData, ...rimlessData, ...squareData, ...rectangleData, ...roundData]);
+        // Remove duplicates by ID
+        const uniqueFrames = Array.from(new Map(allFrames.map(frame => [frame.id, frame])).values());
+
+        setFrames(uniqueFrames);
       } catch (error) {
         console.error('Failed to fetch frames data:', error);
       } finally {
