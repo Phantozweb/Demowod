@@ -68,3 +68,12 @@ export type Frame = {
     productURL: string;
   }[];
 };
+
+export type Lens = {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    features: string[];
+    use_case: string;
+};

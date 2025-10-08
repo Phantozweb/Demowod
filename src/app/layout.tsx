@@ -4,7 +4,7 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'Visionary',
+  title: 'Focus CaseX',
   description: 'An application for opticians.',
 };
 

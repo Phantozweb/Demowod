@@ -25,7 +25,7 @@ export default function Home() {
                 fillRule="evenodd"
               ></path>
             </svg>
-            <h1 className="text-xl font-bold text-white">Visionary</h1>
+            <h1 className="text-xl font-bold text-white">Focus CaseX</h1>
           </div>
         </div>
       </header>
@@ -35,7 +35,7 @@ export default function Home() {
             <div className="text-center">
               <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
                 <span className="block">
-                  Welcome to <span className="text-primary">Visionary</span>
+                  Welcome to <span className="text-primary">Focus CaseX</span>
                 </span>
               </h1>
               <p className="mt-3 max-w-md mx-auto text-lg text-muted-foreground sm:text-xl md:mt-5 md:max-w-3xl">
@@ -126,13 +126,13 @@ export default function Home() {
                   fillRule="evenodd"
                 ></path>
               </svg>
-              <h3 className="text-xl font-bold text-white">Visionary</h3>
+              <h3 className="text-xl font-bold text-white">Focus CaseX</h3>
             </div>
             <p className="max-w-2xl mx-auto text-base text-muted-foreground">
               The future of optical assistance. AI-powered recommendations for the perfect vision and style.
             </p>
             <div className="mt-8 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-              <p>© 2024 Visionary. All rights reserved.</p>
+              <p>© 2024 Focus CaseX. All rights reserved.</p>
             </div>
           </div>
         </div>

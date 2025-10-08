@@ -189,7 +189,7 @@ export default function NewPatientPage() {
                     fillRule="evenodd"
                     ></path>
                 </svg>
-                <h1 className="text-xl font-bold text-white">Visionary</h1>
+                <h1 className="text-xl font-bold text-white">Focus CaseX</h1>
                 </div>
             </div>
         </header>

@@ -60,7 +60,7 @@ export function AppSidebar() {
               ></path>
             </svg>
             <span className="font-bold text-lg text-white group-data-[collapsible=icon]:hidden">
-              Visionary
+              Focus CaseX
             </span>
           </Link>
           <div className="group-data-[collapsible=icon]:hidden">

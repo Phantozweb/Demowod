@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { type SelectFramesFromCatalogOutput } from '@/ai/flows/select-frames-from-catalog';
 
-const CASES_KEY = 'visionary-cases';
+const CASES_KEY = 'focus-casex-cases';
 
 export type PatientCase = {
   id: string;
