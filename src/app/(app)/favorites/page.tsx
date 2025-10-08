@@ -16,16 +16,21 @@ export default function FavoritesPage() {
   useEffect(() => {
     const fetchFrames = async () => {
       try {
-        const [fullRimRes, halfRimRes, rimlessRes, squareRes, rectangleRes, roundRes] = await Promise.all([
+        const [fullRimRes, halfRimRes, rimlessRes, squareRes, rectangleRes, roundRes, cateyeRes] = await Promise.all([
           fetch('/fullrim-frames.json'),
           fetch('/halfrim-frames.json'),
           fetch('/rimless-frames.json'),
           fetch('/square-frames.json'),
           fetch('/rectangle-frames.json'),
           fetch('/round-frames.json'),
+          fetch('/cateye-frames.json'),
         ]);
 
         const processData = async (res: Response, type: 'frameType' | 'frameShape', value: string): Promise<Frame[]> => {
+          if (!res.ok) {
+            console.error(`Failed to fetch ${res.url}: ${res.statusText}`);
+            return [];
+          }
           const data = await res.json();
           return data.map((frame: any) => ({ ...frame, [type]: value }));
         }
@@ -36,6 +41,7 @@ export default function FavoritesPage() {
         const squareData = await processData(squareRes, 'frameShape', 'square');
         const rectangleData = await processData(rectangleRes, 'frameShape', 'rectangle');
         const roundData = await processData(roundRes, 'frameShape', 'round');
+        const cateyeData = await processData(cateyeRes, 'frameShape', 'cat eye');
         
         const allData = [
           ...fullRimData,
@@ -43,10 +49,10 @@ export default function FavoritesPage() {
           ...rimlessData,
           ...squareData,
           ...rectangleData,
-          ...roundData
+          ...roundData,
+          ...cateyeData
         ];
         
-        // Use a map to merge properties for frames with the same id
         const framesMap = new Map<number, Frame>();
         allData.forEach(frame => {
           if (framesMap.has(frame.id)) {
