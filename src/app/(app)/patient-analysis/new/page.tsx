@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { User, Eye, UploadCloud, FlaskConical, ArrowRight, TestTube2 } from 'lucide-react';
+import { User, Eye, UploadCloud, FlaskConical, ArrowRight, TestTube2, Loader } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -16,6 +16,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { useCases, type PatientCase } from '@/hooks/use-cases';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
+import { analyzeFaceShape } from '@/ai/flows/analyze-face-shape';
 
 const patientCaseSchema = z.object({
   patientName: z.string().min(1, 'Patient name is required'),
@@ -69,14 +70,35 @@ export default function NewPatientPage() {
     });
 
     const [imagePreview, setImagePreview] = useState<string | null>(null);
+    const [isAnalyzing, setIsAnalyzing] = useState(false);
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
             const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result as string);
-                form.setValue('image', reader.result as string);
+            reader.onloadend = async () => {
+                const originalDataUrl = reader.result as string;
+                // Don't show original, show loading state immediately
+                setImagePreview(null); 
+                setIsAnalyzing(true);
+                
+                try {
+                    const result = await analyzeFaceShape({ photoDataUri: originalDataUrl });
+                    setImagePreview(result.analyzedPhotoDataUri);
+                    form.setValue('image', result.analyzedPhotoDataUri);
+                } catch (error) {
+                    console.error('Face analysis failed:', error);
+                    toast({
+                        variant: 'destructive',
+                        title: 'Face Analysis Failed',
+                        description: 'Could not generate face analysis. Using original image.',
+                    });
+                    // Fallback to original image on error
+                    setImagePreview(originalDataUrl); 
+                    form.setValue('image', originalDataUrl);
+                } finally {
+                    setIsAnalyzing(false);
+                }
             };
             reader.readAsDataURL(file);
         }
@@ -303,15 +325,23 @@ export default function NewPatientPage() {
                                     name="image"
                                     render={({ field }) => (
                                     <FormItem className="w-full">
-                                        <FormLabel htmlFor="image-upload" className={`flex flex-col justify-center items-center w-full h-80 bg-background rounded-lg border-2 border-dashed border-input hover:border-primary transition-all duration-300 cursor-pointer ${imagePreview ? 'border-primary' : ''}`}>
-                                        {imagePreview ? (
+                                        <FormLabel htmlFor="image-upload" className={`relative flex flex-col justify-center items-center w-full h-80 bg-background rounded-lg border-2 border-dashed border-input hover:border-primary transition-all duration-300 cursor-pointer ${imagePreview || isAnalyzing ? 'border-primary' : ''}`}>
+                                        {isAnalyzing && (
+                                            <div className="absolute inset-0 flex flex-col justify-center items-center bg-background/80 z-10">
+                                                <Loader className="w-16 h-16 animate-spin text-primary" />
+                                                <p className="mt-4 text-muted-foreground">Analyzing face...</p>
+                                            </div>
+                                        )}
+                                        {imagePreview && !isAnalyzing ? (
                                             <img src={imagePreview} alt="Patient preview" className="w-full h-full object-contain rounded-lg" />
                                         ) : (
-                                            <div className="flex flex-col justify-center items-center pt-5 pb-6">
-                                                <UploadCloud className="w-16 h-16 text-muted-foreground mb-4" />
-                                                <p className="mb-2 text-lg text-muted-foreground"><span className="font-semibold text-primary">Click to upload</span> or drag and drop</p>
-                                                <p className="text-sm text-muted-foreground">PNG, JPG, or JPEG (MAX. 5MB)</p>
-                                            </div>
+                                            !isAnalyzing && (
+                                                <div className="flex flex-col justify-center items-center pt-5 pb-6">
+                                                    <UploadCloud className="w-16 h-16 text-muted-foreground mb-4" />
+                                                    <p className="mb-2 text-lg text-muted-foreground"><span className="font-semibold text-primary">Click to upload</span> or drag and drop</p>
+                                                    <p className="text-sm text-muted-foreground">PNG, JPG, or JPEG (MAX. 5MB)</p>
+                                                </div>
+                                            )
                                         )}
                                         </FormLabel>
                                         <FormControl>
@@ -321,6 +351,7 @@ export default function NewPatientPage() {
                                                 className="hidden"
                                                 accept="image/png, image/jpeg, image/jpg"
                                                 onChange={handleImageChange}
+                                                disabled={isAnalyzing}
                                             />
                                         </FormControl>
                                         <FormMessage />
@@ -332,7 +363,7 @@ export default function NewPatientPage() {
                     </div>
 
                     <div className="pt-10 mt-8 border-t">
-                        <Button className="w-full" size="lg" type="submit" disabled={form.formState.isSubmitting}>
+                        <Button className="w-full" size="lg" type="submit" disabled={form.formState.isSubmitting || isAnalyzing}>
                         <span>{form.formState.isSubmitting ? "Saving Case..." : "Save Case & Go To Analysis"}</span>
                         <ArrowRight />
                         </Button>
