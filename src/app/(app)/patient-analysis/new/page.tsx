@@ -129,17 +129,26 @@ export default function NewPatientPage() {
     }
 
     function onSubmit(data: PatientCaseFormValues) {
+        const { image, ...caseData } = data;
         const newCase: Omit<PatientCase, 'id'> = {
-            ...data,
+            ...caseData,
             date: new Date().toISOString(),
             status: 'Pending',
         };
         const caseId = addCase(newCase);
+        
         toast({
             title: 'Case Saved',
             description: `Patient case for ${data.patientName} has been created.`,
-          });
-        router.push(`/patient-analysis/cases/${caseId}`);
+        });
+
+        let url = `/patient-analysis/cases/${caseId}`;
+        if (image) {
+            // Pass image data as a query parameter
+            const encodedImage = encodeURIComponent(image);
+            url += `?image=${encodedImage}`;
+        }
+        router.push(url);
     }
   
   return (

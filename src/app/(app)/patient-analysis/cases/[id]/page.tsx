@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useCases, type PatientCase } from '@/hooks/use-cases';
 import { useEffect, useState, useRef } from 'react';
 import {
@@ -35,6 +35,7 @@ import { ProductPreviewCard } from '@/components/product-preview-card';
 
 export default function CaseDetailPage() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const { getCase, updateCase } = useCases();
   const { toast } = useToast();
   const { isFavorite, toggleFavorite } = useFavorites();
@@ -46,6 +47,7 @@ export default function CaseDetailPage() {
   const [allFrames, setAllFrames] = useState<Frame[]>([]);
   const [isFetchingFrames, setIsFetchingFrames] = useState(true);
   const [selectedFrame, setSelectedFrame] = useState<Frame | null>(null);
+  const [patientImage, setPatientImage] = useState<string | null>(null);
 
   // useRef to prevent multiple analysis runs
   const analysisRun = useRef(false);
@@ -121,13 +123,24 @@ export default function CaseDetailPage() {
     if (typeof params.id === 'string') {
       const foundCase = getCase(params.id);
       setCaseItem(foundCase);
+
+      const imageFromUrl = searchParams.get('image');
+      if (imageFromUrl) {
+          try {
+              const decodedImage = decodeURIComponent(imageFromUrl);
+              setPatientImage(decodedImage);
+          } catch (e) {
+              console.error("Failed to decode image from URL", e);
+          }
+      }
+
       // If analysis already exists in localStorage, load it.
       if (foundCase?.analysis) {
         setAnalysisResult(foundCase.analysis as SelectFramesFromCatalogOutput);
         analysisRun.current = true; // Mark as run to prevent re-running
       }
     }
-  }, [params.id, getCase]);
+  }, [params.id, getCase, searchParams]);
 
   const handleStartAnalysis = async () => {
     if (!caseItem) return;
@@ -272,11 +285,11 @@ export default function CaseDetailPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {caseItem?.image && (
+              {patientImage && (
                 <div className="relative aspect-square w-full rounded-lg overflow-hidden border">
                   <Image
-                    src={caseItem.image}
-                    alt={caseItem.patientName}
+                    src={patientImage}
+                    alt={caseItem?.patientName || 'Patient'}
                     fill
                     className="object-cover"
                     priority

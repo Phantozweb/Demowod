@@ -61,8 +61,11 @@ export const useCases = () => {
 
   const addCase = useCallback((newCaseData: Omit<PatientCase, 'id'>) => {
     const caseWithId: PatientCase = { ...newCaseData, id: `CASE-${uuidv4().slice(0,4).toUpperCase()}` };
+    const caseToStore = { ...caseWithId };
+    delete caseToStore.image; // Do not store image in localStorage
+    
     setCases(prevCases => {
-        const updatedCases = [...prevCases, caseWithId];
+        const updatedCases = [...prevCases, caseToStore];
         try {
             window.localStorage.setItem(CASES_KEY, JSON.stringify(updatedCases));
         } catch (error) {
