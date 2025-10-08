@@ -16,19 +16,9 @@ export default function FavoritesPage() {
   useEffect(() => {
     const fetchFrames = async () => {
       try {
-        const [fullRimRes, halfRimRes] = await Promise.all([
-          fetch('/fullrim-frames.json'),
-          fetch('/halfrim-frames.json'),
-        ]);
-        const fullRimData = await fullRimRes.json();
-        const halfRimData = await halfRimRes.json();
-
-        const framesWithAllVariations = [...fullRimData, ...halfRimData].flatMap((frame: Frame) =>
-            (frame.variations && frame.variations.length > 0)
-            ? frame.variations.map(variation => ({ ...frame, ...variation, id: variation.id, price: variation.price, productImage: variation.productImage }))
-            : [{ ...frame, id: frame.id || Math.random() }]
-        );
-        setAllFrames(framesWithAllVariations);
+        const res = await fetch('/lenskartdata.json');
+        const data = await res.json();
+        setAllFrames(data);
       } catch (error) {
         console.error('Failed to fetch frames data:', error);
       } finally {

@@ -28,21 +28,9 @@ export default function CatalogPage() {
   useEffect(() => {
     const fetchFrames = async () => {
       try {
-        const [fullRimRes, halfRimRes] = await Promise.all([
-          fetch('/fullrim-frames.json'),
-          fetch('/halfrim-frames.json'),
-        ]);
-        const fullRimData = await fullRimRes.json();
-        const halfRimData = await halfRimRes.json();
-
-        const combinedFrames = [...fullRimData, ...halfRimData].map(frame => ({
-          ...frame,
-          id: frame.id,
-          productImage: frame.productImage,
-          price: frame.price
-        }));
-
-        setFrames(combinedFrames);
+        const res = await fetch('/lenskartdata.json');
+        const data = await res.json();
+        setFrames(data);
       } catch (error) {
         console.error('Failed to fetch frames data:', error);
       } finally {
@@ -75,18 +63,7 @@ export default function CatalogPage() {
       );
     }
     
-    const allFrames = frames.flatMap(frame => {
-      if (frame.variations && frame.variations.length > 0) {
-        return frame.variations.map(variation => ({
-          ...frame,
-          ...variation,
-          id: variation.id,
-          price: variation.price,
-          productImage: variation.productImage
-        }));
-      }
-      return [{ ...frame, id: frame.id || Math.random() }];
-    });
+    const allFrames = frames;
 
     const filteredFrames = allFrames.filter(frame => {
         const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
@@ -102,7 +79,7 @@ export default function CatalogPage() {
     return (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             {filteredFrames.map(frame => (
-                <FrameCard key={frame.id} frame={frame as any} isFavorite={isFavorite} toggleFavorite={toggleFavorite} />
+                <FrameCard key={frame.id} frame={frame} isFavorite={isFavorite} toggleFavorite={toggleFavorite} />
             ))}
         </div>
     )
