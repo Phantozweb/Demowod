@@ -1,0 +1,80 @@
+
+[
+  {
+    "id": 1,
+    "name": "VisuPro™",
+    "description": "Designed for emerging presbyopes experiencing near-vision problems, offering a cost-effective transition to progressive lenses.",
+    "price": 150,
+    "features": [
+      "Focus Max Optimization",
+      "Binocular Harmonization Technology™",
+      "Quicker adaptation vs. progressive lenses",
+      "Two lifestyle-based design options"
+    ],
+    "use_case": "Ideal for regular or sporadic wearers aged 36-44 who are starting to face near-vision challenges.",
+    "targetUser": "Emerging presbyopes (ages 36-44)",
+    "category": "Single Vision"
+  },
+  {
+    "id": 2,
+    "name": "MySV®",
+    "description": "Personalized single vision lenses that go beyond one-size-fits-all, compensating prescriptions in all meridians.",
+    "price": 180,
+    "features": [
+      "Backside free form technology",
+      "360˚ Visual Comfort™",
+      "Optimized base curve for larger frames",
+      "Individualized based on position of wear"
+    ],
+    "use_case": "For patients needing enhanced visual acuity and wider peripheral views than standard single vision lenses.",
+    "targetUser": "Patients needing personalized lenses",
+    "category": "Single Vision"
+  },
+  {
+    "id": 3,
+    "name": "Sync III™",
+    "description": "Engineered for single vision patients experiencing Digital Eye Strain (DES), with a 'boost zone' for near tasks.",
+    "price": 200,
+    "features": [
+      "Distance power with a 'boost zone'",
+      "Three boost zone power options",
+      "Reduces eye strain from digital screens",
+      "Available in clear, photochromic, and polarized"
+    ],
+    "use_case": "Perfect for users who spend significant time on digital devices and suffer from eye strain.",
+    "targetUser": "Patients with Digital Eye Strain",
+    "category": "Single Vision"
+  },
+  {
+    "id": 4,
+    "name": "iD Single Vision®",
+    "description": "Bi-aspheric design for patients with high prescriptions, offering thinner lenses and an increased viewing area.",
+    "price": 250,
+    "features": [
+      "Integrated Dual Surface™ free form technology",
+      "Expanded peripheral viewing",
+      "Edge-to-edge clarity with reduced distortion",
+      "Requires OC and monocular PD measurements"
+    ],
+    "use_case": "Best for those with high prescriptions who want optimized visual acuity and a relaxed, clear vision.",
+    "targetUser": "Patients with high prescriptions",
+    "category": "Single Vision"
+  },
+  {
+    "id": 5,
+    "name": "Single Vision iQ™",
+    "description": "Brings PAL-level technology to single vision lenses with a custom back surfacing for enhanced optics.",
+    "price": 220,
+    "features": [
+      "Spherical front with custom back surface",
+      "Reduced distortion in peripheral areas",
+      "Wider, clearer visual field",
+      "Requires OC and monocular PD measurements"
+    ],
+    "use_case": "For wearers seeking the highest level of optical performance and clarity in a single vision lens.",
+    "targetUser": "Patients seeking PAL-level technology",
+    "category": "Single Vision"
+  }
+]
+
+    

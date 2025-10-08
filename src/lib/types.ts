@@ -76,4 +76,8 @@ export type Lens = {
     price: number;
     features: string[];
     use_case: string;
+    targetUser: string;
+    category: string;
 };
+
+    

@@ -24,6 +24,9 @@ export default function CatalogPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [frameType, setFrameType] = useState('all');
   const [frameShape, setFrameShape] = useState('all');
+  const [lensSearchTerm, setLensSearchTerm] = useState('');
+  const [lensTargetUser, setLensTargetUser] = useState('all');
+
   const { isFavorite, toggleFavorite } = useFavorites();
   const [selectedFrame, setSelectedFrame] = useState<Frame | null>(null);
 
@@ -85,7 +88,7 @@ export default function CatalogPage() {
 
     const fetchLenses = async () => {
         try {
-            const res = await fetch('/lenses.json');
+            const res = await fetch('/single-vision-lenses.json');
             if(res.ok) {
                 const data = await res.json();
                 setLenses(data);
@@ -118,8 +121,14 @@ export default function CatalogPage() {
   });
 
   const filteredLenses = lenses.filter(lens => {
-    return lens.name.toLowerCase().includes(searchTerm.toLowerCase()) || lens.description.toLowerCase().includes(searchTerm.toLowerCase());
-  })
+    const searchTermLower = lensSearchTerm.toLowerCase();
+    const nameMatch = lens.name.toLowerCase().includes(searchTermLower);
+    const descriptionMatch = lens.description.toLowerCase().includes(searchTermLower);
+    const targetUserMatch = lensTargetUser === 'all' || lens.targetUser.toLowerCase().includes(lensTargetUser.toLowerCase());
+    return (nameMatch || descriptionMatch) && targetUserMatch;
+  });
+
+  const uniqueTargetUsers = Array.from(new Set(lenses.map(l => l.targetUser.split('(')[0].trim())));
 
   const handleFrameTypeChange = (value: string) => {
     setFrameType(value);
@@ -216,7 +225,7 @@ export default function CatalogPage() {
             </div>
             {!isLoading && (
             <p className='text-sm text-muted-foreground'>
-                Showing {filteredFrames.length} frames and {lenses.length} lenses
+                Showing {filteredFrames.length} frames and {filteredLenses.length} lenses
             </p>
             )}
         </div>
@@ -269,16 +278,27 @@ export default function CatalogPage() {
         </TabsContent>
         <TabsContent value="lenses">
             <div className="mb-8 p-4 border rounded-lg bg-card">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
-                    <div className="relative md:col-span-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                    <div className="relative">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                         <Input 
                             placeholder="Search by lens name or description..."
                             className="pl-10"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
+                            value={lensSearchTerm}
+                            onChange={(e) => setLensSearchTerm(e.target.value)}
                         />
                     </div>
+                    <Select value={lensTargetUser} onValueChange={setLensTargetUser}>
+                        <SelectTrigger>
+                            <SelectValue placeholder="Filter by Target User" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="all">All Target Users</SelectItem>
+                            {uniqueTargetUsers.map(user => (
+                                <SelectItem key={user} value={user}>{user}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
                 </div>
             </div>
             {renderLenses()}
@@ -297,3 +317,5 @@ export default function CatalogPage() {
     </div>
   );
 }
+
+    
