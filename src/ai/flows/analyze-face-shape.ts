@@ -89,12 +89,24 @@ const analyzeFaceShapeFlow = ai.defineFlow(
       throw new Error('Analysis failed to return a result.');
     }
 
-    // The model's output is a stringified JSON object when using responseMimeType.
-    // We must parse it to get a usable JavaScript object.
+    // The model's output can sometimes include conversational text or markdown.
+    // We must extract the JSON block before parsing.
     try {
-      return JSON.parse(output) as AnalyzeFaceShapeOutput;
+      // Find the start and end of the JSON object.
+      const jsonStart = output.indexOf('{');
+      const jsonEnd = output.lastIndexOf('}');
+
+      if (jsonStart === -1 || jsonEnd === -1) {
+          throw new Error("No JSON object found in the response.");
+      }
+
+      const jsonString = output.substring(jsonStart, jsonEnd + 1);
+      return JSON.parse(jsonString) as AnalyzeFaceShapeOutput;
     } catch (e) {
-      console.error('Failed to parse AI response as JSON:', output, e);
+      console.error('Failed to parse AI response as JSON.', {
+        rawOutput: output,
+        error: e,
+      });
       throw new Error('The AI returned an invalid response format.');
     }
   }
