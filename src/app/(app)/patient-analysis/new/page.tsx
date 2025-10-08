@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { UploadCloud, TestTube2, Loader, FileText, ScanFace, Camera, VideoOff, ArrowRight } from 'lucide-react';
+import { UploadCloud, TestTube2, Loader, FileText, ScanFace, ArrowRight } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,7 +18,6 @@ import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { analyzeFaceShape } from '@/ai/flows/analyze-face-shape';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 
 const patientCaseSchema = z.object({
@@ -79,12 +78,7 @@ export default function NewPatientPage() {
 
     const [imagePreview, setImagePreview] = useState<string | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
-    const [mode, setMode] = useState<'upload' | 'camera'>('upload');
-    const [hasCameraPermission, setHasCameraPermission] = useState<boolean | null>(null);
     
-    const videoRef = useRef<HTMLVideoElement>(null);
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-
     useEffect(() => {
         // Check for API key on the client-side
         const checkApiKey = async () => {
@@ -94,30 +88,6 @@ export default function NewPatientPage() {
         };
         checkApiKey();
     }, []);
-
-    useEffect(() => {
-        let stream: MediaStream | null = null;
-        const getCameraPermission = async () => {
-            if (mode !== 'camera' || hasCameraPermission === true) return;
-            try {
-                stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                setHasCameraPermission(true);
-                if (videoRef.current) {
-                    videoRef.current.srcObject = stream;
-                }
-            } catch (error) {
-                console.error('Error accessing camera:', error);
-                setHasCameraPermission(false);
-            }
-        };
-        getCameraPermission();
-        return () => {
-            // Stop camera stream when component unmounts or mode changes
-            if (stream) {
-                stream.getTracks().forEach(track => track.stop());
-            }
-        };
-    }, [mode, hasCameraPermission]);
 
     const runAnalysis = async (dataUrl: string) => {
         if (isApiKeyMissing) {
@@ -164,22 +134,6 @@ export default function NewPatientPage() {
         }
     };
 
-    const handleCapture = () => {
-        if (videoRef.current && canvasRef.current) {
-            const video = videoRef.current;
-            const canvas = canvasRef.current;
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            const context = canvas.getContext('2d');
-            if (context) {
-                context.drawImage(video, 0, 0, canvas.width, canvas.height);
-                const dataUrl = canvas.toDataURL('image/jpeg');
-                setImagePreview(dataUrl);
-                runAnalysis(dataUrl);
-            }
-        }
-    };
-
     const fillWithDemoData = () => {
         const randomFromArray = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
         
@@ -223,20 +177,22 @@ export default function NewPatientPage() {
     }
 
     function onSubmit(data: PatientCaseFormValues) {
-        const fullCase = addCase({
-          ...data,
-          date: new Date().toISOString(),
-          status: 'Pending',
-        });
-        toast({
-            title: 'Case Saved',
-            description: `Patient case for ${fullCase.patientName} has been created.`,
-        });
+      const caseDataForStorage = { ...data };
+      delete caseDataForStorage.image; // Ensure image data is not saved to localStorage
 
-        // Pass image data via query param for the next page to use, since we aren't saving it.
-        const query = imagePreview ? `?image=${encodeURIComponent(imagePreview)}` : '';
-        router.push(`/patient-analysis/cases/${fullCase.id}${query}`);
-    }
+      const fullCase = addCase({
+        ...caseDataForStorage,
+        date: new Date().toISOString(),
+        status: 'Pending',
+      });
+      toast({
+          title: 'Case Saved',
+          description: `Patient case for ${fullCase.patientName} has been created.`,
+      });
+
+      const query = imagePreview ? `?image=${encodeURIComponent(imagePreview)}` : '';
+      router.push(`/patient-analysis/cases/${fullCase.id}${query}`);
+  }
   
   return (
     <div>
@@ -368,74 +324,31 @@ export default function NewPatientPage() {
                                     </AlertDescription>
                                 </Alert>
                             )}
-                            <Tabs value={mode} onValueChange={(value) => setMode(value as 'upload' | 'camera')} className="w-full">
-                                <TabsList className="grid w-full grid-cols-2">
-                                    <TabsTrigger value="upload" disabled={isApiKeyMissing}><UploadCloud className="mr-2 h-4 w-4" /> Upload Photo</TabsTrigger>
-                                    <TabsTrigger value="camera" disabled={isApiKeyMissing}><Camera className="mr-2 h-4 w-4" /> Use Camera</TabsTrigger>
-                                </TabsList>
-                                <TabsContent value="upload">
-                                    <div className="flex justify-center items-center w-full mt-4">
-                                        <Label htmlFor="image-upload" className={`relative flex flex-col justify-center items-center w-full h-80 bg-background rounded-lg border-2 border-dashed border-input hover:border-primary transition-all duration-300 overflow-hidden ${imagePreview ? 'border-primary' : ''} ${isAnalyzing ? 'cursor-wait' : 'cursor-pointer'}`}>
-                                            {imagePreview ? (
-                                                <>
-                                                    <img src={imagePreview} alt="Patient preview" className="w-full h-full object-contain rounded-lg" />
-                                                    <AnimatePresence>
-                                                    {isAnalyzing && (
-                                                        <motion.div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center gap-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                                                            <div className='scanline'/>
-                                                            <ScanFace className="w-16 h-16 text-primary" />
-                                                            <p className="text-white font-medium">Analyzing face shape & skin tone...</p>
-                                                        </motion.div>
-                                                    )}
-                                                    </AnimatePresence>
-                                                </>
-                                            ) : (
-                                                <div className="flex flex-col justify-center items-center pt-5 pb-6">
-                                                    <UploadCloud className="w-16 h-16 text-muted-foreground mb-4" />
-                                                    <p className="mb-2 text-lg text-muted-foreground"><span className="font-semibold text-primary">Click to upload</span> or drag and drop</p>
-                                                    <p className="text-sm text-muted-foreground">PNG, JPG, or JPEG (MAX. 5MB)</p>
-                                                </div>
+                            <div className="flex justify-center items-center w-full mt-4">
+                                <Label htmlFor="image-upload" className={`relative flex flex-col justify-center items-center w-full h-80 bg-background rounded-lg border-2 border-dashed border-input hover:border-primary transition-all duration-300 overflow-hidden ${imagePreview ? 'border-primary' : ''} ${isAnalyzing || isApiKeyMissing ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}>
+                                    {imagePreview ? (
+                                        <>
+                                            <img src={imagePreview} alt="Patient preview" className="w-full h-full object-contain rounded-lg" />
+                                            <AnimatePresence>
+                                            {isAnalyzing && (
+                                                <motion.div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center gap-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                                                    <div className='scanline'/>
+                                                    <ScanFace className="w-16 h-16 text-primary" />
+                                                    <p className="text-white font-medium">Analyzing face shape & skin tone...</p>
+                                                </motion.div>
                                             )}
-                                        </Label>
-                                        <Input id="image-upload" type="file" className="hidden" accept="image/png, image/jpeg, image/jpg" onChange={handleImageChange} disabled={isAnalyzing || isApiKeyMissing}/>
-                                    </div>
-                                </TabsContent>
-                                <TabsContent value="camera">
-                                    <div className="w-full mt-4 p-4 border rounded-lg">
-                                        {hasCameraPermission === null && (
-                                            <div className="h-80 flex items-center justify-center"><Loader className="h-8 w-8 animate-spin text-primary"/></div>
-                                        )}
-                                        {hasCameraPermission === false && (
-                                             <Alert variant="destructive" className="h-80 flex flex-col justify-center items-center text-center">
-                                                <VideoOff className="h-8 w-8 mb-2" />
-                                                <AlertTitle>Camera Access Denied</AlertTitle>
-                                                <AlertDescription>Please enable camera permissions in your browser settings to use this feature.</AlertDescription>
-                                            </Alert>
-                                        )}
-                                        {hasCameraPermission && (
-                                            <div className="space-y-4">
-                                                 <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-black">
-                                                    <video ref={videoRef} className="w-full h-full object-contain" autoPlay muted playsInline onCanPlay={() => setHasCameraPermission(true)} />
-                                                    <canvas ref={canvasRef} className="hidden" />
-                                                     <AnimatePresence>
-                                                        {isAnalyzing && (
-                                                            <motion.div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center gap-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                                                                <div className='scanline'/>
-                                                                <ScanFace className="w-16 h-16 text-primary" />
-                                                                <p className="text-white font-medium">Analyzing...</p>
-                                                            </motion.div>
-                                                        )}
-                                                    </AnimatePresence>
-                                                 </div>
-                                                <Button onClick={handleCapture} className="w-full" disabled={isAnalyzing || isApiKeyMissing}>
-                                                    <Camera className="mr-2 h-4 w-4"/>
-                                                    Capture Photo
-                                                </Button>
-                                            </div>
-                                        )}
-                                    </div>
-                                </TabsContent>
-                            </Tabs>
+                                            </AnimatePresence>
+                                        </>
+                                    ) : (
+                                        <div className="flex flex-col justify-center items-center pt-5 pb-6">
+                                            <UploadCloud className="w-16 h-16 text-muted-foreground mb-4" />
+                                            <p className="mb-2 text-lg text-muted-foreground"><span className="font-semibold text-primary">Click to upload</span> or drag and drop</p>
+                                            <p className="text-sm text-muted-foreground">PNG, JPG, or JPEG (MAX. 5MB)</p>
+                                        </div>
+                                    )}
+                                </Label>
+                                <Input id="image-upload" type="file" className="hidden" accept="image/png, image/jpeg, image/jpg" onChange={handleImageChange} disabled={isAnalyzing || isApiKeyMissing}/>
+                            </div>
                         </div>
                     </div>
 
@@ -456,3 +369,5 @@ export default function NewPatientPage() {
     </div>
   );
 }
+
+    

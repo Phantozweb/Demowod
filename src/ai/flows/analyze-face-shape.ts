@@ -61,13 +61,20 @@ const analyzeFaceShapeFlow = ai.defineFlow(
     outputSchema: AnalyzeFaceShapeOutputSchema,
   },
   async (input) => {
-    // This flow uses the modern Gemini API pattern for getting structured JSON output.
     const { output } = await ai.generate({
       prompt: `Analyze the provided photo of a person's face. Your task is to determine their face shape and skin tone.
+
+      Respond with ONLY a valid JSON object that adheres to the following schema:
+      {
+        "type": "object",
+        "properties": {
+          "faceShape": { "type": "string" },
+          "skinTone": { "type": "string" }
+        },
+        "required": ["faceShape", "skinTone"]
+      }
       
-      Respond with ONLY a valid JSON object containing two keys:
-      1.  "faceShape": The most prominent face shape (e.g., "Oval", "Round", "Square", "Heart").
-      2.  "skinTone": The underlying skin tone (e.g., "Warm", "Cool", "Neutral").
+      Do not include any other text, explanations, or markdown formatting.
 
       Example response:
       {
@@ -76,7 +83,6 @@ const analyzeFaceShapeFlow = ai.defineFlow(
       }
       
       Photo: {{media url=photoDataUri}}`,
-      // This config is crucial. It tells the model to output a JSON string.
       config: {
         responseMimeType: 'application/json',
       },
@@ -89,18 +95,16 @@ const analyzeFaceShapeFlow = ai.defineFlow(
       throw new Error('Analysis failed to return a result.');
     }
 
-    // The model's output can sometimes include conversational text or markdown.
-    // We must extract the JSON block before parsing.
     try {
-      // Find the start and end of the JSON object.
-      const jsonStart = output.indexOf('{');
-      const jsonEnd = output.lastIndexOf('}');
+      // The model can sometimes still include markdown ```json ... ``` wrappers.
+      // This regex will find the content between the first { and the last }.
+      const jsonMatch = output.match(/\{[\s\S]*\}/);
 
-      if (jsonStart === -1 || jsonEnd === -1) {
+      if (!jsonMatch) {
           throw new Error("No JSON object found in the response.");
       }
 
-      const jsonString = output.substring(jsonStart, jsonEnd + 1);
+      const jsonString = jsonMatch[0];
       return JSON.parse(jsonString) as AnalyzeFaceShapeOutput;
     } catch (e) {
       console.error('Failed to parse AI response as JSON.', {
@@ -111,3 +115,5 @@ const analyzeFaceShapeFlow = ai.defineFlow(
     }
   }
 );
+
+    
