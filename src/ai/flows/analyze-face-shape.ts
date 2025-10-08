@@ -54,6 +54,16 @@ export async function analyzeFaceShape(
   return analyzeFaceShapeFlow(input);
 }
 
+const prompt = ai.definePrompt({
+    name: 'analyzeFaceShapePrompt',
+    input: { schema: AnalyzeFaceShapeInputSchema },
+    output: { schema: AnalyzeFaceShapeOutputSchema },
+    prompt: `Analyze the provided photo to determine the user's face shape and skin tone.
+
+    Photo: {{media url=photoDataUri}}`,
+});
+
+
 const analyzeFaceShapeFlow = ai.defineFlow(
   {
     name: 'analyzeFaceShapeFlow',
@@ -61,59 +71,14 @@ const analyzeFaceShapeFlow = ai.defineFlow(
     outputSchema: AnalyzeFaceShapeOutputSchema,
   },
   async (input) => {
-    const { output } = await ai.generate({
-      prompt: `Analyze the provided photo of a person's face. Your task is to determine their face shape and skin tone.
-
-      Respond with ONLY a valid JSON object that adheres to the following schema:
-      {
-        "type": "object",
-        "properties": {
-          "faceShape": { "type": "string" },
-          "skinTone": { "type": "string" }
-        },
-        "required": ["faceShape", "skinTone"]
-      }
-      
-      Do not include any other text, explanations, or markdown formatting.
-
-      Example response:
-      {
-        "faceShape": "Oval",
-        "skinTone": "Warm"
-      }
-      
-      Photo: {{media url=photoDataUri}}`,
-      config: {
-        responseMimeType: 'application/json',
-      },
-      input: {
-        photoDataUri: input.photoDataUri,
-      },
-    });
+    const { output } = await prompt(input);
 
     if (!output) {
-      throw new Error('Analysis failed to return a result.');
+      console.error('AI analysis failed to return a result.', { input });
+      throw new Error('The AI returned an empty response.');
     }
-
-    try {
-      // The model can sometimes still include markdown ```json ... ``` wrappers.
-      // This regex will find the content between the first { and the last }.
-      const jsonMatch = output.match(/\{[\s\S]*\}/);
-
-      if (!jsonMatch) {
-          throw new Error("No JSON object found in the response.");
-      }
-
-      const jsonString = jsonMatch[0];
-      return JSON.parse(jsonString) as AnalyzeFaceShapeOutput;
-    } catch (e) {
-      console.error('Failed to parse AI response as JSON.', {
-        rawOutput: output,
-        error: e,
-      });
-      throw new Error('The AI returned an invalid response format.');
-    }
+    
+    // The prompt definition ensures the output is valid JSON.
+    return output;
   }
 );
-
-    
