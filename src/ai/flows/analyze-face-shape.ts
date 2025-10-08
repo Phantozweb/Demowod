@@ -42,18 +42,31 @@ export type AnalyzeFaceShapeOutput = z.infer<
 export async function analyzeFaceShape(
   input: AnalyzeFaceShapeInput
 ): Promise<AnalyzeFaceShapeOutput> {
+  if (!process.env.GEMINI_API_KEY) {
+    console.error('GEMINI_API_KEY is not set. Skipping analysis.');
+    // Return a default or mock response to prevent crashes.
+    return {
+      faceShape: 'Not analyzed',
+      skinTone: 'Not analyzed',
+    };
+  }
   return analyzeFaceShapeFlow(input);
 }
 
 const prompt = ai.definePrompt({
   name: 'analyzeFaceShapePrompt',
   input: { schema: AnalyzeFaceShapeInputSchema },
-  output: { schema: AnalyzeFaceShapeOutputSchema },
   prompt: `Analyze the provided photo of a person's face. Your task is to determine their face shape and skin tone.
 
-Respond with a JSON object containing two keys:
-1.  "faceShape": The most prominent face shape.
-2.  "skinTone": The underlying skin tone.
+Respond with ONLY a valid JSON object containing two keys:
+1.  "faceShape": The most prominent face shape (e.g., "Oval", "Round", "Square", "Heart").
+2.  "skinTone": The underlying skin tone (e.g., "Warm", "Cool", "Neutral").
+
+Example response:
+{
+  "faceShape": "Oval",
+  "skinTone": "Warm"
+}
 
 Photo: {{media url=photoDataUri}}`,
 });
@@ -69,6 +82,12 @@ const analyzeFaceShapeFlow = ai.defineFlow(
     if (!output) {
       throw new Error('Analysis failed to return a result.');
     }
-    return output;
+    // The output from the prompt is a string, so we need to parse it as JSON.
+    try {
+      return JSON.parse(output) as AnalyzeFaceShapeOutput;
+    } catch (e) {
+      console.error("Failed to parse AI response as JSON:", output);
+      throw new Error("The AI returned an invalid response format.");
+    }
   }
 );

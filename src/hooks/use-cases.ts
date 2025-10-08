@@ -28,7 +28,6 @@ export type PatientCase = {
   nearAddOs?: string;
   pdDist?: string;
   pdNear?: string;
-  image?: string;
   faceShape?: string;
   skinTone?: string;
   analysis?: SelectFramesFromCatalogOutput;
@@ -51,31 +50,22 @@ export const useCases = () => {
     setIsInitialized(true);
   }, []);
 
-  const saveCases = (newCases: PatientCase[]) => {
-    try {
-      setCases(newCases);
-      window.localStorage.setItem(CASES_KEY, JSON.stringify(newCases));
-    } catch (error) {
-      console.error('Failed to save cases to localStorage', error);
-    }
-  };
-
   const addCase = useCallback((newCaseData: Omit<PatientCase, 'id'>) => {
     const caseWithId: PatientCase = { ...newCaseData, id: `CASE-${uuidv4().slice(0,4).toUpperCase()}` };
     
-    // Create a version of the case for storage that omits the large image data
-    const { image, ...caseToStore } = caseWithId;
-    
     setCases(prevCases => {
-        const updatedCases = [...prevCases, caseToStore as PatientCase];
+        const updatedCases = [...prevCases, caseWithId];
         try {
             window.localStorage.setItem(CASES_KEY, JSON.stringify(updatedCases));
         } catch (error) {
             console.error('Failed to save cases to localStorage', error);
+            if (error instanceof DOMException && error.name === 'QuotaExceededError') {
+              alert('Could not save case. Local storage is full. Please clear some old cases.');
+            }
         }
         return updatedCases;
     });
-    return caseWithId; // Return the full case object including image for immediate use
+    return caseWithId;
   }, []);
 
   const updateCase = useCallback((caseId: string, updatedData: Partial<PatientCase>) => {
@@ -91,9 +81,16 @@ export const useCases = () => {
   }, []);
 
   const removeCase = useCallback((caseId: string) => {
-    const updatedCases = cases.filter((c) => c.id !== caseId);
-    saveCases(updatedCases);
-  }, [cases]);
+    setCases(prevCases => {
+      const updatedCases = prevCases.filter((c) => c.id !== caseId);
+      try {
+        window.localStorage.setItem(CASES_KEY, JSON.stringify(updatedCases));
+      } catch (error) {
+        console.error('Failed to remove case from localStorage', error);
+      }
+      return updatedCases;
+    });
+  }, []);
 
   const getCase = useCallback((caseId: string) => {
     return cases.find(c => c.id === caseId);
@@ -101,5 +98,3 @@ export const useCases = () => {
 
   return { cases, addCase, updateCase, removeCase, getCase, isInitialized };
 };
-
-    
