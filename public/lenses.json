@@ -1,50 +1,16 @@
+
 [
   {
-    "id": 1001,
-    "name": "Standard Single Vision",
-    "description": "Ideal for correcting nearsightedness or farsightedness. Clear vision at one distance.",
-    "price": 50,
-    "features": ["Scratch-resistant coating"],
-    "use_case": "General use, reading"
-  },
-  {
-    "id": 1002,
-    "name": "Progressive (No-Line Bifocals)",
-    "description": "Seamless transition between distance, intermediate, and near vision without visible lines.",
-    "price": 150,
-    "features": ["Scratch-resistant coating", "UV protection", "Easy adaptation"],
-    "use_case": "Presbyopia, all-day wear"
-  },
-  {
-    "id": 1003,
-    "name": "Blue Light Filtering",
-    "description": "Reduces eye strain from digital screens by filtering out harmful blue light.",
-    "price": 100,
-    "features": ["Reduces digital eye strain", "Scratch-resistant coating", "Anti-reflective"],
-    "use_case": "Computer use, office work"
-  },
-  {
-    "id": 1004,
-    "name": "Transitions® (Photochromic)",
-    "description": "Lenses that automatically darken in sunlight and lighten indoors.",
-    "price": 120,
-    "features": ["UV protection", "Convenience", "Scratch-resistant coating"],
-    "use_case": "Indoor/outdoor use"
-  },
-  {
-    "id": 1005,
-    "name": "High-Index (Thinner & Lighter)",
-    "description": "Recommended for strong prescriptions to make lenses noticeably thinner and lighter.",
-    "price": 180,
-    "features": ["Aesthetically appealing", "Lightweight comfort", "UV protection"],
-    "use_case": "Strong prescriptions"
-  },
-  {
-    "id": 1006,
-    "name": "Polarized Sunglasses",
-    "description": "Reduces glare from reflective surfaces like water and roads for clearer, more comfortable vision.",
-    "price": 130,
-    "features": ["100% UV protection", "Glare reduction", "Enhanced contrast"],
-    "use_case": "Driving, outdoor sports"
+    "id": 1,
+    "name": "VisuPro™",
+    "description": "Designed for emerging presbyopes (ages 36-44) experiencing near-vision problems. Utilizes FreeForm technologies for pixel-perfect precision and outstanding visual performance.",
+    "price": 150.00,
+    "features": [
+      "Focus Max Optimization",
+      "Binocular Harmonization Technology™",
+      "Customizable position of wear",
+      "Two lifestyle-based design options"
+    ],
+    "use_case": "Ideal for emerging presbyopes and regular wearers (myopes and hyperopes) needing enhanced near-vision support for all-day use."
   }
 ]
