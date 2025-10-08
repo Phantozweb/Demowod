@@ -1,8 +1,15 @@
 
 export type Frame = {
   id: number;
+  size: string;
   productName: string;
   brand: string;
+  productModelName: string;
+  productRating: number;
+  purchaseCount: number;
+  tags?: string;
+  lenskart_url?: string;
+  productImage: string | { url: string; frontURL?: string; hoverURL?: string };
   price: number;
   price_details?: {
     basePrice: number;
@@ -12,13 +19,6 @@ export type Frame = {
     symbol: string;
     discount: string;
   };
-  size: string;
-  productImage: string | { url: string; frontURL?: string; hoverURL?: string };
-  productRating: number;
-  purchaseCount: number;
-  productModelName: string;
   frameType: string;
   frameShape: string;
-  lenskart_url?: string;
-  tags?: string;
 };
