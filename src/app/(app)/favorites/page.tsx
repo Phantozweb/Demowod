@@ -1,44 +1,41 @@
 'use client';
 
-import { frames } from '@/lib/frames';
+import { useState, useEffect } from 'react';
 import { useFavorites } from '@/hooks/use-favorites';
 import { FrameCard } from '@/components/frame-card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Frame } from '@/lib/types';
 
 export default function FavoritesPage() {
   const { favorites, isFavorite, toggleFavorite, isInitialized } = useFavorites();
-  const favoriteFrames = frames.filter((frame) => favorites.includes(frame.id));
+  const [allFrames, setAllFrames] = useState<Frame[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  return (
-    <div className="p-4 md:p-8">
-      <header className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-headline font-bold">Your Favorites</h1>
-        <p className="text-muted-foreground mt-2">The frames you love, all in one place.</p>
-      </header>
-      
-      {isInitialized ? (
-        favoriteFrames.length > 0 ? (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-            {favoriteFrames.map((frame) => (
-              <FrameCard
-                key={frame.id}
-                frame={frame}
-                isFavorite={isFavorite}
-                toggleFavorite={toggleFavorite}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center text-center py-20 border-2 border-dashed rounded-lg">
-              <h2 className="text-xl font-semibold">Your favorites list is empty.</h2>
-              <p className="mt-2 text-muted-foreground">Browse our catalog to find frames you love!</p>
-              <Button asChild className="mt-6" variant="default">
-                  <Link href="/catalog">Explore Catalog</Link>
-              </Button>
-          </div>
-        )
-      ) : (
+  useEffect(() => {
+    const fetchFrames = async () => {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/Phantozweb/Visionary-/refs/heads/main/lenskartdata.json');
+        const data = await response.json();
+        const framesWithAllVariations = data.flatMap((frame: Frame) =>
+            (frame.variations || []).map(variation => ({ ...frame, ...variation }))
+        );
+        setAllFrames(framesWithAllVariations);
+      } catch (error) {
+        console.error('Failed to fetch frames data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchFrames();
+  }, []);
+
+  const favoriteFrames = allFrames.filter((frame) => favorites.includes(frame.id));
+
+  const renderContent = () => {
+     if (isLoading || !isInitialized) {
+      return (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
           {Array.from({ length: 3 }).map((_, i) => (
              <div key={i} className="flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl rounded-lg border bg-card text-card-foreground shadow-sm">
@@ -55,7 +52,42 @@ export default function FavoritesPage() {
             </div>
           ))}
         </div>
-      )}
+      );
+    }
+    
+    if (favoriteFrames.length > 0) {
+        return (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+                {favoriteFrames.map((frame) => (
+                <FrameCard
+                    key={frame.id}
+                    frame={frame}
+                    isFavorite={isFavorite}
+                    toggleFavorite={toggleFavorite}
+                />
+                ))}
+            </div>
+        )
+    }
+
+    return (
+        <div className="flex flex-col items-center justify-center text-center py-20 border-2 border-dashed rounded-lg">
+            <h2 className="text-xl font-semibold">Your favorites list is empty.</h2>
+            <p className="mt-2 text-muted-foreground">Browse our catalog to find frames you love!</p>
+            <Button asChild className="mt-6" variant="default">
+                <Link href="/catalog">Explore Catalog</Link>
+            </Button>
+        </div>
+    )
+  }
+
+  return (
+    <div className="p-4 md:p-8">
+      <header className="mb-8">
+        <h1 className="text-3xl md:text-4xl font-headline font-bold">Your Favorites</h1>
+        <p className="text-muted-foreground mt-2">The frames you love, all in one place.</p>
+      </header>
+      {renderContent()}
     </div>
   );
 }
