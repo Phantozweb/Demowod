@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -9,7 +10,6 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { Frame } from '@/lib/types';
 import { z } from 'genkit';
 
 const FrameSchema = z.object({
@@ -21,7 +21,7 @@ const FrameSchema = z.object({
   size: z.string().optional(),
 });
 
-export const SelectFramesFromCatalogInputSchema = z.object({
+const SelectFramesFromCatalogInputSchema = z.object({
   faceShape: z.string().describe("The user's face shape."),
   stylePreferences: z.string().describe("The user's style preferences."),
   pastPurchases: z
@@ -35,7 +35,7 @@ export type SelectFramesFromCatalogInput = z.infer<
   typeof SelectFramesFromCatalogInputSchema
 >;
 
-export const SelectFramesFromCatalogOutputSchema = z.object({
+const SelectFramesFromCatalogOutputSchema = z.object({
   recommendations: z
     .array(
       z.object({
