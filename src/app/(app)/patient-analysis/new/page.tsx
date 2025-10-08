@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { User, Eye, UploadCloud, FlaskConical, ArrowRight } from 'lucide-react';
+import { User, Eye, UploadCloud, FlaskConical, ArrowRight, TestTube2 } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -82,6 +82,48 @@ export default function NewPatientPage() {
         }
     };
 
+    const fillWithDemoData = () => {
+        const randomFromArray = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
+        
+        const names = ['Alex Johnson', 'Maria Garcia', 'Chen Wei', 'Fatima Al-Fassi', 'Kenji Tanaka'];
+        const genders = ['male', 'female', 'other'];
+        const occupations = ['Teacher', 'Software Engineer', 'Graphic Designer', 'Nurse', 'Marketing Manager'];
+        const lifestyles = ['Active, enjoys hiking and sports', 'Mostly sedentary, works a desk job', 'Student, spends a lot of time reading', 'Frequent traveler, needs versatile eyewear'];
+        const visualNeeds = ['Difficulty with night driving', 'Experiences eye strain from computer use', 'Needs glasses for reading fine print', 'Sensitive to bright lights and glare'];
+        const stylePrefs = ['Prefers modern, minimalist frames', 'Likes bold, statement pieces', 'Enjoys a classic, retro look', 'Looks for something professional and understated'];
+        const pastPurchases = ['Previously wore small, metal frames but found them uncomfortable.', 'Liked their last pair of acetate frames but wants a new color.', 'Has only worn contact lenses before.'];
+        const randomSphere = () => (Math.random() * 8 - 4).toFixed(2);
+        const randomCyl = () => (Math.random() * -2).toFixed(2);
+        const randomAxis = () => Math.floor(Math.random() * 180) + 1;
+        const randomAdd = () => `+${(Math.random() * 1.5 + 1).toFixed(2)}`;
+        const randomPd = () => Math.floor(Math.random() * 12) + 58;
+
+        form.reset({
+            patientName: randomFromArray(names),
+            age: Math.floor(Math.random() * 50) + 20,
+            gender: randomFromArray(genders),
+            contactInfo: `demo${Math.floor(Math.random() * 1000)}@example.com`,
+            occupation: randomFromArray(occupations),
+            lifestyle: randomFromArray(lifestyles),
+            visualNeeds: randomFromArray(visualNeeds),
+            stylePreferences: randomFromArray(stylePrefs),
+            pastPurchases: randomFromArray(pastPurchases),
+            distSphOd: randomSphere(),
+            distSphOs: randomSphere(),
+            distCyl: randomCyl(),
+            distAxis: randomAxis().toString(),
+            nearAddOd: randomAdd(),
+            nearAddOs: randomAdd(),
+            pdDist: randomPd().toString(),
+            pdNear: (randomPd() - 3).toString(),
+        });
+
+        toast({
+            title: "Demo Data Loaded",
+            description: "The form has been filled with random data.",
+          });
+    }
+
     function onSubmit(data: PatientCaseFormValues) {
         const newCase: Omit<PatientCase, 'id'> = {
             ...data,
@@ -125,9 +167,15 @@ export default function NewPatientPage() {
         </header>
 
         <div className='container mx-auto px-4 sm:px-6 lg:px-8 py-12'>
-            <header className="mb-12">
-                <h2 className="text-4xl font-extrabold tracking-tight text-white mb-2">New Patient Analysis</h2>
-                <p className="text-lg text-muted-foreground">Enter patient data for analysis and recommendations.</p>
+            <header className="mb-12 flex justify-between items-start">
+                <div>
+                    <h2 className="text-4xl font-extrabold tracking-tight text-white mb-2">New Patient Analysis</h2>
+                    <p className="text-lg text-muted-foreground">Enter patient data for analysis and recommendations.</p>
+                </div>
+                <Button onClick={fillWithDemoData} variant="outline">
+                    <TestTube2 className="mr-2 h-4 w-4" />
+                    Fill with Demo Data
+                </Button>
             </header>
 
             <Card className="p-8">
@@ -148,13 +196,13 @@ export default function NewPatientPage() {
                                     <FormField control={form.control} name="age" render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>Age</FormLabel>
-                                            <FormControl><Input type="number" placeholder="e.g., 42" {...field} /></FormControl>
+                                            <FormControl><Input type="number" placeholder="e.g., 42" {...field} value={field.value ?? ''} /></FormControl>
                                         </FormItem>
                                     )}/>
                                     <FormField control={form.control} name="gender" render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>Gender</FormLabel>
-                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <Select onValueChange={field.onChange} value={field.value}>
                                                 <FormControl>
                                                     <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
                                                 </FormControl>
@@ -295,4 +343,5 @@ export default function NewPatientPage() {
         </div>
     </div>
   );
-}
+
+    
