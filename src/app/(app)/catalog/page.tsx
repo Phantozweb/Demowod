@@ -28,18 +28,20 @@ export default function CatalogPage() {
   useEffect(() => {
     const fetchFrames = async () => {
       try {
-        const [fullRimRes, halfRimRes, rimlessRes, squareRes] = await Promise.all([
+        const [fullRimRes, halfRimRes, rimlessRes, squareRes, rectangleRes] = await Promise.all([
           fetch('/fullrim-frames.json'),
           fetch('/halfrim-frames.json'),
           fetch('/rimless-frames.json'),
           fetch('/square-frames.json'),
+          fetch('/rectangle-frames.json'),
         ]);
         const fullRimData = (await fullRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'full rim' }));
         const halfRimData = (await halfRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'half rim' }));
         const rimlessData = (await rimlessRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'rimless' }));
         const squareData = (await squareRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'square' }));
+        const rectangleData = (await rectangleRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'rectangle' }));
         
-        setFrames([...fullRimData, ...halfRimData, ...rimlessData, ...squareData]);
+        setFrames([...fullRimData, ...halfRimData, ...rimlessData, ...squareData, ...rectangleData]);
       } catch (error) {
         console.error('Failed to fetch frames data:', error);
       } finally {

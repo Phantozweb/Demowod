@@ -1,0 +1,642 @@
+
+[
+  {
+    "id": 218257,
+    "sku": "eye:vincent-chase-vc-e17135-c1-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E17135",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e17135-c1-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "782",
+    "purchaseCount": 37905,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffd700",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e17135-c1-eyeglasses__dsc5594_03_06_2024.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e17135-c1-eyeglasses__dsc5593_03_06_2024.jpg"
+    },
+    "colorOptions": []
+  },
+  {
+    "id": 216742,
+    "sku": "eye:john-jacobs-jj-e16847-c1-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E16847",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e16847-c1-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "780",
+    "purchaseCount": 42010,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#00ff00",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/green-brown-full-rim-rectangle-john-jacobs-tr-flex-jj-e16847-c1-eyeglasses__dsc5069_23_04_2024.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/green-brown-full-rim-rectangle-john-jacobs-tr-flex-jj-e16847-c1-eyeglasses__dsc5067_23_04_2024.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 216742,
+        "color": "#00ff00",
+        "productURL": "/john-jacobs-jj-e16847-c1-eyeglasses.html"
+      },
+      {
+        "id": 216743,
+        "color": "#f1f1f1",
+        "productURL": "/john-jacobs-jj-e16847-c2-eyeglasses.html"
+      },
+      {
+        "id": 216744,
+        "color": "#4682B4",
+        "productURL": "/john-jacobs-jj-e16847-c3-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 135440,
+    "sku": "eye:john-jacobs-rimless-jj-e12565-c3-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E12610",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-rimless-jj-e12610-c3-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "1785",
+    "purchaseCount": 81170,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#808080",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/o/john-jacobs-rimless-jj-e12565-c3-eyeglasses_john-jacobs-rimless-jj-e12565-c3-eyeglasses_g_3254.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/o/john-jacobs-rimless-jj-e12565-c3-eyeglasses_john-jacobs-rimless-jj-e12565-c3-eyeglasses_g_3253.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 135440,
+        "color": "#808080",
+        "productURL": "/john-jacobs-rimless-jj-e12610-c3-eyeglasses.html"
+      },
+      {
+        "id": 135438,
+        "color": "#ffd700",
+        "productURL": "/john-jacobs-rimless-jj-e12610-c1-eyeglasses.html"
+      },
+      {
+        "id": 135439,
+        "color": "#c0c0c0",
+        "productURL": "/john-jacobs-rimless-jj-e12610-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 217656,
+    "sku": "eye:lenskart-air-la-e17020-c2-eyeglasses",
+    "productName": "Lenskart Air",
+    "productModelName": "LA E17020",
+    "size": "Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-air-la-e17020-c2-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "372",
+    "purchaseCount": 19504,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#C1B7B0",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/silver-grey-full-rim-rectangle-lenskart-air-fusion-la-e17020-c2-eyeglasses__dsc4758_28_05_2024_28_05_2024.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/silver-grey-full-rim-rectangle-lenskart-air-fusion-la-e17020-c2-eyeglasses__dsc4757_28_05_2024_28_05_2024.jpg"
+    },
+    "colorOptions": []
+  },
+  {
+    "id": 215761,
+    "sku": "eye:vincent-chase-vc-e16689-c1-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E16689",
+    "size": "Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e16689-c1-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "786",
+    "purchaseCount": 41650,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#0000ff",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/blue-full-rim-rectangle-vincent-chase-classic-acetate-vc-e13786-c1-eyeglasses_img_6771_23feb24.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/blue-full-rim-rectangle-vincent-chase-classic-acetate-vc-e13786-c1-eyeglasses_img_6770_23feb24.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 215761,
+        "color": "#0000ff",
+        "productURL": "/vincent-chase-vc-e16689-c1-eyeglasses.html"
+      },
+      {
+        "id": 215762,
+        "color": "#303234",
+        "productURL": "/vincent-chase-vc-e16689-c2-eyeglasses.html"
+      },
+      {
+        "id": 236103,
+        "color": "#000000",
+        "productURL": "/vincent-chase-vc-e16689-black-eyeglasses.html"
+      },
+      {
+        "id": 221814,
+        "color": "#303234",
+        "productURL": "/vincent-chase-vc-e16689-c2-eyeglasses-dup.html"
+      },
+      {
+        "id": 236111,
+        "color": "#202A44",
+        "productURL": "/vincent-chase-vc-e16689-sky blue-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 137915,
+    "sku": "eye:john-jacobs-jj-e13023-c1-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E13023",
+    "size": "Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e13023-c1-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "677",
+    "purchaseCount": 65958,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#a52a2a",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/blue-brown-full-rim-rectangle-john-jacobs-rich-acetate-jj-e13023--c1-eyeglasses-ted__dsc8458_07_10_2025.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/blue-brown-full-rim-rectangle-john-jacobs-rich-acetate-jj-e13023--c1-eyeglasses-ted__dsc8456_07_10_2025.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 137915,
+        "color": "#a52a2a",
+        "productURL": "/john-jacobs-jj-e13023-c1-eyeglasses.html"
+      },
+      {
+        "id": 137916,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e13023-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 216737,
+    "sku": "eye:john-jacobs-jj-e16845-c1-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E16845",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e16845-c1-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "548",
+    "purchaseCount": 31199,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#0000ff",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/blue-gunmetal-blue-full-rim-rectangle-john-jacobs-tr-flex-jj-e16845-c1-eyeglasses__dsc5078_23_04_2024.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/blue-gunmetal-blue-full-rim-rectangle-john-jacobs-tr-flex-jj-e16845-c1-eyeglasses__dsc5077_23_04_2024.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 216737,
+        "color": "#0000ff",
+        "productURL": "/john-jacobs-jj-e16845-c1-eyeglasses.html"
+      },
+      {
+        "id": 216738,
+        "color": "#a52a2a",
+        "productURL": "/john-jacobs-jj-e16845-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 216743,
+    "sku": "eye:john-jacobs-jj-e16847-c2-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E16847",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e16847-c2-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "466",
+    "purchaseCount": 27280,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#f1f1f1",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/transparent-white-grey-full-rim-rectangle-john-jacobs-tr-flex-jj-e16847-c2-eyeglasses__dsc5189_23_04_2024.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/transparent-white-grey-full-rim-rectangle-john-jacobs-tr-flex-jj-e16847-c2-eyeglasses__dsc5188_23_04_2024.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 216743,
+        "color": "#f1f1f1",
+        "productURL": "/john-jacobs-jj-e16847-c2-eyeglasses.html"
+      },
+      {
+        "id": 216742,
+        "color": "#00ff00",
+        "productURL": "/john-jacobs-jj-e16847-c1-eyeglasses.html"
+      },
+      {
+        "id": 216744,
+        "color": "#4682B4",
+        "productURL": "/john-jacobs-jj-e16847-c3-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 134220,
+    "sku": "eye:john-jacobs-jj-e10232-c11-full-rim-rectangle-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E10232",
+    "size": "Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e10232-c11-full-rim-rectangle-eyeglasses.html",
+    "productRating": 4.75,
+    "totalNoOfRatings": "1053",
+    "purchaseCount": 72065,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/o/john-jacobs-jj-e10007-c11-full-rim-rectangle-eyeglasses_g_7196_1.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/o/john-jacobs-jj-e10007-c11-full-rim-rectangle-eyeglasses_g_7195_1.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 134220,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e10007-c11-full-rim-rectangle-eyeglasses.html"
+      },
+      {
+        "id": 213681,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e10007-c15-eyeglasses.html"
+      },
+      {
+        "id": 215281,
+        "color": "#4682B4",
+        "productURL": "/john-jacobs-jj-e10007-c16-eyeglasses.html"
+      },
+      {
+        "id": 221777,
+        "color": "#4682B4",
+        "productURL": "/john-jacobs-jj-e10007-c16-eyeglasses-dup.html"
+      },
+      {
+        "id": 221776,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e10007-c15-eyeglasses-dup.html"
+      },
+      {
+        "id": 215547,
+        "color": "#ed7e07",
+        "productURL": "/john-jacobs-jj-e10007-c16x-eyeglasses.html"
+      },
+      {
+        "id": 131241,
+        "color": "#ed7e07",
+        "productURL": "/john-jacobs-jj-e10007-c9-rectangle-eyeglasses.html"
+      },
+      {
+        "id": 221455,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e10007-c11-full-rim-rectangle-eyeglasses-dup.html"
+      }
+    ]
+  },
+  {
+    "id": 215272,
+    "sku": "eye:john-jacobs-jj-e10005-c12-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E10005",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e10005-c12-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "228",
+    "purchaseCount": 22058,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#f1f1f1",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/brown-grey-transparent-brown-full-rim-rectangle-john-jacobs-rich-acetate-jj-e10005-c12-eyeglasses_img_5371_30_9_2025.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/brown-grey-transparent-brown-full-rim-rectangle-john-jacobs-rich-acetate-jj-e10005-c12-eyeglasses_img_5367_30_9_2025.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 215272,
+        "color": "#f1f1f1",
+        "productURL": "/john-jacobs-jj-e10005-c12-eyeglasses.html"
+      },
+      {
+        "id": 215546,
+        "color": "#87cefa",
+        "productURL": "/john-jacobs-jj-e10005-c15-eyeglasses.html"
+      },
+      {
+        "id": 215545,
+        "color": "#a52a2a",
+        "productURL": "/john-jacobs-jj-e10005-c14-eyeglasses.html"
+      },
+      {
+        "id": 215544,
+        "color": "#303234",
+        "productURL": "/john-jacobs-jj-e10005-c13-eyeglasses.html"
+      },
+      {
+        "id": 132041,
+        "color": "#000000",
+        "productURL": "/john-jacobs-full-rim-rectangle-jj-e10005-c10-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 135438,
+    "sku": "eye:john-jacobs-rimless-jj-e12565-c1-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E12610",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-rimless-jj-e12610-c1-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "1785",
+    "purchaseCount": 53022,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffd700",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/Gold-Brown-Rimless-Rectangle-John-Jacobs-Supreme-Steel-JJ-E12610-C1-Eyeglasses_john-jacobs-rimless-jj-e12565-c1-eyeglasses_g_973614_02_2022.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/Gold-Brown-Rimless-Rectangle-John-Jacobs-Supreme-Steel-JJ-E12610-C1-Eyeglasses_john-jacobs-rimless-jj-e12565-c1-eyeglasses_g_973514_02_2022.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 135438,
+        "color": "#ffd700",
+        "productURL": "/john-jacobs-rimless-jj-e12610-c1-eyeglasses.html"
+      },
+      {
+        "id": 135440,
+        "color": "#808080",
+        "productURL": "/john-jacobs-rimless-jj-e12610-c3-eyeglasses.html"
+      },
+      {
+        "id": 135439,
+        "color": "#c0c0c0",
+        "productURL": "/john-jacobs-rimless-jj-e12610-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 137918,
+    "sku": "eye:john-jacobs-jj-e13024-c2-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E13024",
+    "size": "Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e13024-c2-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "876",
+    "purchaseCount": 39129,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#f1f1f1",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/transparent-full-rim-rectangle-john-jacobs-rich-acetate-jj-e13024-c2-eyeglasses-orion_g_2360_30_9_2025.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/transparent-full-rim-rectangle-john-jacobs-rich-acetate-jj-e13024-c2-eyeglasses-orion_g_2359_30_9_2025.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 137918,
+        "color": "#f1f1f1",
+        "productURL": "/john-jacobs-jj-e13024-c2-eyeglasses.html"
+      },
+      {
+        "id": 221473,
+        "color": "#a52a2a",
+        "productURL": "/john-jacobs-jj-e13024-c3-eyeglasses-dup.html"
+      },
+      {
+        "id": 137919,
+        "color": "#a52a2a",
+        "productURL": "/john-jacobs-jj-e13024-c3-eyeglasses.html"
+      },
+      {
+        "id": 137917,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e13024-c1-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 216744,
+    "sku": "eye:john-jacobs-jj-e16847-c3-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E16847",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e16847-c3-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "508",
+    "purchaseCount": 27905,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#4682B4",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/blue-transparent-blue-full-rim-rectangle-john-jacobs-tr-flex-jj-e16847-c3-eyeglasses__dsc5176_23_04_2024.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/blue-transparent-blue-full-rim-rectangle-john-jacobs-tr-flex-jj-e16847-c3-eyeglasses__dsc5178_23_04_2024.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 216744,
+        "color": "#4682B4",
+        "productURL": "/john-jacobs-jj-e16847-c3-eyeglasses.html"
+      },
+      {
+        "id": 216743,
+        "color": "#f1f1f1",
+        "productURL": "/john-jacobs-jj-e16847-c2-eyeglasses.html"
+      },
+      {
+        "id": 216742,
+        "color": "#00ff00",
+        "productURL": "/john-jacobs-jj-e16847-c1-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 210271,
+    "sku": "eye:vincent-chase-vc-e13447-c6-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E13447",
+    "size": "Extra Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e13447-c6-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "1074",
+    "purchaseCount": 77939,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffddee",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/pink-transparent-full-rim-rectangle-vincent-chase-classic-acetate-vc-e13447-c6-eyeglasses_img_2097.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/pink-transparent-full-rim-rectangle-vincent-chase-classic-acetate-vc-e13447-c6-eyeglasses_img_2096.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 210271,
+        "color": "#ffddee",
+        "productURL": "/vincent-chase-vc-e13447-c6-eyeglasses.html"
+      },
+      {
+        "id": 219783,
+        "color": "#f1f1f1",
+        "productURL": "/vincent-chase-vc-e13447-c3-eyeglasses.html"
+      },
+      {
+        "id": 221849,
+        "color": "#c0c0c0",
+        "productURL": "/vincent-chase-vc-e13447-c4-eyeglasses-dup.html"
+      },
+      {
+        "id": 221848,
+        "color": "#f1f1f1",
+        "productURL": "/vincent-chase-vc-e13447-c3-eyeglasses-dup.html"
+      },
+      {
+        "id": 219784,
+        "color": "#c0c0c0",
+        "productURL": "/vincent-chase-vc-e13447-c4-eyeglasses.html"
+      },
+      {
+        "id": 221102,
+        "color": "#ffddee",
+        "productURL": "/vincent-chase-vc-e13447-c6-eye-dup.html"
+      }
+    ]
+  }
+]
