@@ -44,7 +44,6 @@ export async function analyzeFaceShape(
 ): Promise<AnalyzeFaceShapeOutput> {
   if (!process.env.GEMINI_API_KEY) {
     console.error('GEMINI_API_KEY is not set. Skipping analysis.');
-    // Return a default or mock response to prevent crashes.
     return {
       faceShape: 'Not analyzed',
       skinTone: 'Not analyzed',
@@ -53,24 +52,6 @@ export async function analyzeFaceShape(
   return analyzeFaceShapeFlow(input);
 }
 
-const prompt = ai.definePrompt({
-  name: 'analyzeFaceShapePrompt',
-  input: { schema: AnalyzeFaceShapeInputSchema },
-  prompt: `Analyze the provided photo of a person's face. Your task is to determine their face shape and skin tone.
-
-Respond with ONLY a valid JSON object containing two keys:
-1.  "faceShape": The most prominent face shape (e.g., "Oval", "Round", "Square", "Heart").
-2.  "skinTone": The underlying skin tone (e.g., "Warm", "Cool", "Neutral").
-
-Example response:
-{
-  "faceShape": "Oval",
-  "skinTone": "Warm"
-}
-
-Photo: {{media url=photoDataUri}}`,
-});
-
 const analyzeFaceShapeFlow = ai.defineFlow(
   {
     name: 'analyzeFaceShapeFlow',
@@ -78,16 +59,38 @@ const analyzeFaceShapeFlow = ai.defineFlow(
     outputSchema: AnalyzeFaceShapeOutputSchema,
   },
   async (input) => {
-    const { output } = await prompt(input);
+    const { output } = await ai.generate({
+      prompt: `Analyze the provided photo of a person's face. Your task is to determine their face shape and skin tone.
+      
+      Respond with ONLY a valid JSON object containing two keys:
+      1.  "faceShape": The most prominent face shape (e.g., "Oval", "Round", "Square", "Heart").
+      2.  "skinTone": The underlying skin tone (e.g., "Warm", "Cool", "Neutral").
+
+      Example response:
+      {
+        "faceShape": "Oval",
+        "skinTone": "Warm"
+      }
+      
+      Photo: {{media url=photoDataUri}}`,
+      config: {
+        responseMimeType: 'application/json',
+      },
+      input: {
+        photoDataUri: input.photoDataUri,
+      },
+    });
+
     if (!output) {
       throw new Error('Analysis failed to return a result.');
     }
-    // The output from the prompt is a string, so we need to parse it as JSON.
+
+    // The model's output is a stringified JSON object when using responseMimeType
     try {
       return JSON.parse(output) as AnalyzeFaceShapeOutput;
     } catch (e) {
-      console.error("Failed to parse AI response as JSON:", output);
-      throw new Error("The AI returned an invalid response format.");
+      console.error('Failed to parse AI response as JSON:', output, e);
+      throw new Error('The AI returned an invalid response format.');
     }
   }
 );
