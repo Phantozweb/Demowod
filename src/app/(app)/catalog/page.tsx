@@ -36,6 +36,7 @@ export default function CatalogPage() {
         { url: '/round-frames.json', property: 'frameShape', value: 'round' },
         { url: '/cateye-frames.json', property: 'frameShape', value: 'cat eye' },
         { url: '/aviator-frames.json', property: 'frameShape', value: 'aviator' },
+        { url: '/geometric-frames.json', property: 'frameShape', value: 'geometric' },
       ];
 
       try {
@@ -186,6 +187,7 @@ export default function CatalogPage() {
                     <SelectItem value="round">Round</SelectItem>
                     <SelectItem value="aviator">Aviator</SelectItem>
                     <SelectItem value="cat eye">Cat Eye</SelectItem>
+                    <SelectItem value="geometric">Geometric</SelectItem>
                 </SelectContent>
             </Select>
         </div>

@@ -24,6 +24,7 @@ export default function FavoritesPage() {
         { url: '/round-frames.json', property: 'frameShape', value: 'round' },
         { url: '/cateye-frames.json', property: 'frameShape', value: 'cat eye' },
         { url: '/aviator-frames.json', property: 'frameShape', value: 'aviator' },
+        { url: '/geometric-frames.json', property: 'frameShape', value: 'geometric' },
       ];
 
       try {
