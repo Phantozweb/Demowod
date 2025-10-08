@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { User, Eye, UploadCloud, FlaskConical, ArrowRight, TestTube2, Loader, FileText } from 'lucide-react';
+import { User, Eye, UploadCloud, FlaskConical, ArrowRight, TestTube2, Loader, FileText, ScanFace } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -16,6 +16,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { useCases, type PatientCase } from '@/hooks/use-cases';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
+import { analyzeFaceShape } from '@/ai/flows/analyze-face-shape';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const patientCaseSchema = z.object({
   patientName: z.string().min(1, 'Patient name is required'),
@@ -37,6 +39,7 @@ const patientCaseSchema = z.object({
   pdNear: z.string().optional(),
   image: z.any().optional(),
   faceShape: z.string().optional(),
+  skinTone: z.string().optional(),
 });
 
 type PatientCaseFormValues = z.infer<typeof patientCaseSchema>;
@@ -67,20 +70,41 @@ export default function NewPatientPage() {
             pdDist: '',
             pdNear: '',
             faceShape: '',
+            skinTone: '',
         },
     });
 
     const [imagePreview, setImagePreview] = useState<string | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
             const reader = new FileReader();
-            reader.onloadend = () => {
+            reader.onloadend = async () => {
                 const dataUrl = reader.result as string;
                 setImagePreview(dataUrl);
                 form.setValue('image', dataUrl);
+                
+                setIsAnalyzing(true);
+                try {
+                    const result = await analyzeFaceShape({ photoDataUri: dataUrl });
+                    form.setValue('faceShape', result.faceShape);
+                    form.setValue('skinTone', result.skinTone);
+                    toast({
+                        title: 'Analysis Complete',
+                        description: `Detected Face Shape: ${result.faceShape}, Skin Tone: ${result.skinTone}`,
+                    });
+                } catch (error) {
+                    console.error('Face shape analysis failed:', error);
+                    toast({
+                        variant: 'destructive',
+                        title: 'Analysis Failed',
+                        description: 'Could not determine face shape from the image.',
+                    });
+                } finally {
+                    setIsAnalyzing(false);
+                }
             };
             reader.readAsDataURL(file);
         }
@@ -225,12 +249,20 @@ export default function NewPatientPage() {
                                         <FormControl><Input placeholder="e.g., Software Engineer" {...field} /></FormControl>
                                     </FormItem>
                                 )}/>
-                                <FormField control={form.control} name="faceShape" render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Face Shape (Optional)</FormLabel>
-                                        <FormControl><Input placeholder="e.g., Oval, Round, Square" {...field} /></FormControl>
-                                    </FormItem>
-                                )}/>
+                                <div className="grid grid-cols-2 gap-4">
+                                  <FormField control={form.control} name="faceShape" render={({ field }) => (
+                                      <FormItem>
+                                          <FormLabel>Detected Face Shape</FormLabel>
+                                          <FormControl><Input placeholder="Auto-detected..." {...field} readOnly /></FormControl>
+                                      </FormItem>
+                                  )}/>
+                                   <FormField control={form.control} name="skinTone" render={({ field }) => (
+                                      <FormItem>
+                                          <FormLabel>Detected Skin Tone</FormLabel>
+                                          <FormControl><Input placeholder="Auto-detected..." {...field} readOnly /></FormControl>
+                                      </FormItem>
+                                  )}/>
+                                </div>
                             </div>
                         </div>
 
@@ -298,7 +330,7 @@ export default function NewPatientPage() {
                         </div>
 
                         <div>
-                            <h3 className="text-2xl font-semibold text-primary mb-8 border-b pb-4">Image Upload (Optional)</h3>
+                            <h3 className="text-2xl font-semibold text-primary mb-8 border-b pb-4">Image Upload for AI Analysis</h3>
                             <div className="flex justify-center items-center w-full mt-8">
                                 <FormField
                                     control={form.control}
@@ -307,7 +339,23 @@ export default function NewPatientPage() {
                                     <FormItem className="w-full">
                                         <FormLabel htmlFor="image-upload" className={`relative flex flex-col justify-center items-center w-full h-80 bg-background rounded-lg border-2 border-dashed border-input hover:border-primary transition-all duration-300 cursor-pointer overflow-hidden ${imagePreview ? 'border-primary' : ''}`}>
                                         {imagePreview ? (
-                                            <img src={imagePreview} alt="Patient preview" className="w-full h-full object-contain rounded-lg" />
+                                            <>
+                                                <img src={imagePreview} alt="Patient preview" className="w-full h-full object-contain rounded-lg" />
+                                                <AnimatePresence>
+                                                {isAnalyzing && (
+                                                    <motion.div 
+                                                        className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center gap-4"
+                                                        initial={{ opacity: 0 }}
+                                                        animate={{ opacity: 1 }}
+                                                        exit={{ opacity: 0 }}
+                                                    >
+                                                        <div className='scanline'/>
+                                                        <ScanFace className="w-16 h-16 text-primary" />
+                                                        <p className="text-white font-medium">Analyzing face shape & skin tone...</p>
+                                                    </motion.div>
+                                                )}
+                                                </AnimatePresence>
+                                            </>
                                         ) : (
                                             <div className="flex flex-col justify-center items-center pt-5 pb-6">
                                                 <UploadCloud className="w-16 h-16 text-muted-foreground mb-4" />
@@ -336,7 +384,16 @@ export default function NewPatientPage() {
 
                     <div className="pt-10 mt-8 border-t">
                         <Button className="w-full" size="lg" type="submit" disabled={form.formState.isSubmitting || isAnalyzing}>
-                        <span>{form.formState.isSubmitting ? "Saving Case..." : "Save Case & Go To Analysis"}</span>
+                        {isAnalyzing ? (
+                            <>
+                                <Loader className='animate-spin' /> 
+                                <span>Analyzing... Please wait.</span>
+                            </>
+                        ) : form.formState.isSubmitting ? (
+                            "Saving Case..."
+                        ) : (
+                            "Save Case & Go To Analysis"
+                        )}
                         <ArrowRight />
                         </Button>
                     </div>
@@ -346,5 +403,3 @@ export default function NewPatientPage() {
         </div>
     </div>
   );
-
-    

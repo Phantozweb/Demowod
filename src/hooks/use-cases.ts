@@ -30,6 +30,7 @@ export type PatientCase = {
   pdNear?: string;
   image?: string;
   faceShape?: string;
+  skinTone?: string;
   analysis?: SelectFramesFromCatalogOutput;
 };
 
@@ -62,7 +63,6 @@ export const useCases = () => {
   const addCase = useCallback((newCaseData: Omit<PatientCase, 'id'>) => {
     const caseWithId: PatientCase = { ...newCaseData, id: `CASE-${uuidv4().slice(0,4).toUpperCase()}` };
     const caseToStore = { ...caseWithId };
-    delete caseToStore.image; // Do not store image in localStorage
     
     setCases(prevCases => {
         const updatedCases = [...prevCases, caseToStore];
@@ -77,9 +77,16 @@ export const useCases = () => {
   }, []);
 
   const updateCase = useCallback((caseId: string, updatedData: Partial<PatientCase>) => {
-    const updatedCases = cases.map(c => c.id === caseId ? { ...c, ...updatedData } : c);
-    saveCases(updatedCases);
-  }, [cases]);
+    setCases(prevCases => {
+      const updatedCases = prevCases.map(c => c.id === caseId ? { ...c, ...updatedData } : c);
+      try {
+        window.localStorage.setItem(CASES_KEY, JSON.stringify(updatedCases));
+      } catch (error) {
+        console.error('Failed to save updated case to localStorage', error);
+      }
+      return updatedCases;
+    });
+  }, []);
 
   const removeCase = useCallback((caseId: string) => {
     const updatedCases = cases.filter((c) => c.id !== caseId);

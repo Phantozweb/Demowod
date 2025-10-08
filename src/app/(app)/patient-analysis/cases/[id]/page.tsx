@@ -3,7 +3,7 @@
 
 import { useParams, useSearchParams } from 'next/navigation';
 import { useCases, type PatientCase } from '@/hooks/use-cases';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import {
   Card,
   CardContent,
@@ -32,6 +32,16 @@ import { useFavorites } from '@/hooks/use-favorites';
 import { FrameCard } from '@/components/frame-card';
 import { ProductPreviewCard } from '@/components/product-preview-card';
 
+function FormattedReasoning({ text }: { text: string }) {
+  const parts = text.split(/\*\*(.*?)\*\*/g);
+  return (
+    <>
+      {parts.map((part, i) =>
+        i % 2 === 1 ? <strong key={i}>{part}</strong> : part
+      )}
+    </>
+  );
+}
 
 export default function CaseDetailPage() {
   const params = useParams();
@@ -149,9 +159,7 @@ export default function CaseDetailPage() {
     analysisRun.current = true;
   
     // Wait for frames to be fetched before running analysis
-    let framesToAnalyze = allFrames;
     if (isFetchingFrames) {
-      // Create a promise that resolves when frames are fetched
       await new Promise<void>(resolve => {
         const interval = setInterval(() => {
           if (!isFetchingFrames) {
@@ -160,10 +168,9 @@ export default function CaseDetailPage() {
           }
         }, 100);
       });
-      // After waiting, allFrames state might not be updated yet, so we fetch it again
-      // A better approach would be to refactor fetchFrames to be callable and awaitable here.
-      // For now, we will proceed with the potentially stale `allFrames` or wait a bit.
     }
+
+    const framesToAnalyze = allFrames;
   
     if (framesToAnalyze.length === 0) {
       console.error("Frame catalog is empty. Cannot run analysis.");
@@ -238,10 +245,12 @@ export default function CaseDetailPage() {
     (frame.variations && frame.variations.length > 0 ? frame.variations : [{...frame}]).map((variation: Frame | FrameVariation) => ({...frame, ...variation}))
   );
 
-  const recommendedFrames = analysisResult?.recommendations?.map(rec => {
-    const frame = flatFrames.find(f => f.id === rec.id);
-    return frame ? { ...frame, reasoning: rec.reasoning } : null;
-  }).filter((f): f is Frame & { reasoning: string } => f !== null);
+  const recommendedFrames = useMemo(() => {
+    return analysisResult?.recommendations?.map(rec => {
+      const frame = flatFrames.find(f => f.id === rec.id);
+      return frame ? { ...frame, reasoning: rec.reasoning } : null;
+    }).filter((f): f is Frame & { reasoning: string } => f !== null) || [];
+  }, [analysisResult, flatFrames]);
 
   const handlePreview = (frame: Frame) => {
     setSelectedFrame(frame);
@@ -303,6 +312,14 @@ export default function CaseDetailPage() {
                 </p>
               </div>
               <div className="text-sm space-y-1">
+                <p>
+                  <span className="font-semibold">Face Shape:</span>{' '}
+                  {caseItem?.faceShape || 'N/A'}
+                </p>
+                 <p>
+                  <span className="font-semibold">Skin Tone:</span>{' '}
+                  {caseItem?.skinTone || 'N/A'}
+                </p>
                 <p>
                   <span className="font-semibold">Occupation:</span>{' '}
                   {caseItem?.occupation || 'N/A'}
@@ -389,8 +406,15 @@ export default function CaseDetailPage() {
                                     <Info className="text-primary h-5 w-5" /> AI Reasoning
                                 </h3>
                                 <p className="text-muted-foreground text-sm bg-card p-3 rounded-md border">
-                                    {frame.reasoning}
+                                    <FormattedReasoning text={frame.reasoning} />
                                 </p>
+                                <div className="mt-4 flex items-center justify-between">
+                                  <p className="text-lg font-semibold text-primary">{`${frame.price?.symbol || ''}${frame.price?.lkPrice ?? frame.price?.salesPrice}`}</p>
+                                  <Button variant="secondary" onClick={() => handlePreview(frame)}>
+                                    <Eye className="mr-2 h-4 w-4" />
+                                    View Details
+                                  </Button>
+                                </div>
                            </div>
                         </div>
                     ))}
