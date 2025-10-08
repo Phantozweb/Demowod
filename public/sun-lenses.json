@@ -1,0 +1,75 @@
+
+[
+    {
+        "id": 201,
+        "name": "HOYA Polarized HEV™",
+        "description": "Reduces blinding glare, improves contrast, and decreases light sensitivity with superior blue light filtering.",
+        "features": [
+            "Up to 99% reduction of reflected glare",
+            "Improves contrast by filtering out up to 97% of blue light",
+            "Darker lenses for light-sensitive patients",
+            "Impact-resistant polycarbonate material (gray, brown, green)",
+            "Best protection against UV and harmful outdoor blue light"
+        ],
+        "use_case": "Ideal for patients needing maximum glare reduction and contrast improvement in bright sunlight, especially those sensitive to light.",
+        "targetUser": "Light-sensitive patients",
+        "category": "Sun"
+    },
+    {
+        "id": 202,
+        "name": "HOYA Lumacore™ Sun Lenses",
+        "description": "Durable mirror lenses with embedded technology and polarization benefits for lasting performance.",
+        "features": [
+            "Embedded Mirror Technology: No peeling or scratching",
+            "Engineered to resist daily wear",
+            "Reduces glare and boosts comfort",
+            "Vibrant mirror colors (Silver/Gray, Gold/Brown)"
+        ],
+        "use_case": "For patients seeking stylish, long-lasting mirror lenses that offer the benefits of polarization without the risk of coating damage.",
+        "targetUser": "Fashion-conscious patients",
+        "category": "Sun"
+    },
+    {
+        "id": 203,
+        "name": "HOYA Mirror Collection",
+        "description": "Fashionable mirrored lenses with optimal sun protection and glare reduction.",
+        "features": [
+            "Reflects light away from the lens surface",
+            "Reduces discomfort and eye strain from glare",
+            "16 solid mirror options available",
+            "3 flash mirror options available",
+            "Backside AR for increased clarity"
+        ],
+        "use_case": "For patients who want a wide variety of stylish mirror options combined with the visual benefits of polarization and AR coatings.",
+        "targetUser": "Style-focused patients",
+        "category": "Sun"
+    },
+    {
+        "id": 204,
+        "name": "HOYA Polarized Lenses",
+        "description": "Reduces blinding glare and improves visual comfort in intense sunlight.",
+        "features": [
+            "Reduces blinding reflections",
+            "Enhanced contrast for improved visual performance",
+            "Available in a wide range of designs and fashion colors",
+            "UV protection"
+        ],
+        "use_case": "Essential for patients who need safer driving in sunny conditions and improved visual comfort for outdoor activities.",
+        "targetUser": "All patients for outdoor use",
+        "category": "Sun"
+    },
+    {
+        "id": 205,
+        "name": "Sensity® Family",
+        "description": "Light-reactive lenses that adapt to different light conditions, providing comfort and protection both indoors and outdoors.",
+        "features": [
+            "Consistent performance with Stabilight Technology*",
+            "Outstanding contrast and glare reduction",
+            "100% protection against UV rays",
+            "Blue light protection indoors and outdoors**"
+        ],
+        "use_case": "For patients who want the convenience of a single pair of glasses for both indoor and outdoor use, with options for varying levels of darkness and fadeback speed.",
+        "targetUser": "Patients seeking convenience",
+        "category": "Photochromic"
+    }
+]
