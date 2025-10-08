@@ -28,20 +28,20 @@ export default function Home() {
               </p>
               <div className="mt-8 flex justify-center gap-4">
                 <div className="inline-flex rounded-md shadow-lg">
-                  <Button asChild>
-                    <Link href="/patient-analysis">
-                      <span>Get Started</span>
-                      <ArrowRight className="ml-2" />
-                    </Link>
-                  </Button>
+                    <Button asChild>
+                        <Link href="/patient-analysis">
+                        <span>Get Started</span>
+                        <ArrowRight className="ml-2" />
+                        </Link>
+                    </Button>
                 </div>
                  <div className="inline-flex rounded-md">
-                  <Button asChild variant="outline">
-                    <Link href="/demo">
-                      <span>View Showcase</span>
-                      <ArrowRight className="ml-2" />
-                    </Link>
-                  </Button>
+                    <Button asChild variant="outline">
+                        <Link href="/demo">
+                            <span>View Showcase</span>
+                            <ArrowRight className="ml-2" />
+                        </Link>
+                    </Button>
                 </div>
               </div>
             </div>
@@ -57,7 +57,7 @@ export default function Home() {
                 Harnessing the power of AI to redefine eye care.
               </p>
             </div>
-            <div className="mt-12 grid gap-8 md:grid-cols-3">
+            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               <div className="flex flex-col items-center text-center p-8 rounded-xl bg-background shadow-sm hover:shadow-lg transition-shadow duration-300">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <User className="text-3xl" />
@@ -94,6 +94,22 @@ export default function Home() {
                   lifestyle, and visual needs.
                 </p>
               </div>
+              <div className="flex flex-col items-center text-center p-8 rounded-xl bg-background shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <FileText className="text-3xl" />
+                </div>
+                <h3 className="mt-6 text-xl font-semibold text-white">
+                  Open Focus CaseX
+                </h3>
+                <p className="mt-2 text-base text-muted-foreground">
+                  Explore the deployed application and experience the full suite of features firsthand.
+                </p>
+                <Button asChild variant="link" className="mt-4">
+                  <a href="https://focuscasex.netlify.app" target="_blank" rel="noopener noreferrer">
+                    Visit Site <ArrowRight className="ml-2" />
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -109,7 +125,7 @@ export default function Home() {
               The future of optical assistance. AI-powered recommendations for the perfect vision and style.
             </p>
             <div className="mt-8 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-              <p>© 2024 Focus CaseX. All rights reserved.</p>
+              <p>© 2025 Focus CaseX. All rights reserved.</p>
             </div>
           </div>
         </div>
