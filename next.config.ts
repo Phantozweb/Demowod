@@ -28,6 +28,18 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'static5.lenskart.com',
+        port: '',
+        pathname: '/**',
+      },
+       {
+        protocol: 'https',
+        hostname: 'ds-static.lenskart.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
