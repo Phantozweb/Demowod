@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -24,7 +23,7 @@ interface FrameCardProps {
 export function FrameCard({ frame, isFavorite, toggleFavorite }: FrameCardProps) {
   const favorite = isFavorite(frame.id);
   const imageUrl = frame.productImage?.url;
-  const price = frame.price ? `${frame.price.symbol}${frame.price.lkPrice}` : 'N/A';
+  const price = frame.price ? `${frame.price.symbol}${frame.price.lkPrice ?? frame.price.salesPrice}` : 'N/A';
 
   return (
     <Card className="flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl">
@@ -73,4 +72,3 @@ export function FrameCard({ frame, isFavorite, toggleFavorite }: FrameCardProps)
     </Card>
   );
 }
-

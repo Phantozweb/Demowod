@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -14,7 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Search } from 'lucide-react';
 import { FrameCard } from '@/components/frame-card';
 import { useFavorites } from '@/hooks/use-favorites';
-import { Frame } from '@/lib/types';
+import { Frame, FrameVariation } from '@/lib/types';
 
 
 export default function CatalogPage() {
@@ -69,7 +68,7 @@ export default function CatalogPage() {
     }
     
     const allFrames = frames.flatMap(frame => 
-      (frame.variations || []).map(variation => ({...frame, ...variation}))
+      (frame.variations && frame.variations.length > 0 ? frame.variations : [{...frame}]).map((variation: Frame | FrameVariation) => ({...frame, ...variation}))
     );
 
     const filteredFrames = allFrames.filter(frame => {

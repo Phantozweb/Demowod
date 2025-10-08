@@ -1,8 +1,7 @@
-
 export type FrameVariation = {
     id: number;
     color: string;
-    glassColor?: string;
+    productURL: string;
     price?: {
       currency: string;
       basePrice: number;
@@ -12,10 +11,10 @@ export type FrameVariation = {
     };
     productImage?: {
       url: string;
+      frontURL?: string;
     };
     sku?: string;
     size?: string;
-    productURL?: string;
     productRating?: number;
     totalNoOfRatings?: string;
     purchaseCount?: number;
@@ -31,6 +30,7 @@ export type FrameVariation = {
   }
 
 export type Frame = {
+  id: number;
   productName: string;
   productModelName: string;
   classification: string;
@@ -40,4 +40,31 @@ export type Frame = {
   tags?: string;
   lenskart_url?: string;
   variations?: FrameVariation[];
+  sku?: string;
+  size?: string;
+  productURL?: string;
+  productRating?: number;
+  totalNoOfRatings?: string;
+  purchaseCount?: number;
+  price?: {
+    currency: string;
+    symbol: string;
+    basePrice: number;
+    salesPrice?: number;
+    lkPrice?: number;
+  };
+  discount?: {
+    label: string;
+    textColor: string;
+  };
+  color?: string;
+  productImage?: {
+    url: string;
+    frontURL?: string;
+  };
+  colorOptions?: {
+    id: number;
+    color: string;
+    productURL: string;
+  }[];
 };

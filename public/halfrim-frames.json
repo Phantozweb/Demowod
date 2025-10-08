@@ -1,3 +1,4 @@
+
 [
   {
     "id": 225390,
@@ -5,9 +6,9 @@
     "productName": "John Jacobs",
     "productModelName": "JJ E70077",
     "size": "Narrow",
-    "classification": "eyeframe",
     "frameType": "half rim",
     "frameShape": "cat eye",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/john-jacobs-jj-e70077-c1-eyeglasses.html",
     "productRating": 4.8,
     "totalNoOfRatings": "207",
@@ -16,8 +17,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 4900,
-      "salesPrice": 4300,
-      "lkPrice": 4300
+      "salesPrice": 4300
     },
     "discount": {
       "label": "(12% OFF)",
@@ -47,9 +47,9 @@
     "productName": "Vincent Chase",
     "productModelName": "VC E17576",
     "size": "Narrow",
-    "classification": "eyeframe",
     "frameType": "half rim",
     "frameShape": "cat eye",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/vincent-chase-vc-e17576-c1-eyeglasses.html",
     "productRating": 4.8,
     "totalNoOfRatings": "148",
@@ -58,8 +58,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 1900,
-      "salesPrice": 1400,
-       "lkPrice": 1400
+      "salesPrice": 1400
     },
     "discount": {
       "label": "(26% OFF)",
@@ -78,9 +77,9 @@
     "productName": "Vincent Chase",
     "productModelName": "VC E16192",
     "size": "Medium",
-    "classification": "eyeframe",
-    "frameType": "half rim",
+     "frameType": "half rim",
     "frameShape": "geometric",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/vincent-chase-vc-e16192-c1-eyeglasses.html",
     "productRating": 4.85,
     "totalNoOfRatings": "499",
@@ -89,8 +88,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 1900,
-      "salesPrice": 1400,
-       "lkPrice": 1400
+      "salesPrice": 1400
     },
     "discount": {
       "label": "(26% OFF)",
@@ -109,9 +107,9 @@
     "productName": "John Jacobs",
     "productModelName": "JJ E15279",
     "size": "Medium",
-    "classification": "eyeframe",
     "frameType": "half rim",
     "frameShape": "rectangle",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/john-jacobs-jj-e15279-c1-eyeglasses.html",
     "productRating": 4.95,
     "totalNoOfRatings": "101",
@@ -120,8 +118,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 4900,
-      "salesPrice": 4300,
-       "lkPrice": 4300
+      "salesPrice": 4300
     },
     "discount": {
       "label": "(12% OFF)",
@@ -140,9 +137,9 @@
     "productName": "Lenskart Air",
     "productModelName": "LA E11889",
     "size": "Medium",
-    "classification": "eyeframe",
-    "frameType": "half rim",
+     "frameType": "half rim",
     "frameShape": "rectangle",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/lenskart-air-la-e11889-c10-eyeglasses.html",
     "productRating": 4.75,
     "totalNoOfRatings": "170",
@@ -151,8 +148,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 1900,
-      "salesPrice": 1400,
-       "lkPrice": 1400
+      "salesPrice": 1400
     },
     "discount": {
       "label": "(26% OFF)",
@@ -171,9 +167,9 @@
     "productName": "Vincent Chase",
     "productModelName": "VC E13393-N",
     "size": "Narrow",
-    "classification": "eyeframe",
      "frameType": "half rim",
     "frameShape": "cat eye",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/vincent-chase-vc-e13393-c1-eyeglasses.html",
     "productRating": 4.8,
     "totalNoOfRatings": "2316",
@@ -182,8 +178,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 1900,
-      "salesPrice": 1400,
-       "lkPrice": 1400
+      "salesPrice": 1400
     },
     "discount": {
       "label": "(26% OFF)",
@@ -268,9 +263,9 @@
     "productName": "Vincent Chase",
     "productModelName": "VC E13818",
     "size": "Wide",
-    "classification": "eyeframe",
     "frameType": "half rim",
     "frameShape": "rectangle",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/vincent-chase-vc-e13818-c2-eyeglasses.html",
     "productRating": 4.8,
     "totalNoOfRatings": "999",
@@ -279,8 +274,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 1900,
-      "salesPrice": 1400,
-      "lkPrice": 1400
+      "salesPrice": 1400
     },
     "discount": {
       "label": "(26% OFF)",
@@ -299,9 +293,9 @@
     "productName": "Vincent Chase",
     "productModelName": "VC E11860",
     "size": "Narrow",
-    "classification": "eyeframe",
     "frameType": "half rim",
     "frameShape": "cat eye",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/vincent-chase-vc-e11860-c5-eyeglasses.html",
     "productRating": 4.8,
     "totalNoOfRatings": "1560",
@@ -310,8 +304,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 1900,
-      "salesPrice": 1400,
-      "lkPrice": 1400
+      "salesPrice": 1400
     },
     "discount": {
       "label": "(26% OFF)",
@@ -351,9 +344,9 @@
     "productName": "Vincent Chase",
     "productModelName": "VC E11891-M",
     "size": "Medium",
-    "classification": "eyeframe",
     "frameType": "half rim",
     "frameShape": "rectangle",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/vincent-chase-vc-e11891-c3-eyeglasses.html",
     "productRating": 4.75,
     "totalNoOfRatings": "1761",
@@ -362,8 +355,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 1900,
-      "salesPrice": 1400,
-      "lkPrice": 1400
+      "salesPrice": 1400
     },
     "discount": {
       "label": "(26% OFF)",
@@ -418,9 +410,9 @@
     "productName": "Vincent Chase",
     "productModelName": "VC E13400",
     "size": "Narrow",
-    "classification": "eyeframe",
     "frameType": "half rim",
-    "frameShape": "rectangle",
+    "frameShape": "cat eye",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/vincent-chase-vc-e13400-c1-eyeglasses.html",
     "productRating": 4.8,
     "totalNoOfRatings": "1203",
@@ -429,8 +421,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 1900,
-      "salesPrice": 1400,
-      "lkPrice": 1400
+      "salesPrice": 1400
     },
     "discount": {
       "label": "(26% OFF)",
@@ -495,9 +486,9 @@
     "productName": "John Jacobs",
     "productModelName": "JJ E70077",
     "size": "Narrow",
-    "classification": "eyeframe",
     "frameType": "half rim",
     "frameShape": "cat eye",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/john-jacobs-jj-e70077-c2-eyeglasses.html",
     "productRating": 4.8,
     "totalNoOfRatings": "207",
@@ -506,8 +497,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 4900,
-      "salesPrice": 4300,
-      "lkPrice": 4300
+      "salesPrice": 4300
     },
     "discount": {
       "label": "(12% OFF)",
@@ -537,9 +527,9 @@
     "productName": "Vincent Chase",
     "productModelName": "VC E13393-N",
     "size": "Narrow",
-    "classification": "eyeframe",
     "frameType": "half rim",
     "frameShape": "cat eye",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/vincent-chase-vc-e13393-c2-eyeglasses.html",
     "productRating": 4.8,
     "totalNoOfRatings": "2316",
@@ -548,8 +538,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 1900,
-      "salesPrice": 1400,
-      "lkPrice": 1400
+      "salesPrice": 1400
     },
     "discount": {
       "label": "(26% OFF)",
@@ -634,9 +623,9 @@
     "productName": "John Jacobs",
     "productModelName": "JJ E70068",
     "size": "Extra Wide",
-    "classification": "eyeframe",
     "frameType": "half rim",
     "frameShape": "rectangle",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/john-jacobs-jj-e70068-c1-eyeglasses.html",
     "productRating": 4.9,
     "totalNoOfRatings": "57",
@@ -645,8 +634,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 4900,
-      "salesPrice": 4300,
-      "lkPrice": 4300
+      "salesPrice": 4300
     },
     "discount": {
       "label": "(12% OFF)",
@@ -676,9 +664,9 @@
     "productName": "OWNDAYS",
     "productModelName": "OD E50018",
     "size": "Narrow",
-    "classification": "eyeframe",
     "frameType": "half rim",
     "frameShape": "rectangle",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/owndays-od-e50018-c2-eyeglasses.html",
     "productRating": 4.85,
     "totalNoOfRatings": "488",
@@ -687,8 +675,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 4900,
-      "salesPrice": 4300,
-      "lkPrice": 4300
+      "salesPrice": 4300
     },
     "discount": {
       "label": "(12% OFF)",
@@ -718,9 +705,9 @@
     "productName": "Vincent Chase",
     "productModelName": "VC E11860",
     "size": "Narrow",
-    "classification": "eyeframe",
     "frameType": "half rim",
     "frameShape": "cat eye",
+    "classification": "eyeframe",
     "productURL": "https://www.lenskart.com/vincent-chase-vc-e12666-c2-eyeglasses.html",
     "productRating": 4.8,
     "totalNoOfRatings": "1560",
@@ -729,8 +716,7 @@
       "currency": "INR",
       "symbol": "₹",
       "basePrice": 1900,
-      "salesPrice": 1400,
-      "lkPrice": 1400
+      "salesPrice": 1400
     },
     "discount": {
       "label": "(26% OFF)",
@@ -765,44 +751,3 @@
     ]
   }
 ]
- and rimless frames is [
-  {
-    "id": 216398,
-    "sku": "eye:vincent-chase-vc-e16827-c1-eyeglasses",
-    "productName": "Vincent Chase",
-    "productModelName": "VC E16827",
-    "size": "Medium",
-    "classification": "eyeframe",
-    "productURL": "https://www.lenskart.com/vincent-chase-vc-e16827-c1-eyeglasses.html",
-    "productRating": 4.8,
-    "totalNoOfRatings": "109",
-    "purchaseCount": 5886,
-    "price": {
-      "currency": "INR",
-      "symbol": "₹",
-      "basePrice": 1900,
-      "salesPrice": 1400
-    },
-    "discount": {
-      "label": "(26% OFF)",
-      "textColor": "#2261D1"
-    },
-    "color": "#ffd700",
-    "productImage": {
-      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/gold-rimless-rectangle-vincent-chase-scale-up-vc-e16827-c1-eyeglasses__dsc2130_23_04_2024.jpg",
-      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/gold-rimless-rectangle-vincent-chase-scale-up-vc-e16827-c1-eyeglasses__dsc2129_23_04_2024.jpg"
-    },
-    "colorOptions": [
-      {
-        "id": 216398,
-        "color": "#ffd700",
-        "productURL": "/vincent-chase-vc-e16827-c1-eyeglasses.html"
-      },
-      {
-        "id": 216399,
-        "color": "#c0c0c0",
-        "productURL": "/vincent-chase-vc-e16827-c2-eyeglasses.html"
-      }
-    ]
-  }
-] here is all rimless frame now create a new file for rimless and update halfrim json with the provided data

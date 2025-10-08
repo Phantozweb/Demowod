@@ -6,7 +6,7 @@ import { useFavorites } from '@/hooks/use-favorites';
 import { FrameCard } from '@/components/frame-card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Frame } from '@/lib/types';
+import { Frame, FrameVariation } from '@/lib/types';
 
 export default function FavoritesPage() {
   const { favorites, isFavorite, toggleFavorite, isInitialized } = useFavorites();
@@ -35,7 +35,7 @@ export default function FavoritesPage() {
   }, []);
 
   const flatFrames = allFrames.flatMap(frame => 
-    (frame.variations || []).map(variation => ({...frame, ...variation}))
+    (frame.variations && frame.variations.length > 0 ? frame.variations : [{...frame}]).map((variation: Frame | FrameVariation) => ({...frame, ...variation}))
   );
 
   const favoriteFrames = flatFrames.filter((frame) => favorites.includes(frame.id));
@@ -92,9 +92,4 @@ export default function FavoritesPage() {
     <div className="p-4 md:p-8">
       <header className="mb-8">
         <h1 className="text-3xl md:text-4xl font-headline font-bold">Your Favorites</h1>
-        <p className="text-muted-foreground mt-2">The frames you love, all in one place.</p>
-      </header>
-      {renderContent()}
-    </div>
-  );
-}
+        <p className="text-muted-foreground mt-2">
