@@ -37,17 +37,24 @@ export default function CatalogPage() {
           fetch('/round-frames.json'),
         ]);
 
-        const fullRimData: Frame[] = (await fullRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'full rim' }));
-        const halfRimData: Frame[] = (await halfRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'half rim' }));
-        const rimlessData: Frame[] = (await rimlessRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'rimless' }));
-        const squareData: Frame[] = (await squareRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'square' }));
-        const rectangleData: Frame[] = (await rectangleRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'rectangle' }));
-        const roundData: Frame[] = (await roundRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'round' }));
-
-        const allFrames = [...fullRimData, ...halfRimData, ...rimlessData, ...squareData, ...rectangleData, ...roundData];
+        const fullRimData: Frame[] = (await fullRimRes.json()).map((frame: any) => ({ ...frame, frameType: 'full rim' }));
+        const halfRimData: Frame[] = (await halfRimRes.json()).map((frame: any) => ({ ...frame, frameType: 'half rim' }));
+        const rimlessData: Frame[] = (await rimlessRes.json()).map((frame: any) => ({ ...frame, frameType: 'rimless' }));
+        const squareData: Frame[] = (await squareRes.json()).map((frame: any) => ({ ...frame, frameShape: 'square' }));
+        const rectangleData: Frame[] = (await rectangleRes.json()).map((frame: any) => ({ ...frame, frameShape: 'rectangle' }));
+        const roundData: Frame[] = (await roundRes.json()).map((frame: any) => ({ ...frame, frameShape: 'round' }));
+        
+        const allData = [
+          ...fullRimData,
+          ...halfRimData,
+          ...rimlessData,
+          ...squareData,
+          ...rectangleData,
+          ...roundData
+        ];
         
         // Remove duplicates by ID
-        const uniqueFrames = Array.from(new Map(allFrames.map(frame => [frame.id, frame])).values());
+        const uniqueFrames = Array.from(new Map(allData.map(frame => [frame.id, frame])).values());
 
         setFrames(uniqueFrames);
       } catch (error) {
@@ -59,6 +66,16 @@ export default function CatalogPage() {
 
     fetchFrames();
   }, []);
+
+  const handleFrameTypeChange = (value: string) => {
+    setFrameType(value);
+    setFrameShape('all');
+  };
+
+  const handleFrameShapeChange = (value: string) => {
+    setFrameShape(value);
+    setFrameType('all');
+  };
 
   const renderFrames = () => {
     if (isLoading) {
@@ -128,7 +145,7 @@ export default function CatalogPage() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </div>
-            <Select value={frameType} onValueChange={setFrameType}>
+            <Select value={frameType} onValueChange={handleFrameTypeChange}>
                 <SelectTrigger>
                     <SelectValue placeholder="Frame Type" />
                 </SelectTrigger>
@@ -139,7 +156,7 @@ export default function CatalogPage() {
                     <SelectItem value="rimless">Rimless</SelectItem>
                 </SelectContent>
             </Select>
-             <Select value={frameShape} onValueChange={setFrameShape}>
+             <Select value={frameShape} onValueChange={handleFrameShapeChange}>
                 <SelectTrigger>
                     <SelectValue placeholder="Frame Shape" />
                 </SelectTrigger>
