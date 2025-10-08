@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -15,20 +16,22 @@ export default function FavoritesPage() {
   useEffect(() => {
     const fetchFrames = async () => {
       try {
-        const [fullRimRes, halfRimRes, rimlessRes, squareRes, rectangleRes] = await Promise.all([
+        const [fullRimRes, halfRimRes, rimlessRes, squareRes, rectangleRes, roundRes] = await Promise.all([
           fetch('/fullrim-frames.json'),
           fetch('/halfrim-frames.json'),
           fetch('/rimless-frames.json'),
           fetch('/square-frames.json'),
           fetch('/rectangle-frames.json'),
+          fetch('/round-frames.json'),
         ]);
         const fullRimData = (await fullRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'full rim' }));
         const halfRimData = (await halfRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'half rim' }));
         const rimlessData = (await rimlessRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'rimless' }));
         const squareData = (await squareRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'square' }));
         const rectangleData = (await rectangleRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'rectangle' }));
+        const roundData = (await roundRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'round' }));
         
-        setAllFrames([...fullRimData, ...halfRimData, ...rimlessData, ...squareData, ...rectangleData]);
+        setAllFrames([...fullRimData, ...halfRimData, ...rimlessData, ...squareData, ...rectangleData, ...roundData]);
       } catch (error) {
         console.error('Failed to fetch frames data:', error);
       } finally {
