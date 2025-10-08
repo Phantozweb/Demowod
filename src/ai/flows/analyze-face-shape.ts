@@ -43,7 +43,7 @@ const analyzeFaceShapeFlow = ai.defineFlow(
   async ({ photoDataUri }) => {
     console.log('Analyzing face shape and skin tone...');
     const { output } = await ai.generate({
-      model: 'googleai/gemini-pro-vision',
+      model: 'googleai/gemini-1.5-flash',
       prompt: `Analyze the provided image to determine the face shape and skin tone.
 Return ONLY a valid JSON object with the keys "faceShape" and "skinTone".
 Do not include any other text, explanation, or markdown.
