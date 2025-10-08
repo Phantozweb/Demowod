@@ -23,6 +23,9 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarTrigger,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
 } from '@/components/ui/sidebar';
 import {
   Collapsible,
@@ -32,7 +35,6 @@ import {
 
 const menuItems = [
   { href: '/catalog', label: 'Product Catalog', icon: Book },
-  { href: '/patient-analysis', label: 'Patient Analysis', icon: Sparkles },
 ];
 
 export function AppSidebar() {
@@ -117,7 +119,7 @@ export function AppSidebar() {
                 </CollapsibleContent>
             </Collapsible>
 
-          {menuItems.filter(item => item.href !== '/patient-analysis').map((item) => (
+          {menuItems.map((item) => (
             <SidebarMenuItem key={item.label}>
               <SidebarMenuButton
                 asChild
