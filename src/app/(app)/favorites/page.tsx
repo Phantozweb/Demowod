@@ -25,19 +25,41 @@ export default function FavoritesPage() {
           fetch('/round-frames.json'),
         ]);
 
-        const fullRimData: Frame[] = (await fullRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'full rim' }));
-        const halfRimData: Frame[] = (await halfRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'half rim' }));
-        const rimlessData: Frame[] = (await rimlessRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'rimless' }));
-        const squareData: Frame[] = (await squareRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'square' }));
-        const rectangleData: Frame[] = (await rectangleRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'rectangle' }));
-        const roundData: Frame[] = (await roundRes.json()).map((frame: Frame) => ({ ...frame, frameShape: 'round' }));
+        const processData = async (res: Response, type: 'frameType' | 'frameShape', value: string): Promise<Frame[]> => {
+          const data = await res.json();
+          return data.map((frame: any) => ({ ...frame, [type]: value }));
+        }
 
-        const allData = [...fullRimData, ...halfRimData, ...rimlessData, ...squareData, ...rectangleData, ...roundData];
+        const fullRimData = await processData(fullRimRes, 'frameType', 'full rim');
+        const halfRimData = await processData(halfRimRes, 'frameType', 'half rim');
+        const rimlessData = await processData(rimlessRes, 'frameType', 'rimless');
+        const squareData = await processData(squareRes, 'frameShape', 'square');
+        const rectangleData = await processData(rectangleRes, 'frameShape', 'rectangle');
+        const roundData = await processData(roundRes, 'frameShape', 'round');
         
-        // Remove duplicates by ID
-        const uniqueFrames = Array.from(new Map(allData.map(frame => [frame.id, frame])).values());
+        const allData = [
+          ...fullRimData,
+          ...halfRimData,
+          ...rimlessData,
+          ...squareData,
+          ...rectangleData,
+          ...roundData
+        ];
         
+        // Use a map to merge properties for frames with the same id
+        const framesMap = new Map<number, Frame>();
+        allData.forEach(frame => {
+          if (framesMap.has(frame.id)) {
+            const existingFrame = framesMap.get(frame.id);
+            framesMap.set(frame.id, { ...existingFrame, ...frame });
+          } else {
+            framesMap.set(frame.id, frame);
+          }
+        });
+        
+        const uniqueFrames = Array.from(framesMap.values());
         setAllFrames(uniqueFrames);
+
       } catch (error) {
         console.error('Failed to fetch frames data:', error);
       } finally {
