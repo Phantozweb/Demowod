@@ -15,6 +15,7 @@ import { Search } from 'lucide-react';
 import { FrameCard } from '@/components/frame-card';
 import { useFavorites } from '@/hooks/use-favorites';
 import { Frame, FrameVariation } from '@/lib/types';
+import { ProductPreviewCard } from '@/components/product-preview-card';
 
 
 export default function CatalogPage() {
@@ -24,6 +25,7 @@ export default function CatalogPage() {
   const [frameType, setFrameType] = useState('all');
   const [frameShape, setFrameShape] = useState('all');
   const { isFavorite, toggleFavorite } = useFavorites();
+  const [selectedFrame, setSelectedFrame] = useState<Frame | null>(null);
 
   useEffect(() => {
     const fetchFrames = async () => {
@@ -85,6 +87,18 @@ export default function CatalogPage() {
 
     fetchFrames();
   }, []);
+  
+  const allFrames = frames.flatMap(frame => 
+    (frame.variations && frame.variations.length > 0 ? frame.variations : [{...frame}]).map((variation: Frame | FrameVariation) => ({...frame, ...variation}))
+  );
+
+  const filteredFrames = allFrames.filter(frame => {
+    const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
+    const typeMatch = frameType === 'all' || (frame.frameType && frame.frameType.toLowerCase() === frameType);
+    const shapeMatch = frameShape === 'all' || (frame.frameShape && frame.frameShape.toLowerCase() === frameShape);
+    
+    return nameMatch && (typeMatch && shapeMatch);
+  });
 
   const handleFrameTypeChange = (value: string) => {
     setFrameType(value);
@@ -95,6 +109,10 @@ export default function CatalogPage() {
     setFrameShape(value);
     setFrameType('all');
   };
+
+  const handlePreview = (frame: Frame) => {
+    setSelectedFrame(frame);
+  }
 
   const renderFrames = () => {
     if (isLoading) {
@@ -118,18 +136,6 @@ export default function CatalogPage() {
       );
     }
     
-    const allFrames = frames.flatMap(frame => 
-      (frame.variations && frame.variations.length > 0 ? frame.variations : [{...frame}]).map((variation: Frame | FrameVariation) => ({...frame, ...variation}))
-    );
-
-    const filteredFrames = allFrames.filter(frame => {
-      const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
-      const typeMatch = frameType === 'all' || (frame.frameType && frame.frameType.toLowerCase() === frameType);
-      const shapeMatch = frameShape === 'all' || (frame.frameShape && frame.frameShape.toLowerCase() === frameShape);
-      
-      return nameMatch && typeMatch && shapeMatch;
-    });
-
     if (filteredFrames.length === 0) {
       return <div className="text-center py-20 text-muted-foreground">No frames found matching your criteria.</div>
     }
@@ -137,7 +143,7 @@ export default function CatalogPage() {
     return (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             {filteredFrames.map(frame => (
-                <FrameCard key={frame.id} frame={frame} isFavorite={isFavorite} toggleFavorite={toggleFavorite} />
+                <FrameCard key={frame.id} frame={frame} isFavorite={isFavorite} toggleFavorite={toggleFavorite} onPreview={handlePreview} />
             ))}
         </div>
     )
@@ -146,12 +152,21 @@ export default function CatalogPage() {
   return (
     <div className="p-4 md:p-8">
       <header className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-headline font-bold">
-          Product Catalog
-        </h1>
-        <p className="mt-2 text-muted-foreground">
-          Explore our comprehensive range of frames.
-        </p>
+        <div className="flex items-baseline justify-between">
+            <div>
+                <h1 className="text-3xl md:text-4xl font-headline font-bold">
+                Product Catalog
+                </h1>
+                <p className="mt-2 text-muted-foreground">
+                Explore our comprehensive range of frames.
+                </p>
+            </div>
+            {!isLoading && (
+            <p className='text-sm text-muted-foreground'>
+                Showing {filteredFrames.length} of {allFrames.length} frames
+            </p>
+            )}
+        </div>
       </header>
 
       <div className="mb-8 p-4 border rounded-lg bg-card">
@@ -193,6 +208,15 @@ export default function CatalogPage() {
         </div>
       </div>
       {renderFrames()}
+      {selectedFrame && (
+        <ProductPreviewCard
+          frame={selectedFrame}
+          isOpen={!!selectedFrame}
+          onClose={() => setSelectedFrame(null)}
+          isFavorite={isFavorite}
+          toggleFavorite={toggleFavorite}
+        />
+      )}
     </div>
   );
 }
