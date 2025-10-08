@@ -88,11 +88,16 @@ export default function CatalogPage() {
 
     const fetchLenses = async () => {
         try {
-            const res = await fetch('/single-vision-lenses.json');
-            if(res.ok) {
-                const data = await res.json();
-                setLenses(data);
-            }
+            const [singleVisionRes, progressiveRes] = await Promise.all([
+                fetch('/single-vision-lenses.json'),
+                fetch('/progressive-lenses.json')
+            ]);
+            
+            const singleVisionLenses = singleVisionRes.ok ? await singleVisionRes.json() : [];
+            const progressiveLenses = progressiveRes.ok ? await progressiveRes.json() : [];
+            
+            setLenses([...singleVisionLenses, ...progressiveLenses]);
+
         } catch (error) {
             console.error('Failed to fetch lenses data:', error);
         }
@@ -317,7 +322,5 @@ export default function CatalogPage() {
     </div>
   );
 }
-
-    
 
     

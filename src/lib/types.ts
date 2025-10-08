@@ -73,7 +73,7 @@ export type Lens = {
     id: number;
     name: string;
     description: string;
-    price: number;
+    price?: number;
     features: string[];
     use_case: string;
     targetUser: string;

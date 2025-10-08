@@ -1,0 +1,103 @@
+
+[
+    {
+        "id": 101,
+        "name": "iD MyStyle®3",
+        "description": "A highly personalized progressive lens tailored to individual needs, overcoming typical non-adapt complaints.",
+        "features": [
+            "NEW! AdaptEase™ Technology",
+            "NEW! 3D Binocular Vision™",
+            "Integrated Dual Surface™ (iD)",
+            "Binocular Harmonization Technology™"
+        ],
+        "use_case": "For patients wanting a fully tailored experience with no compromise in vision, overcoming typical adaptation issues.",
+        "targetUser": "Discerning patients requiring a high degree of personalization.",
+        "category": "Progressive"
+    },
+    {
+        "id": 102,
+        "name": "iD LifeStyle®4",
+        "description": "A progressive lens offering a customized visual experience and improved comfort, with faster adaptation.",
+        "features": [
+            "3D Binocular Vision™ technology",
+            "Integrated Dual Surface™ (iD)",
+            "Binocular Harmonization Technology™",
+            "Available in polarized"
+        ],
+        "use_case": "For patients seeking a customized visual experience with faster adaptation and improved visual comfort.",
+        "targetUser": "Active individuals needing a versatile and comfortable progressive lens.",
+        "category": "Progressive"
+    },
+    {
+        "id": 103,
+        "name": "iD LifeStyle®3",
+        "description": "Provides a customized visual experience with a focus on ease of adaptation and improved comfort.",
+        "features": [
+            "Integrated Dual Surface™ (iD)",
+            "Binocular Harmonization Technology™",
+            "Three lifestyle-based designs",
+            "Available in polarized"
+        ],
+        "use_case": "For patients prioritizing ease of adaptation and a comfortable, customized visual experience.",
+        "targetUser": "New and existing progressive wearers looking for an easy-to-adapt lens.",
+        "category": "Progressive"
+    },
+    {
+        "id": 104,
+        "name": "iD WorkStyle® 3",
+        "description": "A custom solution designed to relieve Digital Eye Strain (DES) and increase productivity for wearers.",
+        "features": [
+            "NEW! AdaptEase™ Technology",
+            "NEW! 3D Binocular Vision™",
+            "Three working distance-specific options",
+            "Binocular Harmonization Technology™"
+        ],
+        "use_case": "Specifically designed for patients who spend significant time on digital devices, providing relief from Digital Eye Strain.",
+        "targetUser": "Office workers, students, and anyone with heavy screen time.",
+        "category": "Progressive"
+    },
+    {
+        "id": 105,
+        "name": "Array®2 & Array®2 Wrap",
+        "description": "A value-focused progressive lens offering unsurpassed comfort and compatibility with any material.",
+        "features": [
+            "BKS Technology®",
+            "Binocular Harmonization Technology™",
+            "Variable or fixed corridor lengths",
+            "Wrap frame compatible version"
+        ],
+        "use_case": "Provides the best value for patients' needs, ensuring comfort and reducing adaptation issues, with options for stylish sun frames.",
+        "targetUser": "Budget-conscious patients who do not want to compromise on comfort.",
+        "category": "Progressive"
+    },
+    {
+        "id": 106,
+        "name": "Summit® cd & ecp BKS™",
+        "description": "An optimized progressive lens with a smoother transition between zones for wide, stable, and natural vision.",
+        "features": [
+            "BKS Technology®",
+            "Short corridor available",
+            "Optimized prescription",
+            "More add-on feature choices"
+        ],
+        "use_case": "For patients who need a smooth transition between viewing zones and natural vision, with more choices for add-on features.",
+        "targetUser": "Patients looking for a balanced and natural visual experience.",
+        "category": "Progressive"
+    },
+    {
+        "id": 107,
+        "name": "Amplitude® BKS™ & Mini BKS™",
+        "description": "A budget-friendly, high-quality progressive lens design that offers wide, stable, and natural vision.",
+        "features": [
+            "BKS Technology®",
+            "Short corridor available",
+            "Optimized lens prescription",
+            "Smoother transition between zones"
+        ],
+        "use_case": "A high-quality, budget-friendly option for patients needing a reliable progressive lens with natural vision.",
+        "targetUser": "First-time progressive wearers or those on a budget.",
+        "category": "Progressive"
+    }
+]
+
+    

@@ -44,10 +44,9 @@ export function LensCard({ lens }: LensCardProps) {
         </div>
       </CardContent>
       <CardFooter className='flex-col items-start'>
-         <p className="text-2xl font-bold text-primary">₹{lens.price.toFixed(2)}</p>
          <div className="flex gap-2 mt-2">
             <Badge variant="outline">Lens</Badge>
-            <Badge variant="secondary">Single Vision</Badge>
+            <Badge variant="secondary">{lens.category}</Badge>
          </div>
       </CardFooter>
     </Card>
