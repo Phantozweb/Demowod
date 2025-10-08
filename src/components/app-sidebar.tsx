@@ -11,7 +11,8 @@ import {
   Book,
   Clipboard,
   FilePlus,
-  History
+  History,
+  Sparkles,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -30,6 +31,7 @@ import {
 
 const menuItems = [
   { href: '/catalog', label: 'Product Catalog', icon: Book },
+  { href: '/ai-stylist', label: 'AI Stylist', icon: Sparkles },
   { href: '/patient-analysis/new', label: 'New Patient', icon: FilePlus },
   { href: '/patient-analysis/cases', label: 'View Cases', icon: History },
 ];
