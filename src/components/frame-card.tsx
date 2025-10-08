@@ -24,7 +24,7 @@ interface FrameCardProps {
 export function FrameCard({ frame, isFavorite, toggleFavorite }: FrameCardProps) {
   const favorite = isFavorite(frame.id);
   const imageUrl = typeof frame.productImage === 'string' ? frame.productImage : frame.productImage.url;
-  const price = frame.price_details ? `${frame.price_details.symbol}${frame.price_details.lkPrice}` : `$${frame.price.toFixed(2)}`;
+  const price = frame.price_details ? `${frame.price_details.symbol}${frame.price_details.lkPrice}` : `₹${frame.price.toFixed(2)}`;
 
   return (
     <Card className="flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl">

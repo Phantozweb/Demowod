@@ -3,7 +3,7 @@ export type Frame = {
   id: number;
   productName: string;
   brand: string;
-  price: number; // This will be deprecated
+  price: number;
   price_details?: {
     basePrice: number;
     lkPrice: number;
@@ -13,7 +13,7 @@ export type Frame = {
     discount: string;
   };
   size: string;
-  productImage: string | { url: string; frontURL: string; hoverURL: string };
+  productImage: string | { url: string; frontURL?: string; hoverURL?: string };
   productRating: number;
   purchaseCount: number;
   productModelName: string;
