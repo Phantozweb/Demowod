@@ -3,15 +3,15 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, User, Eye, UploadCloud, FlaskConical, Wand2, FilePlus, History, Sparkles, Book, Heart } from 'lucide-react';
+import { Loader2, Wand2, Sparkles, FilePlus, History, Book, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import Image from 'next/image';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { FrameCard } from '@/components/frame-card';
-import { Frame } from '@/lib/types';
+import { Frame, FrameVariation } from '@/lib/types';
 import { useFavorites } from '@/hooks/use-favorites';
 
 const FAKE_DEMO_CASE = {
@@ -20,31 +20,6 @@ const FAKE_DEMO_CASE = {
   occupation: 'Software Engineer',
   stylePreferences: 'Prefers modern, lightweight, and professional frames.',
 };
-
-const FAKE_RECOMMENDED_FRAMES: (Frame & { reasoning: string })[] = [
-  {
-    id: 101,
-    productName: 'Vincent Chase',
-    brand: 'Air Classic',
-    size: 'Medium',
-    price: { currency: '$', lkPrice: 79, symbol: '$' , basePrice: 100 },
-    productImage: { url: 'https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/371x178/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e13782-c1-eyeglasses_g_2515.jpg' },
-    reasoning: 'The rectangular shape of the "VC E13782" provides a professional look that complements your oval face shape. Its lightweight construction is ideal for all-day wear, matching your need for comfort as a software engineer.',
-    productModelName: 'VC E13782',
-    classification: 'eyeglass'
-  },
-  {
-    id: 102,
-    productName: 'John Jacobs',
-    brand: 'Supreme Steel',
-    size: 'Wide',
-    price: { currency: '$', lkPrice: 95, symbol: '$' , basePrice: 120 },
-    productImage: { url: 'https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/371x178/9df78eab33525d08d6e5fb8d27136e95//j/o/john-jacobs-jj-e13520-c2-eyeglasses_g_2381.jpg' },
-    reasoning: 'For a modern and stylish alternative, the "JJ E13520" offers a sleek, metallic finish. This highly-rated frame aligns with your preference for a professional yet contemporary aesthetic.',
-    productModelName: 'JJ E13520',
-    classification: 'eyeglass'
-  },
-];
 
 const scenes = [
   { name: 'form-fill', duration: 8000 },
@@ -55,14 +30,59 @@ const scenes = [
 export default function ShowcasePage() {
   const [scene, setScene] = useState(0);
   const { isFavorite, toggleFavorite } = useFavorites();
+  const [recommendedFrames, setRecommendedFrames] = useState<(Frame & { reasoning: string })[]>([]);
+  const [isLoadingFrames, setIsLoadingFrames] = useState(true);
 
   useEffect(() => {
+    const fetchFrames = async () => {
+      const dataSources = [
+        '/fullrim-frames.json',
+        '/halfrim-frames.json',
+        '/rimless-frames.json',
+      ];
+
+      try {
+        const responses = await Promise.all(
+          dataSources.map(url => fetch(url).then(res => res.ok ? res.json() : []))
+        );
+        const allFrames: Frame[] = responses.flat();
+        
+        if (allFrames.length >= 2) {
+          const frame1 = allFrames.find(f => f.id === 13782) || allFrames[0];
+          const frame2 = allFrames.find(f => f.id === 13520) || allFrames[1];
+
+          setRecommendedFrames([
+            {
+              ...frame1,
+              price: { currency: '₹', lkPrice: 1500, symbol: '₹' , basePrice: 2000 },
+              reasoning: 'The rectangular shape of this frame provides a professional look that complements an oval face shape. Its lightweight construction is ideal for all-day wear, matching your need for comfort as a software engineer.',
+            },
+            {
+              ...frame2,
+              price: { currency: '₹', lkPrice: 3000, symbol: '₹' , basePrice: 4000 },
+              reasoning: 'For a modern and stylish alternative, this frame offers a sleek, metallic finish. This highly-rated frame aligns with your preference for a professional yet contemporary aesthetic.',
+            },
+          ]);
+        }
+      } catch (error) {
+        console.error('Failed to fetch frames for demo:', error);
+      } finally {
+        setIsLoadingFrames(false);
+      }
+    };
+
+    fetchFrames();
+  }, []);
+
+  useEffect(() => {
+    if (isLoadingFrames) return;
+
     const interval = setInterval(() => {
       setScene(prevScene => (prevScene + 1) % scenes.length);
     }, scenes[scene].duration);
 
     return () => clearInterval(interval);
-  }, [scene]);
+  }, [scene, isLoadingFrames]);
 
   const currentSceneName = scenes[scene].name;
 
@@ -107,7 +127,7 @@ export default function ShowcasePage() {
           <AnimatePresence mode="wait">
             {currentSceneName === 'form-fill' && <FormFillScene key="form-fill" />}
             {currentSceneName === 'analysis' && <AnalysisScene key="analysis" />}
-            {currentSceneName === 'results' && <ResultsScene key="results" isFavorite={isFavorite} toggleFavorite={toggleFavorite} />}
+            {currentSceneName === 'results' && <ResultsScene key="results" isFavorite={isFavorite} toggleFavorite={toggleFavorite} recommendedFrames={recommendedFrames} isLoading={isLoadingFrames} />}
           </AnimatePresence>
         </div>
       </Card>
@@ -115,34 +135,25 @@ export default function ShowcasePage() {
   );
 }
 
-// Typing Effect Hook
-const useTypingEffect = (text: string, duration: number) => {
-    const [typedText, setTypedText] = useState('');
+const AnimatedText = ({ text, delay = 0 }: { text: string, delay?: number }) => {
+    const [visible, setVisible] = useState(false);
     useEffect(() => {
-        if (text) {
-            const delay = duration / text.length;
-            let index = 0;
-            const intervalId = setInterval(() => {
-                setTypedText(prev => prev + text.charAt(index));
-                index++;
-                if (index >= text.length - 1) {
-                    clearInterval(intervalId);
-                    setTypedText(text); // Ensure full text is displayed
-                }
-            }, delay);
-            return () => clearInterval(intervalId);
-        }
-    }, [text, duration]);
-    return typedText;
+        const timer = setTimeout(() => setVisible(true), delay);
+        return () => clearTimeout(timer);
+    }, [delay]);
+
+    return (
+        <AnimatePresence>
+            {visible && (
+                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
+                    {text}
+                </motion.span>
+            )}
+        </AnimatePresence>
+    );
 };
 
-
 const FormFillScene = () => {
-    const name = useTypingEffect(FAKE_DEMO_CASE.patientName, 2000);
-    const age = useTypingEffect(FAKE_DEMO_CASE.age, 500);
-    const occupation = useTypingEffect(FAKE_DEMO_CASE.occupation, 3000);
-    const style = useTypingEffect(FAKE_DEMO_CASE.stylePreferences, 4000);
-
     return (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -157,11 +168,11 @@ const FormFillScene = () => {
           </header>
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
-                <div><Label>Full Name</Label><Input value={name} readOnly /></div>
-                <div><Label>Age</Label><Input value={age} readOnly /></div>
+                <div><Label>Full Name</Label><Input value={FAKE_DEMO_CASE.patientName} readOnly className='text-white' /></div>
+                <div><Label>Age</Label><Input value={FAKE_DEMO_CASE.age} readOnly className='text-white' /></div>
             </div>
-            <div><Label>Occupation</Label><Input value={occupation} readOnly /></div>
-            <div><Label>Style Preferences</Label><Textarea value={style} readOnly className="h-24"/></div>
+            <div><Label>Occupation</Label><Input value={FAKE_DEMO_CASE.occupation} readOnly className='text-white' /></div>
+            <div><Label>Style Preferences</Label><Textarea value={FAKE_DEMO_CASE.stylePreferences} readOnly className="h-24 text-white"/></div>
           </div>
         </motion.div>
       );
@@ -209,7 +220,15 @@ const AnalysisScene = () => {
 };
 
 
-const ResultsScene = ({ isFavorite, toggleFavorite }: { isFavorite: (id: number) => boolean, toggleFavorite: (id: number) => void }) => {
+const ResultsScene = ({ isFavorite, toggleFavorite, recommendedFrames, isLoading }: { isFavorite: (id: number) => boolean, toggleFavorite: (id: number) => void, recommendedFrames: (Frame & { reasoning: string })[], isLoading: boolean }) => {
+    if (isLoading) {
+        return (
+            <div className="flex items-center justify-center h-full">
+                <Loader2 className="animate-spin h-8 w-8 text-primary" />
+            </div>
+        );
+    }
+    
     return (
         <motion.div
           key="results"
@@ -223,7 +242,7 @@ const ResultsScene = ({ isFavorite, toggleFavorite }: { isFavorite: (id: number)
             <p className="text-muted-foreground">Top 2 frame suggestions based on patient profile.</p>
           </header>
           <div className="space-y-6">
-            {FAKE_RECOMMENDED_FRAMES.map((frame, index) => (
+            {recommendedFrames.map((frame, index) => (
               <motion.div
                 key={frame.id}
                 initial={{ opacity: 0, x: -50 }}
@@ -237,7 +256,7 @@ const ResultsScene = ({ isFavorite, toggleFavorite }: { isFavorite: (id: number)
                 <div className="md:col-span-2">
                   <h3 className="font-semibold text-lg mb-2">AI Reasoning</h3>
                   <p className="text-muted-foreground text-sm bg-background p-3 rounded-md border">
-                    {frame.reasoning}
+                    <AnimatedText text={frame.reasoning} delay={index * 300 + 500} />
                   </p>
                 </div>
               </motion.div>
@@ -246,3 +265,5 @@ const ResultsScene = ({ isFavorite, toggleFavorite }: { isFavorite: (id: number)
         </motion.div>
       );
 }
+
+    
