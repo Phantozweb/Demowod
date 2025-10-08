@@ -168,11 +168,12 @@ export default function CatalogPage() {
   }
 
   const renderFrames = () => {
-    const filteredFrames = frames.flatMap(frame => (frame.variations || []).map(variation => ({...frame, ...variation}))).filter(frame => {
+    const allFrames = frames.flatMap(frame => (frame.variations || []).map(variation => ({...frame, ...variation, frameType: frame.frameType, frameShape: frame.frameShape})));
+
+    const filteredFrames = allFrames.filter(frame => {
         const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
-        const frameData = frames.find(f => f.productModelName === frame.productModelName);
-        const typeMatch = frameType === 'all' || (frameData && frameData.frameType && frameData.frameType.toLowerCase() === frameType);
-        const shapeMatch = frameShape === 'all' || (frameData && frameData.frameShape && frameData.frameShape.toLowerCase() === frameShape);
+        const typeMatch = frameType === 'all' || (frame.frameType && frame.frameType.toLowerCase() === frameType);
+        const shapeMatch = frameShape === 'all' || (frame.frameShape && frame.frameShape.toLowerCase() === frameShape);
         return nameMatch && typeMatch && shapeMatch;
     });
 
@@ -183,7 +184,7 @@ export default function CatalogPage() {
     return (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             {filteredFrames.map(frame => (
-                <FrameCard key={frame.id} frame={frame} isFavorite={isFavorite} toggleFavorite={toggleFavorite} />
+                <FrameCard key={frame.id} frame={frame as any} isFavorite={isFavorite} toggleFavorite={toggleFavorite} />
             ))}
         </div>
     )
