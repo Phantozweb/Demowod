@@ -16,14 +16,16 @@ export default function FavoritesPage() {
   useEffect(() => {
     const fetchFrames = async () => {
       try {
-        const [fullRimRes, halfRimRes] = await Promise.all([
+        const [fullRimRes, halfRimRes, rimlessRes] = await Promise.all([
           fetch('/fullrim-frames.json'),
-          fetch('/halfrim-frames.json')
+          fetch('/halfrim-frames.json'),
+          fetch('/rimless-frames.json'),
         ]);
         const fullRimData = (await fullRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'full rim' }));
         const halfRimData = (await halfRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'half rim' }));
+        const rimlessData = (await rimlessRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'rimless' }));
         
-        setAllFrames([...fullRimData, ...halfRimData]);
+        setAllFrames([...fullRimData, ...halfRimData, ...rimlessData]);
       } catch (error) {
         console.error('Failed to fetch frames data:', error);
       } finally {
