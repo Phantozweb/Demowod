@@ -37,6 +37,7 @@ const patientCaseSchema = z.object({
   pdDist: z.string().optional(),
   pdNear: z.string().optional(),
   image: z.any().optional(),
+  faceShape: z.string().optional(),
 });
 
 type PatientCaseFormValues = z.infer<typeof patientCaseSchema>;
@@ -66,6 +67,7 @@ export default function NewPatientPage() {
             nearAddOs: '',
             pdDist: '',
             pdNear: '',
+            faceShape: '',
         },
     });
 
@@ -86,6 +88,11 @@ export default function NewPatientPage() {
                     const result = await analyzeFaceShape({ photoDataUri: originalDataUrl });
                     setImagePreview(result.analyzedPhotoDataUri);
                     form.setValue('image', result.analyzedPhotoDataUri);
+                    form.setValue('faceShape', result.faceShape);
+                    toast({
+                        title: 'Analysis Complete',
+                        description: `Detected face shape: ${result.faceShape}`,
+                    })
                 } catch (error) {
                     console.error('Face analysis failed:', error);
                     toast({
@@ -151,7 +158,6 @@ export default function NewPatientPage() {
             ...data,
             date: new Date().toISOString(),
             status: 'Pending',
-            faceShape: '', // To be determined by AI
         };
         const caseId = addCase(newCase);
         toast({
@@ -249,6 +255,12 @@ export default function NewPatientPage() {
                                     <FormItem>
                                         <FormLabel>Occupation</FormLabel>
                                         <FormControl><Input placeholder="e.g., Software Engineer" {...field} /></FormControl>
+                                    </FormItem>
+                                )}/>
+                                <FormField control={form.control} name="faceShape" render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Detected Face Shape</FormLabel>
+                                        <FormControl><Input placeholder="Auto-detected by AI" {...field} readOnly className="bg-muted" /></FormControl>
                                     </FormItem>
                                 )}/>
                             </div>

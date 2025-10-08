@@ -1,9 +1,10 @@
 
 'use server';
 /**
- * @fileOverview A flow that analyzes a face image and returns a new image with analysis markings.
+ * @fileOverview A flow that analyzes a face image and returns a new image with analysis markings,
+ * along with the detected face shape and skin tone.
  *
- * - analyzeFaceShape - A function that takes an image and returns an "analyzed" version.
+ * - analyzeFaceShape - A function that takes an image and returns an "analyzed" version with data.
  * - AnalyzeFaceShapeInput - The input type for the analyzeFaceShape function.
  * - AnalyzeFaceShapeOutput - The return type for the analyzeFaceShape function.
  */
@@ -21,17 +22,21 @@ const AnalyzeFaceShapeInputSchema = z.object({
 export type AnalyzeFaceShapeInput = z.infer<typeof AnalyzeFaceShapeInputSchema>;
 
 const AnalyzeFaceShapeOutputSchema = z.object({
-  analyzedPhotoDataUri: z.string().describe('The data URI of the generated image with analysis markings.'),
+  analyzedPhotoDataUri: z
+    .string()
+    .describe('The data URI of the generated image with analysis markings.'),
+  faceShape: z.string().describe('The detected shape of the face (e.g., Oval, Round, Square).'),
+  skinTone: z.string().describe('The detected skin tone of the person in the image.'),
 });
-export type AnalyzeFaceShapeOutput = z.infer<typeof AnalyzeFaceShapeOutputSchema>;
-
+export type AnalyzeFaceShapeOutput = z.infer<
+  typeof AnalyzeFaceShapeOutputSchema
+>;
 
 export async function analyzeFaceShape(
   input: AnalyzeFaceShapeInput
 ): Promise<AnalyzeFaceShapeOutput> {
   return analyzeFaceShapeFlow(input);
 }
-
 
 const analyzeFaceShapeFlow = ai.defineFlow(
   {
@@ -40,38 +45,41 @@ const analyzeFaceShapeFlow = ai.defineFlow(
     outputSchema: AnalyzeFaceShapeOutputSchema,
   },
   async ({ photoDataUri }) => {
-    console.log('Generating image...');
-    const { media } = await ai.generate({
+    console.log('Generating image and analyzing face...');
+    const { output } = await ai.generate({
       model: 'googleai/gemini-2.5-flash-image-preview',
       prompt: [
         { media: { url: photoDataUri } },
         {
-          text: `Analyze the face in the provided image. Your task is to generate a new image with specific analysis markings overlaid. Do not change the person, background, or any other aspect of the original image.
+          text: `You are a sophisticated facial analysis AI. Your task is to analyze the face in the provided image and return two things:
+1. A new image with specific, futuristic analysis markings overlaid.
+2. A JSON object with your analysis of the face shape and skin tone.
 
-Your modifications should be:
-1.  Draw small, precise, glowing cyan dots (like futuristic HUD markers) on the following facial landmarks:
-    *   The center of each eye pupil.
-    *   The tip of the nose.
-    *   The corners of the mouth.
-    *   The point of the chin.
-    *   The outer corners of the jawline.
-2.  Draw a thin, dashed, glowing cyan line that accurately traces the overall shape of the face (the jawline and hairline).
+Image Generation Instructions:
+- Generate a new image that is identical to the original but with the following glowing cyan overlays:
+  - Draw thin, precise lines around the eyes, lips, and eyebrows.
+  - Draw a dashed line that accurately traces the overall shape of the face (jawline and hairline).
+- The style should be clean, high-tech, and professional. Do not alter the person or background.
 
-The final output must be ONLY the generated image. The style should be clean and high-tech.`,
+JSON Output Instructions:
+- Identify the primary face shape (e.g., "Oval", "Round", "Square", "Heart", "Diamond", "Oblong").
+- Identify the skin tone (e.g., "Fair", "Light", "Medium", "Tan", "Dark").
+
+The final output must be the generated image AND the structured JSON data.`,
         },
       ],
       config: {
-        // You must provide both TEXT and IMAGE, IMAGE only won't work
         responseModalities: ['TEXT', 'IMAGE'],
       },
+      output: {
+        schema: AnalyzeFaceShapeOutputSchema,
+      }
     });
 
-    if (!media.url) {
+    if (!output || !output.analyzedPhotoDataUri) {
       throw new Error('Image generation failed to return a data URI.');
     }
 
-    return {
-      analyzedPhotoDataUri: media.url,
-    };
+    return output;
   }
 );
