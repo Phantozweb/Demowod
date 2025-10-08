@@ -3,14 +3,66 @@
   {
     "id": 1,
     "name": "VisuPro™",
-    "description": "Designed for emerging presbyopes (ages 36-44) experiencing near-vision problems. Utilizes FreeForm technologies for pixel-perfect precision and outstanding visual performance.",
+    "description": "Designed for emerging presbyopes (ages 36-44) experiencing near-vision problems, offering a cost-effective transition to progressive lenses.",
     "price": 150.00,
     "features": [
       "Focus Max Optimization",
       "Binocular Harmonization Technology™",
-      "Customizable position of wear",
-      "Two lifestyle-based design options"
+      "Two lifestyle-based designs: All Day & Flex",
+      "Quicker adaptation than progressive lenses"
     ],
-    "use_case": "Ideal for emerging presbyopes and regular wearers (myopes and hyperopes) needing enhanced near-vision support for all-day use."
+    "use_case": "Ideal for early presbyopes who need help with near-vision tasks but are not ready for full progressive lenses."
+  },
+  {
+    "id": 2,
+    "name": "MySV®",
+    "description": "Personalized single vision lenses that compensate for prescriptions in all meridians, providing wider peripheral views.",
+    "price": 180.00,
+    "features": [
+      "Backside free form technology",
+      "360˚ Visual Comfort™",
+      "Optimized base curve for larger frames",
+      "Individualized based on position of wear"
+    ],
+    "use_case": "For patients needing a personalized single vision lens with enhanced visual acuity and wider views, beyond 'one-size-fits-all'."
+  },
+  {
+    "id": 3,
+    "name": "Sync III™",
+    "description": "A single vision lens with a 'boost zone' at the bottom to help relax eye muscles and alleviate digital eye strain.",
+    "price": 165.00,
+    "features": [
+      "Distance power with a lower 'boost zone'",
+      "Three boost zone power options (+0.57D, +0.95D, +1.32D)",
+      "Available in clear, photochromic, and polarized",
+      "Reduces strain from digital screens and near tasks"
+    ],
+    "use_case": "Perfect for single vision wearers of any age who spend significant time on digital devices and experience symptoms of Digital Eye Strain (DES)."
+  },
+  {
+    "id": 4,
+    "name": "iD Single Vision®",
+    "description": "A bi-aspheric design that offers an expanded peripheral viewing area and edge-to-edge clarity, especially for higher prescriptions.",
+    "price": 220.00,
+    "features": [
+      "Integrated Dual Surface™ free form technology",
+      "Expanded peripheral viewing",
+      "Edge-to-edge clarity with reduced distortion",
+      "Requires OC and monocular PD measurements"
+    ],
+    "use_case": "Patients with high prescriptions who want thinner, lighter lenses with the widest possible field of clear vision."
+  },
+  {
+    "id": 5,
+    "name": "Single Vision iQ™",
+    "description": "Utilizes progressive lens technology in a single vision design for enhanced optics and reduced peripheral distortion.",
+    "price": 200.00,
+    "features": [
+      "Spherical front with custom back surfacing",
+      "Backside design technology from PALs",
+      "Reduced distortion in peripheral areas",
+      "Requires OC and monocular PD measurements"
+    ],
+    "use_case": "For patients who want the optical benefits of high-end progressive lens technology in a single vision lens for a wider, clearer visual field."
   }
 ]
