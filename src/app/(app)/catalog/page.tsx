@@ -27,54 +27,45 @@ export default function CatalogPage() {
 
   useEffect(() => {
     const fetchFrames = async () => {
+      const dataSources = [
+        { url: '/fullrim-frames.json', property: 'frameType', value: 'full rim' },
+        { url: '/halfrim-frames.json', property: 'frameType', value: 'half rim' },
+        { url: '/rimless-frames.json', property: 'frameType', value: 'rimless' },
+        { url: '/square-frames.json', property: 'frameShape', value: 'square' },
+        { url: '/rectangle-frames.json', property: 'frameShape', value: 'rectangle' },
+        { url: '/round-frames.json', property: 'frameShape', value: 'round' },
+        { url: '/cateye-frames.json', property: 'frameShape', value: 'cat eye' },
+        { url: '/aviator-frames.json', property: 'frameShape', value: 'aviator' },
+      ];
+
       try {
-        const [fullRimRes, halfRimRes, rimlessRes, squareRes, rectangleRes, roundRes, cateyeRes] = await Promise.all([
-          fetch('/fullrim-frames.json'),
-          fetch('/halfrim-frames.json'),
-          fetch('/rimless-frames.json'),
-          fetch('/square-frames.json'),
-          fetch('/rectangle-frames.json'),
-          fetch('/round-frames.json'),
-          fetch('/cateye-frames.json'),
-        ]);
+        const responses = await Promise.all(
+          dataSources.map(source => fetch(source.url))
+        );
 
-        const processData = async (res: Response, type: 'frameType' | 'frameShape', value: string): Promise<Frame[]> => {
-          if (!res.ok) {
-            console.error(`Failed to fetch ${res.url}: ${res.statusText}`);
-            return [];
-          }
-          const data = await res.json();
-          return data.map((frame: any) => ({ ...frame, [type]: value }));
-        }
-
-        const fullRimData = await processData(fullRimRes, 'frameType', 'full rim');
-        const halfRimData = await processData(halfRimRes, 'frameType', 'half rim');
-        const rimlessData = await processData(rimlessRes, 'frameType', 'rimless');
-        const squareData = await processData(squareRes, 'frameShape', 'square');
-        const rectangleData = await processData(rectangleRes, 'frameShape', 'rectangle');
-        const roundData = await processData(roundRes, 'frameShape', 'round');
-        const cateyeData = await processData(cateyeRes, 'frameShape', 'cat eye');
-        
-        const allData = [
-          ...fullRimData,
-          ...halfRimData,
-          ...rimlessData,
-          ...squareData,
-          ...rectangleData,
-          ...roundData,
-          ...cateyeData
-        ];
-        
         const framesMap = new Map<number, Frame>();
-        allData.forEach(frame => {
-          if (framesMap.has(frame.id)) {
-            const existingFrame = framesMap.get(frame.id);
-            framesMap.set(frame.id, { ...existingFrame, ...frame });
-          } else {
-            framesMap.set(frame.id, frame);
-          }
-        });
 
+        for (let i = 0; i < responses.length; i++) {
+          const res = responses[i];
+          const source = dataSources[i];
+
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data)) {
+              data.forEach((frame: Frame) => {
+                const existingFrame = framesMap.get(frame.id) || {};
+                framesMap.set(frame.id, {
+                  ...existingFrame,
+                  ...frame,
+                  [source.property]: source.value,
+                });
+              });
+            }
+          } else {
+            console.error(`Failed to fetch ${res.url}: ${res.statusText}`);
+          }
+        }
+        
         const uniqueFrames = Array.from(framesMap.values());
         setFrames(uniqueFrames);
 
@@ -128,7 +119,7 @@ export default function CatalogPage() {
         const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
         const typeMatch = frameType === 'all' || (frame.frameType && frame.frameType.toLowerCase() === frameType);
         const shapeMatch = frameShape === 'all' || (frame.frameShape && frame.frameShape.toLowerCase() === frameShape);
-        return nameMatch && (typeMatch && shapeMatch);
+        return nameMatch && (typeMatch || shapeMatch) && !(frameType !== 'all' && frameShape !== 'all');
     });
 
     if (filteredFrames.length === 0) {
