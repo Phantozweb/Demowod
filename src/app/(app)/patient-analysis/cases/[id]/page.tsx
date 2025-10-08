@@ -22,42 +22,123 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import {
-  suggestFramesBasedOnPreference,
-  type SuggestFramesBasedOnPreferenceOutput,
-} from '@/ai/flows/suggest-frames-based-preference';
+  selectFramesFromCatalog,
+  type SelectFramesFromCatalogOutput,
+} from '@/ai/flows/select-frames-from-catalog';
 import { useToast } from '@/hooks/use-toast';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Frame, FrameVariation } from '@/lib/types';
+import { useFavorites } from '@/hooks/use-favorites';
+import { FrameCard } from '@/components/frame-card';
+import { ProductPreviewCard } from '@/components/product-preview-card';
 
 export default function CaseDetailPage() {
   const params = useParams();
   const { getCase, updateCase } = useCases();
   const { toast } = useToast();
+  const { isFavorite, toggleFavorite } = useFavorites();
   const [caseItem, setCaseItem] =
     useState<PatientCase | undefined>(undefined);
   const [analysisResult, setAnalysisResult] =
-    useState<SuggestFramesBasedOnPreferenceOutput | null>(null);
+    useState<SelectFramesFromCatalogOutput | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [allFrames, setAllFrames] = useState<Frame[]>([]);
+  const [isFetchingFrames, setIsFetchingFrames] = useState(true);
+  const [selectedFrame, setSelectedFrame] = useState<Frame | null>(null);
+
+  useEffect(() => {
+    const fetchFrames = async () => {
+      setIsFetchingFrames(true);
+      const dataSources = [
+        { url: '/fullrim-frames.json', property: 'frameType', value: 'full rim' },
+        { url: '/halfrim-frames.json', property: 'frameType', value: 'half rim' },
+        { url: '/rimless-frames.json', property: 'frameType', value: 'rimless' },
+        { url: '/square-frames.json', property: 'frameShape', value: 'square' },
+        { url: '/rectangle-frames.json', property: 'frameShape', value: 'rectangle' },
+        { url: '/round-frames.json', property: 'frameShape', value: 'round' },
+        { url: '/cateye-frames.json', property: 'frameShape', value: 'cat eye' },
+        { url: '/aviator-frames.json', property: 'frameShape', value: 'aviator' },
+        { url: '/geometric-frames.json', property: 'frameShape', value: 'geometric' },
+      ];
+
+      try {
+        const responses = await Promise.all(
+          dataSources.map(source => fetch(source.url).catch(e => {
+            console.error(`Failed to fetch ${source.url}`, e);
+            return null;
+          }))
+        );
+
+        const framesMap = new Map<number, Frame>();
+
+        for (let i = 0; i < responses.length; i++) {
+          const res = responses[i];
+          const source = dataSources[i];
+          
+          if (res && res.ok) {
+            try {
+              const data = await res.json();
+              if (Array.isArray(data)) {
+                data.forEach((frame: Frame) => {
+                  const existingFrame = framesMap.get(frame.id) || frame;
+                  framesMap.set(frame.id, {
+                    ...existingFrame,
+                    [source.property]: source.value,
+                  });
+                });
+              }
+            } catch (e) {
+               console.error(`Failed to parse JSON for ${source.url}`, e);
+            }
+          } else {
+            console.error(`Failed to fetch ${source.url}:`, res ? res.statusText : 'Network Error');
+          }
+        }
+        
+        const uniqueFrames = Array.from(framesMap.values());
+        setAllFrames(uniqueFrames);
+
+      } catch (error) {
+        console.error('Failed to fetch frames data:', error);
+      } finally {
+        setIsFetchingFrames(false);
+      }
+    };
+
+    fetchFrames();
+  }, []);
 
   useEffect(() => {
     if (typeof params.id === 'string') {
       const foundCase = getCase(params.id);
       setCaseItem(foundCase);
       if (foundCase?.analysis) {
-        setAnalysisResult(foundCase.analysis);
+        setAnalysisResult(foundCase.analysis as SelectFramesFromCatalogOutput);
       }
     }
   }, [params.id, getCase]);
 
   const handleStartAnalysis = async () => {
-    if (!caseItem) return;
+    if (!caseItem || isFetchingFrames || allFrames.length === 0) return;
 
     setIsLoading(true);
     try {
-      const result = await suggestFramesBasedOnPreference({
+      const simplifiedFrames = allFrames.map(f => ({ 
+        id: f.id, 
+        productName: f.productName,
+        frameType: f.frameType,
+        frameShape: f.frameShape,
+        brand: f.brand,
+        size: f.size
+      }));
+
+      const result = await selectFramesFromCatalog({
         faceShape: caseItem.faceShape || 'oval',
         stylePreferences: caseItem.stylePreferences || 'not specified',
         pastPurchases: caseItem.pastPurchases || 'not specified',
+        frames: simplifiedFrames,
       });
+
       setAnalysisResult(result);
       updateCase(caseItem.id, { analysis: result, status: 'Completed' });
       toast({
@@ -78,11 +159,23 @@ export default function CaseDetailPage() {
   };
 
   useEffect(() => {
-    if(caseItem && caseItem.status === 'Pending' && !caseItem.analysis) {
+    if(caseItem && caseItem.status === 'Pending' && !caseItem.analysis && !isFetchingFrames && allFrames.length > 0) {
         handleStartAnalysis();
     }
-  }, [caseItem]);
+  }, [caseItem, isFetchingFrames, allFrames]);
 
+  const flatFrames = allFrames.flatMap(frame => 
+    (frame.variations && frame.variations.length > 0 ? frame.variations : [{...frame}]).map((variation: Frame | FrameVariation) => ({...frame, ...variation}))
+  );
+
+  const recommendedFrames = analysisResult?.recommendations.map(rec => {
+    const frame = flatFrames.find(f => f.id === rec.id);
+    return frame ? { ...frame, reasoning: rec.reasoning } : null;
+  }).filter((f): f is Frame & { reasoning: string } => f !== null);
+
+  const handlePreview = (frame: Frame) => {
+    setSelectedFrame(frame);
+  }
 
   if (!caseItem) {
     return (
@@ -93,6 +186,7 @@ export default function CaseDetailPage() {
   }
 
   return (
+    <>
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <header className="mb-8">
         <h1 className="text-4xl font-extrabold tracking-tight text-white mb-2">
@@ -190,42 +284,39 @@ export default function CaseDetailPage() {
                 <Wand2 /> AI Analysis & Recommendations
               </CardTitle>
               <CardDescription>
-                Powered by Gemini AI to provide personalized suggestions.
+                Powered by Gemini AI to provide personalized suggestions from your catalog.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              {!analysisResult && isLoading && (
+              {!analysisResult && (isLoading || isFetchingFrames) && (
                 <div className="text-center py-10">
                    <Loader className="mx-auto h-8 w-8 animate-spin mb-4" /> 
                   <p className="text-muted-foreground mb-4">
-                    Running AI analysis to get frame recommendations...
+                    {isFetchingFrames ? "Loading product catalog..." : "Running AI analysis..."}
                   </p>
                 </div>
               )}
-              {analysisResult && (
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                      <FlaskConical className="text-primary" /> Recommended Frames
-                    </h3>
-                    <ul className="list-disc list-inside space-y-2 pl-2">
-                      {analysisResult.frameSuggestions.map((suggestion) => (
-                        <li key={suggestion}>{suggestion}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                      <Info className="text-primary" /> Reasoning
-                    </h3>
-                    <p className="text-muted-foreground bg-background/50 p-4 rounded-md border">
-                      {analysisResult.reasoning}
-                    </p>
-                  </div>
-                </div>
+              {recommendedFrames && recommendedFrames.length > 0 && (
+                 <div className="space-y-8">
+                    {recommendedFrames.map((frame) => (
+                        <div key={frame.id} className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center bg-background/50 p-4 rounded-lg border">
+                           <div className="md:col-span-1">
+                                <FrameCard frame={frame} isFavorite={isFavorite} toggleFavorite={toggleFavorite} onPreview={handlePreview} />
+                           </div>
+                           <div className="md:col-span-2">
+                                <h3 className="font-semibold text-lg flex items-center gap-2 mb-2">
+                                    <Info className="text-primary h-5 w-5" /> AI Reasoning
+                                </h3>
+                                <p className="text-muted-foreground text-sm bg-card p-3 rounded-md border">
+                                    {frame.reasoning}
+                                </p>
+                           </div>
+                        </div>
+                    ))}
+                 </div>
               )}
-               {caseItem.status === 'Completed' && analysisResult && !isLoading &&(
-                 <Button onClick={handleStartAnalysis} disabled={isLoading} size="sm" className="mt-4">
+               {caseItem.status === 'Completed' && !isLoading &&(
+                 <Button onClick={handleStartAnalysis} disabled={isLoading || isFetchingFrames} size="sm" className="mt-6">
                     {isLoading ? 'Re-running...' : 'Re-run Analysis'}
                 </Button>
                )}
@@ -234,5 +325,15 @@ export default function CaseDetailPage() {
         </div>
       </div>
     </div>
+    {selectedFrame && (
+      <ProductPreviewCard
+        frame={selectedFrame}
+        isOpen={!!selectedFrame}
+        onClose={() => setSelectedFrame(null)}
+        isFavorite={isFavorite}
+        toggleFavorite={toggleFavorite}
+      />
+    )}
+    </>
   );
 }

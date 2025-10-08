@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { type SuggestFramesBasedOnPreferenceOutput } from '@/ai/flows/suggest-frames-based-preference';
+import { type SelectFramesFromCatalogOutput } from '@/ai/flows/select-frames-from-catalog';
 
 const CASES_KEY = 'visionary-cases';
 
@@ -30,7 +30,7 @@ export type PatientCase = {
   pdNear?: string;
   image?: string;
   faceShape?: string;
-  analysis?: SuggestFramesBasedOnPreferenceOutput;
+  analysis?: SelectFramesFromCatalogOutput;
 };
 
 export const useCases = () => {
