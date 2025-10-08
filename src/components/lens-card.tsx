@@ -1,3 +1,4 @@
+
 'use client';
 
 import { CheckCircle } from 'lucide-react';
@@ -43,9 +44,14 @@ export function LensCard({ lens }: LensCardProps) {
         </div>
       </CardContent>
       <CardFooter className='flex-col items-start'>
-         <p className="text-2xl font-bold text-primary">${lens.price.toFixed(2)}</p>
-         <Badge variant="outline" className="mt-2">Lens</Badge>
+         <p className="text-2xl font-bold text-primary">₹{lens.price.toFixed(2)}</p>
+         <div className="flex gap-2 mt-2">
+            <Badge variant="outline">Lens</Badge>
+            <Badge variant="secondary">Single Vision</Badge>
+         </div>
       </CardFooter>
     </Card>
   );
 }
+
+    

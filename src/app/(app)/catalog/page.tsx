@@ -25,7 +25,7 @@ export default function CatalogPage() {
   const [frameType, setFrameType] = useState('all');
   const [frameShape, setFrameShape] = useState('all');
   const [lensSearchTerm, setLensSearchTerm] = useState('');
-  const [lensTargetUser, setLensTargetUser] = useState('all');
+  const [lensCategory, setLensCategory] = useState('all');
 
   const { isFavorite, toggleFavorite } = useFavorites();
   const [selectedFrame, setSelectedFrame] = useState<Frame | null>(null);
@@ -124,11 +124,11 @@ export default function CatalogPage() {
     const searchTermLower = lensSearchTerm.toLowerCase();
     const nameMatch = lens.name.toLowerCase().includes(searchTermLower);
     const descriptionMatch = lens.description.toLowerCase().includes(searchTermLower);
-    const targetUserMatch = lensTargetUser === 'all' || lens.targetUser.toLowerCase().includes(lensTargetUser.toLowerCase());
-    return (nameMatch || descriptionMatch) && targetUserMatch;
+    const categoryMatch = lensCategory === 'all' || lens.category.toLowerCase().includes(lensCategory.toLowerCase());
+    return (nameMatch || descriptionMatch) && categoryMatch;
   });
 
-  const uniqueTargetUsers = Array.from(new Set(lenses.map(l => l.targetUser.split('(')[0].trim())));
+  const uniqueCategories = Array.from(new Set(lenses.map(l => l.category)));
 
   const handleFrameTypeChange = (value: string) => {
     setFrameType(value);
@@ -288,14 +288,14 @@ export default function CatalogPage() {
                             onChange={(e) => setLensSearchTerm(e.target.value)}
                         />
                     </div>
-                    <Select value={lensTargetUser} onValueChange={setLensTargetUser}>
+                    <Select value={lensCategory} onValueChange={setLensCategory}>
                         <SelectTrigger>
-                            <SelectValue placeholder="Filter by Target User" />
+                            <SelectValue placeholder="Filter by Lens Category" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="all">All Target Users</SelectItem>
-                            {uniqueTargetUsers.map(user => (
-                                <SelectItem key={user} value={user}>{user}</SelectItem>
+                            <SelectItem value="all">All Categories</SelectItem>
+                            {uniqueCategories.map(category => (
+                                <SelectItem key={category} value={category}>{category}</SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
@@ -317,5 +317,7 @@ export default function CatalogPage() {
     </div>
   );
 }
+
+    
 
     
