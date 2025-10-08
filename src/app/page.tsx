@@ -1,5 +1,5 @@
 
-import { ArrowRight, User, Glasses, Beaker, FileText } from 'lucide-react';
+import { ArrowRight, User, Glasses, Beaker, FileText, Sparkles, Zap, Rocket } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
@@ -99,23 +99,31 @@ export default function Home() {
         </div>
         <div className="bg-background py-16 sm:py-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="relative overflow-hidden rounded-2xl bg-primary/10 px-6 py-16 shadow-glow sm:px-12 md:py-20 lg:px-16">
-                    <div className="relative">
-                        <div className="text-center">
-                        <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                            Experience Focus CaseX Live
-                        </h2>
-                        <p className="mt-4 text-lg text-muted-foreground">
-                            Explore the deployed application and experience the full suite of features firsthand.
-                        </p>
-                        <p className="mt-2 text-sm text-amber-400/80">
-                            Focus CaseX is under Beta, so it's open for now until Oct 30 on the website.
-                        </p>
-                        <Button asChild size="lg" className="mt-8">
-                            <a href="https://focuscasex.netlify.app" target="_blank" rel="noopener noreferrer">
-                                Visit Site <ArrowRight className="ml-2" />
-                            </a>
-                        </Button>
+            <div className="relative overflow-hidden rounded-2xl bg-secondary px-6 py-16 shadow-glow sm:px-12 md:py-20 lg:px-16">
+                    <div className="absolute inset-0 bg-[url(/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+                    <div className="relative grid md:grid-cols-2 gap-8 items-center">
+                        <div className="flex flex-col items-center md:items-start text-center md:text-left">
+                             <div className="flex gap-4">
+                                <Sparkles className="h-8 w-8 text-primary" />
+                                <Zap className="h-8 w-8 text-primary" />
+                                <Rocket className="h-8 w-8 text-primary" />
+                             </div>
+                            <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl mt-6">
+                                Experience Focus CaseX Live
+                            </h2>
+                            <p className="mt-4 text-lg text-muted-foreground">
+                                Explore the deployed application and experience the full suite of features firsthand.
+                            </p>
+                        </div>
+                        <div className="flex flex-col items-center">
+                            <p className="text-sm text-amber-400/80 bg-background/50 border border-amber-400/50 rounded-full px-4 py-2">
+                                Focus CaseX is under Beta, so it's open for now until Oct 30 on the website.
+                            </p>
+                            <Button asChild size="lg" className="mt-6">
+                                <a href="https://focuscasex.netlify.app" target="_blank" rel="noopener noreferrer">
+                                    Visit Site <ArrowRight className="ml-2" />
+                                </a>
+                            </Button>
                         </div>
                     </div>
                 </div>
