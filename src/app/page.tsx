@@ -1,3 +1,4 @@
+
 import { ArrowRight, User, Glasses, Beaker } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -44,16 +45,16 @@ export default function Home() {
               <div className="mt-8 flex justify-center gap-4">
                 <div className="inline-flex rounded-md shadow-lg">
                   <Button asChild className="shadow-glow">
-                    <Link href="/patient-analysis">
-                      <span>View Focus CaseX</span>
+                    <Link href="/patient-analysis/new">
+                      <span>Get Started with a Demo</span>
                       <ArrowRight className="ml-2" />
                     </Link>
                   </Button>
                 </div>
                  <div className="inline-flex rounded-md">
                   <Button asChild variant="outline">
-                    <Link href="/patient-analysis/new">
-                      <span>Get Started with a Demo</span>
+                    <Link href="/patient-analysis">
+                      <span>View Focus CaseX</span>
                       <ArrowRight className="ml-2" />
                     </Link>
                   </Button>
@@ -148,3 +149,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
