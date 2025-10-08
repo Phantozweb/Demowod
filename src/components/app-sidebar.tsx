@@ -31,10 +31,8 @@ import {
 } from '@/components/ui/collapsible';
 
 const menuItems = [
-  { href: '/demo', label: 'Live Demo', icon: PlaySquare },
   { href: '/catalog', label: 'Product Catalog', icon: Book },
-  { href: '/patient-analysis/new', label: 'New Patient', icon: FilePlus },
-  { href: '/patient-analysis/cases', label: 'View Cases', icon: History },
+  { href: '/patient-analysis', label: 'Patient Analysis', icon: Sparkles },
 ];
 
 export function AppSidebar() {
@@ -85,7 +83,41 @@ export function AppSidebar() {
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
-          {menuItems.map((item) => (
+            <Collapsible>
+                 <CollapsibleTrigger asChild>
+                    <SidebarMenuItem>
+                        <SidebarMenuButton
+                            isActive={pathname.startsWith('/patient-analysis')}
+                            tooltip='Patient Analysis'
+                        >
+                            <Sparkles />
+                            <span>Patient Analysis</span>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                    <SidebarMenuSub>
+                        <SidebarMenuSubItem>
+                            <SidebarMenuSubButton asChild isActive={pathname === '/patient-analysis/new'}>
+                                <Link href="/patient-analysis/new">
+                                    <FilePlus />
+                                    <span>New Patient</span>
+                                </Link>
+                            </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                        <SidebarMenuSubItem>
+                            <SidebarMenuSubButton asChild isActive={pathname.includes('/patient-analysis/cases')}>
+                                <Link href="/patient-analysis/cases">
+                                    <History />
+                                    <span>View Cases</span>
+                                </Link>
+                            </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                    </SidebarMenuSub>
+                </CollapsibleContent>
+            </Collapsible>
+
+          {menuItems.filter(item => item.href !== '/patient-analysis').map((item) => (
             <SidebarMenuItem key={item.label}>
               <SidebarMenuButton
                 asChild
@@ -99,6 +131,18 @@ export function AppSidebar() {
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
+          <SidebarMenuItem>
+              <SidebarMenuButton
+                asChild
+                isActive={pathname === '/favorites'}
+                tooltip="Favorites"
+              >
+                <Link href="/favorites">
+                  <Heart />
+                  <span>Favorites</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
         </SidebarMenu>
       </SidebarContent>
     </Sidebar>

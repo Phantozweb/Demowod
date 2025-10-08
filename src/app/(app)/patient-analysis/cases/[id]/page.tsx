@@ -3,7 +3,7 @@
 
 import { useParams } from 'next/navigation';
 import { useCases, type PatientCase } from '@/hooks/use-cases';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import {
   Card,
   CardContent,
@@ -47,6 +47,9 @@ export default function CaseDetailPage() {
   const [isFetchingFrames, setIsFetchingFrames] = useState(true);
   const [selectedFrame, setSelectedFrame] = useState<Frame | null>(null);
 
+  // useRef to prevent multiple analysis runs
+  const analysisRun = useRef(false);
+
   useEffect(() => {
     const fetchFrames = async () => {
       setIsFetchingFrames(true);
@@ -81,17 +84,13 @@ export default function CaseDetailPage() {
               const data = await res.json();
               if (Array.isArray(data)) {
                 data.forEach((frame: Frame) => {
-                  const existingFrame = framesMap.get(frame.id) || frame;
+                  const existingFrame = framesMap.get(frame.id) || { ...frame, variations: [] };
                   
-                  // Create a new variations array if it doesn't exist
-                  if (!existingFrame.variations) {
-                    existingFrame.variations = [];
-                  }
-
-                  // Merge properties from different files
+                  // Merge properties from different files, ensuring not to overwrite existing ones with the placeholder value
                   const updatedFrame = {
                     ...existingFrame,
-                    [source.property]: existingFrame[source.property as keyof Frame] || source.value,
+                    frameType: existingFrame.frameType || (source.property === 'frameType' ? source.value : undefined),
+                    frameShape: existingFrame.frameShape || (source.property === 'frameShape' ? source.value : undefined),
                   };
 
                   framesMap.set(frame.id, updatedFrame);
@@ -122,8 +121,10 @@ export default function CaseDetailPage() {
     if (typeof params.id === 'string') {
       const foundCase = getCase(params.id);
       setCaseItem(foundCase);
+      // If analysis already exists in localStorage, load it.
       if (foundCase?.analysis) {
         setAnalysisResult(foundCase.analysis as SelectFramesFromCatalogOutput);
+        analysisRun.current = true; // Mark as run to prevent re-running
       }
     }
   }, [params.id, getCase]);
@@ -132,6 +133,8 @@ export default function CaseDetailPage() {
     if (!caseItem || isFetchingFrames || allFrames.length === 0) return;
 
     setIsLoading(true);
+    analysisRun.current = true; // Mark analysis as started
+
     try {
       const simplifiedFrames = allFrames.map(f => ({ 
         id: f.id, 
@@ -156,6 +159,7 @@ export default function CaseDetailPage() {
       });
 
       setAnalysisResult(result);
+      // Update case in localStorage with analysis results and 'Completed' status
       updateCase(caseItem.id, { analysis: result, status: 'Completed' });
       toast({
         title: 'Analysis Complete',
@@ -169,17 +173,27 @@ export default function CaseDetailPage() {
         description:
           'There was an error generating the AI recommendations. Please try again.',
       });
+      analysisRun.current = false; // Reset if failed
     } finally {
       setIsLoading(false);
     }
   };
-
+  
+  // This effect will run the analysis automatically if it's a pending case.
   useEffect(() => {
-    if(caseItem && caseItem.status === 'Pending' && !caseItem.analysis && !isFetchingFrames && allFrames.length > 0) {
+    if(
+      caseItem && 
+      caseItem.status === 'Pending' && 
+      !isLoading && 
+      !isFetchingFrames && 
+      allFrames.length > 0 && 
+      !analysisRun.current
+    ) {
         handleStartAnalysis();
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [caseItem, isFetchingFrames, allFrames]);
+  }, [caseItem, isFetchingFrames, allFrames, isLoading]);
+
 
   const flatFrames = allFrames.flatMap(frame => 
     (frame.variations && frame.variations.length > 0 ? frame.variations : [{...frame}]).map((variation: Frame | FrameVariation) => ({...frame, ...variation}))
@@ -194,10 +208,11 @@ export default function CaseDetailPage() {
     setSelectedFrame(frame);
   }
 
-  if (!caseItem) {
+  if (!caseItem && !isLoading) {
     return (
-      <div className="flex justify-center items-center min-h-svh">
-        <Loader className="animate-spin" />
+      <div className="flex flex-col gap-4 justify-center items-center min-h-svh">
+        <Loader className="animate-spin h-8 w-8 text-primary" />
+        <p className='text-muted-foreground'>Loading case details...</p>
       </div>
     );
   }
@@ -210,7 +225,7 @@ export default function CaseDetailPage() {
           Patient Analysis Details
         </h1>
         <p className="text-lg text-muted-foreground">
-          Case ID: {caseItem.id}
+          Case ID: {caseItem?.id}
         </p>
       </header>
 
@@ -223,38 +238,39 @@ export default function CaseDetailPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {caseItem.image && (
+              {caseItem?.image && (
                 <div className="relative aspect-square w-full rounded-lg overflow-hidden border">
                   <Image
                     src={caseItem.image}
                     alt={caseItem.patientName}
                     fill
                     className="object-cover"
+                    priority
                   />
                 </div>
               )}
               <div>
-                <p className="font-semibold text-lg">{caseItem.patientName}</p>
+                <p className="font-semibold text-lg">{caseItem?.patientName}</p>
                 <p className="text-muted-foreground">
-                  {caseItem.age} years old, {caseItem.gender}
+                  {caseItem?.age} years old, {caseItem?.gender}
                 </p>
               </div>
               <div className="text-sm space-y-1">
                 <p>
                   <span className="font-semibold">Occupation:</span>{' '}
-                  {caseItem.occupation || 'N/A'}
+                  {caseItem?.occupation || 'N/A'}
                 </p>
                 <p>
                   <span className="font-semibold">Lifestyle:</span>{' '}
-                  {caseItem.lifestyle || 'N/A'}
+                  {caseItem?.lifestyle || 'N/A'}
                 </p>
                 <p>
                   <span className="font-semibold">Visual Needs:</span>{' '}
-                  {caseItem.visualNeeds || 'N/A'}
+                  {caseItem?.visualNeeds || 'N/A'}
                 </p>
                 <p>
                   <span className="font-semibold">Style Prefs:</span>{' '}
-                  {caseItem.stylePreferences || 'N/A'}
+                  {caseItem?.stylePreferences || 'N/A'}
                 </p>
               </div>
             </CardContent>
@@ -269,33 +285,33 @@ export default function CaseDetailPage() {
               <div className="flex justify-between">
                 <span>OD (Right):</span>
                 <span>
-                  {caseItem.distSphOd} / {caseItem.distCyl} x{' '}
-                  {caseItem.distAxis}
+                  {caseItem?.distSphOd} / {caseItem?.distCyl} x{' '}
+                  {caseItem?.distAxis}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span>OS (Left):</span>
                 <span>
-                  {caseItem.distSphOs} / {caseItem.distCyl} x{' '}
-                  {caseItem.distAxis}
+                  {caseItem?.distSphOs} / {caseItem?.distCyl} x{' '}
+                  {caseItem?.distAxis}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span>Near ADD:</span>
                 <span>
-                  {caseItem.nearAddOd} / {caseItem.nearAddOs}
+                  {caseItem?.nearAddOd} / {caseItem?.nearAddOs}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span>PD:</span>
-                <span>{caseItem.pdDist}</span>
+                <span>{caseItem?.pdDist}</span>
               </div>
             </CardContent>
           </Card>
         </div>
 
         <div className="lg:col-span-2 space-y-8">
-          <Card className="bg-secondary/50">
+          <Card className="bg-card/80 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-primary">
                 <Wand2 /> AI Analysis & Recommendations
@@ -305,18 +321,19 @@ export default function CaseDetailPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              {!analysisResult && (isLoading || isFetchingFrames) && (
-                <div className="text-center py-10">
-                   <Loader className="mx-auto h-8 w-8 animate-spin mb-4" /> 
-                  <p className="text-muted-foreground mb-4">
-                    {isFetchingFrames ? "Loading product catalog..." : "Running AI analysis..."}
+              {isLoading && (
+                <div className="text-center py-10 flex flex-col items-center gap-4">
+                   <Loader className="mx-auto h-8 w-8 animate-spin" /> 
+                  <p className="text-muted-foreground">
+                    {isFetchingFrames ? "Loading product catalog..." : "Running AI analysis on patient data..."}
                   </p>
                 </div>
               )}
-              {recommendedFrames && recommendedFrames.length > 0 && (
+
+              {!isLoading && analysisResult && recommendedFrames && recommendedFrames.length > 0 && (
                  <div className="space-y-8">
                     {recommendedFrames.map((frame) => (
-                        <div key={frame.id} className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center bg-background/50 p-4 rounded-lg border">
+                        <div key={frame.id} className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start bg-background/50 p-4 rounded-lg border">
                            <div className="md:col-span-1">
                                 <FrameCard frame={frame} isFavorite={isFavorite} toggleFavorite={toggleFavorite} onPreview={handlePreview} />
                            </div>
@@ -332,11 +349,25 @@ export default function CaseDetailPage() {
                     ))}
                  </div>
               )}
-               {(caseItem.status === 'Completed' || analysisResult) && !isLoading &&(
-                 <Button onClick={handleStartAnalysis} disabled={isLoading || isFetchingFrames} size="sm" className="mt-6">
+               
+               {!isLoading && analysisResult && (
+                 <Button onClick={() => { analysisRun.current = false; handleStartAnalysis(); }} disabled={isLoading || isFetchingFrames} size="sm" className="mt-6">
                     {isLoading ? 'Re-running...' : 'Re-run Analysis'}
                 </Button>
                )}
+
+              {!isLoading && !analysisResult && (caseItem?.status !== 'Pending' || (caseItem?.status === 'Pending' && !isFetchingFrames)) && (
+                <div className="text-center py-10 flex flex-col items-center gap-4 border-2 border-dashed rounded-lg">
+                  <FlaskConical className="h-8 w-8 text-muted-foreground" />
+                  <p className="text-muted-foreground max-w-sm">
+                    No analysis has been run for this case yet. Click the button below to generate AI-powered frame recommendations.
+                  </p>
+                  <Button onClick={handleStartAnalysis} disabled={isLoading || isFetchingFrames}>
+                      <Wand2 className="mr-2 h-4 w-4" />
+                      Start AI Analysis
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>

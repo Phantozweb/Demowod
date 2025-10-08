@@ -22,7 +22,7 @@ export default function PatientAnalysisPage() {
         </p>
       </header>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 max-w-4xl mx-auto mt-12">
-        <Card className="hover:shadow-lg transition-shadow">
+        <Card className="hover:shadow-lg transition-shadow bg-card/80 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <FilePlus className="text-primary" />
@@ -38,7 +38,7 @@ export default function PatientAnalysisPage() {
             </Button>
           </CardContent>
         </Card>
-        <Card className="hover:shadow-lg transition-shadow">
+        <Card className="hover:shadow-lg transition-shadow bg-card/80 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <History className="text-primary" />
