@@ -108,6 +108,9 @@ export default function Home() {
                         <p className="mt-4 text-lg text-muted-foreground">
                             Explore the deployed application and experience the full suite of features firsthand.
                         </p>
+                        <p className="mt-2 text-sm text-amber-400/80">
+                            Focus CaseX is under Beta, so it's open for now until Oct 30 on the website.
+                        </p>
                         <Button asChild size="lg" className="mt-8">
                             <a href="https://focuscasex.netlify.app" target="_blank" rel="noopener noreferrer">
                                 Visit Site <ArrowRight className="ml-2" />
