@@ -45,7 +45,7 @@ export default function Home() {
               <div className="mt-8 flex justify-center gap-4">
                 <div className="inline-flex rounded-md shadow-lg">
                   <Button asChild className="shadow-glow">
-                    <Link href="/patient-analysis/new">
+                    <Link href="/demo">
                       <span>Get Started with a Demo</span>
                       <ArrowRight className="ml-2" />
                     </Link>
@@ -149,5 +149,3 @@ export default function Home() {
     </div>
   );
 }
-
-    

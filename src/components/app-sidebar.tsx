@@ -13,6 +13,7 @@ import {
   FilePlus,
   History,
   Sparkles,
+  PlaySquare,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -30,6 +31,7 @@ import {
 } from '@/components/ui/collapsible';
 
 const menuItems = [
+  { href: '/demo', label: 'Live Demo', icon: PlaySquare },
   { href: '/catalog', label: 'Product Catalog', icon: Book },
   { href: '/patient-analysis/new', label: 'New Patient', icon: FilePlus },
   { href: '/patient-analysis/cases', label: 'View Cases', icon: History },
