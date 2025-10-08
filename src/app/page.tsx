@@ -45,16 +45,16 @@ export default function Home() {
               <div className="mt-8 flex justify-center gap-4">
                 <div className="inline-flex rounded-md shadow-lg">
                   <Button asChild className="shadow-glow">
-                    <Link href="/demo">
-                      <span>Get Started with a Demo</span>
+                    <Link href="/patient-analysis">
+                      <span>Get Started</span>
                       <ArrowRight className="ml-2" />
                     </Link>
                   </Button>
                 </div>
                  <div className="inline-flex rounded-md">
                   <Button asChild variant="outline">
-                    <Link href="/patient-analysis">
-                      <span>View Focus CaseX</span>
+                    <Link href="/demo">
+                      <span>View Showcase</span>
                       <ArrowRight className="ml-2" />
                     </Link>
                   </Button>
