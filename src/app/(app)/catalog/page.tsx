@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -168,8 +167,10 @@ export default function CatalogPage() {
 
   const renderFrames = () => {
     const filteredFrames = frames.filter(frame => {
-        const nameMatch = frame.name.toLowerCase().includes(searchTerm.toLowerCase()) || frame.brand.toLowerCase().includes(searchTerm.toLowerCase());
-        return nameMatch;
+        const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
+        const typeMatch = frameType === 'all' || frame.frameType.toLowerCase() === frameType;
+        const shapeMatch = frameShape === 'all' || frame.frameShape.toLowerCase() === frameShape;
+        return nameMatch && typeMatch && shapeMatch;
     });
 
     if (filteredFrames.length === 0) {
@@ -213,8 +214,8 @@ export default function CatalogPage() {
                 </SelectTrigger>
                 <SelectContent>
                     <SelectItem value="all">All Frame Types</SelectItem>
-                    <SelectItem value="full-rim">Full Rim</SelectItem>
-                    <SelectItem value="half-rim">Half Rim</SelectItem>
+                    <SelectItem value="full rim">Full Rim</SelectItem>
+                    <SelectItem value="half rim">Half Rim</SelectItem>
                     <SelectItem value="rimless">Rimless</SelectItem>
                 </SelectContent>
             </Select>
@@ -228,7 +229,7 @@ export default function CatalogPage() {
                     <SelectItem value="square">Square</SelectItem>
                     <SelectItem value="round">Round</SelectItem>
                     <SelectItem value="aviator">Aviator</SelectItem>
-                    <SelectItem value="cat-eye">Cat Eye</SelectItem>
+                    <SelectItem value="cat eye">Cat Eye</SelectItem>
                     <SelectItem value="geometric">Geometric</SelectItem>
                 </SelectContent>
             </Select>

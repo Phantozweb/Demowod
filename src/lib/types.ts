@@ -1,10 +1,15 @@
 export type Frame = {
-  id: string;
-  name: string;
+  id: number;
+  productName: string;
   brand: string;
   price: number;
-  material: string;
   size: string;
-  imageId: string;
+  productImage: string;
+  productRating: number;
+  purchaseCount: number;
+  productModelName: string;
+  frameType: string;
+  frameShape: string;
+  lenskart_url?: string;
+  tags?: string;
 };
-

@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback } from 'react';
 const FAVORITES_KEY = 'visionary-favorites';
 
 export const useFavorites = () => {
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<number[]>([]);
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export const useFavorites = () => {
     setIsInitialized(true);
   }, []);
 
-  const saveFavorites = (newFavorites: string[]) => {
+  const saveFavorites = (newFavorites: number[]) => {
     try {
       setFavorites(newFavorites);
       window.localStorage.setItem(FAVORITES_KEY, JSON.stringify(newFavorites));
@@ -30,19 +30,19 @@ export const useFavorites = () => {
     }
   };
 
-  const addFavorite = useCallback((frameId: string) => {
+  const addFavorite = useCallback((frameId: number) => {
     saveFavorites([...favorites, frameId]);
   }, [favorites]);
 
-  const removeFavorite = useCallback((frameId: string) => {
+  const removeFavorite = useCallback((frameId: number) => {
     saveFavorites(favorites.filter((id) => id !== frameId));
   }, [favorites]);
 
-  const isFavorite = useCallback((frameId: string) => {
+  const isFavorite = useCallback((frameId: number) => {
     return favorites.includes(frameId);
   }, [favorites]);
 
-  const toggleFavorite = useCallback((frameId: string) => {
+  const toggleFavorite = useCallback((frameId: number) => {
     if (isFavorite(frameId)) {
       removeFavorite(frameId);
     } else {
