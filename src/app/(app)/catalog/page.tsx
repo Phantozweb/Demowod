@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -26,12 +27,12 @@ import { useFavorites } from '@/hooks/use-favorites';
 
 export default function CatalogPage() {
   const {
-    singleVisionLenses,
-    progressiveLenses,
-    antiReflectiveCoatings,
-    photochromicLenses,
-    computerWorkLenses,
-    sunSolutions,
+    singleVisionLenses = [],
+    progressiveLenses = [],
+    antiReflectiveCoatings = [],
+    photochromicLenses = [],
+    computerWorkLenses = [],
+    sunSolutions = [],
   } = lensData as any;
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -40,6 +41,7 @@ export default function CatalogPage() {
   const { isFavorite, toggleFavorite } = useFavorites();
 
   const filterLenses = (lenses: any[]) => {
+    if (!lenses) return [];
     return lenses.filter((lens) => {
       const nameMatch = lens.name.toLowerCase().includes(searchTerm.toLowerCase());
       // These are placeholders for now as we don't have this data in lenses.json
@@ -166,10 +168,11 @@ export default function CatalogPage() {
   }
 
   const renderFrames = () => {
-    const filteredFrames = frames.filter(frame => {
+    const filteredFrames = frames.flatMap(frame => frame.variations.map(variation => ({...frame, ...variation}))).filter(frame => {
         const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
-        const typeMatch = frameType === 'all' || frame.frameType.toLowerCase() === frameType;
-        const shapeMatch = frameShape === 'all' || frame.frameShape.toLowerCase() === frameShape;
+        const frameData = frames.find(f => f.productModelName === frame.productModelName);
+        const typeMatch = frameType === 'all' || (frameData && frameData.frameType.toLowerCase() === frameType);
+        const shapeMatch = frameShape === 'all' || (frameData && frameData.frameShape.toLowerCase() === frameShape);
         return nameMatch && typeMatch && shapeMatch;
     });
 
@@ -241,7 +244,7 @@ export default function CatalogPage() {
           <TabsTrigger value="frames">Frames</TabsTrigger>
           <TabsTrigger value="progressive">Progressive</TabsTrigger>
           <TabsTrigger value="single-vision">Single Vision</TabsTrigger>
-          <TabsTrigger value="computer-work">Computer & Work</TabsTrigger>
+          <TabsTrigger value="computer-work">Computer &amp; Work</TabsTrigger>
           <TabsTrigger value="anti-reflective">Anti-Reflective</TabsTrigger>
           <TabsTrigger value="photochromic">Photochromic</TabsTrigger>
           <TabsTrigger value="sun-solutions">Sun Solutions</TabsTrigger>
@@ -271,4 +274,5 @@ export default function CatalogPage() {
       </Tabs>
     </div>
   );
-}
+
+    
