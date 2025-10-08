@@ -1,0 +1,47 @@
+
+[
+    {
+      "id": 201,
+      "name": "iD WorkStyle® 3",
+      "description": "A premium occupational lens for presbyopic patients experiencing Digital Eye Strain (DES) from prolonged digital device use.",
+      "features": [
+        "AdaptEase™ Technology",
+        "3D Binocular Vision™ technology",
+        "Integrated Dual Surface™ (iD) Technology",
+        "Binocular Harmonization Technology™",
+        "Three working distance-specific options"
+      ],
+      "use_case": "Provides relief from DES symptoms and increased productivity. A custom solution for any visual need, creating better visual comfort.",
+      "targetUser": "Presbyopic patients with heavy digital device usage.",
+      "category": "Computer & Work"
+    },
+    {
+      "id": 202,
+      "name": "Sync III™",
+      "description": "An enhanced single vision lens for single vision patients experiencing Digital Eye Strain (DES) symptoms.",
+      "features": [
+        "Distance power with a ‘boost zone’ at the bottom",
+        "Three boost zone designs (5, 9, 13)",
+        "Minimum fitting height: 14mm",
+        "Available in clear, photochromic, and polarized"
+      ],
+      "use_case": "Reduces eye strain during prolonged near tasks like using digital screens or reading. Offers comfort unmatched by standard single vision lenses.",
+      "targetUser": "Single vision patients experiencing Digital Eye Strain.",
+      "category": "Computer & Work"
+    },
+    {
+        "id": 203,
+        "name": "Tact® BKS",
+        "description": "An occupational lens designed to provide relief from Digital Eye Strain (DES) and improve workstation ergonomics for presbyopic patients.",
+        "features": [
+          "Two working distance solutions (Tact 40 & Tact 60)",
+          "Extended focus for near and intermediate zones",
+          "Optimized periphery for wide viewing zones"
+        ],
+        "use_case": "Increases productivity and provides relief from DES. Allows movement around the work area without switching glasses (Tact 40). A cost-effective solution.",
+        "targetUser": "Presbyopic patients needing ergonomic visual solutions for work.",
+        "category": "Computer & Work"
+    }
+]
+
+    
