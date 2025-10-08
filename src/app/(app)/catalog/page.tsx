@@ -102,7 +102,17 @@ export default function CatalogPage() {
             const coatings = coatingsRes.ok ? await coatingsRes.json() : [];
             const sunLenses = sunRes.ok ? await sunRes.json() : [];
 
-            setLenses([...singleVisionLenses, ...progressiveLenses, ...computerWorkLenses, ...coatings, ...sunLenses]);
+            let idCounter = 0;
+            const allLenses = [
+                ...singleVisionLenses, 
+                ...progressiveLenses, 
+                ...computerWorkLenses, 
+                ...coatings, 
+                ...sunLenses
+            ].map(lens => ({ ...lens, id: idCounter++ }));
+
+
+            setLenses(allLenses);
 
         } catch (error) {
             console.error('Failed to fetch lenses data:', error);

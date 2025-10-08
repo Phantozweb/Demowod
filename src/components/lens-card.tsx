@@ -52,5 +52,3 @@ export function LensCard({ lens }: LensCardProps) {
     </Card>
   );
 }
-
-    
