@@ -1,6 +1,7 @@
 
 'use client';
 
+import { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -15,9 +16,10 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
 import lensData from '@/lib/lenses.json';
-import { CheckCircle } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Search } from 'lucide-react';
 
 export default function CatalogPage() {
   const {
@@ -28,6 +30,20 @@ export default function CatalogPage() {
     computerWorkLenses,
     sunSolutions,
   } = lensData as any;
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [frameType, setFrameType] = useState('all');
+  const [frameShape, setFrameShape] = useState('all');
+
+  const filterLenses = (lenses: any[]) => {
+    return lenses.filter((lens) => {
+      const nameMatch = lens.name.toLowerCase().includes(searchTerm.toLowerCase());
+      // These are placeholders for now as we don't have this data in lenses.json
+      const frameTypeMatch = frameType === 'all' ? true : true;
+      const frameShapeMatch = frameShape === 'all' ? true : true;
+      return nameMatch && frameTypeMatch && frameShapeMatch;
+    });
+  };
 
   const renderLensCard = (lens: any) => (
     <Card key={lens.id} className="flex flex-col">
@@ -133,6 +149,18 @@ export default function CatalogPage() {
     </Card>
   );
 
+  const renderContent = (lenses: any[]) => {
+    const filteredLenses = filterLenses(lenses);
+    if (filteredLenses.length === 0) {
+      return <div className="text-center py-20 text-muted-foreground">No products found matching your criteria.</div>
+    }
+    return (
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {filteredLenses.map(renderLensCard)}
+      </div>
+    )
+  }
+
   return (
     <div className="p-4 md:p-8">
       <header className="mb-8">
@@ -144,6 +172,45 @@ export default function CatalogPage() {
         </p>
       </header>
 
+      <div className="mb-8 p-4 border rounded-lg bg-card">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+            <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input 
+                    placeholder="Search by lens name..."
+                    className="pl-10"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
+            <Select value={frameType} onValueChange={setFrameType}>
+                <SelectTrigger>
+                    <SelectValue placeholder="Frame Type" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectItem value="all">All Frame Types</SelectItem>
+                    <SelectItem value="full-rim">Full Rim</SelectItem>
+                    <SelectItem value="half-rim">Half Rim</SelectItem>
+                    <SelectItem value="rimless">Rimless</SelectItem>
+                </SelectContent>
+            </Select>
+             <Select value={frameShape} onValueChange={setFrameShape}>
+                <SelectTrigger>
+                    <SelectValue placeholder="Frame Shape" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectItem value="all">All Frame Shapes</SelectItem>
+                    <SelectItem value="rectangle">Rectangle</SelectItem>
+                    <SelectItem value="square">Square</SelectItem>
+                    <SelectItem value="round">Round</SelectItem>
+                    <SelectItem value="aviator">Aviator</SelectItem>
+                    <SelectItem value="cat-eye">Cat Eye</SelectItem>
+                    <SelectItem value="geometric">Geometric</SelectItem>
+                </SelectContent>
+            </Select>
+        </div>
+      </div>
+
       <Tabs defaultValue="progressive" className="w-full">
         <TabsList className="grid w-full grid-cols-2 h-auto sm:grid-cols-3 lg:grid-cols-6 mb-6">
           <TabsTrigger value="progressive">Progressive</TabsTrigger>
@@ -153,35 +220,24 @@ export default function CatalogPage() {
           <TabsTrigger value="photochromic">Photochromic</TabsTrigger>
           <TabsTrigger value="sun-solutions">Sun Solutions</TabsTrigger>
         </TabsList>
+
         <TabsContent value="progressive">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {progressiveLenses.map(renderLensCard)}
-          </div>
+          {renderContent(progressiveLenses)}
         </TabsContent>
         <TabsContent value="single-vision">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {singleVisionLenses.map(renderLensCard)}
-          </div>
+          {renderContent(singleVisionLenses)}
         </TabsContent>
         <TabsContent value="computer-work">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {computerWorkLenses.map(renderLensCard)}
-          </div>
+          {renderContent(computerWorkLenses)}
         </TabsContent>
         <TabsContent value="anti-reflective">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {antiReflectiveCoatings.map(renderLensCard)}
-          </div>
+          {renderContent(antiReflectiveCoatings)}
         </TabsContent>
         <TabsContent value="photochromic">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {photochromicLenses.map(renderLensCard)}
-          </div>
+          {renderContent(photochromicLenses)}
         </TabsContent>
         <TabsContent value="sun-solutions">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {sunSolutions.map(renderLensCard)}
-          </div>
+          {renderContent(sunSolutions)}
         </TabsContent>
       </Tabs>
     </div>
