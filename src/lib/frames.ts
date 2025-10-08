@@ -3,261 +3,91 @@ import type { Frame } from './types';
 
 export const frames: Frame[] = [
     {
-      "id": 216521,
-      "size": "Medium",
-      "productName": "Lenskart Hustlr",
-      "brand": "Lenskart Hustlr",
-      "productModelName": "LA E15417-W",
-      "productRating": 4.8,
-      "purchaseCount": 38355,
-      "tags": "",
-      "lenskart_url": "https://www.lenskart.com/lenskart-hustlr-la-e15415-c1-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e15417-w-c1-eyeglasses_csvfile-1701688526805-img_7894.jpg",
-      "price": 1900,
-      "frameType": "Full Rim",
-      "frameShape": "Square",
-      "price_details": {
-        "basePrice": 1900,
-        "lkPrice": 1900,
-        "salesPrice": 1400,
-        "currency": "INR",
-        "symbol": "₹",
-        "discount": "(26% OFF)"
-      }
+        "productName": "Lenskart Hustlr",
+        "productModelName": "LA E15417-W",
+        "classification": "eyeframe",
+        "frameType": "Full Rim",
+        "frameShape": "Square",
+        "variations": [
+            {
+                "id": 216521,
+                "color": "#0000ff",
+                "glassColor": "",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "₹"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e15417-w-c1-eyeglasses_csvfile-1701688526805-img_7894.jpg"
+                }
+            },
+            {
+                "id": 233091,
+                "color": "#ee7600",
+                "glassColor": "",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "₹"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/orange-full-rim-square-lenskart-hustlr-la-e15417-xw-eyeglasses__dsc3403_20_05_2025.jpg"
+                }
+            },
+            {
+                "id": 219074,
+                "color": "#9b2743",
+                "glassColor": "",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 2000,
+                    "lkPrice": 500,
+                    "symbol": "₹"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-la-e15417-xw-c37-eyeglasses__dsc4437_24_05_2024.jpg"
+                }
+            }
+        ]
     },
     {
-      "id": 137971,
-      "size": "Medium",
-      "productName": "Lenskart Air",
-      "brand": "Lenskart Air",
-      "productModelName": "LA E13068",
-      "productRating": 4.8,
-      "purchaseCount": 149101,
-      "tags": "Air Fusion",
-      "lenskart_url": "https://www.lenskart.com/lenskart-air-la-e13032-c1-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-gunmetal-black-full-rim-wayfarer-lenskart-air-fusion-la-e13068---c1-eyeglasses_lenskart-air-la-e13032-c1-eyeglasses_g_2000_05_july23.jpg",
-      "price": 1900,
-      "frameType": "Full Rim",
-      "frameShape": "Wayfarer",
-       "price_details": {
-        "basePrice": 1900,
-        "lkPrice": 1900,
-        "salesPrice": 1400,
-        "currency": "INR",
-        "symbol": "₹",
-        "discount": "(26% OFF)"
-      }
-    },
-    {
-      "id": 217650,
-      "size": "Medium",
-      "productName": "Lenskart Air",
-      "brand": "Lenskart Air",
-      "productModelName": "LA E17017",
-      "productRating": 4.8,
-      "purchaseCount": 26130,
-      "tags": "",
-      "lenskart_url": "https://www.lenskart.com/lenskart-air-la-e17017-c2-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/silver-grey-transparent-full-rim-square-lenskart-air-fusion-la-e17017-c1-eyeglasses__dsc4915_28_05_2024_28_05_2024.jpg",
-      "price": 1900,
-      "frameType": "Full Rim",
-      "frameShape": "Square",
-       "price_details": {
-        "basePrice": 1900,
-        "lkPrice": 1900,
-        "salesPrice": 1400,
-        "currency": "INR",
-        "symbol": "₹",
-        "discount": "(26% OFF)"
-      }
-    },
-     {
-      "id": 219826,
-      "size": "Medium",
-      "productName": "Lenskart STUDIO",
-      "brand": "Lenskart STUDIO",
-      "productModelName": "LK E17250",
-      "productRating": 4.8,
-      "purchaseCount": 22017,
-      "tags": "Dark Knight 2.0",
-      "lenskart_url": "https://www.lenskart.com/lenskart-studio-lk-e17250-c1-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-studio-lk-e17250-c1-eyeglass__dsc9600.jpg",
-      "price": 2900,
-      "frameType": "Full Rim",
-      "frameShape": "Rectangle"
-    },
-    {
-      "id": 136174,
-      "size": "Medium",
-      "productName": "John Jacobs",
-      "brand": "John Jacobs",
-      "productModelName": "JJ E10235",
-      "productRating": 4.75,
-      "purchaseCount": 152695,
-      "tags": "",
-      "lenskart_url": "https://www.lenskart.com/john-jacobs-jj-e10235-c7-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/transparent-full-rim-square-john-jacobs-rich-acetate-jj-e10235-c7-eyeglasses-chandler_g_2375_30_9_2025.jpg",
-      "price": 3900,
-      "frameType": "Full Rim",
-      "frameShape": "Square",
-       "price_details": {
-        "basePrice": 3900,
-        "lkPrice": 3900,
-        "salesPrice": 3300,
-        "currency": "INR",
-        "symbol": "₹",
-        "discount": "(15% OFF)"
-      }
-    },
-    {
-      "id": 201389,
-      "size": "Medium",
-      "productName": "John Jacobs",
-      "brand": "John Jacobs",
-      "productModelName": "JJ E11540",
-      "productRating": 4.8,
-      "purchaseCount": 53566,
-      "tags": "John Jacobs",
-      "lenskart_url": "https://www.lenskart.com/john-jacobs-jj-e11540-c7-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/gold-black-tortoise-full-rim-rectangle-john-jacobs-supreme-steel-jj-e11540-c7-eyeglasses_g_2732_11_10_2022.jpg",
-      "price": 4900,
-      "frameType": "Full Rim",
-      "frameShape": "Rectangle"
-    },
-    {
-      "id": 150599,
-      "size": "Medium",
-      "productName": "Lenskart Air",
-      "brand": "Lenskart Air",
-      "productModelName": "LA E14368",
-      "productRating": 4.8,
-      "purchaseCount": 61803,
-      "tags": "Pro Grip",
-      "lenskart_url": "https://www.lenskart.com/lenskart-air-la-e14368-c1-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/e/lenskart-air-la-e14368-c1-eyeglasses_G_0139.jpg",
-      "price": 1900,
-      "frameType": "Full Rim",
-      "frameShape": "Rectangle"
-    },
-    {
-      "id": 217077,
-      "size": "Medium",
-      "productName": "Lenskart Air",
-      "brand": "Lenskart Air",
-      "productModelName": "LA E16940",
-      "productRating": 4.8,
-      "purchaseCount": 16526,
-      "tags": "Matte Essential",
-      "lenskart_url": "https://www.lenskart.com/lenskart-air-la-e16940-c1-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-full-rim-rectangle-lenskart-air-matte-essential-la-e16940-c1-eyesglasses_dsc_0758.jpg",
-      "price": 1900,
-      "frameType": "Full Rim",
-      "frameShape": "Rectangle"
-    },
-    {
-      "id": 219827,
-      "size": "Medium",
-      "productName": "Lenskart STUDIO",
-      "brand": "Lenskart STUDIO",
-      "productModelName": "LK E17251",
-      "productRating": 4.8,
-      "purchaseCount": 12457,
-      "tags": "Dark Knight 2.0",
-      "lenskart_url": "https://www.lenskart.com/lenskart-studio-lk-e17251-c1-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-studio-lk-e17251-c1-eyeglass__dsc9580.jpg",
-      "price": 2900,
-      "frameType": "Full Rim",
-      "frameShape": "Rectangle"
-    },
-    {
-      "id": 146618,
-      "size": "Medium",
-      "productName": "Vincent Chase",
-      "brand": "Vincent Chase",
-      "productModelName": "VC E13785",
-      "productRating": 4.8,
-      "purchaseCount": 129414,
-      "tags": "",
-      "lenskart_url": "https://www.lenskart.com/vincent-chase-vc-e13785-c2-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e13785-c2-eyeglasses_g_9157.jpg",
-      "price": 1900,
-      "frameType": "Full Rim",
-      "frameShape": "Geometric"
-    },
-    {
-      "id": 213171,
-      "size": "Medium",
-      "productName": "Lenskart STUDIO",
-      "brand": "Lenskart STUDIO",
-      "productModelName": "LK E16515",
-      "productRating": 4.75,
-      "purchaseCount": 18389,
-      "tags": "",
-      "lenskart_url": "https://www.lenskart.com/lenskart-lk-e-16515-c1-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-gunmetal-black-full-rim-rectangle-lenskart-studio-dark-knight-lk-e16515-c1-eyeglasses_img_2639_image_pla_07_12_2023.jpg",
-      "price": 2900,
-      "frameType": "Full Rim",
-      "frameShape": "Rectangle"
-    },
-    {
-      "id": 223952,
-      "size": "Medium",
-      "productName": "Lenskart Air",
-      "brand": "Lenskart Air",
-      "productModelName": "LA E17594",
-      "productRating": 4.75,
-      "purchaseCount": 2675,
-      "tags": "",
-      "lenskart_url": "https://www.lenskart.com/lenskart-air-la-e17594-c2-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e17594-c2-eyeglasses_dsc5774_23_11_2024.jpg",
-      "price": 1900,
-      "frameType": "Full Rim",
-      "frameShape": "Geometric"
-    },
-    {
-      "id": 212737,
-      "size": "Medium",
-      "productName": "John Jacobs",
-      "brand": "John Jacobs",
-      "productModelName": "JJ E16436",
-      "productRating": 4.9,
-      "purchaseCount": 16860,
-      "tags": "",
-      "lenskart_url": "https://www.lenskart.com/john-jacobs-jj-e16436-c3-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/john-jacobs-jj-e16436-c3-eyeglasses_img_0225_26_10_2023.jpg",
-      "price": 4900,
-      "frameType": "Full Rim",
-      "frameShape": "Square"
-    },
-    {
-      "id": 201315,
-      "size": "Medium",
-      "productName": "Vincent Chase",
-      "brand": "Vincent Chase",
-      "productModelName": "VC E13634",
-      "productRating": 4.8,
-      "purchaseCount": 46364,
-      "tags": "Sleek Steel",
-      "lenskart_url": "https://www.lenskart.com/vincent-chase-vc-e13634-c7-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/black-silver-full-rim-geometric-vincent-chase-sleek-steel-vc-e13634-c7-eyeglasses_g_4950_03_01_23.jpg",
-      "price": 1900,
-      "frameType": "Full Rim",
-      "frameShape": "Geometric"
-    },
-    {
-      "id": 211282,
-      "size": "Wide",
-      "productName": "John Jacobs",
-      "brand": "John Jacobs",
-      "productModelName": "JJ E16146",
-      "productRating": 4.8,
-      "purchaseCount": 39803,
-      "tags": "John Jacobs",
-      "lenskart_url": "https://www.lenskart.com/john-jacobs-jj-e16146-c2-eyeglasses.html",
-      "productImage": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/john-jacobs-jj-e16146-c2-eyeglasses_img_0172_26_10_2023.jpg",
-      "price": 3900,
-      "frameType": "Full Rim",
-      "frameShape": "Rectangle"
+        "productName": "Lenskart Air",
+        "productModelName": "LA E13068",
+        "classification": "eyeframe",
+        "frameType": "Full Rim",
+        "frameShape": "Wayfarer",
+        "variations": [
+            {
+                "id": 137971,
+                "color": "#000000",
+                "glassColor": "",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "₹"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-gunmetal-black-full-rim-wayfarer-lenskart-air-fusion-la-e13068---c1-eyeglasses_lenskart-air-la-e13032-c1-eyeglasses_g_2000_05_july23.jpg"
+                }
+            },
+            {
+                "id": 201333,
+                "color": "#c0c0c0",
+                "glassColor": "",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "₹"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e13068-c6-eyeglasses_g_4836_03_03_2023.jpg"
+                }
+            }
+        ]
     }
-  ]
-  
+]

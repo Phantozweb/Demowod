@@ -22,9 +22,12 @@ interface FrameCardProps {
 }
 
 export function FrameCard({ frame, isFavorite, toggleFavorite }: FrameCardProps) {
-  const favorite = isFavorite(frame.id);
-  const imageUrl = typeof frame.productImage === 'string' ? frame.productImage : frame.productImage.url;
-  const price = frame.price_details ? `${frame.price_details.symbol}${frame.price_details.lkPrice}` : `₹${frame.price.toFixed(2)}`;
+  const variation = frame.variations?.[0];
+  if (!variation) return null;
+
+  const favorite = isFavorite(variation.id);
+  const imageUrl = variation.productImage.url;
+  const price = variation.price ? `${variation.price.symbol}${variation.price.lkPrice}` : 'N/A';
 
   return (
     <Card className="flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl">
@@ -58,7 +61,7 @@ export function FrameCard({ frame, isFavorite, toggleFavorite }: FrameCardProps)
           variant="ghost"
           size="icon"
           aria-label="Toggle Favorite"
-          onClick={() => toggleFavorite(frame.id)}
+          onClick={() => toggleFavorite(variation.id)}
         >
           <Heart
             className={cn(

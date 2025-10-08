@@ -40,7 +40,7 @@ export default function CatalogPage() {
   const [frameShape, setFrameShape] = useState('all');
   const { isFavorite, toggleFavorite } = useFavorites();
 
-  const filterLenses = (lenses: any[]) => {
+  const filterLenses = (lenses: any[] = []) => {
     if (!lenses) return [];
     return lenses.filter((lens) => {
       const nameMatch = lens.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -168,7 +168,7 @@ export default function CatalogPage() {
   }
 
   const renderFrames = () => {
-    const allFrames = frames.flatMap(frame => (frame.variations || []).map(variation => ({...frame, ...variation, frameType: frame.frameType, frameShape: frame.frameShape})));
+    const allFrames = frames.flatMap(frame => (frame.variations || []).map(variation => ({...frame, ...variation})));
 
     const filteredFrames = allFrames.filter(frame => {
         const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
@@ -235,6 +235,7 @@ export default function CatalogPage() {
                     <SelectItem value="aviator">Aviator</SelectItem>
                     <SelectItem value="cat eye">Cat Eye</SelectItem>
                     <SelectItem value="geometric">Geometric</SelectItem>
+                    <SelectItem value="wayfarer">Wayfarer</SelectItem>
                 </SelectContent>
             </Select>
         </div>
