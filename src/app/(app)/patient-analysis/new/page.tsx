@@ -333,7 +333,7 @@ export default function NewPatientPage() {
 
                     <div className="pt-10 mt-8 border-t">
                         <Button className="w-full" size="lg" type="submit" disabled={form.formState.isSubmitting}>
-                        <span>{form.formState.isSubmitting ? "Saving Case..." : "Save Case & Start Analysis"}</span>
+                        <span>{form.formState.isSubmitting ? "Saving Case..." : "Save Case & Go To Analysis"}</span>
                         <ArrowRight />
                         </Button>
                     </div>

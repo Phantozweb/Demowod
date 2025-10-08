@@ -77,6 +77,13 @@ export default function CaseDetailPage() {
     }
   };
 
+  useEffect(() => {
+    if(caseItem && caseItem.status === 'Pending' && !caseItem.analysis) {
+        handleStartAnalysis();
+    }
+  }, [caseItem]);
+
+
   if (!caseItem) {
     return (
       <div className="flex justify-center items-center min-h-svh">
@@ -187,27 +194,12 @@ export default function CaseDetailPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              {!analysisResult && caseItem.status !== 'Completed' && (
+              {!analysisResult && isLoading && (
                 <div className="text-center py-10">
+                   <Loader className="mx-auto h-8 w-8 animate-spin mb-4" /> 
                   <p className="text-muted-foreground mb-4">
-                    Run the AI analysis to get frame recommendations.
+                    Running AI analysis to get frame recommendations...
                   </p>
-                  <Button
-                    onClick={handleStartAnalysis}
-                    disabled={isLoading}
-                    size="lg"
-                  >
-                    {isLoading ? (
-                      <>
-                        <Loader className="mr-2 h-4 w-4 animate-spin" />{' '}
-                        Analyzing...
-                      </>
-                    ) : (
-                      <>
-                        <Wand2 className="mr-2" /> Start Analysis
-                      </>
-                    )}
-                  </Button>
                 </div>
               )}
               {analysisResult && (
@@ -232,16 +224,10 @@ export default function CaseDetailPage() {
                   </div>
                 </div>
               )}
-               {caseItem.status === 'Completed' && !analysisResult && (
-                 <Alert>
-                    <AlertTitle>Analysis Already Completed</AlertTitle>
-                    <AlertDescription>
-                        The analysis for this case was completed, but the results are not available. You may re-run the analysis.
-                         <Button onClick={handleStartAnalysis} disabled={isLoading} size="sm" className="mt-4">
-                            {isLoading ? 'Analyzing...' : 'Re-run Analysis'}
-                        </Button>
-                    </AlertDescription>
-                </Alert>
+               {caseItem.status === 'Completed' && analysisResult && !isLoading &&(
+                 <Button onClick={handleStartAnalysis} disabled={isLoading} size="sm" className="mt-4">
+                    {isLoading ? 'Re-running...' : 'Re-run Analysis'}
+                </Button>
                )}
             </CardContent>
           </Card>
