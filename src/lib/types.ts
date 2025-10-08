@@ -35,6 +35,6 @@ export type Frame = {
     symbol: string;
     discount: string;
   };
-  variations?: FrameVariation[];
+  variations: FrameVariation[];
   productImage?: string | { url: string; frontURL?: string; hoverURL?: string };
 };

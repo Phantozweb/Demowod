@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Card,
   CardContent,
@@ -20,9 +20,9 @@ import lensData from '@/lib/lenses.json';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search } from 'lucide-react';
-import { frames } from '@/lib/frames';
 import { FrameCard } from '@/components/frame-card';
 import { useFavorites } from '@/hooks/use-favorites';
+import { Frame } from '@/lib/types';
 
 
 export default function CatalogPage() {
@@ -35,16 +35,33 @@ export default function CatalogPage() {
     sunSolutions = [],
   } = lensData as any;
 
+  const [frames, setFrames] = useState<Frame[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [frameType, setFrameType] = useState('all');
   const [frameShape, setFrameShape] = useState('all');
   const { isFavorite, toggleFavorite } = useFavorites();
 
+  useEffect(() => {
+    const fetchFrames = async () => {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/Phantozweb/Visionary-/refs/heads/main/lenskartdata.json');
+        const data = await response.json();
+        setFrames(data);
+      } catch (error) {
+        console.error('Failed to fetch frames data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchFrames();
+  }, []);
+
   const filterLenses = (lenses: any[] = []) => {
     if (!lenses) return [];
     return lenses.filter((lens) => {
       const nameMatch = lens.name.toLowerCase().includes(searchTerm.toLowerCase());
-      // These are placeholders for now as we don't have this data in lenses.json
       const frameTypeMatch = frameType === 'all' ? true : true;
       const frameShapeMatch = frameShape === 'all' ? true : true;
       return nameMatch && frameTypeMatch && frameShapeMatch;
@@ -168,6 +185,27 @@ export default function CatalogPage() {
   }
 
   const renderFrames = () => {
+    if (isLoading) {
+      return (
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={i} className="flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl rounded-lg border bg-card text-card-foreground shadow-sm">
+                <div className="relative aspect-[16/10] w-full bg-muted animate-pulse"></div>
+                <div className="flex-1 p-4">
+                    <div className="mb-1 text-lg font-headline h-6 w-3/4 bg-muted animate-pulse rounded"></div>
+                    <div className="h-4 w-1/2 bg-muted animate-pulse rounded mt-2"></div>
+                    <div className="h-4 w-1/3 bg-muted animate-pulse rounded mt-2"></div>
+                </div>
+                <div className="flex items-center justify-between p-4 pt-0">
+                  <div className="h-7 w-16 bg-muted animate-pulse rounded"></div>
+                  <div className="h-10 w-10 bg-muted animate-pulse rounded-full"></div>
+                </div>
+            </div>
+          ))}
+        </div>
+      );
+    }
+    
     const allFrames = frames.flatMap(frame => (frame.variations || []).map(variation => ({...frame, ...variation})));
 
     const filteredFrames = allFrames.filter(frame => {
