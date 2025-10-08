@@ -98,7 +98,7 @@ export default function NewPatientPage() {
     useEffect(() => {
         let stream: MediaStream | null = null;
         const getCameraPermission = async () => {
-            if (mode !== 'camera') return;
+            if (mode !== 'camera' || hasCameraPermission === true) return;
             try {
                 stream = await navigator.mediaDevices.getUserMedia({ video: true });
                 setHasCameraPermission(true);
@@ -117,7 +117,7 @@ export default function NewPatientPage() {
                 stream.getTracks().forEach(track => track.stop());
             }
         };
-    }, [mode]);
+    }, [mode, hasCameraPermission]);
 
     const runAnalysis = async (dataUrl: string) => {
         if (isApiKeyMissing) {
