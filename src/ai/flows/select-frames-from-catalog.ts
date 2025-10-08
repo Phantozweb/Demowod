@@ -70,6 +70,7 @@ export async function selectFramesFromCatalog(
 const prompt = ai.definePrompt({
   name: 'selectFramesFromCatalogPrompt',
   input: { schema: SelectFramesFromCatalogInputSchema },
+  output: { schema: SelectFramesFromCatalogOutputSchema },
   prompt: `You are an expert optician and master stylist. Your goal is to provide a premium, personalized consultation by recommending the absolute best 3-5 eyeglass frames for a user from a given catalog.
 
 **Patient Profile:**
@@ -91,17 +92,6 @@ const prompt = ai.definePrompt({
     *   Explain *why* that particular frame is a great choice.
     *   Connect your reasoning directly to the user's specific attributes (e.g., "The cat-eye shape of the 'JJ E14409' will beautifully complement your oval face by adding a gentle lift. Given its high rating and popularity, it's a trusted choice for a modern, chic look.").
     *   Make it sound like expert advice, not just a description.
-4.  **Return the Output:** Format your response as a valid JSON object. RETURN ONLY the JSON object and nothing else. The JSON object should conform to the following structure:
-    \`\`\`json
-    {
-      "recommendations": [
-        {
-          "id": <frame_id>,
-          "reasoning": "<your_reasoning>"
-        }
-      ]
-    }
-    \`\`\`
   `,
 });
 
@@ -112,17 +102,7 @@ const selectFramesFromCatalogFlow = ai.defineFlow(
     outputSchema: SelectFramesFromCatalogOutputSchema,
   },
   async (input) => {
-    const response = await prompt(input);
-    const rawOutput = response.text;
-
-    // Clean the output to ensure it's valid JSON
-    const jsonString = rawOutput.replace(/```json/g, '').replace(/```/g, '').trim();
-
-    try {
-      return JSON.parse(jsonString) as SelectFramesFromCatalogOutput;
-    } catch (e) {
-      console.error('Failed to parse JSON from AI response:', e, 'Raw output:', rawOutput);
-      throw new Error('AI returned an invalid response format.');
-    }
+    const { output } = await prompt(input);
+    return output!;
   }
 );
