@@ -34,7 +34,15 @@ export default function CatalogPage() {
         ]);
         const fullRimData = await fullRimRes.json();
         const halfRimData = await halfRimRes.json();
-        setFrames([...fullRimData, ...halfRimData]);
+
+        const combinedFrames = [...fullRimData, ...halfRimData].map(frame => ({
+          ...frame,
+          id: frame.id,
+          productImage: frame.productImage,
+          price: frame.price
+        }));
+
+        setFrames(combinedFrames);
       } catch (error) {
         console.error('Failed to fetch frames data:', error);
       } finally {
@@ -67,11 +75,18 @@ export default function CatalogPage() {
       );
     }
     
-    const allFrames = frames.flatMap(frame =>
-      (frame.variations && frame.variations.length > 0)
-        ? frame.variations.map(variation => ({ ...frame, ...variation, id: variation.id, price: variation.price, productImage: variation.productImage }))
-        : [{ ...frame, id: frame.id || Math.random() }]
-    );
+    const allFrames = frames.flatMap(frame => {
+      if (frame.variations && frame.variations.length > 0) {
+        return frame.variations.map(variation => ({
+          ...frame,
+          ...variation,
+          id: variation.id,
+          price: variation.price,
+          productImage: variation.productImage
+        }));
+      }
+      return [{ ...frame, id: frame.id || Math.random() }];
+    });
 
     const filteredFrames = allFrames.filter(frame => {
         const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
@@ -148,4 +163,3 @@ export default function CatalogPage() {
     </div>
   );
 }
-

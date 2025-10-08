@@ -30,12 +30,12 @@ export type Frame = {
   price?: {
       currency: string;
       basePrice: number;
-      lkPrice: number;
+      lkPrice?: number;
+      salesPrice?: number;
       symbol: string;
   };
   variations?: FrameVariation[];
-  productImage?: { 
-    url: string; 
+  productImage?: {
+    url: string;
   };
 };
-

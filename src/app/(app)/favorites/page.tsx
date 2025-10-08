@@ -16,9 +16,14 @@ export default function FavoritesPage() {
   useEffect(() => {
     const fetchFrames = async () => {
       try {
-        const response = await fetch('/lenskartdata.json');
-        const data = await response.json();
-        const framesWithAllVariations = data.flatMap((frame: Frame) =>
+        const [fullRimRes, halfRimRes] = await Promise.all([
+          fetch('/fullrim-frames.json'),
+          fetch('/halfrim-frames.json'),
+        ]);
+        const fullRimData = await fullRimRes.json();
+        const halfRimData = await halfRimRes.json();
+
+        const framesWithAllVariations = [...fullRimData, ...halfRimData].flatMap((frame: Frame) =>
             (frame.variations && frame.variations.length > 0)
             ? frame.variations.map(variation => ({ ...frame, ...variation, id: variation.id, price: variation.price, productImage: variation.productImage }))
             : [{ ...frame, id: frame.id || Math.random() }]
@@ -94,4 +99,3 @@ export default function FavoritesPage() {
     </div>
   );
 }
-
