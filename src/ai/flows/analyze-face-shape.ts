@@ -48,13 +48,13 @@ const analyzeFaceShapeFlow = ai.defineFlow(
     console.log('Generating image and analyzing face...');
     const { output } = await ai.generate({
       model: 'googleai/gemini-pro-vision',
-      prompt: `You are a sophisticated facial analysis AI working for a brand called Focus.Ai. Your task is to analyze the face in the provided image and return a JSON object with your analysis of the face shape and skin tone. You MUST NOT generate an image.
+      prompt: `You are a sophisticated facial analysis AI working for a brand called Focus.Ai.
+Your task is to analyze the face in the provided image. First, briefly describe your analysis steps as if you are scanning the image. Then, return a JSON object with your analysis of the face shape and skin tone.
 
 JSON Output Instructions:
 - Identify the primary face shape (e.g., "Oval", "Round", "Square", "Heart", "Diamond", "Oblong").
 - Identify the skin tone (e.g., "Fair", "Light", "Medium", "Tan", "Dark").
 
-The final output must only be the structured JSON data.
 The user has provided this image:
 {{media url=photoDataUri}}`,
       output: {

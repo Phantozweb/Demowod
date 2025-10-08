@@ -183,7 +183,7 @@ export default function NewPatientPage() {
                 </div>
                 <Button onClick={fillWithDemoData} variant="outline">
                     <TestTube2 className="mr-2 h-4 w-4" />
-                    Fill with Demo Data
+                    Fill with DemoData
                 </Button>
             </header>
 
@@ -241,7 +241,7 @@ export default function NewPatientPage() {
                                 <FormField control={form.control} name="faceShape" render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Detected Face Shape</FormLabel>
-                                        <FormControl><Input placeholder="Auto-detected by AI" {...field} readOnly className="bg-muted" /></FormControl>
+                                        <FormControl><Input placeholder="Auto-detected by Focus.Ai" {...field} readOnly className="bg-muted" /></FormControl>
                                     </FormItem>
                                 )}/>
                             </div>
@@ -318,23 +318,21 @@ export default function NewPatientPage() {
                                     name="image"
                                     render={({ field }) => (
                                     <FormItem className="w-full">
-                                        <FormLabel htmlFor="image-upload" className={`relative flex flex-col justify-center items-center w-full h-80 bg-background rounded-lg border-2 border-dashed border-input hover:border-primary transition-all duration-300 cursor-pointer ${imagePreview ? 'border-primary' : ''}`}>
+                                        <FormLabel htmlFor="image-upload" className={`relative flex flex-col justify-center items-center w-full h-80 bg-background rounded-lg border-2 border-dashed border-input hover:border-primary transition-all duration-300 cursor-pointer overflow-hidden ${imagePreview ? 'border-primary' : ''}`}>
                                         {isAnalyzing && (
                                             <div className="absolute inset-0 flex flex-col justify-center items-center bg-background/80 z-10">
-                                                <Loader className="w-16 h-16 animate-spin text-primary" />
-                                                <p className="mt-4 text-muted-foreground">Analyzing face...</p>
+                                                <div className="scanline"></div>
+                                                <p className="mt-4 text-white font-semibold z-20 bg-black/50 px-4 py-2 rounded-md">Focus.Ai is analyzing...</p>
                                             </div>
                                         )}
-                                        {imagePreview && !isAnalyzing ? (
+                                        {imagePreview ? (
                                             <img src={imagePreview} alt="Patient preview" className="w-full h-full object-contain rounded-lg" />
                                         ) : (
-                                            !isAnalyzing && (
-                                                <div className="flex flex-col justify-center items-center pt-5 pb-6">
-                                                    <UploadCloud className="w-16 h-16 text-muted-foreground mb-4" />
-                                                    <p className="mb-2 text-lg text-muted-foreground"><span className="font-semibold text-primary">Click to upload</span> or drag and drop</p>
-                                                    <p className="text-sm text-muted-foreground">PNG, JPG, or JPEG (MAX. 5MB)</p>
-                                                </div>
-                                            )
+                                            <div className="flex flex-col justify-center items-center pt-5 pb-6">
+                                                <UploadCloud className="w-16 h-16 text-muted-foreground mb-4" />
+                                                <p className="mb-2 text-lg text-muted-foreground"><span className="font-semibold text-primary">Click to upload</span> or drag and drop</p>
+                                                <p className="text-sm text-muted-foreground">PNG, JPG, or JPEG (MAX. 5MB)</p>
+                                            </div>
                                         )}
                                         </FormLabel>
                                         <FormControl>
