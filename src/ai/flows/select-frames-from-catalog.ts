@@ -19,6 +19,12 @@ const FrameSchema = z.object({
   frameShape: z.string().optional(),
   brand: z.string().optional(),
   size: z.string().optional(),
+  price: z.object({
+    salesPrice: z.number().optional(),
+    lkPrice: z.number().optional(),
+  }).optional(),
+  purchaseCount: z.number().optional(),
+  productRating: z.number().optional(),
 });
 
 const SelectFramesFromCatalogInputSchema = z.object({
@@ -45,11 +51,11 @@ const SelectFramesFromCatalogOutputSchema = z.object({
         reasoning: z
           .string()
           .describe(
-            'A detailed, professional explanation for why this specific frame is a good fit for the user.'
+            'A detailed, professional, and visually attractive explanation for why this specific frame is a good fit for the user. Use Markdown for formatting if helpful.'
           ),
       })
     )
-    .describe('A list of 3-5 recommended frames from the provided catalog.'),
+    .describe('A list of 3-5 recommended frames from the provided catalog, including top recommendations and price-conscious options.'),
 });
 export type SelectFramesFromCatalogOutput = z.infer<
   typeof SelectFramesFromCatalogOutputSchema
@@ -65,23 +71,28 @@ const prompt = ai.definePrompt({
   name: 'selectFramesFromCatalogPrompt',
   input: { schema: SelectFramesFromCatalogInputSchema },
   output: { schema: SelectFramesFromCatalogOutputSchema },
-  prompt: `You are an expert optician and stylist. Your task is to recommend the best 3-5 eyeglass frames for a user from a given catalog.
+  prompt: `You are an expert optician and master stylist. Your goal is to provide a premium, personalized consultation by recommending the absolute best 3-5 eyeglass frames for a user from a given catalog.
 
-Analyze the user's information and the provided list of frames.
-
-**User Information:**
+**Patient Profile:**
 - **Face Shape:** {{{faceShape}}}
-- **Style Preferences:** {{{stylePreferences}}}
-- **Past Purchases/Preferences:** {{{pastPurchases}}}
+- **Stated Style Preferences:** {{{stylePreferences}}}
+- **Previous Eyewear Experience:** {{{pastPurchases}}}
 
 **Your Task:**
-1.  Carefully review the entire list of available frames:
+1.  **Analyze the Catalog:** Carefully review the entire list of available frames. Pay close attention to purchaseCount and productRating to identify top-selling and highly-rated items.
     \`\`\`json
     {{{json frames}}}
     \`\`\`
-2.  Select the **top 3-5 frames** from the list that best match the user's face shape, style, and stated needs.
-3.  For each recommended frame, you **MUST** provide a specific, compelling reasoning. The reasoning should be concise (2-3 sentences) and explain *why* that particular frame is a great choice, connecting it to the user's specific attributes (e.g., "The cat-eye shape of the 'JJ E14409' will complement your oval face by adding width to the upper part of your face," or "Given your preference for modern styles, the minimalist design of the 'VC E13788' is an excellent match.").
-4.  Return the output as a JSON object containing the IDs of the recommended frames and the reasoning for each.`,
+2.  **Curate Recommendations:** Select a diverse and thoughtful range of **3-5 frames**. Your selection should include:
+    *   **A Top Recommendation:** At least one frame that is a clear best-seller or highly-rated, justifying why its popularity is relevant to the user.
+    *   **Price-Conscious Options:** A mix of frames at different price points to give the user choices.
+    *   **The Perfect Fit:** All recommendations must be an excellent match for the user's face shape, style, and stated needs.
+3.  **Craft Compelling Reasoning:** For each recommended frame, you **MUST** provide specific, persuasive, and visually attractive reasoning.
+    *   Be concise (2-3 sentences).
+    *   Explain *why* that particular frame is a great choice.
+    *   Connect your reasoning directly to the user's specific attributes (e.g., "The cat-eye shape of the 'JJ E14409' will beautifully complement your oval face by adding a gentle lift. Given its high rating and popularity, it's a trusted choice for a modern, chic look.").
+    *   Make it sound like expert advice, not just a description.
+4.  **Return the Output:** Format your response as a JSON object containing the \`id\` of each recommended frame and the crafted \`reasoning\`.`,
 });
 
 const selectFramesFromCatalogFlow = ai.defineFlow(

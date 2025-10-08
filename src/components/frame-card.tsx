@@ -46,7 +46,7 @@ export function FrameCard({ frame, isFavorite, toggleFavorite, onPreview }: Fram
            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
             <Button variant="secondary" onClick={() => onPreview(frame)}>
               <Eye className="mr-2 h-4 w-4" />
-              Preview
+              View
             </Button>
           </div>
         </div>
@@ -64,7 +64,10 @@ export function FrameCard({ frame, isFavorite, toggleFavorite, onPreview }: Fram
           variant="ghost"
           size="icon"
           aria-label="Toggle Favorite"
-          onClick={() => toggleFavorite(frame.id)}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleFavorite(frame.id);
+          }}
         >
           <Heart
             className={cn(

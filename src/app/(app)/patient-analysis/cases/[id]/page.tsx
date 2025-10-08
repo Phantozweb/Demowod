@@ -88,10 +88,19 @@ export default function CaseDetailPage() {
               if (Array.isArray(data)) {
                 data.forEach((frame: Frame) => {
                   const existingFrame = framesMap.get(frame.id) || frame;
-                  framesMap.set(frame.id, {
+                  
+                  // Create a new variations array if it doesn't exist
+                  if (!existingFrame.variations) {
+                    existingFrame.variations = [];
+                  }
+
+                  // Merge properties from different files
+                  const updatedFrame = {
                     ...existingFrame,
-                    [source.property]: source.value,
-                  });
+                    [source.property]: existingFrame[source.property as keyof Frame] || source.value,
+                  };
+
+                  framesMap.set(frame.id, updatedFrame);
                 });
               }
             } catch (e) {
@@ -136,7 +145,13 @@ export default function CaseDetailPage() {
         frameType: f.frameType,
         frameShape: f.frameShape,
         brand: f.brand,
-        size: f.size
+        size: f.size,
+        price: {
+            salesPrice: f.price?.salesPrice,
+            lkPrice: f.price?.lkPrice,
+        },
+        purchaseCount: f.purchaseCount,
+        productRating: f.productRating,
       }));
 
       const result = await selectFramesFromCatalog({
@@ -169,6 +184,7 @@ export default function CaseDetailPage() {
     if(caseItem && caseItem.status === 'Pending' && !caseItem.analysis && !isFetchingFrames && allFrames.length > 0) {
         handleStartAnalysis();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [caseItem, isFetchingFrames, allFrames]);
 
   const flatFrames = allFrames.flatMap(frame => 
@@ -322,7 +338,7 @@ export default function CaseDetailPage() {
                     ))}
                  </div>
               )}
-               {caseItem.status === 'Completed' && !isLoading &&(
+               {(caseItem.status === 'Completed' || analysisResult) && !isLoading &&(
                  <Button onClick={handleStartAnalysis} disabled={isLoading || isFetchingFrames} size="sm" className="mt-6">
                     {isLoading ? 'Re-running...' : 'Re-run Analysis'}
                 </Button>
