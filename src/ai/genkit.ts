@@ -11,5 +11,6 @@ export const ai = genkit({
       apiKey: process.env.GEMINI_API_KEY,
     }),
   ],
+  // Use the modern, correct model name as per the documentation.
   model: 'googleai/gemini-2.5-flash',
 });

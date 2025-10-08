@@ -42,8 +42,10 @@ export type AnalyzeFaceShapeOutput = z.infer<
 export async function analyzeFaceShape(
   input: AnalyzeFaceShapeInput
 ): Promise<AnalyzeFaceShapeOutput> {
+  // Guard against running analysis without an API key.
   if (!process.env.GEMINI_API_KEY) {
     console.error('GEMINI_API_KEY is not set. Skipping analysis.');
+    // Return a default value so the app doesn't crash.
     return {
       faceShape: 'Not analyzed',
       skinTone: 'Not analyzed',
@@ -59,6 +61,7 @@ const analyzeFaceShapeFlow = ai.defineFlow(
     outputSchema: AnalyzeFaceShapeOutputSchema,
   },
   async (input) => {
+    // This flow uses the modern Gemini API pattern for getting structured JSON output.
     const { output } = await ai.generate({
       prompt: `Analyze the provided photo of a person's face. Your task is to determine their face shape and skin tone.
       
@@ -73,6 +76,7 @@ const analyzeFaceShapeFlow = ai.defineFlow(
       }
       
       Photo: {{media url=photoDataUri}}`,
+      // This config is crucial. It tells the model to output a JSON string.
       config: {
         responseMimeType: 'application/json',
       },
@@ -85,7 +89,8 @@ const analyzeFaceShapeFlow = ai.defineFlow(
       throw new Error('Analysis failed to return a result.');
     }
 
-    // The model's output is a stringified JSON object when using responseMimeType
+    // The model's output is a stringified JSON object when using responseMimeType.
+    // We must parse it to get a usable JavaScript object.
     try {
       return JSON.parse(output) as AnalyzeFaceShapeOutput;
     } catch (e) {
