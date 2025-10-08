@@ -23,6 +23,7 @@ import {
 import Image from 'next/image';
 import {
   selectFramesFromCatalog,
+  type SelectFramesFromCatalogOutput
 } from '@/ai/flows/select-frames-from-catalog';
 import { useToast } from '@/hooks/use-toast';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -31,13 +32,6 @@ import { useFavorites } from '@/hooks/use-favorites';
 import { FrameCard } from '@/components/frame-card';
 import { ProductPreviewCard } from '@/components/product-preview-card';
 
-// Define the types here as they are no longer exported from the flow
-type SelectFramesFromCatalogOutput = {
-    recommendations: {
-        id: number;
-        reasoning: string;
-    }[];
-};
 
 export default function CaseDetailPage() {
   const params = useParams();
