@@ -1,0 +1,16 @@
+
+[
+    {
+      "id": 101,
+      "name": "Super HiVision® Meiryo® EX4™",
+      "description": "HOYA's most advanced premium spectacle lens coating, designed to provide next-level clarity and durability. It ensures long-lasting protection against scratches, smudges, and daily wear, maintaining crystal-clear vision throughout the lifespan of your prescription.",
+      "features": [
+        "56% lower reflectance vs. competitor's best coating",
+        "Up to 2.5x better scratch resistance",
+        "Maintains 'easy clean' features up to 5x longer"
+      ],
+      "use_case": "Provides long-lasting protection against scratches, smudges, and daily wear for any lens, ensuring crystal-clear vision.",
+      "targetUser": "All eyeglass wearers seeking maximum clarity, durability, and easy maintenance.",
+      "category": "Lens Coating"
+    }
+]
