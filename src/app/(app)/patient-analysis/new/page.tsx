@@ -16,7 +16,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { useCases, type PatientCase } from '@/hooks/use-cases';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
-import { analyzeFaceShape } from '@/ai/flows/analyze-face-shape';
 
 const patientCaseSchema = z.object({
   patientName: z.string().min(1, 'Patient name is required'),
@@ -74,35 +73,14 @@ export default function NewPatientPage() {
     const [imagePreview, setImagePreview] = useState<string | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
 
-    const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
             const reader = new FileReader();
-            reader.onloadend = async () => {
+            reader.onloadend = () => {
                 const dataUrl = reader.result as string;
-                setImagePreview(dataUrl); // Show original image immediately
-                setIsAnalyzing(true);
-                
-                try {
-                    const result = await analyzeFaceShape({ photoDataUri: dataUrl });
-                    form.setValue('image', dataUrl); // We keep the original image
-                    form.setValue('faceShape', result.faceShape);
-                    toast({
-                        title: 'Analysis Complete',
-                        description: `Detected face shape: ${result.faceShape}`,
-                    })
-                } catch (error) {
-                    console.error('Face analysis failed:', error);
-                    toast({
-                        variant: 'destructive',
-                        title: 'Face Analysis Failed',
-                        description: 'Could not analyze the image. Please try another one.',
-                    });
-                    setImagePreview(null); 
-                    form.setValue('image', undefined);
-                } finally {
-                    setIsAnalyzing(false);
-                }
+                setImagePreview(dataUrl);
+                form.setValue('image', dataUrl);
             };
             reader.readAsDataURL(file);
         }
@@ -240,8 +218,8 @@ export default function NewPatientPage() {
                                 )}/>
                                 <FormField control={form.control} name="faceShape" render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Detected Face Shape</FormLabel>
-                                        <FormControl><Input placeholder="Auto-detected by Focus.Ai" {...field} readOnly className="bg-muted" /></FormControl>
+                                        <FormLabel>Face Shape (Optional)</FormLabel>
+                                        <FormControl><Input placeholder="e.g., Oval, Round, Square" {...field} /></FormControl>
                                     </FormItem>
                                 )}/>
                             </div>
@@ -319,12 +297,6 @@ export default function NewPatientPage() {
                                     render={({ field }) => (
                                     <FormItem className="w-full">
                                         <FormLabel htmlFor="image-upload" className={`relative flex flex-col justify-center items-center w-full h-80 bg-background rounded-lg border-2 border-dashed border-input hover:border-primary transition-all duration-300 cursor-pointer overflow-hidden ${imagePreview ? 'border-primary' : ''}`}>
-                                        {isAnalyzing && (
-                                            <div className="absolute inset-0 flex flex-col justify-center items-center bg-background/80 z-10">
-                                                <div className="scanline"></div>
-                                                <p className="mt-4 text-white font-semibold z-20 bg-black/50 px-4 py-2 rounded-md">Focus.Ai is analyzing...</p>
-                                            </div>
-                                        )}
                                         {imagePreview ? (
                                             <img src={imagePreview} alt="Patient preview" className="w-full h-full object-contain rounded-lg" />
                                         ) : (
@@ -365,4 +337,5 @@ export default function NewPatientPage() {
         </div>
     </div>
   );
-}
+
+    
