@@ -34,28 +34,29 @@ export async function analyzeFaceShape(
   return analyzeFaceShapeFlow(input);
 }
 
+const prompt = ai.definePrompt({
+  name: 'analyzeFaceShapePrompt',
+  input: { schema: AnalyzeFaceShapeInputSchema },
+  output: { schema: AnalyzeFaceShapeOutputSchema },
+  prompt: `You are Focus.Ai, an expert in facial analysis. Analyze the provided image to determine the user's face shape and skin tone.
+
+Analyze the user's face in the image and identify the primary shape (e.g., Oval, Round, Square, Heart, Diamond, etc.) and their skin tone.
+
+Return ONLY a valid JSON object with the keys "faceShape" and "skinTone". Do not include any other text, explanation, or markdown.
+
+Image to analyze:
+{{media url=photoDataUri}}`,
+});
+
 const analyzeFaceShapeFlow = ai.defineFlow(
   {
     name: 'analyzeFaceShapeFlow',
     inputSchema: AnalyzeFaceShapeInputSchema,
     outputSchema: AnalyzeFaceShapeOutputSchema,
   },
-  async ({ photoDataUri }) => {
-    const { output } = await ai.generate({
-      prompt: `Analyze the provided image to determine the face shape and skin tone.
-Return ONLY a valid JSON object with the keys "faceShape" and "skinTone".
-Do not include any other text, explanation, or markdown.
-
-The user has provided this image:
-{{media url=photoDataUri}}`,
-      output: {
-        schema: AnalyzeFaceShapeOutputSchema,
-      },
-      config: {
-        temperature: 1.5,
-      }
-    });
-
+  async (input) => {
+    const { output } = await prompt(input);
+    
     if (!output) {
       throw new Error('Analysis failed to return a result.');
     }
