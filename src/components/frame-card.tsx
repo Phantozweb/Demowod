@@ -73,3 +73,4 @@ export function FrameCard({ frame, isFavorite, toggleFavorite }: FrameCardProps)
     </Card>
   );
 }
+

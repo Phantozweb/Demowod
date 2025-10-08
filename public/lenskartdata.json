@@ -1,10 +1,11 @@
+
 [
     {
         "productName": "Lenskart Hustlr",
         "productModelName": "LA E15417-W",
+        "classification": "eyeframe",
         "frameType": "full rim",
         "frameShape": "square",
-        "classification": "eyeframe",
         "variations": [
             {
                 "id": 216521,
@@ -14,7 +15,7 @@
                     "currency": "INR",
                     "basePrice": 1900,
                     "lkPrice": 1900,
-                    "symbol": "\u20b9"
+                    "symbol": "₹"
                 },
                 "productImage": {
                     "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e15417-w-c1-eyeglasses_csvfile-1701688526805-img_7894.jpg"
@@ -23,98 +24,310 @@
             {
                 "id": 233091,
                 "color": "#ee7600",
-                "glassColor": "",
                 "price": {
                     "currency": "INR",
                     "basePrice": 1900,
                     "lkPrice": 1900,
-                    "symbol": "\u20b9"
+                    "symbol": "₹"
                 },
                 "productImage": {
                     "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/orange-full-rim-square-lenskart-hustlr-la-e15417-xw-eyeglasses__dsc3403_20_05_2025.jpg"
                 }
-            }
-        ]
-    },
-    {
-        "productName": "Lenskart Air",
-        "productModelName": "LA E13068",
-        "frameType": "full rim",
-        "frameShape": "wayfarer",
-        "classification": "eyeframe",
-        "variations": [
-            {
-                "id": 137971,
-                "color": "#000000",
-                "glassColor": "",
-                "price": {
-                    "currency": "INR",
-                    "basePrice": 1900,
-                    "lkPrice": 1900,
-                    "symbol": "\u20b9"
-                },
-                "productImage": {
-                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-gunmetal-black-full-rim-wayfarer-lenskart-air-fusion-la-e13068---c1-eyeglasses_lenskart-air-la-e13032-c1-eyeglasses_g_2000_05_july23.jpg"
-                }
             },
             {
-                "id": 201333,
-                "color": "#c0c0c0",
-                "glassColor": "",
+                "id": 219074,
+                "color": "#9b2743",
                 "price": {
                     "currency": "INR",
-                    "basePrice": 1900,
-                    "lkPrice": 1900,
-                    "symbol": "\u20b9"
+                    "basePrice": 2000,
+                    "lkPrice": 500,
+                    "symbol": "₹"
                 },
                 "productImage": {
-                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e13068-c6-eyeglasses_g_4836_03_03_2023.jpg"
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-hustlr-la-e15417-xw-c37-eyeglasses__dsc4437_24_05_2024.jpg"
                 }
             }
         ]
     },
     {
+        "id": 137974,
         "productName": "Lenskart Air",
-        "productModelName": "LA E17017",
+        "productModelName": "LA E13069",
+        "size": "Medium",
+        "classification": "eyeframe",
         "frameType": "full rim",
         "frameShape": "square",
-        "classification": "eyeframe",
-        "variations": [
-             {
-                "id": 217650,
-                "color": "#C1B7B0",
-                "price": {
-                    "currency": "INR",
-                    "basePrice": 1900,
-                    "lkPrice": 1900,
-                    "symbol": "\u20b9"
-                },
-                "productImage": {
-                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/silver-grey-transparent-full-rim-square-lenskart-air-fusion-la-e17017-c1-eyeglasses__dsc4915_28_05_2024_28_05_2024.jpg"
-                }
-            }
-        ]
+        "productRating": 4.8,
+        "purchaseCount": 248802,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 1900,
+          "lkPrice": 1400
+        },
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-full-rim-square-lenskart-air-fusion-la-e13069-c1-eyeglasses_lenskart-air-la-e13033-c1-eyeglasses_eyeglasses_g_7876_2a_28july23.jpg"
+        }
     },
     {
+        "id": 211193,
         "productName": "John Jacobs",
-        "productModelName": "JJ E10235",
+        "productModelName": "JJ E16116",
+        "size": "Wide",
+        "classification": "eyeframe",
         "frameType": "full rim",
         "frameShape": "square",
+        "productRating": 4.85,
+        "purchaseCount": 74496,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 3900,
+          "lkPrice": 3300
+        },
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/john-jacobs-jj-e16116-c2-eyeglasses_g_8778_19_10_2023.jpg"
+        }
+    },
+    {
+        "id": 204441,
+        "productName": "Vincent Chase",
+        "productModelName": "VC E15069",
+        "size": "Narrow",
         "classification": "eyeframe",
-        "variations": [
-            {
-                "id": 136174,
-                "color": "#f1f1f1",
-                "price": {
-                    "currency": "INR",
-                    "basePrice": 3900,
-                    "lkPrice": 3900,
-                    "symbol": "\u20b9"
-                },
-                "productImage": {
-                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/transparent-full-rim-square-john-jacobs-rich-acetate-jj-e10235-c7-eyeglasses-chandler_g_2375_30_9_2025.jpg"
-                }
-            }
-        ]
+        "frameType": "full rim",
+        "frameShape": "round",
+        "productRating": 4.8,
+        "purchaseCount": 82025,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 1900,
+          "lkPrice": 1400
+        },
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/copper-brown-full-rim-round-vincent-chase-sleek-steel-vc-e15069-c2-eyeglasses_g_3676_10_14_22.jpg"
+        }
+    },
+    {
+        "id": 142515,
+        "productName": "John Jacobs",
+        "productModelName": "JJ E13343",
+        "size": "Medium",
+        "classification": "eyeframe",
+        "frameType": "full rim",
+        "frameShape": "square",
+        "productRating": 4.8,
+        "purchaseCount": 109718,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 3900,
+          "lkPrice": 3300
+        },
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/o/john-jacobs-jj-e13343-c2-eyeglasses_john-jacobs-jj-e13343-c2-eyeglasses_g_5787.jpg"
+        }
+    },
+    {
+        "id": 151705,
+        "productName": "Lenskart Air",
+        "productModelName": "LA E14573",
+        "size": "Medium",
+        "classification": "eyeframe",
+        "frameType": "full rim",
+        "frameShape": "rectangle",
+        "productRating": 4.8,
+        "purchaseCount": 129669,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 1900,
+          "lkPrice": 1400
+        },
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-gray-full-rim-rectangle-lenskart-air-signia-la-e14573-c3-eyeglasses_g_2478_09-july.jpg"
+        }
+    },
+    {
+        "id": 217994,
+        "productName": "John Jacobs",
+        "productModelName": "JJ E14409",
+        "size": "Narrow",
+        "classification": "eyeframe",
+        "frameType": "full rim",
+        "frameShape": "cat eye",
+        "productRating": 4.85,
+        "purchaseCount": 62096,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 3900,
+          "lkPrice": 3300
+        },
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/pink-gold-pink-full-rim-cat-eye-john-jacobs-tr-flex-jj-e-14409-c6-eyeglasses__dsc5657.jpg"
+        }
+    },
+    {
+        "id": 205901,
+        "productName": "John Jacobs",
+        "productModelName": "JJ E15275",
+        "size": "Medium",
+        "classification": "eyeframe",
+        "frameType": "full rim",
+        "frameShape": "cat eye",
+        "productRating": 4.9,
+        "purchaseCount": 15485,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 3900,
+          "lkPrice": 3300
+        },
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/pink-transparent-gold-pink-full-rim-cat-eye-john-jacobs-gilded-jewels-jj-e15275-c2-eyeglasses_g_0652_27_jan_2023.jpg"
+        }
+    },
+    {
+        "id": 217660,
+        "productName": "Lenskart Air",
+        "productModelName": "LA E17022",
+        "size": "Medium",
+        "classification": "eyeframe",
+        "frameType": "full rim",
+        "frameShape": "square",
+        "productRating": 4.85,
+        "purchaseCount": 27388,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 1900,
+          "lkPrice": 1400
+        },
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/silver-transparent-full-rim-square-lenskart-air-fusion-la-e17022-c2-eyeglasses__dsc4890_28_05_2024_28_05_2024.jpg"
+        }
+    },
+    {
+        "id": 216742,
+        "productName": "John Jacobs",
+        "productModelName": "JJ E16847",
+        "size": "Medium",
+        "classification": "eyeframe",
+        "frameType": "full rim",
+        "frameShape": "rectangle",
+        "productRating": 4.8,
+        "purchaseCount": 42010,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 3900,
+          "lkPrice": 3300
+        },
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/green-brown-full-rim-rectangle-john-jacobs-tr-flex-jj-e16847-c1-eyeglasses__dsc5069_23_04_2024.jpg"
+        }
+    },
+    {
+        "id": 150798,
+        "productName": "Lenskart Air",
+        "productModelName": "LA E14398",
+        "size": "Narrow",
+        "classification": "eyeframe",
+        "frameType": "full rim",
+        "frameShape": "round",
+        "productRating": 4.8,
+        "purchaseCount": 96488,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 2900,
+          "lkPrice": 2400
+        },
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/Gunmetal-Black-Full-Rim-Round-Lenskart-Air-Clip-On-LA-E14398-C2-Eyeglasses_G_7793.jpg"
+        }
+    },
+    {
+        "id": 206272,
+        "productName": "Vincent Chase",
+        "productModelName": "VC E15349",
+        "size": "Medium",
+        "classification": "eyeframe",
+        "frameType": "full rim",
+        "frameShape": "rectangle",
+        "productRating": 4.8,
+        "purchaseCount": 53507,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 1900,
+          "lkPrice": 1400
+        },
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e15349-c3-eyeglasses_csvfile-1682510005458-g_1843.jpg"
+        }
+    },
+    {
+        "id": 215742,
+        "productName": "John Jacobs",
+        "productModelName": "JJ E16683",
+        "size": "Wide",
+        "classification": "eyeframe",
+        "frameType": "full rim",
+        "frameShape": "rectangle",
+        "productRating": 4.9,
+        "purchaseCount": 23009,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 4900,
+          "lkPrice": 4300
+        },
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/john-jacobs-jj-e16683-c2-eyeglasses_img_7195_07_03_2024.jpg"
+        }
+    },
+    {
+        "id": 201103,
+        "productName": "Vincent Chase",
+        "productModelName": "VC E14938",
+        "size": "Wide",
+        "classification": "eyeframe",
+        "frameType": "full rim",
+        "frameShape": "square",
+        "productRating": 4.8,
+        "purchaseCount": 91409,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 1900,
+          "lkPrice": 1400
+        },
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/gold-black-full-rim-square-vincent-chase-sleek-steel-vc-e14938-c1-eyeglasses_g_0365_09_july_2022.jpg"
+        }
+    },
+    {
+        "id": 217998,
+        "productName": "John Jacobs",
+        "productModelName": "JJ E14410",
+        "size": "Narrow",
+        "classification": "eyeframe",
+        "frameType": "full rim",
+        "frameShape": "round",
+        "productRating": 4.85,
+        "purchaseCount": 46612,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 3900,
+          "lkPrice": 3300
+        },
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/black-gold-black-full-rim-round-john-jacobs-tr-flex-jj-e14410-c6-eyeglasses__dsc7006_20_06_2024.jpg"
+        }
     }
 ]
+
