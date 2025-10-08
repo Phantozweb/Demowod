@@ -28,31 +28,37 @@ export default function FavoritesPage() {
 
       try {
         const responses = await Promise.all(
-          dataSources.map(source => fetch(source.url))
-        );
-
-        const framesMap = new Map<number, Frame>();
-
-        for (let i = 0; i < responses.length; i++) {
-          const res = responses[i];
-          const source = dataSources[i];
-
-          if (res.ok) {
-            const data = await res.json();
-            if (Array.isArray(data)) {
-              data.forEach((frame: Frame) => {
-                const existingFrame = framesMap.get(frame.id) || {};
-                framesMap.set(frame.id, {
-                  ...existingFrame,
-                  ...frame,
-                  [source.property]: source.value,
-                });
-              });
+            dataSources.map(source => fetch(source.url).catch(e => {
+                console.error(`Failed to fetch ${source.url}`, e);
+                return null;
+            }))
+          );
+  
+          const framesMap = new Map<number, Frame>();
+  
+          for (let i = 0; i < responses.length; i++) {
+            const res = responses[i];
+            const source = dataSources[i];
+            
+            if (res && res.ok) {
+              try {
+                const data = await res.json();
+                if (Array.isArray(data)) {
+                  data.forEach((frame: Frame) => {
+                    const existingFrame = framesMap.get(frame.id) || frame;
+                    framesMap.set(frame.id, {
+                      ...existingFrame,
+                      [source.property]: source.value,
+                    });
+                  });
+                }
+              } catch (e) {
+                 console.error(`Failed to parse JSON for ${source.url}`, e);
+              }
+            } else {
+              console.error(`Failed to fetch ${source.url}:`, res ? res.statusText : 'Network Error');
             }
-          } else {
-            console.error(`Failed to fetch ${res.url}: ${res.statusText}`);
           }
-        }
         
         const uniqueFrames = Array.from(framesMap.values());
         setAllFrames(uniqueFrames);

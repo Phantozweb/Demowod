@@ -40,7 +40,10 @@ export default function CatalogPage() {
 
       try {
         const responses = await Promise.all(
-          dataSources.map(source => fetch(source.url))
+          dataSources.map(source => fetch(source.url).catch(e => {
+            console.error(`Failed to fetch ${source.url}`, e);
+            return null;
+          }))
         );
 
         const framesMap = new Map<number, Frame>();
@@ -48,21 +51,24 @@ export default function CatalogPage() {
         for (let i = 0; i < responses.length; i++) {
           const res = responses[i];
           const source = dataSources[i];
-
-          if (res.ok) {
-            const data = await res.json();
-            if (Array.isArray(data)) {
-              data.forEach((frame: Frame) => {
-                const existingFrame = framesMap.get(frame.id) || {};
-                framesMap.set(frame.id, {
-                  ...existingFrame,
-                  ...frame,
-                  [source.property]: source.value,
+          
+          if (res && res.ok) {
+            try {
+              const data = await res.json();
+              if (Array.isArray(data)) {
+                data.forEach((frame: Frame) => {
+                  const existingFrame = framesMap.get(frame.id) || frame;
+                  framesMap.set(frame.id, {
+                    ...existingFrame,
+                    [source.property]: source.value,
+                  });
                 });
-              });
+              }
+            } catch (e) {
+               console.error(`Failed to parse JSON for ${source.url}`, e);
             }
           } else {
-            console.error(`Failed to fetch ${res.url}: ${res.statusText}`);
+            console.error(`Failed to fetch ${source.url}:`, res ? res.statusText : 'Network Error');
           }
         }
         
@@ -116,10 +122,11 @@ export default function CatalogPage() {
     );
 
     const filteredFrames = allFrames.filter(frame => {
-        const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
-        const typeMatch = frameType === 'all' || (frame.frameType && frame.frameType.toLowerCase() === frameType);
-        const shapeMatch = frameShape === 'all' || (frame.frameShape && frame.frameShape.toLowerCase() === frameShape);
-        return nameMatch && (typeMatch || shapeMatch) && !(frameType !== 'all' && frameShape !== 'all');
+      const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
+      const typeMatch = frameType === 'all' || (frame.frameType && frame.frameType.toLowerCase() === frameType);
+      const shapeMatch = frameShape === 'all' || (frame.frameShape && frame.frameShape.toLowerCase() === frameShape);
+      
+      return nameMatch && typeMatch && shapeMatch;
     });
 
     if (filteredFrames.length === 0) {
@@ -179,8 +186,6 @@ export default function CatalogPage() {
                     <SelectItem value="round">Round</SelectItem>
                     <SelectItem value="aviator">Aviator</SelectItem>
                     <SelectItem value="cat eye">Cat Eye</SelectItem>
-                    <SelectItem value="geometric">Geometric</SelectItem>
-                    <SelectItem value="wayfarer">Wayfarer</SelectItem>
                 </SelectContent>
             </Select>
         </div>
