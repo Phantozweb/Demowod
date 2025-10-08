@@ -1,0 +1,784 @@
+[
+  {
+    "id": 217994,
+    "sku": "eye:john-jacobs-jj-e14409-c6-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E14409",
+    "size": "Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e14409-c6-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "1385",
+    "purchaseCount": 62096,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffc0cb",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/pink-gold-pink-full-rim-cat-eye-john-jacobs-tr-flex-jj-e-14409-c6-eyeglasses__dsc5657.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/pink-gold-pink-full-rim-cat-eye-john-jacobs-tr-flex-jj-e-14409-c6-eyeglasses__dsc5656.jpg"
+    },
+    "colorOptions": []
+  },
+  {
+    "id": 205901,
+    "sku": "eye:john-jacobs-jj-e15275-c2-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E15275",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e15275-c2-eyeglasses.html",
+    "productRating": 4.9,
+    "totalNoOfRatings": "133",
+    "purchaseCount": 15485,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffddee",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/pink-transparent-gold-pink-full-rim-cat-eye-john-jacobs-gilded-jewels-jj-e15275-c2-eyeglasses_g_0652_27_jan_2023.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/pink-transparent-gold-pink-full-rim-cat-eye-john-jacobs-gilded-jewels-jj-e15275-c2-eyeglasses_g_0651_27_jan_2023.jpg"
+    },
+    "colorOptions": []
+  },
+  {
+    "id": 225390,
+    "sku": "eye:john-jacobs-jj-e70077-c1-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E70077",
+    "size": "Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e70077-c1-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "207",
+    "purchaseCount": 9968,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 4900,
+      "salesPrice": 4300
+    },
+    "discount": {
+      "label": "(12% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#b76e79",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/rose-gold-half-rim-cat-eye-john-jacobs-supreme-steel-jj-e70077-c1-eyeglasses__dsc7255_18_10_2024.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/rose-gold-half-rim-cat-eye-john-jacobs-supreme-steel-jj-e70077-c1-eyeglasses__dsc7254_18_10_2024.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 225390,
+        "color": "#b76e79",
+        "productURL": "/john-jacobs-jj-e70077-c1-eyeglasses.html"
+      },
+      {
+        "id": 225391,
+        "color": "#c0c0c0",
+        "productURL": "/john-jacobs-jj-e70077-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 201621,
+    "sku": "eye:vincent-chase-vc-e14974-c2-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E14974",
+    "size": "Extra Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e14974-c2-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "2850",
+    "purchaseCount": 105851,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffc0cb",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/gold-pink-transparent-full-rim-rectangle-vincent-chase-blend-edit-vc-e14974-c2-eyeglasses_g_3524_10_14_22.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/gold-pink-transparent-full-rim-rectangle-vincent-chase-blend-edit-vc-e14974-c2-eyeglasses_g_3522_10_14_22.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 201621,
+        "color": "#ffc0cb",
+        "productURL": "/vincent-chase-vc-e14974-c2-eyeglasses.html"
+      },
+      {
+        "id": 218995,
+        "color": "#ffddee",
+        "productURL": "/vincent-chase-vc-e14974-m-c1-eyeglasses.html"
+      },
+      {
+        "id": 201622,
+        "color": "#808080",
+        "productURL": "/vincent-chase-vc-e14974-c3-eyeglasses.html"
+      },
+      {
+        "id": 218996,
+        "color": "#ADD8E6",
+        "productURL": "/vincent-chase-vc-e14974-m-c2-eyeglasses.html"
+      },
+      {
+        "id": 221131,
+        "color": "#808080",
+        "productURL": "/vincent-chase-vc-e14974-c3-eye-dup.html"
+      },
+      {
+        "id": 231658,
+        "color": "#ff0000",
+        "productURL": "/vincent-chase-vc-e14974-red transparent-eyeglasses.html"
+      },
+      {
+        "id": 228666,
+        "color": "#0000ff",
+        "productURL": "/vincent-chase-vc-e14974-w-c2-eyeglass.html"
+      }
+    ]
+  },
+  {
+    "id": 225395,
+    "sku": "eye:john-jacobs-jj-e70079-c1-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E70079",
+    "size": "Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e70079-c1-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "204",
+    "purchaseCount": 7826,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffd700",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/gold-black-full-rim-cat-eye-john-jacobs-supreme-steel-jj-e70079-c1-eyeglasses__dsc7218_21_10_2024.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/gold-black-full-rim-cat-eye-john-jacobs-supreme-steel-jj-e70079-c1-eyeglasses__dsc7216_21_10_2024.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 225395,
+        "color": "#ffd700",
+        "productURL": "/john-jacobs-jj-e70079-c1-eyeglasses.html"
+      },
+      {
+        "id": 225396,
+        "color": "#c0c0c0",
+        "productURL": "/john-jacobs-jj-e70079-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 223332,
+    "sku": "eye:vincent-chase-vc-e17576-c1-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E17576",
+    "size": "Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e17576-c1-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "148",
+    "purchaseCount": 10359,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffd700",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/gold-half-rim-cat-eye-vincent-chase-lenskart-half-rim-vc-e17576-eyeglasses_dsc6673_30_12_2024.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/gold-half-rim-cat-eye-vincent-chase-lenskart-half-rim-vc-e17576-eyeglasses_dsc6672_30_12_2024.jpg"
+    },
+    "colorOptions": []
+  },
+  {
+    "id": 211513,
+    "sku": "eye:vincent-chase-vc-e16192-c1-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E16192",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e16192-c1-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "499",
+    "purchaseCount": 32534,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffd700",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e16192-c1-eyeglasses_img_8469_13_12_2023.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e16192-c1-eyeglasses_img_8467_13_12_2023.jpg"
+    },
+    "colorOptions": []
+  },
+  {
+    "id": 205907,
+    "sku": "eye:john-jacobs-jj-e15279-c1-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E15279",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e15279-c1-eyeglasses.html",
+    "productRating": 4.95,
+    "totalNoOfRatings": "101",
+    "purchaseCount": 16885,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 4900,
+      "salesPrice": 4300
+    },
+    "discount": {
+      "label": "(12% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#0000ff",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/silver-blue-transparent-silver-tortoise-half-rim-rectangle-john-jacobs-gilded-jewels-jj-e15279-c1-eyeglasses_g_0681_27_jan_2023.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/silver-blue-transparent-silver-tortoise-half-rim-rectangle-john-jacobs-gilded-jewels-jj-e15279-c1-eyeglasses_g_0680_27_jan_2023.jpg"
+    },
+    "colorOptions": []
+  },
+  {
+    "id": 201618,
+    "sku": "eye:vincent-chase-vc-e14973-c2-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E14973",
+    "size": "Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e14973-c2-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "1698",
+    "purchaseCount": 109553,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#a52a2a",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/brown-transparent-silver-full-rim-cat-eye-vincent-chase-blend-edit-vc-e14973-c2-eyeglasses_g_3516_10_14_22.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/brown-transparent-silver-full-rim-cat-eye-vincent-chase-blend-edit-vc-e14973-c2-eyeglasses_g_3515_10_14_22.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 201618,
+        "color": "#a52a2a",
+        "productURL": "/vincent-chase-vc-e14973-c2-eyeglasses.html"
+      },
+      {
+        "id": 221627,
+        "color": "#a52a2a",
+        "productURL": "/vincent-chase-vc-e14973-c2-eyeglasses-dup.html"
+      },
+      {
+        "id": 236091,
+        "color": "#ee7600",
+        "productURL": "/vincent-chase-vc-e14973-brown-transparent-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 215403,
+    "sku": "eye:lenskart-air-la-e16640-c1-eyeglasses",
+    "productName": "Lenskart Air",
+    "productModelName": "LA E16640",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-air-la-e16640-c1-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "728",
+    "purchaseCount": 41657,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffc0cb",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e16640-c1-eyeglasses_img_0215_09_01_2024.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e16640-c1-eyeglasses_img_0214_09_01_2024.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 215403,
+        "color": "#ffc0cb",
+        "productURL": "/lenskart-air-la-e16640-c1-eyeglasses.html"
+      },
+      {
+        "id": 215405,
+        "color": "#ed7e07",
+        "productURL": "/lenskart-air-la-e16640-c3-eyeglasses.html"
+      },
+      {
+        "id": 215404,
+        "color": "#f1f1f1",
+        "productURL": "/lenskart-air-la-e16640-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 149062,
+    "sku": "eye:vincent-chase-vc-e14107-c2-c2-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E14107",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e14107-c2-c2-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "1034",
+    "purchaseCount": 65267,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffc0cb",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/tortoise-gold-full-rim-cat-eye-vincent-chase-blend-edit-vc-e14107-c2-eyeglasses_vincent-chase-vc-e14107-c2-c2-eyeglasses_vincent-chase-vc-e14107-c2-c2-eyeglasses_g_8488_5july23.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/tortoise-gold-full-rim-cat-eye-vincent-chase-blend-edit-vc-e14107-c2-eyeglasses_vincent-chase-vc-e14107-c2-c2-eyeglasses_vincent-chase-vc-e14107-c2-c2-eyeglasses_g_8488_5july23.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 149062,
+        "color": "#ffc0cb",
+        "productURL": "/vincent-chase-vc-e14107-c2-c2-eyeglasses.html"
+      },
+      {
+        "id": 149061,
+        "color": "#a52a2a",
+        "productURL": "/vincent-chase-vc-e14107-c1-c1-eyeglasses.html"
+      },
+      {
+        "id": 231663,
+        "color": "#ffc0cb",
+        "productURL": "/vincent-chase-vc-e14107-peach pink-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 215404,
+    "sku": "eye:lenskart-air-la-e16640-c2-eyeglasses",
+    "productName": "Lenskart Air",
+    "productModelName": "LA E16640",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-air-la-e16640-c2-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "769",
+    "purchaseCount": 43132,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#f1f1f1",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e16640-c2-eyeglasses_img_0149_09_01_2024.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e16640-c2-eyeglasses_img_0148_09_01_2024.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 215404,
+        "color": "#f1f1f1",
+        "productURL": "/lenskart-air-la-e16640-c2-eyeglasses.html"
+      },
+      {
+        "id": 215403,
+        "color": "#ffc0cb",
+        "productURL": "/lenskart-air-la-e16640-c1-eyeglasses.html"
+      },
+      {
+        "id": 215405,
+        "color": "#ed7e07",
+        "productURL": "/lenskart-air-la-e16640-c3-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 149022,
+    "sku": "eye:lenskart-air-la-e14101-c2-c2-eyeglasses",
+    "productName": "Lenskart Air",
+    "productModelName": "LA E14101",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-air-la-e14101-c2-c2-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "2761",
+    "purchaseCount": 88354,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffc0cb",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/pink-transparent-full-rim-cat-eye-lenskart-air-fusion-la-e14101-c2-eyeglasses__dsc5116_11_09_2025.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/pink-transparent-full-rim-cat-eye-lenskart-air-fusion-la-e14101-c2-eyeglasses__dsc5115_11_09_2025.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 149022,
+        "color": "#ffc0cb",
+        "productURL": "/lenskart-air-la-e14101-c2-c2-eyeglasses.html"
+      },
+      {
+        "id": 219952,
+        "color": "#000000",
+        "productURL": "/lenskart-air-la-e14101-m-c1-eyeglasses.html"
+      },
+      {
+        "id": 201343,
+        "color": "#ee7600",
+        "productURL": "/lenskart-air-la-e14101-c4-eyeglasses.html"
+      },
+      {
+        "id": 219951,
+        "color": "#000000",
+        "productURL": "/lenskart-air-la-e14101-n-c1-eyeglasses.html"
+      },
+      {
+        "id": 149021,
+        "color": "#000000",
+        "productURL": "/lenskart-air-la-e14101-c1-c1-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 211307,
+    "sku": "eye:vincent-chase-vc-e13029-n-c1-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E13029-N",
+    "size": "Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e13029-n-c1-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "497",
+    "purchaseCount": 35689,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#800080",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/purple-tortoise-full-rim-cat-eye-vincent-chase-classic-acetate-vc-e13029-n-c1-eyeglasses_g_8487_09_11_2023.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/purple-tortoise-full-rim-cat-eye-vincent-chase-classic-acetate-vc-e13029-n-c1-eyeglasses_g_8486_09_11_2023.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 211307,
+        "color": "#800080",
+        "productURL": "/vincent-chase-vc-e13029-n-c1-eyeglasses.html"
+      },
+      {
+        "id": 222402,
+        "color": "#ffddee",
+        "productURL": "/vincent-chase-vc-e13029-c6-eyeglasses.html"
+      },
+      {
+        "id": 137934,
+        "color": "#000000",
+        "productURL": "/vincent-chase-vc-e13029-c1-eyeglasses.html"
+      },
+      {
+        "id": 137935,
+        "color": "#800080",
+        "productURL": "/vincent-chase-vc-e13029-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 201543,
+    "sku": "eye:lenskart-air-la-e11484-c4-eyeglasses",
+    "productName": "Lenskart Air",
+    "productModelName": "LA E11484",
+    "size": "Extra Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-air-la-e11484-c4-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "1484",
+    "purchaseCount": 73186,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#808080",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-full-rim-cat-eye-lenskart-air-flex-la-e11484-c4-eyeglasses_csvfile-1698312746966-g_7003.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-full-rim-cat-eye-lenskart-air-flex-la-e11484-c4-eyeglasses_csvfile-1698312729422-g_7002.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 201543,
+        "color": "#808080",
+        "productURL": "/lenskart-air-la-e11484-c4-eyeglasses.html"
+      },
+      {
+        "id": 146818,
+        "color": "#000000",
+        "productURL": "/lenskar-air-la-e11484-c1-eyeglasses.html"
+      },
+      {
+        "id": 146817,
+        "color": "#a52a2a",
+        "productURL": "/lenskar-air-la-e11484-c2-eyeglasses.html"
+      },
+      {
+        "id": 221092,
+        "color": "#000000",
+        "productURL": "/lenskar-air-la-e11484-c1-eye-dup.html"
+      },
+      {
+        "id": 219757,
+        "color": "#9966cb",
+        "productURL": "/lenskart-air-la-e11484-w-c1-eyeglasses.html"
+      },
+      {
+        "id": 221613,
+        "color": "#808080",
+        "productURL": "/lenskart-air-la-e11484-c4-eyeglasses-dup.html"
+      },
+      {
+        "id": 219756,
+        "color": "#9966cb",
+        "productURL": "/lenskart-air-la-e11484-m-c1-eyeglasses.html"
+      },
+      {
+        "id": 221532,
+        "color": "#a52a2a",
+        "productURL": "/lenskar-air-la-e11484-c2-eyeglasses-dup.html"
+      }
+    ]
+  },
+  {
+    "id": 145911,
+    "sku": "eye:john-jacobs-jj-e13672-riml1ess-c2-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E13672",
+    "size": "Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e13672-rimless-c2-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "669",
+    "purchaseCount": 54620,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 4900,
+      "salesPrice": 4300
+    },
+    "discount": {
+      "label": "(12% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#c0c0c0",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/Silver-Rimless-Cat-Eye-John-Jacobs-Pro-Titanium-JJ-E13672-C2-Eyeglasses_G_0964_2_jun2023.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/Silver-Rimless-Cat-Eye-John-Jacobs-Pro-Titanium-JJ-E13672-C2-Eyeglasses_G_0963_2_jun2023.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 145911,
+        "color": "#c0c0c0",
+        "productURL": "/john-jacobs-jj-e13672-rimless-c2-eyeglasses.html"
+      },
+      {
+        "id": 145910,
+        "color": "#b76e79",
+        "productURL": "/john-jacobs-jj-e13672-rimless-c1-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 142833,
+    "sku": "eye:vincent-chase-vc-e11860-c5-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E11860",
+    "size": "Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e11860-c5-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "1560",
+    "purchaseCount": 69765,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e11860-c5-eyeglasses_vincent-chase-vc-e11860-c5-eyeglasses_G_8327.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e11860-c5-eyeglasses_g_0540.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 142833,
+        "color": "#000000",
+        "productURL": "/vincent-chase-vc-e11860-c5-eyeglasses.html"
+      },
+      {
+        "id": 219475,
+        "color": "#000000",
+        "productURL": "/vincent-chase-vc-e11860-c7-eyeglasses.html"
+      },
+      {
+        "id": 229051,
+        "color": "#0000ff",
+        "productURL": "/vincent-chase-vc-e11860-m-c1-eyeglasses.html"
+      },
+      {
+        "id": 135933,
+        "color": "#0000ff",
+        "productURL": "/vincent-chase-vc-e12666-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 218995,
+    "sku": "eye:vincent-chase-vc-e14974-c1-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E14974",
+    "size": "Extra Narrow",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e14974-m-c1-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "2850",
+    "purchaseCount": 112529,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffddee",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/purple-full-rim-cat-eye-vincent-chase-blend-edit-vc-e14974-m-c1-eyeglasses_g_7882.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/purple-full-rim-cat-eye-vincent-chase-blend-edit-vc-e14974-m-c1-eyeglasses_g_7881.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 218995,
+        "color": "#ffddee",
+        "productURL": "/vincent-chase-vc-e14974-m-c1-eyeglasses.html"
+      },
+      {
+        "id": 201621,
+        "color": "#ffc0cb",
+        "productURL": "/vincent-chase-vc-e14974-c2-eyeglasses.html"
+      },
+      {
+        "id": 201622,
+        "color": "#808080",
+        "productURL": "/vincent-chase-vc-e14974-c3-eyeglasses.html"
+      },
+      {
+        "id": 218996,
+        "color": "#ADD8E6",
+        "productURL": "/vincent-chase-vc-e14974-m-c2-eyeglasses.html"
+      },
+      {
+        "id": 221131,
+        "color": "#808080",
+        "productURL": "/vincent-chase-vc-e14974-c3-eye-dup.html"
+      },
+      {
+        "id": 231658,
+        "color": "#ff0000",
+        "productURL": "/vincent-chase-vc-e14974-red transparent-eyeglasses.html"
+      },
+      {
+        "id": 228666,
+        "color": "#0000ff",
+        "productURL": "/vincent-chase-vc-e14974-w-c2-eyeglass.html"
+      }
+    ]
+  }
+]
