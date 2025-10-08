@@ -1,0 +1,47 @@
+[
+  {
+    "productName": "John Jacobs",
+    "productModelName": "JJ E70077",
+    "classification": "eyeframe",
+    "frameType": "half rim",
+    "variations": [
+      {
+        "id": 225390,
+        "sku": "eye:john-jacobs-jj-e70077-c1-eyeglasses",
+        "size": "Narrow",
+        "productURL": "https://www.lenskart.com/john-jacobs-jj-e70077-c1-eyeglasses.html",
+        "productRating": 4.8,
+        "totalNoOfRatings": "207",
+        "purchaseCount": 9968,
+        "price": {
+          "currency": "INR",
+          "symbol": "₹",
+          "basePrice": 4900,
+          "salesPrice": 4300,
+          "lkPrice": 4300
+        },
+        "discount": {
+          "label": "(12% OFF)",
+          "textColor": "#2261D1"
+        },
+        "color": "#b76e79",
+        "productImage": {
+          "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/rose-gold-half-rim-cat-eye-john-jacobs-supreme-steel-jj-e70077-c1-eyeglasses__dsc7255_18_10_2024.jpg",
+          "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/rose-gold-half-rim-cat-eye-john-jacobs-supreme-steel-jj-e70077-c1-eyeglasses__dsc7254_18_10_2024.jpg"
+        },
+        "colorOptions": [
+          {
+            "id": 225390,
+            "color": "#b76e79",
+            "productURL": "/john-jacobs-jj-e70077-c1-eyeglasses.html"
+          },
+          {
+            "id": 225391,
+            "color": "#c0c0c0",
+            "productURL": "/john-jacobs-jj-e70077-c2-eyeglasses.html"
+          }
+        ]
+      }
+    ]
+  }
+]

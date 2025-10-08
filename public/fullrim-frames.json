@@ -1,0 +1,56 @@
+[
+    {
+        "productName": "Lenskart Hustlr",
+        "productModelName": "LA E15417-W",
+        "classification": "eyeframe",
+        "frameType": "full rim",
+        "variations": [
+            {
+                "id": 216521,
+                "color": "#0000ff",
+                "glassColor": "",
+                "colorID": 27638,
+                "frameColorImage": "https://ds-static.lenskart.com/product_color_bubble_images/216521_bubble.png",
+                "productURL": "/lenskart-hustlr-la-e15415-c1-eyeglasses.html",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "₹"
+                },
+                "arModel": {
+                    "ios": "https://lookr-static.lenskart.com/frameassets/216521/ios/sku_216521.scn",
+                    "android": "https://lookr-static.lenskart.com/frameassets/216521/android/sku_216521.glb"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e15417-w-c1-eyeglasses_csvfile-1701688526805-img_7894.jpg",
+                    "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e15417-w-c1-eyeglasses_csvfile-1701688526805-img_7894.jpg",
+                    "hoverURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e15417-w-c1-eyeglasses_csvfile-1701688526805-img_7894.jpg"
+                }
+            },
+            {
+                "id": 233091,
+                "color": "#ee7600",
+                "glassColor": "",
+                "colorID": 15168,
+                "frameColorImage": "https://ds-static.lenskart.com/product_color_bubble_images/233091_bubble.png",
+                "productURL": "/lenskart-hustlr-la-e15417-xw-amber-eyeglasses.html",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "₹"
+                },
+                "arModel": {
+                    "ios": null,
+                    "android": null
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/orange-full-rim-square-lenskart-hustlr-la-e15417-xw-eyeglasses__dsc3403_20_05_2025.jpg",
+                    "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/orange-full-rim-square-lenskart-hustlr-la-e15417-xw-eyeglasses__dsc3403_20_05_2025.jpg",
+                    "hoverURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/orange-full-rim-square-lenskart-hustlr-la-e15417-xw-eyeglasses__dsc3403_20_05_2025.jpg"
+                }
+            }
+        ]
+    }
+]

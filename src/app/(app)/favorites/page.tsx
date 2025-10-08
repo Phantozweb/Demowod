@@ -16,9 +16,14 @@ export default function FavoritesPage() {
   useEffect(() => {
     const fetchFrames = async () => {
       try {
-        const res = await fetch('/lenskartdata.json');
-        const data = await res.json();
-        setAllFrames(data);
+        const [fullRimRes, halfRimRes] = await Promise.all([
+          fetch('/fullrim-frames.json'),
+          fetch('/halfrim-frames.json')
+        ]);
+        const fullRimData = await fullRimRes.json();
+        const halfRimData = await halfRimRes.json();
+        
+        setAllFrames([...fullRimData, ...halfRimData]);
       } catch (error) {
         console.error('Failed to fetch frames data:', error);
       } finally {
@@ -29,7 +34,11 @@ export default function FavoritesPage() {
     fetchFrames();
   }, []);
 
-  const favoriteFrames = allFrames.filter((frame) => favorites.includes(frame.id));
+  const flatFrames = allFrames.flatMap(frame => 
+    (frame.variations || []).map(variation => ({...frame, ...variation}))
+  );
+
+  const favoriteFrames = flatFrames.filter((frame) => favorites.includes(frame.id));
 
   const renderContent = () => {
      if (isLoading || !isInitialized) {

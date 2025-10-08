@@ -28,9 +28,14 @@ export default function CatalogPage() {
   useEffect(() => {
     const fetchFrames = async () => {
       try {
-        const res = await fetch('/lenskartdata.json');
-        const data = await res.json();
-        setFrames(data);
+        const [fullRimRes, halfRimRes] = await Promise.all([
+          fetch('/fullrim-frames.json'),
+          fetch('/halfrim-frames.json')
+        ]);
+        const fullRimData = await fullRimRes.json();
+        const halfRimData = await halfRimRes.json();
+        
+        setFrames([...fullRimData, ...halfRimData]);
       } catch (error) {
         console.error('Failed to fetch frames data:', error);
       } finally {
@@ -63,7 +68,9 @@ export default function CatalogPage() {
       );
     }
     
-    const allFrames = frames;
+    const allFrames = frames.flatMap(frame => 
+      (frame.variations || []).map(variation => ({...frame, ...variation}))
+    );
 
     const filteredFrames = allFrames.filter(frame => {
         const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
