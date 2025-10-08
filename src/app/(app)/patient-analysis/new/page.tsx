@@ -94,7 +94,7 @@ export default function NewPatientPage() {
             title: 'Case Saved',
             description: `Patient case for ${data.patientName} has been created.`,
           });
-        router.push('/patient-analysis/cases');
+        router.push(`/patient-analysis/cases/${caseId}`);
     }
   
   return (
@@ -129,41 +129,6 @@ export default function NewPatientPage() {
                 <h2 className="text-4xl font-extrabold tracking-tight text-white mb-2">New Patient Analysis</h2>
                 <p className="text-lg text-muted-foreground">Enter patient data for analysis and recommendations.</p>
             </header>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                <Card className="flex flex-col justify-between">
-                    <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                        <User className="text-primary" />
-                        <h3 className="text-lg font-semibold text-muted-foreground">Face Shape Analysis</h3>
-                    </div>
-                    <p className="text-3xl font-bold text-primary">N/A</p>
-                    <p className="text-sm text-muted-foreground mt-2">Analysis pending.</p>
-                    </CardContent>
-                </Card>
-                <Card className="flex flex-col justify-between">
-                    <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                        <Eye className="text-primary" />
-                        <h3 className="text-lg font-semibold text-muted-foreground">Recommended Frames</h3>
-                    </div>
-                    <p className="text-3xl font-bold text-primary">N/A</p>
-                    <p className="text-sm text-muted-foreground mt-2">Analysis pending.</p>
-                    </CardContent>
-                </Card>
-                <Card className="flex flex-col justify-between">
-                    <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                        <FlaskConical className="text-primary" />
-                        <h3 className="text-lg font-semibold text-muted-foreground">Lens Power &amp; Type</h3>
-                    </div>
-                    <div className="text-2xl font-bold text-primary">
-                        <span>OD: <span className="text-muted-foreground">N/A</span></span> / <span>OS: <span className="text-muted-foreground">N/A</span></span>
-                    </div>
-                    <p className="text-sm text-muted-foreground mt-2">Not Available</p>
-                    </CardContent>
-                </Card>
-            </div>
 
             <Card className="p-8">
                 <Form {...form}>
@@ -320,7 +285,7 @@ export default function NewPatientPage() {
 
                     <div className="pt-10 mt-8 border-t">
                         <Button className="w-full" size="lg" type="submit" disabled={form.formState.isSubmitting}>
-                        <span>{form.formState.isSubmitting ? "Saving Case..." : "Save Case & Continue"}</span>
+                        <span>{form.formState.isSubmitting ? "Saving Case..." : "Save Case & Start Analysis"}</span>
                         <ArrowRight />
                         </Button>
                     </div>
