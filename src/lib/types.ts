@@ -15,6 +15,7 @@ export type FrameVariation = {
   }
 
 export type Frame = {
+  id: number;
   productName: string;
   productModelName: string;
   classification: string;
@@ -26,15 +27,15 @@ export type Frame = {
   purchaseCount?: number;
   tags?: string;
   lenskart_url?: string;
-  price?: number;
-  price_details?: {
-    basePrice: number;
-    lkPrice: number;
-    salesPrice: number;
-    currency: string;
-    symbol: string;
-    discount: string;
+  price?: {
+      currency: string;
+      basePrice: number;
+      lkPrice: number;
+      symbol: string;
   };
-  variations: FrameVariation[];
-  productImage?: string | { url: string; frontURL?: string; hoverURL?: string };
+  variations?: FrameVariation[];
+  productImage?: { 
+    url: string; 
+  };
 };
+

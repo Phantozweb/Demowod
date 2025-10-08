@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -15,10 +16,12 @@ export default function FavoritesPage() {
   useEffect(() => {
     const fetchFrames = async () => {
       try {
-        const response = await fetch('https://raw.githubusercontent.com/Phantozweb/Visionary-/refs/heads/main/lenskartdata.json');
+        const response = await fetch('/lenskartdata.json');
         const data = await response.json();
         const framesWithAllVariations = data.flatMap((frame: Frame) =>
-            (frame.variations || []).map(variation => ({ ...frame, ...variation }))
+            (frame.variations && frame.variations.length > 0)
+            ? frame.variations.map(variation => ({ ...frame, ...variation, id: variation.id, price: variation.price, productImage: variation.productImage }))
+            : [{ ...frame, id: frame.id || Math.random() }]
         );
         setAllFrames(framesWithAllVariations);
       } catch (error) {

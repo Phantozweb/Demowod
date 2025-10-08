@@ -1,0 +1,120 @@
+[
+    {
+        "productName": "Lenskart Hustlr",
+        "productModelName": "LA E15417-W",
+        "frameType": "full rim",
+        "frameShape": "square",
+        "classification": "eyeframe",
+        "variations": [
+            {
+                "id": 216521,
+                "color": "#0000ff",
+                "glassColor": "",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "\u20b9"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e15417-w-c1-eyeglasses_csvfile-1701688526805-img_7894.jpg"
+                }
+            },
+            {
+                "id": 233091,
+                "color": "#ee7600",
+                "glassColor": "",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "\u20b9"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/orange-full-rim-square-lenskart-hustlr-la-e15417-xw-eyeglasses__dsc3403_20_05_2025.jpg"
+                }
+            }
+        ]
+    },
+    {
+        "productName": "Lenskart Air",
+        "productModelName": "LA E13068",
+        "frameType": "full rim",
+        "frameShape": "wayfarer",
+        "classification": "eyeframe",
+        "variations": [
+            {
+                "id": 137971,
+                "color": "#000000",
+                "glassColor": "",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "\u20b9"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-gunmetal-black-full-rim-wayfarer-lenskart-air-fusion-la-e13068---c1-eyeglasses_lenskart-air-la-e13032-c1-eyeglasses_g_2000_05_july23.jpg"
+                }
+            },
+            {
+                "id": 201333,
+                "color": "#c0c0c0",
+                "glassColor": "",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "\u20b9"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-air-la-e13068-c6-eyeglasses_g_4836_03_03_2023.jpg"
+                }
+            }
+        ]
+    },
+    {
+        "productName": "Lenskart Air",
+        "productModelName": "LA E17017",
+        "frameType": "full rim",
+        "frameShape": "square",
+        "classification": "eyeframe",
+        "variations": [
+             {
+                "id": 217650,
+                "color": "#C1B7B0",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 1900,
+                    "lkPrice": 1900,
+                    "symbol": "\u20b9"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/silver-grey-transparent-full-rim-square-lenskart-air-fusion-la-e17017-c1-eyeglasses__dsc4915_28_05_2024_28_05_2024.jpg"
+                }
+            }
+        ]
+    },
+    {
+        "productName": "John Jacobs",
+        "productModelName": "JJ E10235",
+        "frameType": "full rim",
+        "frameShape": "square",
+        "classification": "eyeframe",
+        "variations": [
+            {
+                "id": 136174,
+                "color": "#f1f1f1",
+                "price": {
+                    "currency": "INR",
+                    "basePrice": 3900,
+                    "lkPrice": 3900,
+                    "symbol": "\u20b9"
+                },
+                "productImage": {
+                    "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/transparent-full-rim-square-john-jacobs-rich-acetate-jj-e10235-c7-eyeglasses-chandler_g_2375_30_9_2025.jpg"
+                }
+            }
+        ]
+    }
+]

@@ -9,14 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import lensData from '@/lib/lenses.json';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search } from 'lucide-react';
@@ -26,15 +18,6 @@ import { Frame } from '@/lib/types';
 
 
 export default function CatalogPage() {
-  const {
-    singleVisionLenses = [],
-    progressiveLenses = [],
-    antiReflectiveCoatings = [],
-    photochromicLenses = [],
-    computerWorkLenses = [],
-    sunSolutions = [],
-  } = lensData as any;
-
   const [frames, setFrames] = useState<Frame[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -45,7 +28,7 @@ export default function CatalogPage() {
   useEffect(() => {
     const fetchFrames = async () => {
       try {
-        const response = await fetch('https://raw.githubusercontent.com/Phantozweb/Visionary-/refs/heads/main/lenskartdata.json');
+        const response = await fetch('/lenskartdata.json');
         const data = await response.json();
         setFrames(data);
       } catch (error) {
@@ -57,132 +40,6 @@ export default function CatalogPage() {
 
     fetchFrames();
   }, []);
-
-  const filterLenses = (lenses: any[] = []) => {
-    if (!lenses) return [];
-    return lenses.filter((lens) => {
-      const nameMatch = lens.name.toLowerCase().includes(searchTerm.toLowerCase());
-      const frameTypeMatch = frameType === 'all' ? true : true;
-      const frameShapeMatch = frameShape === 'all' ? true : true;
-      return nameMatch && frameTypeMatch && frameShapeMatch;
-    });
-  };
-
-  const renderLensCard = (lens: any) => (
-    <Card key={lens.id} className="flex flex-col">
-      <CardHeader>
-        <CardTitle>{lens.name}</CardTitle>
-        {lens.description && (
-          <CardDescription>{lens.description}</CardDescription>
-        )}
-        {lens.targetUsers && (
-          <CardDescription className="italic pt-2">{lens.targetUsers}</CardDescription>
-        )}
-      </CardHeader>
-      <CardContent className="flex-1">
-        <Accordion type="single" collapsible className="w-full">
-          {lens.keyFeatures && (
-            <AccordionItem value="key-features">
-              <AccordionTrigger>Key Features</AccordionTrigger>
-              <AccordionContent>
-                 <ul className="list-disc space-y-2 pl-4">
-                  {lens.keyFeatures.map((feature: any, index: number) => (
-                    <li key={index}>{feature}</li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          )}
-          {lens.designFeatures && (
-            <AccordionItem value="design">
-              <AccordionTrigger>Design Features</AccordionTrigger>
-              <AccordionContent>
-                <ul className="list-disc space-y-2 pl-4">
-                  {lens.designFeatures.map((feature: any, index: number) => (
-                    <li key={index}>{feature}</li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          )}
-          {lens.patientBenefits && (
-            <AccordionItem value="benefits">
-              <AccordionTrigger>Patient Benefits</AccordionTrigger>
-              <AccordionContent>
-                <ul className="list-disc space-y-2 pl-4">
-                  {lens.patientBenefits.map((benefit: any, index: number) => (
-                    <li key={index}>{benefit}</li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          )}
-          {lens.overview && (
-             <AccordionItem value="overview">
-              <AccordionTrigger>Overview</AccordionTrigger>
-              <AccordionContent>
-                <p>{lens.overview}</p>
-              </AccordionContent>
-            </AccordionItem>
-          )}
-           {lens.options && (
-            <AccordionItem value="options">
-              <AccordionTrigger>Options</AccordionTrigger>
-              <AccordionContent>
-                {Array.isArray(lens.options) ? (
-                  <ul className="list-disc space-y-2 pl-4">
-                    {lens.options.map((option: any, index: number) => (
-                      <li key={index}>
-                        {option.name ? (
-                          <>
-                            <strong>{option.name}:</strong> {option.description}
-                          </>
-                        ) : (
-                          option
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                ) : <p>{lens.options}</p>}
-              </AccordionContent>
-            </AccordionItem>
-          )}
-          {lens.availableColors && (
-            <AccordionItem value="colors">
-              <AccordionTrigger>Available Colors</AccordionTrigger>
-              <AccordionContent>
-                <p>{lens.availableColors}</p>
-              </AccordionContent>
-            </AccordionItem>
-          )}
-          {lens.technicalSpecifications && (
-            <AccordionItem value="specs">
-              <AccordionTrigger>Technical Specifications</AccordionTrigger>
-              <AccordionContent>
-                <ul className="space-y-1">
-                  <li><strong>Min. Fitting Height:</strong> {lens.technicalSpecifications.minFittingHeight}</li>
-                  <li><strong>Corridor Lengths:</strong> {lens.technicalSpecifications.corridorLengths}</li>
-                  {lens.technicalSpecifications.positionOfWear && <li>Position of Wear considered</li>}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          )}
-        </Accordion>
-      </CardContent>
-    </Card>
-  );
-
-  const renderContent = (lenses: any[]) => {
-    const filteredLenses = filterLenses(lenses);
-    if (filteredLenses.length === 0) {
-      return <div className="text-center py-20 text-muted-foreground">No products found matching your criteria.</div>
-    }
-    return (
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {filteredLenses.map(renderLensCard)}
-      </div>
-    )
-  }
 
   const renderFrames = () => {
     if (isLoading) {
@@ -206,7 +63,11 @@ export default function CatalogPage() {
       );
     }
     
-    const allFrames = frames.flatMap(frame => (frame.variations || []).map(variation => ({...frame, ...variation})));
+    const allFrames = frames.flatMap(frame => 
+      (frame.variations && frame.variations.length > 0) 
+        ? frame.variations.map(variation => ({ ...frame, ...variation, id: variation.id, price: variation.price, productImage: variation.productImage }))
+        : [{ ...frame, id: frame.id || Math.random() }]
+    );
 
     const filteredFrames = allFrames.filter(frame => {
         const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
@@ -235,7 +96,7 @@ export default function CatalogPage() {
           Product Catalog
         </h1>
         <p className="mt-2 text-muted-foreground">
-          Explore our comprehensive range of frames, lenses and treatments.
+          Explore our comprehensive range of frames.
         </p>
       </header>
 
@@ -279,39 +140,8 @@ export default function CatalogPage() {
         </div>
       </div>
 
-      <Tabs defaultValue="frames" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 h-auto sm:grid-cols-3 lg:grid-cols-7 mb-6">
-          <TabsTrigger value="frames">Frames</TabsTrigger>
-          <TabsTrigger value="progressive">Progressive</TabsTrigger>
-          <TabsTrigger value="single-vision">Single Vision</TabsTrigger>
-          <TabsTrigger value="computer-work">Computer &amp; Work</TabsTrigger>
-          <TabsTrigger value="anti-reflective">Anti-Reflective</TabsTrigger>
-          <TabsTrigger value="photochromic">Photochromic</TabsTrigger>
-          <TabsTrigger value="sun-solutions">Sun Solutions</TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="frames">
-          {renderFrames()}
-        </TabsContent>
-        <TabsContent value="progressive">
-          {renderContent(progressiveLenses)}
-        </TabsContent>
-        <TabsContent value="single-vision">
-          {renderContent(singleVisionLenses)}
-        </TabsContent>
-        <TabsContent value="computer-work">
-          {renderContent(computerWorkLenses)}
-        </TabsContent>
-        <TabsContent value="anti-reflective">
-          {renderContent(antiReflectiveCoatings)}
-        </TabsContent>
-        <TabsContent value="photochromic">
-          {renderContent(photochromicLenses)}
-        </TabsContent>
-        <TabsContent value="sun-solutions">
-          {renderContent(sunSolutions)}
-        </TabsContent>
-      </Tabs>
+      {renderFrames()}
     </div>
   );
 }
+

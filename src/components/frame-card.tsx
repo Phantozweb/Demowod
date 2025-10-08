@@ -47,7 +47,7 @@ export function FrameCard({ frame, isFavorite, toggleFavorite }: FrameCardProps)
       </CardHeader>
       <CardContent className="flex-1 p-4">
         <CardTitle className="mb-1 text-lg font-headline">{frame.productName}</CardTitle>
-        <CardDescription>{frame.brand}</CardDescription>
+        <CardDescription>{frame.brand || frame.productModelName}</CardDescription>
         <p className="mt-2 text-sm text-muted-foreground">
           {frame.size}
         </p>
