@@ -24,7 +24,7 @@ export default function Home() {
                 </span>
               </h1>
               <p className="mt-3 max-w-md mx-auto text-lg text-muted-foreground sm:text-xl md:mt-5 md:max-w-3xl">
-                World Optometry Day model as a demo of Futuristic Eye Care.
+                World Sight Day model as a demo of Futuristic Eye Care.
               </p>
               <div className="mt-8 flex justify-center gap-4">
                 <div className="inline-flex rounded-md shadow-lg">
