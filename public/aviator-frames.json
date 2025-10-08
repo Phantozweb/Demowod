@@ -1,0 +1,494 @@
+
+[
+  {
+    "id": 142524,
+    "sku": "eye:john-jacobs-jj-e13346-c2-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E13346",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e13346-c2-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "1942",
+    "purchaseCount": 99599,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/black-full-rim-aviator-john-jacobs-rich-acetate-jj-e13346---c2-eyeglasses-celeste_cc_dsc4735.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/black-full-rim-aviator-john-jacobs-rich-acetate-jj-e13346---c2-eyeglasses-celeste_cc_dsc4734.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 142524,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e13346-c2-eyeglasses.html"
+      },
+      {
+        "id": 142523,
+        "color": "#f1f1f1",
+        "productURL": "/john-jacobs-jj-e13346-c1-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 142523,
+    "sku": "eye:john-jacobs-jj-e13346-c1-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E13346",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e13346-c1-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "1942",
+    "purchaseCount": 56422,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 3900,
+      "salesPrice": 3300
+    },
+    "discount": {
+      "label": "(15% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#f1f1f1",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/transparent-full-rim-aviator-john-jacobs-rich-acetate-jj-e13346---c1-eyeglasses-celeste_g_4727_30_9_2025.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/transparent-full-rim-aviator-john-jacobs-rich-acetate-jj-e13346---c1-eyeglasses-celeste_g_4726_30_9_2025.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 142523,
+        "color": "#f1f1f1",
+        "productURL": "/john-jacobs-jj-e13346-c1-eyeglasses.html"
+      },
+      {
+        "id": 142524,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e13346-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 215250,
+    "sku": "eye:john-jacobs-jj-e16618-c2-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E16618",
+    "size": "Extra Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e16618-c2-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "261",
+    "purchaseCount": 16316,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 4900,
+      "salesPrice": 4300
+    },
+    "discount": {
+      "label": "(12% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/black-silver-black-full-rim-aviator-john-jacobs-eco-acetate-jj-e16618-c2-eyeglasses_img_2843_15feb24.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/black-silver-black-full-rim-aviator-john-jacobs-eco-acetate-jj-e16618-c2-eyeglasses_img_2842_15feb24.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 215250,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e16618-c2-eyeglasses.html"
+      },
+      {
+        "id": 215249,
+        "color": "#ed7e07",
+        "productURL": "/john-jacobs-jj-e16618-c1-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 210156,
+    "sku": "eye:lenskart-air-la-e14958-c4-eyeglasses",
+    "productName": "Lenskart Air",
+    "productModelName": "LA E14958",
+    "size": "Extra Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-air-la-e14958-c4-eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "705",
+    "purchaseCount": 30731,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-gunmetal-full-rim-aviator-lenskart-air-fusion-la-e14958-c4-eyeglasses_g_2873_09_22_23.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-gunmetal-full-rim-aviator-lenskart-air-fusion-la-e14958-c4-eyeglasses_g_2873_09_22_23.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 210156,
+        "color": "#000000",
+        "productURL": "/lenskart-air-la-e14958-c4-eyeglasses.html"
+      },
+      {
+        "id": 201272,
+        "color": "#808080",
+        "productURL": "/lenskart-air-la-e14958-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 233004,
+    "sku": "eye:john-jacobs-jj-e70130-silver black -eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E70130",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e70130-silver-black--eyeglasses.html",
+    "productRating": 4.85,
+    "totalNoOfRatings": "20",
+    "purchaseCount": 2632,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 4900,
+      "salesPrice": 4300
+    },
+    "discount": {
+      "label": "(12% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#b87332",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/gunmetal-full-rim-aviator-john-jacobs-jj-supreme-steel-jj-e70130-eyeglasses_dsc2319_11_02_2025.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/gunmetal-full-rim-aviator-john-jacobs-jj-supreme-steel-jj-e70130-eyeglasses_dsc2319_11_02_2025.jpg"
+    },
+    "colorOptions": []
+  },
+  {
+    "id": 210427,
+    "sku": "eye:vincent-chase-vc-e15958-c1-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E15958",
+    "size": "Medium",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e15958-c1-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "475",
+    "purchaseCount": 18829,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e15958-c1-eyeglasses_g_3363_18_09_2023.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e15958-c1-eyeglasses_g_3362_18_09_2023.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 210427,
+        "color": "#000000",
+        "productURL": "/vincent-chase-vc-e15958-c1-eyeglasses.html"
+      },
+      {
+        "id": 210428,
+        "color": "#ffd700",
+        "productURL": "/vincent-chase-vc-e15958-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 215249,
+    "sku": "eye:john-jacobs-jj-e16618-c1-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E16618",
+    "size": "Extra Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e16618-c1-eyeglasses.html",
+    "productRating": 4.9,
+    "totalNoOfRatings": "120",
+    "purchaseCount": 6915,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 4900,
+      "salesPrice": 4300
+    },
+    "discount": {
+      "label": "(12% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ed7e07",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/tortoise-gold-black-tortoise-full-rim-aviator-john-jacobs-eco-acetate-jj-e16618-c1-eyeglasses_img_2809_15feb24.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/tortoise-gold-black-tortoise-full-rim-aviator-john-jacobs-eco-acetate-jj-e16618-c1-eyeglasses_img_2808_15feb24.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 215249,
+        "color": "#ed7e07",
+        "productURL": "/john-jacobs-jj-e16618-c1-eyeglasses.html"
+      },
+      {
+        "id": 215250,
+        "color": "#000000",
+        "productURL": "/john-jacobs-jj-e16618-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 233411,
+    "sku": "eye:john-jacobs-jj-e70142-c1-eyeglasses",
+    "productName": "John Jacobs",
+    "productModelName": "JJ E70142",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/john-jacobs-jj-e70142-c1-eyeglasses.html",
+    "productRating": 4.75,
+    "totalNoOfRatings": "34",
+    "purchaseCount": 1967,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 4900,
+      "salesPrice": 4300
+    },
+    "discount": {
+      "label": "(12% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#ffd700",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/john-jacobs-jj-e70142-c1-eyeglasses_dsc2633_14_05_2025.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/john-jacobs-jj-e70142-c1-eyeglasses_dsc2631_14_05_2025.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 233411,
+        "color": "#ffd700",
+        "productURL": "/john-jacobs-jj-e70142-c1-eyeglasses.html"
+      },
+      {
+        "id": 233412,
+        "color": "#c0c0c0",
+        "productURL": "/john-jacobs-jj-e70142-c2-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 138002,
+    "sku": "eye:vincent-chase-vc-e13046-c3-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E13046",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e13046-c3-eyeglasses.html",
+    "productRating": 4.7,
+    "totalNoOfRatings": "1680",
+    "purchaseCount": 83322,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/Matte-Black-Full-Rim-Aviator-Vincent-Chase-SLEEK-STEEL-VC-E13046-C3-Eyeglasses_vincent-chase-vc-e13046-c3-eyeglasses_G_7291_1_10_02_2022.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/Matte-Black-Full-Rim-Aviator-Vincent-Chase-SLEEK-STEEL-VC-E13046-C3-Eyeglasses_vincent-chase-vc-e13046-c3-eyeglasses_G_7290_1_10_02_2022.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 138002,
+        "color": "#000000",
+        "productURL": "/vincent-chase-vc-e13046-c3-eyeglasses.html"
+      },
+      {
+        "id": 211309,
+        "color": "#000000",
+        "productURL": "/vincent-chase-vc-e13046-n-c1-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 235305,
+    "sku": "eye:lenskart-studio-lk-e18185-gunmetal-eyeglasses",
+    "productName": "Lenskart STUDIO",
+    "productModelName": "LK E18185",
+    "size": "Extra Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-studio-lk-e18185-gunmetal-eyeglasses.html",
+    "productRating": 5,
+    "totalNoOfRatings": "1",
+    "purchaseCount": 677,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 2900,
+      "salesPrice": 2400
+    },
+    "discount": {
+      "label": "(17% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#b87332",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-studio-lk-e18185-gunmetal-eyeglasses_dsc2532_19_08_2025.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-studio-lk-e18185-gunmetal-eyeglasses_dsc2531_19_08_2025.jpg"
+    },
+    "colorOptions": []
+  },
+  {
+    "id": 232713,
+    "sku": "eye:lenskart-lk-e18005-silver-eyeglasses",
+    "productName": "Lenskart",
+    "productModelName": "LK E18005",
+    "size": "Extra Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-lk-e18005-silver-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "77",
+    "purchaseCount": 2848,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 2900,
+      "salesPrice": 2400
+    },
+    "discount": {
+      "label": "(17% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#000000",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-lk-e18005-silver-eyeglasses_dsc5993_21_03_2025.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-lk-e18005-silver-eyeglasses_dsc5992_21_03_2025.jpg"
+    },
+    "colorOptions": []
+  },
+  {
+    "id": 234494,
+    "sku": "eye:vincent-chase-vc-e18096-black-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E18096",
+    "size": "Extra Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e18096-black-eyeglasses.html",
+    "productRating": 4.7,
+    "totalNoOfRatings": "14",
+    "purchaseCount": 1473,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/black-silver-crystal-full-rim-aviator-vincent-chase-metal-vc-e18096-eyeglasses__dsc8188_07_07_2025.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/black-silver-crystal-full-rim-aviator-vincent-chase-metal-vc-e18096-eyeglasses__dsc8186_07_07_2025.jpg"
+    },
+    "colorOptions": []
+  },
+  {
+    "id": 235431,
+    "sku": "eye:vincent-chase-vc-e18240-gunmetal-eyeglasses",
+    "productName": "Vincent Chase",
+    "productModelName": "VC E18240",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/vincent-chase-vc-e18240-gunmetal-eyeglasses.html",
+    "productRating": 4.9,
+    "totalNoOfRatings": "30",
+    "purchaseCount": 1970,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 1900,
+      "salesPrice": 1400
+    },
+    "discount": {
+      "label": "(26% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#b87332",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/dark-gunmetal-full-rim-aviator-vincent-chase-metal-vc-e18240-eyeglasses__dsc6509_26_06_2025.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/dark-gunmetal-full-rim-aviator-vincent-chase-metal-vc-e18240-eyeglasses__dsc6507_26_06_2025.jpg"
+    },
+    "colorOptions": [
+      {
+        "id": 235431,
+        "color": "#b87332",
+        "productURL": "/vincent-chase-vc-e18240-gunmetal-eyeglasses.html"
+      },
+      {
+        "id": 235430,
+        "color": "#ffd700",
+        "productURL": "/vincent-chase-vc-e18240-gold-eyeglasses.html"
+      }
+    ]
+  },
+  {
+    "id": 232714,
+    "sku": "eye:lenskart-lk-e18006-mid gunmetal-eyeglasses",
+    "productName": "Lenskart",
+    "productModelName": "LK E18006",
+    "size": "Wide",
+    "classification": "eyeframe",
+    "productURL": "https://www.lenskart.com/lenskart-lk-e18006-mid gunmetal-eyeglasses.html",
+    "productRating": 4.8,
+    "totalNoOfRatings": "65",
+    "purchaseCount": 2662,
+    "price": {
+      "currency": "INR",
+      "symbol": "₹",
+      "basePrice": 2900,
+      "salesPrice": 2400
+    },
+    "discount": {
+      "label": "(17% OFF)",
+      "textColor": "#2261D1"
+    },
+    "color": "#b87332",
+    "productImage": {
+      "url": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-lk-e18006-mid-gunmetal-eyeglasses_dsc6016_21_03_2025.jpg",
+      "frontURL": "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/lenskart-lk-e18006-mid-gunmetal-eyeglasses_dsc6015_21_03_2025.jpg"
+    },
+    "colorOptions": []
+  }
+]
