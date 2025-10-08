@@ -20,8 +20,8 @@ export default function FavoritesPage() {
           fetch('/fullrim-frames.json'),
           fetch('/halfrim-frames.json')
         ]);
-        const fullRimData = await fullRimRes.json();
-        const halfRimData = await halfRimRes.json();
+        const fullRimData = (await fullRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'full rim' }));
+        const halfRimData = (await halfRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'half rim' }));
         
         setAllFrames([...fullRimData, ...halfRimData]);
       } catch (error) {
@@ -93,3 +93,10 @@ export default function FavoritesPage() {
       <header className="mb-8">
         <h1 className="text-3xl md:text-4xl font-headline font-bold">Your Favorites</h1>
         <p className="text-muted-foreground mt-2">
+          A collection of your most-loved frames.
+        </p>
+      </header>
+      {renderContent()}
+    </div>
+  );
+}

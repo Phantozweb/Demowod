@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -31,8 +32,8 @@ export default function CatalogPage() {
           fetch('/fullrim-frames.json'),
           fetch('/halfrim-frames.json')
         ]);
-        const fullRimData = await fullRimRes.json();
-        const halfRimData = await halfRimRes.json();
+        const fullRimData = (await fullRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'full rim' }));
+        const halfRimData = (await halfRimRes.json()).map((frame: Frame) => ({ ...frame, frameType: 'half rim' }));
         
         setFrames([...fullRimData, ...halfRimData]);
       } catch (error) {
