@@ -1,16 +1,62 @@
 
 [
     {
-      "id": 101,
-      "name": "Super HiVision® Meiryo® EX4™",
-      "description": "HOYA's most advanced premium spectacle lens coating, designed to provide next-level clarity and durability. It ensures long-lasting protection against scratches, smudges, and daily wear, maintaining crystal-clear vision throughout the lifespan of your prescription.",
-      "features": [
-        "56% lower reflectance vs. competitor's best coating",
-        "Up to 2.5x better scratch resistance",
-        "Maintains 'easy clean' features up to 5x longer"
-      ],
-      "use_case": "Provides long-lasting protection against scratches, smudges, and daily wear for any lens, ensuring crystal-clear vision.",
-      "targetUser": "All eyeglass wearers seeking maximum clarity, durability, and easy maintenance.",
-      "category": "Lens Coating"
+        "id": 401,
+        "name": "Super HiVision® Meiryo® EX4™",
+        "description": "HOYA's most advanced premium spectacle lens coating, designed to provide next-level clarity and durability. It ensures long-lasting protection against scratches, smudges, and daily wear.",
+        "features": [
+            "Extreme durability (up to 2.5x better scratch resistance)",
+            "Easy to clean (stays clean 10x longer)",
+            "Superior clarity (56% lower reflectance)",
+            "UV protection and enhanced UV backside protection",
+            "Proprietary Substrate Matching Process for elasticity and temperature resistance"
+        ],
+        "use_case": "For patients wanting the most advanced lens coating with maximum durability, clarity, and cleanability.",
+        "targetUser": "All Patients",
+        "category": "Anti-Reflective Coating"
+    },
+    {
+        "id": 402,
+        "name": "Super HiVision® EX3+™",
+        "description": "A premium anti-reflective coating that offers dual-side UV protection, superior scratch resistance, and long-term cleanability.",
+        "features": [
+            "Dual-side UV protection",
+            "Superior scratch resistance",
+            "Long-term cleanability",
+            "Smudge resistance and glare reduction",
+            "Proprietary Substrate Matching Process"
+        ],
+        "use_case": "For patients who need excellent scratch resistance and comprehensive UV protection from both sides of the lens.",
+        "targetUser": "All Patients",
+        "category": "Anti-Reflective Coating"
+    },
+    {
+        "id": 403,
+        "name": "Super HiVision® EX3™",
+        "description": "Provides increased visual clarity, superior scratch resistance, and long-term cleanability, reducing eye fatigue and glare.",
+        "features": [
+            "Superior scratch resistance",
+            "Long-term cleanability",
+            "Smudge resistance and glare reduction",
+            "Increased visual clarity with minimal reflections",
+            "Proprietary Substrate Matching Process"
+        ],
+        "use_case": "A great all-around AR coating for patients seeking durability, clarity, and ease of cleaning.",
+        "targetUser": "All Patients",
+        "category": "Anti-Reflective Coating"
+    },
+    {
+        "id": 404,
+        "name": "Recharge®",
+        "description": "An anti-reflective coating that filters harmful blue light emitted from digital screens, reducing digital eye strain.",
+        "features": [
+            "Filters blue light (380nm–460nm) by absorption and reflection",
+            "Reduces digital eye strain",
+            "Same scratch resistance and cleanability as EX3+",
+            "Substrate Matching Technology"
+        ],
+        "use_case": "For patients who spend prolonged hours on digital devices and experience symptoms of digital eye strain.",
+        "targetUser": "Digital Device Users",
+        "category": "Blue Light Filtering"
     }
 ]
