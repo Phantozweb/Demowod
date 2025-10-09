@@ -82,18 +82,9 @@ export default function NewPatientPage() {
     const [isAnalyzing, setIsAnalyzing] = useState(false);
     
     useEffect(() => {
-        // Check for API key on the client-side
-        const checkApiKey = async () => {
-          try {
-            const response = await fetch('/api/check-key');
-            const data = await response.json();
-            setIsApiKeyMissing(!data.hasApiKey);
-          } catch(e) {
-            console.error("Could not check for API key", e)
-            setIsApiKeyMissing(true);
-          }
-        };
-        checkApiKey();
+        // Check if the API key is configured.
+        // The value is set in next.config.ts and is safe to use on the client.
+        setIsApiKeyMissing(process.env.NEXT_PUBLIC_GEMINI_API_KEY_CONFIGURED !== 'true');
     }, []);
 
     const runAnalysis = async (dataUrl: string) => {
@@ -188,24 +179,24 @@ export default function NewPatientPage() {
     }
 
     function onSubmit(data: PatientCaseFormValues) {
-      const caseDataForStorage = { ...data };
-      // Ensure image data is not saved to localStorage
-      const imageData = imagePreview;
-      delete caseDataForStorage.image; 
+        const caseDataForStorage = { ...data };
+        // Ensure image data is not saved to localStorage
+        const imageData = imagePreview;
+        delete caseDataForStorage.image; 
 
-      const fullCase = addCase({
-        ...caseDataForStorage,
-        date: new Date().toISOString(),
-        status: 'Pending',
-      });
-      toast({
-          title: 'Case Saved',
-          description: `Patient case for ${fullCase.patientName} has been created.`,
-      });
+        const fullCase = addCase({
+            ...caseDataForStorage,
+            date: new Date().toISOString(),
+            status: 'Pending',
+        });
+        toast({
+            title: 'Case Saved',
+            description: `Patient case for ${fullCase.patientName} has been created.`,
+        });
 
-      const query = imageData ? `?image=${encodeURIComponent(imageData)}` : '';
-      router.push(`/patient-analysis/cases/${fullCase.id}${query}`);
-  }
+        const query = imageData ? `?image=${encodeURIComponent(imageData)}` : '';
+        router.push(`/patient-analysis/cases`);
+    }
   
   return (
     <div>
@@ -391,3 +382,5 @@ export default function NewPatientPage() {
     </div>
   );
 }
+
+    
