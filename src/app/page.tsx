@@ -24,7 +24,7 @@ export default function Home() {
                 </span>
               </h1>
               <p className="mt-3 max-w-md mx-auto text-lg text-muted-foreground sm:text-xl md:mt-5 md:max-w-3xl">
-                World Sight Day model as a demo of Futuristic Eye Care.
+                <a href="https://www.google.com/search?q=janarthan+veeramani&oq=ja&gs_lcrp=EgZjaHJvbWUqDggBEEUYJxg7GIAEGIoFMgYIABBFGDkyDggBEEUYJxg7GIAEGIoFMgYIAhAjGCcyDQgDEC4YgwEYsQMYgAQyBwgEEC4YgAQyEAgFEAAYgwEYsQMYgAQYigUyBwgGEC4YgAQyBwgHEC4YgAQyBggIEEUYPDIGCAkQRRg8MhAIChAuGIMBGLEDGIAEGIoFMgoICxAuGLEDGIAEMgcIDBAuGIAEMhAIDRAAGIMBGLEDGIAEGIoFMgcIDhAuGIAE0gEIMTEyNmowajSoAg6wAgHxBf0_M9lSyrsx&client=ms-android-xiaomi-terr1-rso2&sourceid=chrome-mobile&ie=UTF-8" target="_blank" rel="noopener noreferrer">Made By Janarthan Veeramani</a>
               </p>
               <div className="mt-8 flex justify-center gap-4">
                 <div className="inline-flex rounded-md shadow-lg">
@@ -100,7 +100,7 @@ export default function Home() {
         <div className="bg-background py-16 sm:py-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="relative overflow-hidden rounded-2xl bg-secondary px-6 py-16 shadow-glow sm:px-12 md:py-20 lg:px-16">
-                    <div className="absolute inset-0 bg-[url(/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+                    <div className="absolute inset-0 bg-[url(/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]]"></div>
                     <div className="relative grid md:grid-cols-2 gap-8 items-center">
                         <div className="flex flex-col items-center md:items-start text-center md:text-left">
                              <div className="flex gap-4">
@@ -117,7 +117,7 @@ export default function Home() {
                         </div>
                         <div className="flex flex-col items-center">
                             <p className="text-sm text-amber-400/80 bg-background/50 border border-amber-400/50 rounded-full px-4 py-2">
-                                Focus CaseX is under Beta, so it's open for now until Oct 30 on the website.
+                                Focus CaseX is under Beta.
                             </p>
                             <Button asChild size="lg" className="mt-6">
                                 <a href="https://focuscasex.netlify.app" target="_blank" rel="noopener noreferrer">
