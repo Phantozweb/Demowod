@@ -15,7 +15,6 @@ import { Button } from '@/components/ui/button';
 import {
   User,
   Eye,
-  FlaskConical,
   Wand2,
   Loader,
   Info,
@@ -25,7 +24,6 @@ import {
 import Image from 'next/image';
 import {
   suggestInitialFrames,
-  type SuggestInitialFramesOutput,
 } from '@/ai/flows/suggest-initial-frames';
 import { useToast } from '@/hooks/use-toast';
 import { Frame, FrameVariation, Lens } from '@/lib/types';
@@ -83,10 +81,10 @@ export default function CaseDetailPage() {
                     const prop = dataSources[i].property as 'frameType' | 'frameShape';
                     const value = dataSources[i].value;
 
-                    if (prop === 'frameType' && !existingFrame.frameType.includes(value)) {
+                    if (prop === 'frameType' && Array.isArray(existingFrame.frameType) && !existingFrame.frameType.includes(value)) {
                         (existingFrame.frameType as string[]).push(value);
                     }
-                    if (prop === 'frameShape' && !existingFrame.frameShape.includes(value)) {
+                    if (prop === 'frameShape' && Array.isArray(existingFrame.frameShape) && !existingFrame.frameShape.includes(value)) {
                         (existingFrame.frameShape as string[]).push(value);
                     }
                     
@@ -101,8 +99,8 @@ export default function CaseDetailPage() {
           
           setAllFrames(Array.from(framesMap.values()).map(frame => ({
             ...frame,
-            frameType: frame.frameType.length === 1 ? frame.frameType[0] : frame.frameType,
-            frameShape: frame.frameShape.length === 1 ? frame.frameShape[0] : frame.frameShape,
+            frameType: Array.isArray(frame.frameType) && frame.frameType.length === 1 ? frame.frameType[0] : frame.frameType,
+            frameShape: Array.isArray(frame.frameShape) && frame.frameShape.length === 1 ? frame.frameShape[0] : frame.frameShape,
           })));
 
         } catch (error) {
@@ -160,7 +158,7 @@ export default function CaseDetailPage() {
     }
   }, [params.id, getCase, isFetchingData]);
 
-  const handleStartAnalysis = async () => {
+  const handleRerunAnalysis = async () => {
     if (!caseItem) return;
   
     setIsLoading(true);
@@ -184,8 +182,8 @@ export default function CaseDetailPage() {
             frames: allFrames.map(f => ({
               id: f.id,
               productName: f.productName,
-              frameShape: Array.isArray(f.frameShape) ? f.frameShape[0] : f.frameShape,
-              frameType: Array.isArray(f.frameType) ? f.frameType[0] : f.frameType,
+              frameShape: Array.isArray(f.frameShape) ? f.frameShape.join(', ') : f.frameShape,
+              frameType: Array.isArray(f.frameType) ? f.frameType.join(', ') : f.frameType,
               price: f.price,
               purchaseCount: f.purchaseCount,
               productRating: f.productRating,
@@ -202,7 +200,7 @@ export default function CaseDetailPage() {
 
         toast({
             title: 'Analysis Complete',
-            description: 'AI recommendations have been generated.',
+            description: 'AI recommendations have been re-generated.',
         });
     } catch (error) {
         console.error('Analysis failed:', error);
@@ -289,24 +287,23 @@ export default function CaseDetailPage() {
         <div className="lg:col-span-2 space-y-8">
           <Card className="bg-card/80 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-primary"><Wand2 /> AI Frame Recommendations</CardTitle>
+              <CardTitle className="flex items-center gap-2 text-primary"><Wand2 /> AI Recommendations</CardTitle>
               <CardDescription>Powered by Focus.Ai to provide personalized suggestions from your catalog.</CardDescription>
             </CardHeader>
             <CardContent>
               {isLoading && (
                 <div className="text-center py-10 flex flex-col items-center gap-4">
                    <Loader className="mx-auto h-8 w-8 animate-spin" /> 
-                  <p className="text-muted-foreground">{isFetchingData ? "Loading product catalog..." : "Running AI analysis on patient data..."}</p>
+                  <p className="text-muted-foreground">Re-running AI analysis on patient data...</p>
                 </div>
               )}
 
               {!isLoading && !caseItem.analysis && (
                 <div className="text-center py-10 flex flex-col items-center gap-4 border-2 border-dashed rounded-lg">
-                  <FlaskConical className="h-8 w-8 text-muted-foreground" />
-                  <p className="text-muted-foreground max-w-sm">No analysis has been run for this case yet. Click the button below to generate AI-powered frame recommendations.</p>
-                  <Button onClick={handleStartAnalysis} disabled={isLoading || isFetchingData}>
+                  <p className="text-muted-foreground max-w-sm">This case was saved without generating AI recommendations. You can run the analysis now.</p>
+                  <Button onClick={handleRerunAnalysis} disabled={isLoading || isFetchingData}>
                       <Wand2 className="mr-2 h-4 w-4" />
-                      Start AI Analysis
+                      Generate AI Recommendations
                   </Button>
                 </div>
               )}
@@ -316,8 +313,8 @@ export default function CaseDetailPage() {
                   {/* Frame Shapes */}
                   {caseItem.analysis.recommendedShapes && (
                     <section>
-                      <CardTitle className="text-xl font-semibold text-primary flex items-center gap-2 mb-2"><Sparkles /> Recommended Frame Shapes</CardTitle>
-                      <CardDescription className='mb-4'>{caseItem.analysis.recommendedShapes.reasoning}</CardDescription>
+                      <h3 className="text-xl font-semibold text-primary flex items-center gap-2 mb-2"><Sparkles /> Recommended Frame Shapes</h3>
+                      <p className='text-muted-foreground mb-4'>{caseItem.analysis.recommendedShapes.reasoning}</p>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                           {caseItem.analysis.recommendedShapes.recommendations.map(rec => (
                               <Button type="button" key={rec.shape} variant="outline" className="h-auto py-3 flex flex-col gap-1 items-center" onClick={() => setSelectedShape(rec.shape)}>
@@ -331,8 +328,8 @@ export default function CaseDetailPage() {
                   {/* Frame Types */}
                   {caseItem.analysis.recommendedTypes && (
                      <section>
-                      <CardTitle className="text-xl font-semibold text-primary flex items-center gap-2 mb-2"><Sparkles /> Suitable Frame Types</CardTitle>
-                      <CardDescription className='mb-4'>{caseItem.analysis.recommendedTypes.reasoning}</CardDescription>
+                      <h3 className="text-xl font-semibold text-primary flex items-center gap-2 mb-2"><Sparkles /> Suitable Frame Types</h3>
+                      <p className='text-muted-foreground mb-4'>{caseItem.analysis.recommendedTypes.reasoning}</p>
                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                           {caseItem.analysis.recommendedTypes.recommendations.map(rec => (
                               <Button type="button" key={rec.type} variant="outline" className="h-auto py-3 flex flex-col gap-1 items-center" onClick={() => setSelectedType(rec.type)}>
@@ -346,7 +343,7 @@ export default function CaseDetailPage() {
                    {/* Top Frames Carousel */}
                    {recommendedFrames.length > 0 && (
                       <section>
-                        <CardTitle className="text-xl font-semibold text-primary flex items-center gap-2 mb-4"><Sparkles /> Top Frames for {caseItem.patientName}</CardTitle>
+                        <h3 className="text-xl font-semibold text-primary flex items-center gap-2 mb-4"><Sparkles /> Top Frames for {caseItem.patientName}</h3>
                          <Carousel
                           opts={{
                             align: "start",
@@ -370,8 +367,8 @@ export default function CaseDetailPage() {
                    {/* Lens Recommendations */}
                    {caseItem.analysis.recommendedLenses && (
                      <section>
-                      <CardTitle className="text-xl font-semibold text-primary flex items-center gap-2 mb-2"><Eye /> Recommended Lens & Coatings</CardTitle>
-                      <CardDescription className='mb-4'>{caseItem.analysis.recommendedLenses.reasoning}</CardDescription>
+                      <h3 className="text-xl font-semibold text-primary flex items-center gap-2 mb-2"><Eye /> Recommended Lens & Coatings</h3>
+                      <p className='text-muted-foreground mb-4'>{caseItem.analysis.recommendedLenses.reasoning}</p>
                       <div className='space-y-4'>
                         {caseItem.analysis.recommendedLenses.recommendations.map(rec => {
                            const lens = allLenses.find(l => l.id === rec.id);
@@ -404,9 +401,9 @@ export default function CaseDetailPage() {
                     </section>
                    )}
 
-                   <div className='pt-4 border-t'>
-                      <Button onClick={handleStartAnalysis} disabled={isLoading || isFetchingData} size="sm">
-                          {isLoading ? 'Re-running...' : 'Re-run Analysis'}
+                   <div className='pt-8 mt-8 border-t'>
+                      <Button onClick={handleRerunAnalysis} disabled={isLoading || isFetchingData} size="sm" variant="outline">
+                          {isLoading ? (<><Loader className="mr-2 h-4 w-4 animate-spin"/> Re-running...</>) : 'Re-run Full Analysis'}
                       </Button>
                    </div>
                 </div>
