@@ -1,13 +1,13 @@
 
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { UploadCloud, TestTube2, Loader, FileText, ScanFace, ArrowRight, Menu } from 'lucide-react';
+import { UploadCloud, TestTube2, Loader, FileText, ScanFace, ArrowRight, Menu, Wand2, Sparkles, X, Info } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -20,6 +20,12 @@ import { analyzeFaceShape } from '@/ai/flows/analyze-face-shape';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { useSidebar } from '@/components/ui/sidebar';
+import { FrameShapeGalleryDialog } from '@/components/frame-shape-gallery-dialog';
+import { Frame, FrameVariation } from '@/lib/types';
+import { useFavorites } from '@/hooks/use-favorites';
+import { suggestFrameShapes, SuggestFrameShapesOutput } from '@/ai/flows/suggest-frame-shapes';
+import { cn } from '@/lib/utils';
+
 
 const patientCaseSchema = z.object({
   patientName: z.string().min(1, 'Patient name is required'),
@@ -52,6 +58,13 @@ export default function NewPatientPage() {
     const { toast } = useToast();
     const [isApiKeyMissing, setIsApiKeyMissing] = useState(false);
     const { toggleSidebar } = useSidebar();
+    const { isFavorite, toggleFavorite } = useFavorites();
+    
+    const [allFrames, setAllFrames] = useState<Frame[]>([]);
+    const [isFetchingFrames, setIsFetchingFrames] = useState(true);
+    
+    const [shapeSuggestions, setShapeSuggestions] = useState<SuggestFrameShapesOutput | null>(null);
+    const [selectedShape, setSelectedShape] = useState<string | null>(null);
 
     const form = useForm<PatientCaseFormValues>({
         resolver: zodResolver(patientCaseSchema),
@@ -87,6 +100,68 @@ export default function NewPatientPage() {
         setIsApiKeyMissing(process.env.NEXT_PUBLIC_GEMINI_API_KEY_CONFIGURED !== 'true');
     }, []);
 
+    useEffect(() => {
+        const fetchFrames = async () => {
+          setIsFetchingFrames(true);
+          const dataSources = [
+            { url: '/fullrim-frames.json', property: 'frameType', value: 'full rim' },
+            { url: '/halfrim-frames.json', property: 'frameType', value: 'half rim' },
+            { url: '/rimless-frames.json', property: 'frameType', value: 'rimless' },
+            { url: '/square-frames.json', property: 'frameShape', value: 'square' },
+            { url: '/rectangle-frames.json', property: 'frameShape', value: 'rectangle' },
+            { url: '/round-frames.json', property: 'frameShape', value: 'round' },
+            { url: '/cateye-frames.json', property: 'frameShape', value: 'cat eye' },
+            { url: '/aviator-frames.json', property: 'frameShape', value: 'aviator' },
+            { url: '/geometric-frames.json', property: 'frameShape', value: 'geometric' },
+          ];
+    
+          try {
+            const responses = await Promise.all(
+              dataSources.map(source => fetch(source.url).catch(e => {
+                console.error(`Failed to fetch ${source.url}`, e);
+                return null;
+              }))
+            );
+    
+            const framesMap = new Map<number, Frame>();
+    
+            for (let i = 0; i < responses.length; i++) {
+              const res = responses[i];
+              const source = dataSources[i];
+              
+              if (res && res.ok) {
+                try {
+                  const data = await res.json();
+                  if (Array.isArray(data)) {
+                    data.forEach((frame: Frame) => {
+                      const existingFrame = framesMap.get(frame.id) || frame;
+                      framesMap.set(frame.id, {
+                        ...existingFrame,
+                        [source.property]: source.value,
+                      });
+                    });
+                  }
+                } catch (e) {
+                   console.error(`Failed to parse JSON for ${source.url}`, e);
+                }
+              } else {
+                console.error(`Failed to fetch ${source.url}:`, res ? res.statusText : 'Network Error');
+              }
+            }
+            
+            const uniqueFrames = Array.from(framesMap.values());
+            setAllFrames(uniqueFrames);
+    
+          } catch (error) {
+            console.error('Failed to fetch frames data:', error);
+          } finally {
+            setIsFetchingFrames(false);
+          }
+        };
+    
+        fetchFrames();
+      }, []);
+
     const runAnalysis = async (dataUrl: string) => {
         if (isApiKeyMissing) {
             toast({
@@ -108,6 +183,13 @@ export default function NewPatientPage() {
                     title: 'Analysis Complete',
                     description: `Detected Face Shape: ${result.faceShape}, Skin Tone: ${result.skinTone}`,
                 });
+
+                if (allFrames.length > 0) {
+                    const availableShapes = Array.from(new Set(allFrames.map(f => f.frameShape).flat().filter(Boolean))) as string[];
+                    const shapeSuggestionsResult = await suggestFrameShapes({faceShape: result.faceShape, availableShapes: availableShapes});
+                    setShapeSuggestions(shapeSuggestionsResult);
+                }
+
             } else {
                 throw new Error("AI response was empty or invalid.");
             }
@@ -118,6 +200,7 @@ export default function NewPatientPage() {
                 title: 'Analysis Failed',
                 description: 'Could not determine face shape from the image.',
             });
+            setShapeSuggestions(null);
         } finally {
             setIsAnalyzing(false);
         }
@@ -137,6 +220,7 @@ export default function NewPatientPage() {
     };
 
     const fillWithDemoData = () => {
+        setIsAnalyzing(false); // Ensure analysis state is reset
         const randomFromArray = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
         
         const names = ['Alex Johnson', 'Maria Garcia', 'Chen Wei', 'Fatima Al-Fassi', 'Kenji Tanaka'];
@@ -146,10 +230,12 @@ export default function NewPatientPage() {
         const visualNeeds = ['Difficulty with night driving', 'Experiences eye strain from computer use', 'Needs glasses for reading fine print', 'Sensitive to bright lights and glare'];
         const stylePrefs = ['Prefers modern, minimalist frames', 'Likes bold, statement pieces', 'Enjoys a classic, retro look', 'Looks for something professional and understated'];
         const pastPurchases = ['Previously wore small, metal frames but found them uncomfortable.', 'Liked their last pair of acetate frames but wants a new color.', 'Has only worn contact lenses before.'];
-        const randomSphere = () => (Math.random() * 8 - 4).toFixed(2);
-        const randomCyl = () => (Math.random() * -2).toFixed(2);
+        const randomStepValue = (min: number, max: number, step: number) => {
+            const range = (max - min) / step;
+            return (Math.floor(Math.random() * (range + 1)) * step + min).toFixed(2);
+        };
+
         const randomAxis = () => Math.floor(Math.random() * 180) + 1;
-        const randomAdd = () => `+${(Math.random() * 1.5 + 1).toFixed(2)}`;
         const randomPd = () => Math.floor(Math.random() * 12) + 58;
 
         form.reset({
@@ -162,15 +248,21 @@ export default function NewPatientPage() {
             visualNeeds: randomFromArray(visualNeeds),
             stylePreferences: randomFromArray(stylePrefs),
             pastPurchases: randomFromArray(pastPurchases),
-            distSphOd: randomSphere(),
-            distSphOs: randomSphere(),
-            distCyl: randomCyl(),
+            distSphOd: randomStepValue(-4, 4, 0.25),
+            distSphOs: randomStepValue(-4, 4, 0.25),
+            distCyl: randomStepValue(-2, 0, 0.25),
             distAxis: randomAxis().toString(),
-            nearAddOd: randomAdd(),
-            nearAddOs: randomAdd(),
+            nearAddOd: `+${randomStepValue(1, 2.5, 0.25)}`,
+            nearAddOs: `+${randomStepValue(1, 2.5, 0.25)}`,
             pdDist: randomPd().toString(),
             pdNear: (randomPd() - 3).toString(),
         });
+        
+        // Clear previous analysis results
+        setImagePreview(null);
+        setShapeSuggestions(null);
+        form.setValue('faceShape', '');
+        form.setValue('skinTone', '');
 
         toast({
             title: "Demo Data Loaded",
@@ -179,22 +271,24 @@ export default function NewPatientPage() {
     }
 
     function onSubmit(data: PatientCaseFormValues) {
-        const caseDataForStorage = { ...data };
-        // Ensure image data is not saved to localStorage
-        const imageData = imagePreview;
-        delete caseDataForStorage.image; 
+        if (!data.patientName) {
+            // Let the resolver handle the error message, but keep the UI state.
+            return;
+        }
 
+        const caseDataForStorage = { ...data, shapeAnalysis: shapeSuggestions };
+        
         const fullCase = addCase({
             ...caseDataForStorage,
             date: new Date().toISOString(),
             status: 'Pending',
+            patientImage: imagePreview
         });
         toast({
             title: 'Case Saved',
             description: `Patient case for ${fullCase.patientName} has been created.`,
         });
 
-        const query = imageData ? `?image=${encodeURIComponent(imageData)}` : '';
         router.push(`/patient-analysis/cases`);
     }
   
@@ -363,6 +457,29 @@ export default function NewPatientPage() {
                                 <Input id="image-upload" type="file" className="hidden" accept="image/png, image/jpeg, image/jpg" onChange={handleImageChange} disabled={isAnalyzing || isApiKeyMissing}/>
                             </div>
                         </div>
+
+                        {/* AI Shape Recommendations */}
+                        {shapeSuggestions && shapeSuggestions.recommendations && (
+                        <div>
+                            <h3 className="text-2xl font-semibold text-primary mb-8 border-b pb-4 flex items-center gap-2"><Sparkles /> Recommended Frame Shapes</h3>
+                            <p className="text-muted-foreground mb-4 -mt-4">{shapeSuggestions.reasoning}</p>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                {shapeSuggestions.recommendations.map(rec => (
+                                    <Button
+                                    type="button"
+                                    key={rec.shape}
+                                    variant="outline"
+                                    className="h-auto py-4 flex flex-col gap-2 items-center"
+                                    onClick={() => setSelectedShape(rec.shape)}
+                                    >
+                                        <span className="text-lg font-semibold">{rec.shape}</span>
+                                        <p className="text-xs text-muted-foreground font-normal whitespace-normal">{rec.reasoning}</p>
+                                    </Button>
+                                ))}
+                            </div>
+                        </div>
+                        )}
+
                     </div>
 
                     <div className="pt-10 mt-8 border-t">
@@ -379,8 +496,18 @@ export default function NewPatientPage() {
                 </Form>
             </Card>
         </div>
+        
+        {selectedShape && (
+            <FrameShapeGalleryDialog 
+                shape={selectedShape}
+                allFrames={allFrames}
+                isFavorite={isFavorite}
+                toggleFavorite={toggleFavorite}
+                isOpen={!!selectedShape}
+                onClose={() => setSelectedShape(null)}
+            />
+        )}
     </div>
   );
 }
 
-    

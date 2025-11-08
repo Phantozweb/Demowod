@@ -4,6 +4,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { type SelectFramesFromCatalogOutput } from '@/ai/flows/select-frames-from-catalog';
+import { type SuggestFrameShapesOutput } from '@/ai/flows/suggest-frame-shapes';
 
 const CASES_KEY = 'focus-casex-cases';
 
@@ -31,6 +32,8 @@ export type PatientCase = {
   faceShape?: string;
   skinTone?: string;
   analysis?: SelectFramesFromCatalogOutput;
+  shapeAnalysis?: SuggestFrameShapesOutput;
+  patientImage?: string | null;
 };
 
 export const useCases = () => {

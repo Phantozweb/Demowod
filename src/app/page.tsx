@@ -24,7 +24,7 @@ export default function Home() {
                 </span>
               </h1>
               <p className="mt-3 max-w-md mx-auto text-lg text-muted-foreground sm:text-xl md:mt-5 md:max-w-3xl">
-                <a href="https://www.google.com/search?q=janarthan+veeramani&oq=ja&gs_lcrp=EgZjaHJvbWUqDggBEEUYJxg7GIAEGIoFMgYIABBFGDkyDggBEEUYJxg7GIAEGIoFMgYIAhAjGCcyDQgDEC4YgwEYsQMYgAQyBwgEEC4YgAQyEAgFEAAYgwEYsQMYgAQYigUyBwgGEC4YgAQyBwgHEC4YgAQyBggIEEUYPDIGCAkQRRg8MhAIChAuGIMBGLEDGIAEGIoFMgoICxAuGLEDGIAEMgcIDBAuGIAEMhAIDRAAGIMBGLEDGIAEGIoFMgcIDhAuGIAE0gEIMTEyNmowajSoAg6wAgHxBf0_M9lSyrsx&client=ms-android-xiaomi-terr1-rso2&sourceid=chrome-mobile&ie=UTF-8" target="_blank" rel="noopener noreferrer">Made By Janarthan Veeramani</a>
+                Made by <a href="https://www.google.com/search?q=janarthan+veeramani" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Janarthan Veeramani</a>
               </p>
               <div className="mt-8 flex justify-center gap-4">
                 <div className="inline-flex rounded-md shadow-lg">

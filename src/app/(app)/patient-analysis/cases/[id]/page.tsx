@@ -20,6 +20,7 @@ import {
   Loader,
   Info,
   Heart,
+  Sparkles,
 } from 'lucide-react';
 import Image from 'next/image';
 import {
@@ -33,6 +34,8 @@ import { useFavorites } from '@/hooks/use-favorites';
 import { ProductPreviewCard } from '@/components/product-preview-card';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
+import { FrameShapeGalleryDialog } from '@/components/frame-shape-gallery-dialog';
+import { type SuggestFrameShapesOutput } from '@/ai/flows/suggest-frame-shapes';
 
 function FormattedReasoning({ text }: { text: string }) {
   if (!text) return null;
@@ -48,18 +51,19 @@ function FormattedReasoning({ text }: { text: string }) {
 
 export default function CaseDetailPage() {
   const params = useParams();
-  const searchParams = useSearchParams();
   const { getCase, updateCase } = useCases();
   const { toast } = useToast();
   const { isFavorite, toggleFavorite } = useFavorites();
-  const [caseItem, setCaseItem] =
-    useState<PatientCase | undefined>(undefined);
-  const [analysisResult, setAnalysisResult] =
-    useState<SelectFramesFromCatalogOutput | null>(null);
+  const [caseItem, setCaseItem] = useState<PatientCase | undefined>(undefined);
+  const [analysisResult, setAnalysisResult] = useState<SelectFramesFromCatalogOutput | null>(null);
+  const [shapeAnalysis, setShapeAnalysis] = useState<SuggestFrameShapesOutput | null>(null);
+
   const [isLoading, setIsLoading] = useState(false);
   const [allFrames, setAllFrames] = useState<Frame[]>([]);
   const [isFetchingFrames, setIsFetchingFrames] = useState(true);
+  
   const [selectedFrame, setSelectedFrame] = useState<Frame | null>(null);
+  const [selectedShape, setSelectedShape] = useState<string | null>(null);
   const [patientImage, setPatientImage] = useState<string | null>(null);
 
   const analysisRun = useRef(false);
@@ -98,15 +102,24 @@ export default function CaseDetailPage() {
               const data = await res.json();
               if (Array.isArray(data)) {
                 data.forEach((frame: Frame) => {
-                  const existingFrame = framesMap.get(frame.id) || { ...frame, variations: [] };
-                  
-                  const updatedFrame = {
-                    ...existingFrame,
-                    frameType: existingFrame.frameType || (source.property === 'frameType' ? source.value : undefined),
-                    frameShape: existingFrame.frameShape || (source.property === 'frameShape' ? source.value : undefined),
-                  };
+                    const existingFrame = framesMap.get(frame.id) || { ...frame };
 
-                  framesMap.set(frame.id, updatedFrame);
+                    const handleProperty = (prop: 'frameType' | 'frameShape') => {
+                        if (source.property === prop) {
+                            if (!existingFrame[prop]) {
+                                existingFrame[prop] = source.value;
+                            } else if (Array.isArray(existingFrame[prop]) && !existingFrame[prop].includes(source.value)) {
+                                (existingFrame[prop] as string[]).push(source.value);
+                            } else if (typeof existingFrame[prop] === 'string' && existingFrame[prop] !== source.value) {
+                                existingFrame[prop] = [existingFrame[prop] as string, source.value];
+                            }
+                        }
+                    };
+
+                    handleProperty('frameType');
+                    handleProperty('frameShape');
+                    
+                    framesMap.set(frame.id, existingFrame);
                 });
               }
             } catch (e) {
@@ -135,22 +148,19 @@ export default function CaseDetailPage() {
       const foundCase = getCase(params.id);
       setCaseItem(foundCase);
 
-      const imageFromUrl = searchParams.get('image');
-      if (imageFromUrl) {
-          try {
-              const decodedImage = decodeURIComponent(imageFromUrl);
-              setPatientImage(decodedImage);
-          } catch (e) {
-              console.error("Failed to decode image from URL", e);
-          }
+      if (foundCase?.patientImage) {
+          setPatientImage(foundCase.patientImage);
       }
 
       if (foundCase?.analysis) {
         setAnalysisResult(foundCase.analysis as SelectFramesFromCatalogOutput);
         analysisRun.current = true;
       }
+      if (foundCase?.shapeAnalysis) {
+        setShapeAnalysis(foundCase.shapeAnalysis as SuggestFrameShapesOutput);
+      }
     }
-  }, [params.id, getCase, searchParams]);
+  }, [params.id, getCase]);
 
   const handleStartAnalysis = async () => {
     if (!caseItem) return;
@@ -173,20 +183,27 @@ export default function CaseDetailPage() {
     }
   
     try {
-        const simplifiedFrames = allFrames.map(f => ({ 
-            id: f.id, 
-            productName: f.productName,
-            frameType: f.frameType,
-            frameShape: f.frameShape,
-            brand: f.brand,
-            size: f.size,
-            price: {
-                salesPrice: f.price?.salesPrice,
-                lkPrice: f.price?.lkPrice,
-            },
-            purchaseCount: f.purchaseCount,
-            productRating: f.productRating,
-        }));
+        const simplifiedFrames = allFrames.map(f => {
+            const frame = { ...f };
+            // Ensure frameShape is a string for the AI flow
+            if (Array.isArray(frame.frameShape)) {
+                frame.frameShape = frame.frameShape[0];
+            }
+            return { 
+                id: frame.id, 
+                productName: frame.productName,
+                frameType: frame.frameType,
+                frameShape: frame.frameShape,
+                brand: frame.brand,
+                size: frame.size,
+                price: {
+                    salesPrice: frame.price?.salesPrice,
+                    lkPrice: frame.price?.lkPrice,
+                },
+                purchaseCount: frame.purchaseCount,
+                productRating: frame.productRating,
+            };
+        });
 
         const result = await selectFramesFromCatalog({
             faceShape: caseItem.faceShape || 'oval',
@@ -213,20 +230,6 @@ export default function CaseDetailPage() {
         setIsLoading(false);
     }
   };
-  
-  useEffect(() => {
-    if (
-      caseItem &&
-      caseItem.status === 'Pending' &&
-      !isLoading &&
-      !isFetchingFrames &&
-      !analysisRun.current &&
-      allFrames.length > 0
-    ) {
-      handleStartAnalysis();
-    }
-  }, [caseItem, isFetchingFrames, allFrames, isLoading]);
-
 
   const flatFrames = allFrames.flatMap(frame => 
     (frame.variations && frame.variations.length > 0 ? frame.variations : [{...frame}]).map((variation: Frame | FrameVariation) => ({...frame, ...variation}))
@@ -322,9 +325,35 @@ export default function CaseDetailPage() {
         </div>
 
         <div className="lg:col-span-2 space-y-8">
+            {/* AI Shape Recommendations */}
+            {shapeAnalysis && shapeAnalysis.recommendations && (
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-xl font-semibold text-primary flex items-center gap-2"><Sparkles /> Recommended Frame Shapes</CardTitle>
+                    <CardDescription>{shapeAnalysis.reasoning}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        {shapeAnalysis.recommendations.map(rec => (
+                            <Button
+                            type="button"
+                            key={rec.shape}
+                            variant="outline"
+                            className="h-auto py-4 flex flex-col gap-2 items-center"
+                            onClick={() => setSelectedShape(rec.shape)}
+                            >
+                                <span className="text-base font-semibold">{rec.shape}</span>
+                                <p className="text-xs text-muted-foreground font-normal whitespace-normal">{rec.reasoning}</p>
+                            </Button>
+                        ))}
+                    </div>
+                </CardContent>
+            </Card>
+            )}
+
           <Card className="bg-card/80 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-primary"><Wand2 /> AI Analysis & Recommendations</CardTitle>
+              <CardTitle className="flex items-center gap-2 text-primary"><Wand2 /> AI Frame Recommendations</CardTitle>
               <CardDescription>Powered by Focus.Ai to provide personalized suggestions from your catalog.</CardDescription>
             </CardHeader>
             <CardContent>
@@ -385,7 +414,7 @@ export default function CaseDetailPage() {
                 </Button>
                )}
 
-              {!isLoading && !analysisResult && (caseItem?.status !== 'Pending' || (caseItem?.status === 'Pending' && !isFetchingFrames)) && (
+              {!isLoading && !analysisResult && (
                 <div className="text-center py-10 flex flex-col items-center gap-4 border-2 border-dashed rounded-lg">
                   <FlaskConical className="h-8 w-8 text-muted-foreground" />
                   <p className="text-muted-foreground max-w-sm">No analysis has been run for this case yet. Click the button below to generate AI-powered frame recommendations.</p>
@@ -403,6 +432,17 @@ export default function CaseDetailPage() {
     {selectedFrame && (
       <ProductPreviewCard frame={selectedFrame} isOpen={!!selectedFrame} onClose={() => setSelectedFrame(null)} isFavorite={isFavorite} toggleFavorite={toggleFavorite} />
     )}
+    {selectedShape && (
+        <FrameShapeGalleryDialog 
+            shape={selectedShape}
+            allFrames={allFrames}
+            isFavorite={isFavorite}
+            toggleFavorite={toggleFavorite}
+            isOpen={!!selectedShape}
+            onClose={() => setSelectedShape(null)}
+        />
+    )}
     </>
   );
 }
+
