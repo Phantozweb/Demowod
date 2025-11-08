@@ -1,3 +1,4 @@
+
 export type FrameVariation = {
     id: number;
     color: string;
@@ -34,8 +35,8 @@ export type Frame = {
   productName: string;
   productModelName: string;
   classification: string;
-  frameType?: string;
-  frameShape?: string;
+  frameType?: string | string[];
+  frameShape?: string | string[];
   brand?: string;
   tags?: string;
   lenskart_url?: string;
@@ -76,8 +77,5 @@ export type Lens = {
     price?: number;
     features: string[];
     use_case: string;
-    targetUser: string;
     category: string;
 };
-
-    

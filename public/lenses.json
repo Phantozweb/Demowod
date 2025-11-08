@@ -1,68 +1,75 @@
 
 [
-  {
-    "id": 1,
-    "name": "VisuPro™",
-    "description": "Designed for emerging presbyopes (ages 36-44) experiencing near-vision problems, offering a cost-effective transition to progressive lenses.",
-    "price": 150.00,
-    "features": [
-      "Focus Max Optimization",
-      "Binocular Harmonization Technology™",
-      "Two lifestyle-based designs: All Day & Flex",
-      "Quicker adaptation than progressive lenses"
-    ],
-    "use_case": "Ideal for early presbyopes who need help with near-vision tasks but are not ready for full progressive lenses."
-  },
-  {
-    "id": 2,
-    "name": "MySV®",
-    "description": "Personalized single vision lenses that compensate for prescriptions in all meridians, providing wider peripheral views.",
-    "price": 180.00,
-    "features": [
-      "Backside free form technology",
-      "360˚ Visual Comfort™",
-      "Optimized base curve for larger frames",
-      "Individualized based on position of wear"
-    ],
-    "use_case": "For patients needing a personalized single vision lens with enhanced visual acuity and wider views, beyond 'one-size-fits-all'."
-  },
-  {
-    "id": 3,
-    "name": "Sync III™",
-    "description": "A single vision lens with a 'boost zone' at the bottom to help relax eye muscles and alleviate digital eye strain.",
-    "price": 165.00,
-    "features": [
-      "Distance power with a lower 'boost zone'",
-      "Three boost zone power options (+0.57D, +0.95D, +1.32D)",
-      "Available in clear, photochromic, and polarized",
-      "Reduces strain from digital screens and near tasks"
-    ],
-    "use_case": "Perfect for single vision wearers of any age who spend significant time on digital devices and experience symptoms of Digital Eye Strain (DES)."
-  },
-  {
-    "id": 4,
-    "name": "iD Single Vision®",
-    "description": "A bi-aspheric design that offers an expanded peripheral viewing area and edge-to-edge clarity, especially for higher prescriptions.",
-    "price": 220.00,
-    "features": [
-      "Integrated Dual Surface™ free form technology",
-      "Expanded peripheral viewing",
-      "Edge-to-edge clarity with reduced distortion",
-      "Requires OC and monocular PD measurements"
-    ],
-    "use_case": "Patients with high prescriptions who want thinner, lighter lenses with the widest possible field of clear vision."
-  },
-  {
-    "id": 5,
-    "name": "Single Vision iQ™",
-    "description": "Utilizes progressive lens technology in a single vision design for enhanced optics and reduced peripheral distortion.",
-    "price": 200.00,
-    "features": [
-      "Spherical front with custom back surfacing",
-      "Backside design technology from PALs",
-      "Reduced distortion in peripheral areas",
-      "Requires OC and monocular PD measurements"
-    ],
-    "use_case": "For patients who want the optical benefits of high-end progressive lens technology in a single vision lens for a wider, clearer visual field."
-  }
+    {
+      "id": 0,
+      "name": "Standard Single Vision",
+      "description": "Basic lenses for correcting nearsightedness or farsightedness.",
+      "features": ["Corrects one field of vision", "Standard thickness", "Scratch-resistant coating included"],
+      "use_case": "General purpose, budget-conscious users.",
+      "category": "Single Vision"
+    },
+    {
+      "id": 1,
+      "name": "Thin & Light High-Index",
+      "description": "Thinner and lighter lenses, ideal for stronger prescriptions.",
+      "features": ["Up to 40% thinner than standard", "Lightweight for comfort", "Reduces 'coke bottle' effect"],
+      "use_case": "Users with moderate to high prescriptions who want a more aesthetic look.",
+      "category": "Single Vision"
+    },
+    {
+      "id": 5,
+      "name": "Standard Progressive",
+      "description": "Multifocal lenses with a seamless progression between distance, intermediate, and near vision.",
+      "features": ["No-line bifocal design", "Smooth transition between focal points", "Standard viewing zones"],
+      "use_case": "First-time progressive lens wearers or those with a presbyopia diagnosis.",
+      "category": "Progressive"
+    },
+    {
+      "id": 6,
+      "name": "Premium Digital Progressive",
+      "description": "Advanced progressive lenses with wider viewing zones and reduced distortion.",
+      "features": ["Wider, clearer fields of vision", "Digitally surfaced for precision", "Easier adaptation for new wearers"],
+      "use_case": "Experienced progressive wearers or those who want the best visual experience.",
+      "category": "Progressive"
+    },
+    {
+      "id": 12,
+      "name": "Computer/Office Lenses",
+      "description": "Specialized lenses designed to reduce eye strain for intermediate and near-vision tasks.",
+      "features": ["Optimized for screen distances (2-4 feet)", "Reduces digital eye strain", "Wider intermediate zone than progressives"],
+      "use_case": "Professionals, students, or anyone spending more than 4 hours a day on a computer.",
+      "category": "Computer & Work"
+    },
+    {
+      "id": 15,
+      "name": "Anti-Reflective Coating",
+      "description": "Reduces reflections from the front and back of your lenses.",
+      "features": ["Improves night vision", "Reduces glare from screens", "Makes lenses look nearly invisible"],
+      "use_case": "Essential for all glasses-wearers, especially for night driving and computer use.",
+      "category": "Coating"
+    },
+    {
+      "id": 18,
+      "name": "Blue Light Filtering",
+      "description": "Filters a portion of the blue-violet light emitted from digital screens.",
+      "features": ["May help reduce digital eye strain", "Can improve sleep patterns", "Slight yellow tint may be visible"],
+      "use_case": "Heavy users of digital devices (computers, smartphones, tablets).",
+      "category": "Coating"
+    },
+    {
+      "id": 19,
+      "name": "Transitions® Light-Adaptive",
+      "description": "Lenses that automatically darken when exposed to UV light.",
+      "features": ["Clear indoors, dark outdoors", "100% UV protection", "Convenience of glasses and sunglasses in one"],
+      "use_case": "Users who frequently move between indoor and outdoor environments.",
+      "category": "Photochromic"
+    },
+    {
+      "id": 20,
+      "name": "Polarized Sun Lenses",
+      "description": "Sunglass lenses that eliminate glare from reflective surfaces like water and roads.",
+      "features": ["Reduces glare for safer driving", "Enhances contrast and color perception", "Ideal for water sports and outdoor activities"],
+      "use_case": "Anyone looking for premium sunglasses for outdoor activities and driving.",
+      "category": "Sun"
+    }
 ]

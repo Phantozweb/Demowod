@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -13,9 +13,10 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { FrameCard } from '@/components/frame-card';
 import { Frame, FrameVariation } from '@/lib/types';
 import { ProductPreviewCard } from './product-preview-card';
+import { useState } from 'react';
 
-interface FrameShapeGalleryDialogProps {
-  shape: string;
+interface FrameTypeGalleryDialogProps {
+  type: string;
   allFrames: Frame[];
   isFavorite: (id: number) => boolean;
   toggleFavorite: (id: number) => void;
@@ -23,36 +24,36 @@ interface FrameShapeGalleryDialogProps {
   onClose: () => void;
 }
 
-export function FrameShapeGalleryDialog({
-  shape,
+export function FrameTypeGalleryDialog({
+  type,
   allFrames,
   isFavorite,
   toggleFavorite,
   isOpen,
   onClose,
-}: FrameShapeGalleryDialogProps) {
+}: FrameTypeGalleryDialogProps) {
   const [selectedFrame, setSelectedFrame] = useState<Frame | null>(null);
 
   const filteredFrames = useMemo(() => {
-    if (!shape || !allFrames) return [];
+    if (!type || !allFrames) return [];
     
     const flatFrames = allFrames.flatMap(frame => 
         (frame.variations && frame.variations.length > 0 ? frame.variations : [{...frame}]).map((variation: Frame | FrameVariation) => ({...frame, ...variation}))
     );
 
     return flatFrames.filter(frame => {
-      const frameShape = frame.frameShape;
-      if (Array.isArray(frameShape)) {
-        return frameShape.some(s => s.toLowerCase() === shape.toLowerCase());
+      const frameType = frame.frameType;
+      if (Array.isArray(frameType)) {
+        return frameType.some(s => s.toLowerCase() === type.toLowerCase());
       }
-      return frameShape?.toLowerCase() === shape.toLowerCase();
+      return frameType?.toLowerCase() === type.toLowerCase();
     });
-  }, [shape, allFrames]);
+  }, [type, allFrames]);
 
   const handlePreview = (frame: Frame) => {
     setSelectedFrame(frame);
   }
-  
+
   const handleClosePreview = () => {
     setSelectedFrame(null);
   }
@@ -63,7 +64,7 @@ export function FrameShapeGalleryDialog({
         <DialogContent className="max-w-4xl h-[90vh]">
           <DialogHeader>
             <DialogTitle className="text-2xl capitalize">
-              '{shape}' Frames
+              '{type}' Frames
             </DialogTitle>
             <DialogDescription>
               Showing {filteredFrames.length} frames from the catalog.
@@ -78,14 +79,14 @@ export function FrameShapeGalleryDialog({
                           frame={frame}
                           isFavorite={isFavorite}
                           toggleFavorite={toggleFavorite}
-                          onPreview={handlePreview}
+                          onPreview={handlePreview} 
                       />
                       ))}
                   </div>
               ): (
                   <div className="flex flex-col items-center justify-center text-center py-20">
-                      <h2 className="text-xl font-semibold">No '{shape}' frames found.</h2>
-                      <p className="mt-2 text-muted-foreground">Please try another shape or update the catalog.</p>
+                      <h2 className="text-xl font-semibold">No '{type}' frames found.</h2>
+                      <p className="mt-2 text-muted-foreground">Please try another type or update the catalog.</p>
                   </div>
               )}
           </ScrollArea>
