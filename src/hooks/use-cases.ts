@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { type SuggestInitialFramesOutput } from '@/ai/flows/suggest-initial-frames';
+import { type SuggestInitialFramesOutput } from '@/lib/types';
 
 const CASES_KEY = 'focus-casex-cases';
 
@@ -104,5 +104,3 @@ export const useCases = () => {
 
   return { cases, addCase, updateCase, removeCase, getCase, isInitialized };
 };
-
-    

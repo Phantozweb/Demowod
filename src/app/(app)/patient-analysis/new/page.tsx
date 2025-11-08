@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
@@ -46,8 +46,8 @@ import { analyzeFaceShape } from '@/ai/flows/analyze-face-shape';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { useSidebar } from '@/components/ui/sidebar';
-import { suggestInitialFrames, type SuggestInitialFramesOutput } from '@/ai/flows/suggest-initial-frames';
-import { Frame, FrameVariation, Lens } from '@/lib/types';
+import { suggestInitialFrames } from '@/ai/flows/suggest-initial-frames';
+import { Frame, FrameVariation, Lens, type SuggestInitialFramesOutput } from '@/lib/types';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { FrameCard } from '@/components/frame-card';
 import { useFavorites } from '@/hooks/use-favorites';
@@ -682,5 +682,3 @@ export default function NewPatientPage() {
     </>
   );
 }
-
-    
