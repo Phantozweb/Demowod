@@ -41,4 +41,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Made by
 
-[Janarthan Veeramani](https://www.google.com/search?q=janarthan+veeramani)
+[Janarthan Veeramani](https://www.google.com/search?q=janarthan+veeramani

@@ -19,7 +19,7 @@ import { LensCard } from '@/components/lens-card';
 
 export default function CatalogPage() {
   const [frames, setFrames] = useState<Frame[]>([]);
-  const [lenses, setLenses]_useState<Lens[]>([]);
+  const [lenses, setLenses] = useState<Lens[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [frameType, setFrameType] = useState('all');
