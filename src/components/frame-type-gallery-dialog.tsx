@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -13,7 +13,6 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { FrameCard } from '@/components/frame-card';
 import { Frame, FrameVariation } from '@/lib/types';
 import { ProductPreviewCard } from './product-preview-card';
-import { useState } from 'react';
 
 interface FrameTypeGalleryDialogProps {
   type: string;
@@ -104,3 +103,5 @@ export function FrameTypeGalleryDialog({
     </>
   );
 }
+
+    

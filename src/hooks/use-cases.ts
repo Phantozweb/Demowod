@@ -94,8 +94,15 @@ export const useCases = () => {
   }, []);
 
   const getCase = useCallback((caseId: string) => {
-    return cases.find(c => c.id === caseId);
-  }, [cases]);
+    const item = window.localStorage.getItem(CASES_KEY);
+    if (item) {
+      const allCases: PatientCase[] = JSON.parse(item);
+      return allCases.find(c => c.id === caseId);
+    }
+    return undefined;
+  }, []);
 
   return { cases, addCase, updateCase, removeCase, getCase, isInitialized };
 };
+
+    

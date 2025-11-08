@@ -19,7 +19,7 @@ import { LensCard } from '@/components/lens-card';
 
 export default function CatalogPage() {
   const [frames, setFrames] = useState<Frame[]>([]);
-  const [lenses, setLenses] = useState<Lens[]>([]);
+  const [lenses, setLenses]_useState<Lens[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [frameType, setFrameType] = useState('all');
@@ -64,9 +64,21 @@ export default function CatalogPage() {
               if (Array.isArray(data)) {
                 data.forEach((frame: Frame) => {
                   const existingFrame = framesMap.get(frame.id) || frame;
+                  const prop = source.property as 'frameType' | 'frameShape';
+                  const value = source.value;
+
+                  if (!existingFrame[prop]) {
+                    existingFrame[prop] = value;
+                  } else if (Array.isArray(existingFrame[prop])) {
+                    if (!(existingFrame[prop] as string[]).includes(value)) {
+                      (existingFrame[prop] as string[]).push(value);
+                    }
+                  } else if (existingFrame[prop] !== value) {
+                    existingFrame[prop] = [existingFrame[prop] as string, value];
+                  }
+                  
                   framesMap.set(frame.id, {
                     ...existingFrame,
-                    [source.property]: source.value,
                   });
                 });
               }
@@ -135,8 +147,16 @@ export default function CatalogPage() {
 
   const filteredFrames = allFrames.filter(frame => {
     const nameMatch = frame.productName.toLowerCase().includes(searchTerm.toLowerCase());
-    const typeMatch = frameType === 'all' || (frame.frameType && frame.frameType.toLowerCase() === frameType);
-    const shapeMatch = frameShape === 'all' || (frame.frameShape && frame.frameShape.toLowerCase() === frameShape);
+    
+    const typeMatch = frameType === 'all' || 
+      (Array.isArray(frame.frameType) 
+        ? frame.frameType.map(t => t.toLowerCase()).includes(frameType) 
+        : frame.frameType?.toLowerCase() === frameType);
+    
+    const shapeMatch = frameShape === 'all' || 
+      (Array.isArray(frame.frameShape) 
+        ? frame.frameShape.map(s => s.toLowerCase()).includes(frameShape)
+        : frame.frameShape?.toLowerCase() === frameShape);
     
     return nameMatch && (typeMatch && shapeMatch);
   });
@@ -153,12 +173,10 @@ export default function CatalogPage() {
 
   const handleFrameTypeChange = (value: string) => {
     setFrameType(value);
-    setFrameShape('all');
   };
 
   const handleFrameShapeChange = (value: string) => {
     setFrameShape(value);
-    setFrameType('all');
   };
 
   const handlePreview = (frame: Frame) => {
@@ -338,3 +356,5 @@ export default function CatalogPage() {
     </div>
   );
 }
+
+    

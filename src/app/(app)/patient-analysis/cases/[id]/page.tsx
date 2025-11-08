@@ -3,7 +3,7 @@
 
 import { useParams } from 'next/navigation';
 import { useCases, type PatientCase } from '@/hooks/use-cases';
-import { useEffect, useState, useRef, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import {
   Card,
   CardContent,
@@ -19,7 +19,6 @@ import {
   Wand2,
   Loader,
   Info,
-  Heart,
   Sparkles,
   CheckCircle,
 } from 'lucide-react';
@@ -37,25 +36,12 @@ import { FrameTypeGalleryDialog } from '@/components/frame-type-gallery-dialog';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { FrameCard } from '@/components/frame-card';
 
-function FormattedReasoning({ text }: { text: string }) {
-  if (!text) return null;
-  const parts = text.split(/\*\*(.*?)\*\*/g);
-  return (
-    <>
-      {parts.map((part, i) =>
-        i % 2 === 1 ? <strong key={i}>{part}</strong> : part
-      )}
-    </>
-  );
-}
-
 export default function CaseDetailPage() {
   const params = useParams();
   const { getCase, updateCase } = useCases();
   const { toast } = useToast();
   const { isFavorite, toggleFavorite } = useFavorites();
   const [caseItem, setCaseItem] = useState<PatientCase | undefined>(undefined);
-  const [analysisResult, setAnalysisResult] = useState<SuggestInitialFramesOutput | null>(null);
 
   const [isLoading, setIsLoading] = useState(false);
   const [allFrames, setAllFrames] = useState<Frame[]>([]);
@@ -66,8 +52,6 @@ export default function CaseDetailPage() {
   const [selectedShape, setSelectedShape] = useState<string | null>(null);
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [patientImage, setPatientImage] = useState<string | null>(null);
-
-  const analysisRun = useRef(false);
 
    useEffect(() => {
     const fetchCatalogData = async () => {
@@ -88,42 +72,73 @@ export default function CaseDetailPage() {
         try {
           const responses = await Promise.all(dataSources.map(source => fetch(source.url).catch(() => null)));
           const framesMap = new Map<number, Frame>();
-          responses.forEach((res, i) => {
+          
+          await Promise.all(responses.map(async (res, i) => {
             if (res && res.ok) {
-              res.json().then(data => {
+              try {
+                const data = await res.json();
                 if (Array.isArray(data)) {
                   data.forEach((frame: Frame) => {
-                    const existingFrame = framesMap.get(frame.id) || { ...frame };
+                    const existingFrame = framesMap.get(frame.id) || { ...frame, frameType: [], frameShape: [] };
                     const prop = dataSources[i].property as 'frameType' | 'frameShape';
                     const value = dataSources[i].value;
-                    if (!existingFrame[prop]) {
-                      existingFrame[prop] = value;
-                    } else if (Array.isArray(existingFrame[prop]) && !(existingFrame[prop] as string[]).includes(value)) {
-                      (existingFrame[prop] as string[]).push(value);
-                    } else if (typeof existingFrame[prop] === 'string' && existingFrame[prop] !== value) {
-                      existingFrame[prop] = [existingFrame[prop] as string, value];
+
+                    if (prop === 'frameType' && !existingFrame.frameType.includes(value)) {
+                        (existingFrame.frameType as string[]).push(value);
                     }
+                    if (prop === 'frameShape' && !existingFrame.frameShape.includes(value)) {
+                        (existingFrame.frameShape as string[]).push(value);
+                    }
+                    
                     framesMap.set(frame.id, existingFrame);
                   });
                 }
-              });
+              } catch (e) {
+                console.error(`Failed to parse JSON for ${dataSources[i].url}`, e);
+              }
             }
-          });
-          setAllFrames(Array.from(framesMap.values()));
+          }));
+          
+          setAllFrames(Array.from(framesMap.values()).map(frame => ({
+            ...frame,
+            frameType: frame.frameType.length === 1 ? frame.frameType[0] : frame.frameType,
+            frameShape: frame.frameShape.length === 1 ? frame.frameShape[0] : frame.frameShape,
+          })));
+
         } catch (error) {
           console.error('Failed to fetch frames data:', error);
         }
       };
 
       const fetchLenses = async () => {
-        try {
-          const res = await fetch('/lenses.json');
-          if (res.ok) {
-            const data = await res.json();
-            setAllLenses(data);
-          }
+         try {
+            const [singleVisionRes, progressiveRes, computerWorkRes, coatingsRes, sunRes] = await Promise.all([
+                fetch('/single-vision-lenses.json'),
+                fetch('/progressive-lenses.json'),
+                fetch('/computer-work-lenses.json'),
+                fetch('/lens-coatings.json'),
+                fetch('/sun-lenses.json')
+            ]);
+            
+            const singleVisionLenses = singleVisionRes.ok ? await singleVisionRes.json() : [];
+            const progressiveLenses = progressiveRes.ok ? await progressiveRes.json() : [];
+            const computerWorkLenses = computerWorkRes.ok ? await computerWorkRes.json() : [];
+            const coatings = coatingsRes.ok ? await coatingsRes.json() : [];
+            const sunLenses = sunRes.ok ? await sunRes.json() : [];
+
+            let idCounter = 0;
+            const allLenses = [
+                ...singleVisionLenses, 
+                ...progressiveLenses, 
+                ...computerWorkLenses, 
+                ...coatings, 
+                ...sunLenses
+            ].map(lens => ({ ...lens, id: idCounter++ }));
+
+            setAllLenses(allLenses);
+
         } catch (error) {
-          console.error('Failed to fetch lenses data:', error);
+            console.error('Failed to fetch lenses data:', error);
         }
       };
 
@@ -135,29 +150,21 @@ export default function CaseDetailPage() {
   }, []);
 
   useEffect(() => {
-    if (typeof params.id === 'string') {
+    if (typeof params.id === 'string' && !isFetchingData) {
       const foundCase = getCase(params.id);
       setCaseItem(foundCase);
 
       if (foundCase?.patientImage) {
           setPatientImage(foundCase.patientImage);
       }
-
-      if (foundCase?.analysis) {
-        setAnalysisResult(foundCase.analysis as SuggestInitialFramesOutput);
-        analysisRun.current = true;
-      }
     }
-  }, [params.id, getCase]);
+  }, [params.id, getCase, isFetchingData]);
 
   const handleStartAnalysis = async () => {
     if (!caseItem) return;
   
     setIsLoading(true);
-    analysisRun.current = true;
   
-    await new Promise(resolve => setTimeout(resolve, 500)); 
-
     if (allFrames.length === 0 || allLenses.length === 0) {
       toast({
           variant: 'destructive',
@@ -165,7 +172,6 @@ export default function CaseDetailPage() {
           description: 'The product or lens catalog is empty. Please check the data sources.',
       });
       setIsLoading(false);
-      analysisRun.current = false;
       return;
     }
   
@@ -190,9 +196,10 @@ export default function CaseDetailPage() {
               category: l.category
             }))
         });
-
-        setAnalysisResult(result);
+        
         updateCase(caseItem.id, { analysis: result, status: 'Completed' });
+        setCaseItem(prev => prev ? {...prev, analysis: result, status: 'Completed'} : undefined);
+
         toast({
             title: 'Analysis Complete',
             description: 'AI recommendations have been generated.',
@@ -204,7 +211,6 @@ export default function CaseDetailPage() {
             title: 'Analysis Failed',
             description: 'There was an error generating AI recommendations. Please try again.',
         });
-        analysisRun.current = false;
     } finally {
         setIsLoading(false);
     }
@@ -215,27 +221,19 @@ export default function CaseDetailPage() {
   ), [allFrames]);
 
   const recommendedFrames = useMemo(() => {
-    return analysisResult?.topFrames?.map(rec => {
+    return caseItem?.analysis?.topFrames?.map(rec => {
       const frame = flatFrames.find(f => f.id === rec.id);
       return frame ? { ...frame, reasoning: rec.reasoning } : null;
     }).filter((f): f is Frame & { reasoning: string } => f !== null) || [];
-  }, [analysisResult, flatFrames]);
+  }, [caseItem?.analysis, flatFrames]);
 
   const handlePreview = (frame: Frame) => setSelectedFrame(frame);
   
-  if (isFetchingData && !caseItem) {
+  if (isFetchingData || !caseItem) {
     return (
       <div className="flex flex-col gap-4 justify-center items-center min-h-svh">
         <Loader className="animate-spin h-8 w-8 text-primary" />
         <p className='text-muted-foreground'>Loading case details...</p>
-      </div>
-    );
-  }
-
-  if (!caseItem) {
-     return (
-      <div className="flex flex-col gap-4 justify-center items-center min-h-svh">
-        <p className='text-muted-foreground'>Case not found.</p>
       </div>
     );
   }
@@ -302,7 +300,7 @@ export default function CaseDetailPage() {
                 </div>
               )}
 
-              {!isLoading && !analysisResult && (
+              {!isLoading && !caseItem.analysis && (
                 <div className="text-center py-10 flex flex-col items-center gap-4 border-2 border-dashed rounded-lg">
                   <FlaskConical className="h-8 w-8 text-muted-foreground" />
                   <p className="text-muted-foreground max-w-sm">No analysis has been run for this case yet. Click the button below to generate AI-powered frame recommendations.</p>
@@ -313,15 +311,15 @@ export default function CaseDetailPage() {
                 </div>
               )}
 
-              {analysisResult && (
+              {caseItem.analysis && (
                 <div className='space-y-8'>
                   {/* Frame Shapes */}
-                  {analysisResult.recommendedShapes && (
+                  {caseItem.analysis.recommendedShapes && (
                     <section>
                       <CardTitle className="text-xl font-semibold text-primary flex items-center gap-2 mb-2"><Sparkles /> Recommended Frame Shapes</CardTitle>
-                      <CardDescription className='mb-4'>{analysisResult.recommendedShapes.reasoning}</CardDescription>
+                      <CardDescription className='mb-4'>{caseItem.analysis.recommendedShapes.reasoning}</CardDescription>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                          {analysisResult.recommendedShapes.recommendations.map(rec => (
+                          {caseItem.analysis.recommendedShapes.recommendations.map(rec => (
                               <Button type="button" key={rec.shape} variant="outline" className="h-auto py-3 flex flex-col gap-1 items-center" onClick={() => setSelectedShape(rec.shape)}>
                                   <span className="text-base font-semibold">{rec.shape}</span>
                                   <p className="text-xs text-muted-foreground font-normal whitespace-normal text-center">{rec.reasoning}</p>
@@ -331,12 +329,12 @@ export default function CaseDetailPage() {
                     </section>
                   )}
                   {/* Frame Types */}
-                  {analysisResult.recommendedTypes && (
+                  {caseItem.analysis.recommendedTypes && (
                      <section>
                       <CardTitle className="text-xl font-semibold text-primary flex items-center gap-2 mb-2"><Sparkles /> Suitable Frame Types</CardTitle>
-                      <CardDescription className='mb-4'>{analysisResult.recommendedTypes.reasoning}</CardDescription>
+                      <CardDescription className='mb-4'>{caseItem.analysis.recommendedTypes.reasoning}</CardDescription>
                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                          {analysisResult.recommendedTypes.recommendations.map(rec => (
+                          {caseItem.analysis.recommendedTypes.recommendations.map(rec => (
                               <Button type="button" key={rec.type} variant="outline" className="h-auto py-3 flex flex-col gap-1 items-center" onClick={() => setSelectedType(rec.type)}>
                                   <span className="text-base font-semibold">{rec.type}</span>
                                   <p className="text-xs text-muted-foreground font-normal whitespace-normal text-center">{rec.reasoning}</p>
@@ -370,12 +368,12 @@ export default function CaseDetailPage() {
                       </section>
                    )}
                    {/* Lens Recommendations */}
-                   {analysisResult.recommendedLenses && (
+                   {caseItem.analysis.recommendedLenses && (
                      <section>
                       <CardTitle className="text-xl font-semibold text-primary flex items-center gap-2 mb-2"><Eye /> Recommended Lens & Coatings</CardTitle>
-                      <CardDescription className='mb-4'>{analysisResult.recommendedLenses.reasoning}</CardDescription>
+                      <CardDescription className='mb-4'>{caseItem.analysis.recommendedLenses.reasoning}</CardDescription>
                       <div className='space-y-4'>
-                        {analysisResult.recommendedLenses.recommendations.map(rec => {
+                        {caseItem.analysis.recommendedLenses.recommendations.map(rec => {
                            const lens = allLenses.find(l => l.id === rec.id);
                            if (!lens) return null;
                            return (
@@ -388,14 +386,16 @@ export default function CaseDetailPage() {
                                     <Info className="h-4 w-4 shrink-0 mt-1" />
                                     <span><span className='font-semibold text-foreground'>Reasoning:</span> {rec.reasoning}</span>
                                   </p>
-                                  <div className="mt-4 space-y-1">
-                                      {lens.features.map((feature, i) => (
-                                          <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
-                                              <CheckCircle className="h-3 w-3 text-primary" />
-                                              <span>{feature}</span>
-                                          </div>
-                                      ))}
-                                  </div>
+                                  {lens.features && lens.features.length > 0 && (
+                                    <div className="mt-4 space-y-1">
+                                        {lens.features.map((feature, i) => (
+                                            <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
+                                                <CheckCircle className="h-3 w-3 text-primary" />
+                                                <span>{feature}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                  )}
                                 </CardContent>
                               </Card>
                            )
@@ -442,3 +442,5 @@ export default function CaseDetailPage() {
     </>
   );
 }
+
+    
