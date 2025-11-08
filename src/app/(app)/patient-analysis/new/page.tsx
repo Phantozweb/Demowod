@@ -108,8 +108,22 @@ export default function NewPatientPage() {
       patientName: '',
       age: undefined,
       gender: '',
+      contactInfo: '',
+      occupation: '',
+      lifestyle: '',
       visualNeeds: '',
       stylePreferences: '',
+      pastPurchases: '',
+      distSphOd: '',
+      distSphOs: '',
+      distCyl: '',
+      distAxis: '',
+      nearAddOd: '',
+      nearAddOs: '',
+      pdDist: '',
+      pdNear: '',
+      faceShape: '',
+      skinTone: '',
     },
   });
   
@@ -682,3 +696,5 @@ export default function NewPatientPage() {
     </>
   );
 }
+
+    
