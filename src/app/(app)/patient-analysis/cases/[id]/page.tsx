@@ -168,7 +168,7 @@ export default function CaseDetailPage() {
     setIsLoading(true);
     analysisRun.current = true;
   
-    await new Promise(resolve => setTimeout(resolve, 500)); // Give UI time to update
+    await new Promise(resolve => setTimeout(resolve, 500)); 
 
     if (allFrames.length === 0) {
       console.error("Frame catalog is empty. Cannot run analysis.");
@@ -185,14 +185,13 @@ export default function CaseDetailPage() {
     try {
         const simplifiedFrames = allFrames.map(f => {
             const frame = { ...f };
-            // Ensure frameShape is a string for the AI flow
             if (Array.isArray(frame.frameShape)) {
                 frame.frameShape = frame.frameShape[0];
             }
             return { 
                 id: frame.id, 
                 productName: frame.productName,
-                frameType: frame.frameType,
+                frameType: Array.isArray(frame.frameType) ? frame.frameType[0] : frame.frameType,
                 frameShape: frame.frameShape,
                 brand: frame.brand,
                 size: frame.size,
@@ -325,8 +324,7 @@ export default function CaseDetailPage() {
         </div>
 
         <div className="lg:col-span-2 space-y-8">
-            {/* AI Shape Recommendations */}
-            {shapeAnalysis && shapeAnalysis.recommendations && (
+            {shapeAnalysis && shapeAnalysis.recommendations && shapeAnalysis.recommendations.length > 0 && (
             <Card>
                 <CardHeader>
                     <CardTitle className="text-xl font-semibold text-primary flex items-center gap-2"><Sparkles /> Recommended Frame Shapes</CardTitle>
@@ -409,7 +407,7 @@ export default function CaseDetailPage() {
               )}
                
                {!isLoading && analysisResult && (
-                 <Button onClick={() => { analysisRun.current = false; handleStartAnalysis(); }} disabled={isLoading || isFetchingFrames} size="sm" className="mt-6">
+                 <Button onClick={() => { handleStartAnalysis(); }} disabled={isLoading || isFetchingFrames} size="sm" className="mt-6">
                     {isLoading ? 'Re-running...' : 'Re-run Analysis'}
                 </Button>
                )}
@@ -445,4 +443,3 @@ export default function CaseDetailPage() {
     </>
   );
 }
-
